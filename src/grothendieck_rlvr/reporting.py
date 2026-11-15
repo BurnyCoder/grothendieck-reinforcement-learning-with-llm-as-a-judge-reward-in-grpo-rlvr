@@ -270,9 +270,10 @@ def paper_sections(snapshot):
          "frameworks and distant mathematical connections earn that credit only when justified and useful. "
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
          "The current reference-comparison protocol records an added construction and its use before scoring "
-         "novelty. Code rejects positive novelty without an explicit beyond-reference decision and matching "
-         "excerpts. Checklist-based judging [14] motivates these auditable prerequisites; the checks do not "
-         "certify mathematical entailment. "
+         "novelty. The current code gate withholds novelty credit unless supported theory is declared "
+         "beyond-reference with excerpts for both the construction and its use. Raw scores remain unchanged; "
+         "effective scores and gate reasons are logged. Checklist-based judging [14] motivates auditable "
+         "prerequisites; the checks do not certify mathematical entailment. "
          "Final-answer verification does not certify surrounding proofs."),
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
          "on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies "

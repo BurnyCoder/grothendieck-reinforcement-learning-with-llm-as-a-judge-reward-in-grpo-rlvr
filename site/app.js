@@ -25,7 +25,7 @@ function renderTraining() {
   $('metrics').replaceChildren(...fields.map(([label,value])=>{const card=element('div',null,'metric');card.append(element('small',label),element('strong',number(value)));return card;}));
   $('charts').replaceChildren(...[['Correctness','accuracy',true],['Theory quality','theory',true],['Supported novelty','novelty',true],['Loss','loss',false],['KL','kl',false]].map(([title,key,bounded])=>chart(title,events.map(e=>[e.step??e.reward_call,e[key]??e.metrics?.[key]]).filter(p=>p.every(Number.isFinite)),bounded)));
 }
-function renderExample(){const rows=snapshot.examples[$('example-arm').value]||[], row=rows.find(r=>r.task_id===$('example-task').value);$('response').textContent=row?JSON.stringify(row.prompt,null,2)+'\n\n'+row.response:'No evaluated outputs yet.';$('assessment').textContent=row?JSON.stringify({verification:row.verification,theory:row.theory,assessment:row.assessment},null,2):'Pending.';}
+function renderExample(){const rows=snapshot.examples[$('example-arm').value]||[], row=rows.find(r=>r.task_id===$('example-task').value);$('response').textContent=row?JSON.stringify(row.prompt,null,2)+'\n\n'+row.response:'No evaluated outputs yet.';$('assessment').textContent=row?JSON.stringify({verification:row.verification,theory:row.theory,novelty_credit:row.novelty_credit,assessment:row.assessment},null,2):'Pending.';}
 function exampleOptions(){choices($('example-task'),(snapshot.examples[$('example-arm').value]||[]).map(r=>r.task_id));renderExample();}
 function judgeRows() {
   return (snapshot.development||[]).find(attempt=>attempt.artifact===$('judge-attempt').value)?.assessments||[];
@@ -35,7 +35,7 @@ function renderJudge() {
   $('judge-candidate').textContent=row ? ['Problem: '+(row.problem??'Not paired in the source log.'),
     'Conventional reference: '+(row.conventional_reference??'Not paired in the source log.'),
     row.candidate_response??'Candidate text not paired in the source log.'].join('\n\n') : 'No published judgments yet.';
-  $('judge-assessment').textContent=row ? JSON.stringify(row.assessment,null,2) : 'Pending.';
+  $('judge-assessment').textContent=row ? JSON.stringify({assessment:row.assessment,novelty_credit:row.novelty_credit},null,2) : 'Pending.';
   $('judge-metrics').textContent=row ? `Recorded ${row.time} · Supported theory ${number(row.theory)} · Supported novelty ${number(row.novelty)} · These are judge opinions.` : '';
 }
 function judgeOptions() {

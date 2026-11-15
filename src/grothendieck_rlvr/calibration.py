@@ -153,11 +153,14 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
             ordering.append({"id": task.id, "stratum": case["stratum"],
                              "preferred": preferred.quality, "dispreferred": dispreferred.quality,
                              "preferred_novelty": preferred.novelty, "dispreferred_novelty": dispreferred.novelty,
+                             "preferred_novelty_credit": preferred.novelty_credit,
+                             "dispreferred_novelty_credit": dispreferred.novelty_credit,
                              "passed": preferred.quality > dispreferred.quality and
                              (case["stratum"] != "novelty" or novelty_order)})
         else:
             assessment = judge.assess(task, case["response"])
             suppression.append({"id": task.id, "stratum": case["stratum"], "theory": assessment.quality,
+                                "novelty_credit": assessment.novelty_credit,
                                 "validity": assessment.theory_validity, "passed": assessment.quality == 0})
         summary = calibration_summary(cases, ordering, suppression)
         atomic_json(destination.with_suffix(".progress.json"), {

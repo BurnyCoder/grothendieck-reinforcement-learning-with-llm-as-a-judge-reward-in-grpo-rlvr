@@ -1,12 +1,12 @@
-"""Reject contradictory novelty decisions without substituting a mathematical verdict."""
+"""Keep raw judge opinions while enforcing declared novelty eligibility in reward code."""
 import json
-from copy import deepcopy
 
 import pytest
 
 from grothendieck_rlvr.io import EventLog, read_jsonl
 from grothendieck_rlvr.judge import Judge, JudgeFailure
 from grothendieck_rlvr.schema import Assessment, Task
+from grothendieck_rlvr.reward import CompositeReward
 
 
 CANDIDATE = "Define the construction. It yields another consequence. <final>6</final>"
@@ -31,16 +31,26 @@ def opinion(score=2, relation="beyond_reference", validity="supported"):
 
 @pytest.mark.parametrize("relation", ["within_reference", "unresolved"])
 def test_positive_novelty_requires_explicit_departure(relation):
-    with pytest.raises(ValueError, match="beyond_reference"):
-        Assessment.model_validate(opinion(relation=relation))
+    data = opinion(relation=relation)
+    assessment = Assessment.model_validate(data)
+    assert assessment.model_dump() == data
+    assert assessment.novelty == 0
+    assert assessment.quality == pytest.approx(.6)
+    assert assessment.novelty_credit == {
+        "raw_score": 2, "effective_score": 0, "eligible": False,
+        "withheld": True, "gate_reasons": [relation],
+    }
 
 
 @pytest.mark.parametrize("field", ["addition_evidence", "use_evidence"])
 def test_positive_novelty_requires_construction_and_function_evidence(field):
     data = opinion()
     data["novelty_comparison"][field] = []
-    with pytest.raises(ValueError, match="addition and use"):
-        Assessment.model_validate(data)
+    assessment = Assessment.model_validate(data)
+    assert assessment.novelty == 0
+    assert assessment.quality == pytest.approx(.6)
+    assert assessment.novelty_credit["gate_reasons"] == [f"missing_{field}"]
+    assert assessment.model_dump() == data
 
 
 def test_reference_and_candidate_excerpts_are_checked_against_separate_sources():
@@ -65,25 +75,53 @@ def test_conventional_general_theory_keeps_its_other_scores():
         assert invalid.quality == invalid.novelty == 0
 
 
-def test_inconsistent_response_is_retried_without_silently_capping_its_score(tmp_path, monkeypatch):
+def test_withheld_credit_is_visible_in_fresh_and_cached_events(tmp_path, monkeypatch):
     judge = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "events.jsonl"),
                   cache=tmp_path / "cache.sqlite")
     task = Task(id="reference-contract", problem="gcd(12,18)", answer="6", family="gcd",
                 split="dev", provenance={})
-    invalid, repaired = opinion(relation="within_reference"), opinion(score=0, relation="within_reference")
-    replies = iter([json.dumps(invalid), json.dumps(repaired)])
+    raw = opinion(relation="within_reference")
     requests = []
     def generate(messages, *args):
-        requests.append(deepcopy(messages))
-        return next(replies)
+        requests.append(messages)
+        return json.dumps(raw)
     monkeypatch.setattr(judge.client, "generate", generate)
     assert judge.assess(task, CANDIDATE).quality == pytest.approx(.6)
-    original, retry = [json.loads(messages[1]["content"]) for messages in requests]
-    feedback = retry.pop("validation_feedback")
-    assert retry == original
-    assert "beyond_reference" in feedback["error"]
-    assert json.loads(feedback["previous_assessment"]) == invalid
-    assert sum(e["kind"] == "judge_assessment" for e in read_jsonl(tmp_path / "events.jsonl")) == 1
+    assert judge.assess(task, CANDIDATE).model_dump() == raw
+    assert len(requests) == 1
+    events = read_jsonl(tmp_path / "events.jsonl")
+    assert [e["kind"] for e in events] == ["judge_assessment", "judge_cache_hit"]
+    for event in events:
+        assert event["assessment"] == raw
+        assert event["novelty_credit"]["withheld"] is True
+        assert event["novelty_credit"]["gate_reasons"] == ["within_reference"]
+        assert event["novelty"] == 0
+        assert event["theory"] == pytest.approx(.6)
+
+
+def test_eligibility_protocol_changes_cache_identity(tmp_path, monkeypatch):
+    from grothendieck_rlvr import judge as module
+    judge = Judge("http://127.0.0.1:8081", cache=tmp_path / "cache.sqlite")
+    monkeypatch.setattr(module, "ASSESSMENT_PROTOCOL", "different-reward-contract")
+    changed = Judge("http://127.0.0.1:8081", cache=tmp_path / "cache.sqlite")
+    assert changed.identity != judge.identity
+
+
+def test_reward_callback_uses_effective_credit_and_retains_raw_opinion(tmp_path, monkeypatch):
+    judge = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "judge.jsonl"),
+                  cache=tmp_path / "cache.sqlite")
+    task = Task(id="reference-contract", problem="gcd(12,18)", answer="6", family="gcd",
+                split="dev", provenance={})
+    raw = opinion(score=4, relation="within_reference")
+    monkeypatch.setattr(judge.client, "generate", lambda *args: json.dumps(raw))
+    callback = CompositeReward(judge, EventLog(tmp_path / "reward.jsonl"))
+    rewards = callback([CANDIDATE, "<final>5</final>"], [task.model_dump()] * 2)
+    assert rewards == pytest.approx([1.3, 0.0])
+    rows = [e for e in read_jsonl(tmp_path / "reward.jsonl") if e["kind"] == "rollout"]
+    assert rows[0]["assessment"] == raw
+    assert rows[0]["novelty_credit"]["withheld"]
+    assert rows[0]["novelty_credit"]["raw_score"] == 4
+    assert rows[1]["assessment"] is rows[1]["novelty_credit"] is None
 
 
 def test_invented_reference_never_enters_cache(tmp_path, monkeypatch):
