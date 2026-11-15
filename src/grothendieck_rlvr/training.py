@@ -31,7 +31,7 @@ def load_policy(seed=42, adapter: Path | None=None, training=False):
         raise RuntimeError("Download the pinned policy checkpoint before model loading")
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=str(adapter or path), dtype=torch.bfloat16, load_in_4bit=False,
-        max_seq_length=cfg["max_prompt_length"] + cfg["max_completion_length"],
+        max_seq_length=cfg["max_prompt_length"] + cfg["max_completion_length"] if training else 8192,
         fast_inference=False,
     )
     if training and adapter is None:
@@ -164,7 +164,9 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None) -> 
                 optim="adamw_torch", weight_decay=0.0, seed=seed, data_seed=cfg["data_seed"],
                 save_steps=cfg["save_steps"], save_total_limit=3, save_only_model=False,
                 logging_steps=1, report_to="none", remove_unused_columns=False,
-                use_vllm=False, dataloader_num_workers=0)
+                use_vllm=False, dataloader_num_workers=0, shuffle_dataset=False)
+    # Manifests already use data_seed order. TRL v1.15's RepeatSampler otherwise uses
+    # args.seed (not data_seed): https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/grpo_trainer.py
     # Newer TRL removed max_prompt_length; explicit token checking above preserves its contract.
     fields = inspect.signature(GRPOConfig).parameters
     if "max_prompt_length" in fields:
