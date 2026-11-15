@@ -300,7 +300,7 @@ def write_paper(snapshot, rows, destination: Path):
     from reportlab.lib.units import inch
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, KeepTogether
     font = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     font_name = "Helvetica"
     if font.exists():
@@ -345,12 +345,13 @@ def write_paper(snapshot, rows, destination: Path):
                                       ("LINEBELOW", (0,0), (-1,0), .5, colors.grey)]))
             story.extend([Spacer(1, 8), table])
             markdown.append(markdown_table(transfer_table))
-    story.append(Paragraph("References", styles["Heading2"]))
+    references = [Paragraph("References", styles["Heading2"])]
     markdown.append("## References")
     for i, (title, url) in enumerate(REFERENCES, 1):
-        story.append(Paragraph(f'[{i}] <link href="{html.escape(url)}" color="#225d69">{html.escape(title)}</link>', styles["Reference"]))
+        references.append(Paragraph(f'[{i}] <link href="{html.escape(url)}" color="#225d69">{html.escape(title)}</link>', styles["Reference"]))
         markdown.append(f"[{i}] [{title}]({url})")
-    story.extend([Spacer(1, 12), Paragraph(html.escape(AI_STATEMENT), styles["BodyText"])])
+    references.extend([Spacer(1, 12), Paragraph(html.escape(AI_STATEMENT), styles["BodyText"])])
+    story.append(KeepTogether(references))
     markdown.append(AI_STATEMENT)
     def footer(canvas, doc):
         canvas.setFont(font_name, 8)

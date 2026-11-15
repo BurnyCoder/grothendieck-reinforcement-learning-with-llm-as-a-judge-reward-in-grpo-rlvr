@@ -47,5 +47,8 @@
   "thread_benchmark_evidence_pages_workflow": 43707402929,
   "evidence_protocol_v4_merge": "20a1e051334374605ed1e283b65c8232b11780fe",
   "evidence_protocol_v4_huggingface_commit": "d473b02a614224d480b07facb9f7dd82e0f8222c",
-  "evidence_protocol_v4_pages_workflow": 43709069501
+  "evidence_protocol_v4_pages_workflow": 43709069501,
+  "policy_and_offload_protocol_merge": "b338c47f3705492402cc78e4d3aec25576016301",
+  "policy_and_offload_protocol_huggingface_commit": "c31626593aadf1be325935ce4c2f965b662bbaa1",
+  "policy_and_offload_protocol_pages_workflow": 43710039125
 }
