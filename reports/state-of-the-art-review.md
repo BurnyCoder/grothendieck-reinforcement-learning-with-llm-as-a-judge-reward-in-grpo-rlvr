@@ -129,3 +129,18 @@ These held-out families do not establish out-of-pretraining generalization.
 No code from papers is copied where an existing library implements the method.
 Runtime and task-source compatibility will be checked against the locked release,
 with deviations documented before comparative results.
+
+## A distinct route: verified mathematical construction
+
+[ALPS, sections 3–4 and appendices](https://arxiv.org/html/2608.15979v1) asks for
+a triviality proof or a finite presentation of a nontrivial model of an
+equational law. Its construction channel checks both entailment of the law and
+satisfiability with distinct elements, using complete prover saturation;
+triviality is checked through Lean. This motivates checking that proposed
+objects satisfy their specification without becoming degenerate. It does not
+validate our natural-language score or establish historical originality of a
+successful construction. Appendix H reports repeated solver passes, so the
+headline counts should not be treated as a matched causal comparison of prompt
+conditions. The full paper and appendices were reviewed. No code, prompts or
+data are imported; adopting this different task and verification interface
+would require a separate experiment. The current locked OOD suite is unchanged.
