@@ -11,6 +11,10 @@ The explanation is mathematically useful, but its argument is already covered
 by the supplied Euclidean/common-divisor reference. This is a concrete example
 of overcrediting novelty, not a measured population error rate. The incomplete
 v2 attempts remain published and their cached opinions cannot pass v3 gates.
+The completed Qwen log also contains an LCM assessment that awards novelty while
+describing the argument as a conventional prime-exponent method. That observation
+reinforces the need to distinguish useful generality from conceptual departure;
+it does not change the calibration cases or acceptance thresholds.
 
 Rubric v3 explicitly includes standard correctness arguments, routine parameter
 substitutions, scaling, direct special cases and equivalent notation within the

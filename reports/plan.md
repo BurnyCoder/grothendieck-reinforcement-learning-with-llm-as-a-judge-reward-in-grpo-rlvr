@@ -40,9 +40,9 @@ required. No comparative run has begun.
 
 Model downloads and artifact hashes are complete. The maximum-length BF16 LoRA
 backward probe passed; four-completion GRPO and checkpoint resumption remain
-pending. Development Gemma judging has
-started but is incomplete; the interrupted CPU attempt is retained. Evaluation
-GPU offload and the policy backward probe are being checked under the
+pending. Development judging by both models has started but is incomplete;
+the interrupted CPU attempts are retained. Evaluation
+GPU offload and the remaining policy feasibility checks follow the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
 policy evaluation or training result is claimed. Initial local constraints are
 environment observations rather than comparative experimental results. Publication and

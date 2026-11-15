@@ -16,8 +16,12 @@
   "transfer_analysis_huggingface_commit": "e3a66e46e38a22102f012444963917b79c423805",
   "verifier_repair_merge": "a7ed085",
   "verifier_repair_huggingface_commit": "caaa3ed63bd3102250719ca06908451201a27081",
-  "development_status": "Gemma CPU development calibration interrupted after a completed assessment; policy feasibility in progress",
+  "development_status": "Incomplete Qwen and Gemma development calibration preserved; maximum-length BF16 backward probe passed; full GRPO save/resume pending",
   "runtime_provenance_merge": "759aed1d39a897f684ab777658606449ff5f5c8c",
   "runtime_provenance_huggingface_commit": "a1867b05998a9ba1bcdd6582dc8caaa37560965d",
-  "runtime_provenance_pages_workflow": 43696863397
+  "runtime_provenance_pages_workflow": 43696863397,
+  "compiler_cache_merge": "38fcec39838b6a9d81d84585d54b797eab59c1e2",
+  "compiler_cache_huggingface_commit": "bfec7b1da9e74f4bcef446a8c77414bdf8b2afa9",
+  "native_environment_merge": "e61c4c34c50981e59105b7f0d54ba52d5cc9bbfd",
+  "native_environment_huggingface_commit": "221ffba928cc19f863f50a5491cb06ec13c6f314"
 }
