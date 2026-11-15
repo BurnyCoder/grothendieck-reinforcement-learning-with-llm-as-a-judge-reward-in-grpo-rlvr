@@ -16,5 +16,8 @@
   "transfer_analysis_huggingface_commit": "e3a66e46e38a22102f012444963917b79c423805",
   "verifier_repair_merge": "a7ed085",
   "verifier_repair_huggingface_commit": "caaa3ed63bd3102250719ca06908451201a27081",
-  "development_status": "Gemma CPU development calibration interrupted after a completed assessment; policy feasibility in progress"
+  "development_status": "Gemma CPU development calibration interrupted after a completed assessment; policy feasibility in progress",
+  "runtime_provenance_merge": "759aed1d39a897f684ab777658606449ff5f5c8c",
+  "runtime_provenance_huggingface_commit": "a1867b05998a9ba1bcdd6582dc8caaa37560965d",
+  "runtime_provenance_pages_workflow": 43696863397
 }

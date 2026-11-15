@@ -10,6 +10,7 @@ __pycache__/
 build/
 dist/
 .cache/
+unsloth_compiled_cache/
 tmp/
 logs/
 runs/
