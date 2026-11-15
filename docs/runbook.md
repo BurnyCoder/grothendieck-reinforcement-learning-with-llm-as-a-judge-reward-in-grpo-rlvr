@@ -130,6 +130,16 @@ The separate [offload sweep](../reports/amendments/2026-11-15-evaluation-offload
 uses `bash scripts/run.sh benchmark-judge --sweep offload` and the full registered
 context. A selected offload change requires publication and recalibration.
 
+The registered evaluation server uses passive OpenMP waiting after a sustained
+serving slowdown; the training server retains library defaults. The CLI enforces
+these environment settings before launching the model. Each request also has a
+total streaming deadline, not merely a per-chunk inactivity timeout. Expired
+requests close their stream, retain partial logs and follow bounded retries.
+See the [development amendment](../reports/amendments/2026-11-15-judge-stream-deadline.md).
+Changes to these settings invalidate prior calibration identities. Archive and
+restart changed development calibration with `--restart-development`; locked
+audits cannot be reset.
+
 The synthetic maximum-length backward probe measures memory and does not retain
 updates. The two-step GRPO pilot checks four completions, real verifier/judge
 calls, optimizer state, saving and resumption. Record memory, validity, latency
