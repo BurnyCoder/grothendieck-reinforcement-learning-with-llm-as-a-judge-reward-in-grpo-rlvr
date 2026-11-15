@@ -36,7 +36,10 @@ def test_novelty_calibration_contains_distant_bridges_and_false_counterparts():
     for cases in (dev, audit):
         novel = [c for c in cases["pairs"] if c.get("stratum") == "novelty"]
         false = [c for c in cases["false_cases"] if c.get("stratum") == "novelty"]
-        assert len(novel) == len(false) == 8
+        assert len(novel) == 12 and len(false) == 8
+        assert [int(c["task"]["id"].split("-")[-1]) for c in novel
+                if c["control_novelty"] == "modest"] == [2, 6, 8, 9, 11]
+        assert "commutator" not in novel[10]["dispreferred"]
         assert len({c["task"]["family"] for c in novel}) == 4
         for case in novel + false:
             task = case["task"]
@@ -70,12 +73,16 @@ def test_ood_manifests_are_reproducible_isolated_and_verifiable(tmp_path):
 
 
 def test_rubric_ablation_preserves_novelty_without_historical_framing():
-    from grothendieck_rlvr.prompts import judge_system
+    from grothendieck_rlvr.prompts import DIRECTORY, judge_system
     common, quoted = judge_system("rubric"), judge_system("quoted")
     assert quoted.endswith(common)
     assert "constructive_novelty (weight 0.20)" in common
     assert "Grothendieck" not in common and "softening liquid" not in common
     assert "softening liquid" in quoted
+    # The user-requested quotation is immutable even when the scoring interpretation changes.
+    original = (DIRECTORY / "rising-sea-v1.txt").read_text().split("Grothendieck wrote,", 1)[1]
+    current = (DIRECTORY / "rising-sea-v2.txt").read_text().split("Grothendieck wrote,", 1)[1]
+    assert current.strip() == original.strip()
 
 
 def test_secondary_results_cannot_satisfy_primary_acceptance():

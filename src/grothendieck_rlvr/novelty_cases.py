@@ -6,6 +6,12 @@ They are public development/audit contract tests, not human preference measureme
 from .schema import Task
 
 
+# These controls contain a valid brief connection; they should receive some
+# novelty, while the developed framework should receive more. Other controls
+# contain only reference methods or decorative renaming and should receive zero.
+CONNECTION_CONTROLS = frozenset((2, 6, 8, 9, 11))
+
+
 def novelty_example(index: int, split: str) -> tuple[Task, str, str, str]:
     """Return equally correct answers with conventional, constructive and false theory."""
     n = 4 + 2 * index + (100 if split == "audit" else 0)
@@ -80,6 +86,21 @@ def novelty_example(index: int, split: str) -> tuple[Task, str, str, str]:
                 family=family, split=f"calibration_{split}", provenance={"constructed": True},
                 metadata={"variables": ["x"]} if family == "polynomial_multiplication" else {})
     final = f"\n<final>{answer}</final>"
-    if index >= 4:
+    if 4 <= index < 8:
         standard += " I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm."
+    elif 8 <= index < 12:
+        if family == "polynomial_multiplication":
+            # Retain a pure reference control after distinguishing its valid boundary connection.
+            standard = standard.removesuffix(" Noncommuting products retain a cross-term commutator.")
+        else:
+            connections = {
+                "gcd": ("The gcd also generates the additive subgroup {ua+vb: u,v integers}: "
+                        "Euclid's division steps preserve these combinations, and reversing the steps "
+                        "expresses the gcd as one such combination."),
+                "lcm": ("This is also subgroup intersection in integer time: aZ intersect bZ=lcm(a,b)Z, "
+                        "because an integer lies in the intersection exactly when it is a common multiple."),
+                "dice": ("Parity can also be encoded by the character chi(k)=(-1)**k: "
+                         "chi(a+b)=chi(a)*chi(b), connecting addition of outcomes to multiplication of signs."),
+            }
+            standard += " " + connections[family]
     return task, bridge + final, standard + final, false + final

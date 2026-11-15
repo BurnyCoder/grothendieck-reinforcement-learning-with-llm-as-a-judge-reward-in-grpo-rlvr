@@ -9,13 +9,15 @@ DIRECTORY = Path(__file__).with_name("prompts")
 
 def judge_system(variant="quoted") -> str:
     """The ablation changes only the historical framing, retaining the whole rubric."""
-    version = read_json(PROJECT / "configs/study.json")["judge_prompt_version"]
+    config = read_json(PROJECT / "configs/study.json")
+    version = config["judge_prompt_version"]
     rubric = (DIRECTORY / f"rubric-{version}.txt").read_text(encoding="utf-8")
     if variant == "rubric":
         return rubric
     if variant != "quoted":
         raise ValueError(f"Unknown judge prompt variant {variant}")
-    return (DIRECTORY / "rising-sea-v1.txt").read_text(encoding="utf-8") + "\n\n" + rubric
+    framing = config.get("judge_framing_version", "v1")
+    return (DIRECTORY / f"rising-sea-{framing}.txt").read_text(encoding="utf-8") + "\n\n" + rubric
 
 
 def policy_messages(task: Task, rising=False, notes=None, request_notes=False) -> list[dict]:

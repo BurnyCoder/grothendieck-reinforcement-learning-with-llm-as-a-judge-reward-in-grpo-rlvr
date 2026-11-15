@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "judge_prompt_version": "v6",
+  "judge_prompt_version": "v7",
+  "judge_framing_version": "v2",
   "data_seed": 20261115,
   "training_seeds": [42, 43, 44],
   "max_steps": 64,
@@ -30,7 +31,7 @@
   "judge_reasoning_budget_tokens": {"training_judge": 512, "evaluation_judge": 512},
   "calibration_pairs": 20,
   "calibration_false_cases": 20,
-  "calibration_novelty_pairs": 8,
+  "calibration_novelty_pairs": 12,
   "calibration_novelty_false_cases": 8,
   "test_ood_per_family": 50,
   "ood_seed": 20261116
