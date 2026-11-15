@@ -389,8 +389,9 @@ def write_paper(snapshot, rows, destination: Path):
     markdown = [f"# {title}", f"Libor “Burny” Burian · {date}"]
     for heading, body in paper_sections(snapshot):
         markdown.extend([f"## {heading}", body])
-        story.append(Paragraph(heading, styles["Heading2"]))
-        story.extend(Paragraph(html.escape(paragraph), styles["BodyText"]) for paragraph in body.split("\n\n"))
+        section = [Paragraph(heading, styles["Heading2"])] + [
+            Paragraph(html.escape(paragraph), styles["BodyText"]) for paragraph in body.split("\n\n")]
+        story.extend([KeepTogether(section)] if heading == "Conclusion" else section)
         if heading == "Method":
             story.append(Image(str(PROJECT / "site/figures/architecture.png"), width=6.7*inch, height=2.01*inch))
         if heading == "Results and claims":
