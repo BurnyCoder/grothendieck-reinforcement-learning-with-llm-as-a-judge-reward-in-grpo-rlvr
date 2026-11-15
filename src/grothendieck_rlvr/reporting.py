@@ -76,6 +76,8 @@ def figures(snapshot, destination: Path) -> None:
     fig.tight_layout()
     fig.savefig(destination / "architecture.png", dpi=180)
     fig.savefig(destination / "architecture.svg")
+    svg = destination / "architecture.svg"
+    svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)
     fig, ax = plt.subplots(figsize=(10, 4))
     available = [(name, s) for name, s in snapshot["summaries"].items() if s["n"]]

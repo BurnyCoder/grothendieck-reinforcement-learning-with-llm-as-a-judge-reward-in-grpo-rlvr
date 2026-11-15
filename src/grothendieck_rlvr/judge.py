@@ -90,7 +90,9 @@ class Judge:
         self.db.execute("PRAGMA journal_mode=WAL")
         self.db.execute("PRAGMA synchronous=FULL")
         self.db.execute("CREATE TABLE IF NOT EXISTS assessments (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
-        self.identity = digest({"model": self.spec, "system": self.system,
+        self.identity = digest({"model": self.spec,
+                                "runtime": read_json(PROJECT / "configs/models.lock.json")["llama_cpp"],
+                                "context_length": self.config["judge_context_length"], "system": self.system,
                                 "schema": assessment_schema(), "max_tokens": self.config["judge_max_tokens"],
                                 "temperature": 0, "seed": 42, "thinking": False})
 
