@@ -44,5 +44,8 @@
   "benchmark_logging_repair_pages_workflow": 43706639074,
   "thread_benchmark_evidence_merge": "895ca3892847e14334813d642c519c405816df29",
   "thread_benchmark_evidence_huggingface_commit": "0b40e06f9089ee426989bee0a0598070a0e42282",
-  "thread_benchmark_evidence_pages_workflow": 43707402929
+  "thread_benchmark_evidence_pages_workflow": 43707402929,
+  "evidence_protocol_v4_merge": "20a1e051334374605ed1e283b65c8232b11780fe",
+  "evidence_protocol_v4_huggingface_commit": "d473b02a614224d480b07facb9f7dd82e0f8222c",
+  "evidence_protocol_v4_pages_workflow": 43709069501
 }
