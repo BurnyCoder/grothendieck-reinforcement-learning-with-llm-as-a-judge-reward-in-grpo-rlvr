@@ -219,6 +219,28 @@ def withheld_novelty_rows(result):
     return rows
 
 
+def calibration_component_rows(result):
+    """Separate score ranking from the registered control-credit condition.
+
+    These descriptive checks explain a composite failure; they never replace
+    the stored acceptance decision or invent labels absent from older records.
+    """
+    pairs = result["ordering"]
+    novelty = [row for row in pairs if row["stratum"] == "novelty"]
+    labeled = [row for row in novelty if row.get("expected_control_novelty") in ("none", "modest")]
+    checks = {
+        "Higher theory score": [row["preferred"] > row["dispreferred"] for row in pairs],
+        "Higher novelty score": [row["preferred_novelty"] > row["dispreferred_novelty"] for row in novelty],
+        "Control-credit condition (recorded labels only)": [
+            row["dispreferred_novelty"] > 0 if row["expected_control_novelty"] == "modest"
+            else row["dispreferred_novelty"] == 0 for row in labeled],
+        "Complete preference contract (stored decision)": [row["passed"] for row in pairs],
+    }
+    return [["Observed check", "Passed", "Assessed", "Rate"]] + [
+        [name, str(sum(values)), str(len(values)), display(sum(values)/len(values) if values else None)]
+        for name, values in checks.items()]
+
+
 def figures(snapshot, destination: Path) -> None:
     """Use zero-based bounded score axes; omit unavailable curves rather than inventing data."""
     import matplotlib
@@ -523,7 +545,13 @@ def report() -> dict:
                        "errors. Raw opinions remain unchanged; the acceptance checks use credited scores.") \
             if len(credit_rows) > 1 else ""
         (folder / f"{name}.md").write_text(
-            f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" + markdown_table(case_rows) + credit_text +
+            f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" +
+            markdown_table(calibration_component_rows(result)) +
+            "\n\nThe component checks are descriptive. Correct score rankings alone do not satisfy "
+            "the full novelty contract, which also checks the control-credit condition. "
+            "Older records without an explicit control label are excluded only from that component, "
+            "not from their stored acceptance decisions. No thresholds or outcomes are changed.\n\n" +
+            markdown_table(case_rows) + credit_text +
             "\n\nThese are fixed constructed expectations, not human preference labels or verified novelty. "
             "Source: the matching identity in `reports/results.json`; full judgments are preserved in "
             "`reports/development/`. Case-level disagreements require interpretation, not silent score repair.\n",

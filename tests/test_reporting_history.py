@@ -65,3 +65,20 @@ def test_withheld_novelty_report_uses_stored_credit_without_rescoring_history():
     rows = reporting.withheld_novelty_rows(result)
     assert len(rows) == 2
     assert rows[1] == ["new-case", "dispreferred", "1", "0", "within_reference"]
+
+
+def test_ranking_success_is_not_reported_as_a_pass_of_the_novelty_contract():
+    """Correct ranks can coexist with both overcrediting and withholding a brief link."""
+    result = {"ordering": [
+        {"stratum": "novelty", "preferred": .8, "dispreferred": .6,
+         "preferred_novelty": .75, "dispreferred_novelty": .25,
+         "expected_control_novelty": "none", "passed": False},
+        {"stratum": "novelty", "preferred": .8, "dispreferred": .6,
+         "preferred_novelty": .75, "dispreferred_novelty": 0,
+         "expected_control_novelty": "modest", "passed": False},
+        {"stratum": "novelty", "preferred": .8, "dispreferred": .6,
+         "preferred_novelty": .75, "dispreferred_novelty": .25, "passed": False},
+    ]}
+    rows = reporting.calibration_component_rows(result)
+    assert [row[1:3] for row in rows[1:]] == [["3", "3"], ["3", "3"], ["0", "2"], ["0", "3"]]
+    assert result["ordering"][2].get("expected_control_novelty") is None
