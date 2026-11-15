@@ -173,6 +173,9 @@ Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository
 exists at https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr . Collection
-creation returned an account-level daily rate limit and remains pending.
+creation initially returned an account-level daily rate limit. After that limit
+cleared, the single [research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
+was created and populated with the artifact repository and external frozen model
+references. Project-trained adapters remain pending qualification and training.
 The in-app browser backend was unavailable; Windows browser inspection was
 stopped by URL-policy enforcement. No UI validation success is claimed.

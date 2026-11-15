@@ -27,6 +27,10 @@ the existing failure already blocks every audit and comparative training run.
 Neither protocol has qualified. Thresholds, cases, labels, weights and the
 modest-credit rule for valid connections stay fixed.
 
+The [Hugging Face research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
+links the artifact repository and frozen upstream models. Project-trained
+adapters remain pending qualification and training.
+
 ![Pipeline architecture](site/figures/architecture.png)
 
 The motivation is [Grothendieck's rising-sea philosophy, discussed by Colin
