@@ -4,9 +4,7 @@ set -euo pipefail
 export PATH="$HOME/.local/bin:$PATH"
 cd "$(dirname "$0")/.."
 test -f .env || cp .env.example .env
-set -a
-source .env
-set +a
+source scripts/environment.sh
 export GROTH_ROOT="${GROTH_ROOT:-/mnt/d/AI/grothendieck-rlvr}"
 export UV_CACHE_DIR="$GROTH_ROOT/uv-cache-linux"
 export UV_LINK_MODE=copy
