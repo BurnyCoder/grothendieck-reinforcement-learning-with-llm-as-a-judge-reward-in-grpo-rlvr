@@ -69,6 +69,11 @@ training experiment despite unqualified judges. It preserves the reward, modest
 connection credit, weights, thresholds and saved failures. Explicit experiment
 names and report fields separate it from the still-gated qualified study. Neither
 judge scores nor completed training can retroactively establish calibration.
+The first single-call pilot then stopped on an exact-quotation contract failure
+before an optimizer update. The `2026-11-16-indexed-evidence` amendment introduces
+constrained passage IDs and code-based exact extraction under a new identity,
+retaining the same scoring rubric and unqualified interpretation. Both the
+failed pilot and its original profile are archived.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

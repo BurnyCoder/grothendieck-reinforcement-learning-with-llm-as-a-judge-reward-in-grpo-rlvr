@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-15T23:30:57.927592+00:00.
+Generated from saved artifacts at 2026-11-15T23:57:20.548228+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -16,10 +16,10 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-prompted | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-theory-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-prompted | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 ## Judge calibration
 
@@ -55,12 +55,12 @@ The user authorized training with unqualified judges. These analyses cannot esta
 ```json
 {
   "profile": {
-    "id": "exploratory-single-v1",
-    "amendment": "reports/amendments/2026-11-16-exploratory-single-judge.md",
+    "id": "exploratory-single-v2",
+    "amendment": "reports/amendments/2026-11-16-indexed-evidence.md",
     "authorization": "User explicitly requested single-call judge training despite failed acceptance thresholds on 2026-11-16 Europe/Berlin.",
     "calibration_required": false,
     "interpretation": "Exploratory learning with unqualified, potentially systematically biased judges; not the calibration-qualified study.",
-    "judge_protocol": "single-v1",
+    "judge_protocol": "single-indexed-v1",
     "rubric_version": "v7",
     "reference_version": "v3",
     "initial_arms": [
@@ -78,13 +78,14 @@ The user authorized training with unqualified judges. These analyses cannot esta
     },
     "judge_identities": {
       "training_judge": {
-        "quoted": "d7e980a79754bb593ceee04e10abc822143c9ad4cbe0f507d3c9ad66a8adc169",
-        "rubric": "f20b72ec9e25412d0cca7e3fdb97739f97b751b7c60cd125c56a14f2acad2bcd"
+        "quoted": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+        "rubric": "369ecf0cbc00b592c5897ea33485091b9dd5fecbed4f622fa18676a93caebc89"
       },
       "evaluation_judge": {
-        "quoted": "5cb69ecd8c29b69c430187baf5a85b3660d1f550e56d98f9bfc0a5124560ff9c"
+        "quoted": "368baea56bdf984b0554899338734fcdb4eb48071bda3d5d4219ec3700c70464"
       }
-    }
+    },
+    "evidence_protocol": "indexed-evidence-v1"
   },
   "primary": {
     "status": "pending",

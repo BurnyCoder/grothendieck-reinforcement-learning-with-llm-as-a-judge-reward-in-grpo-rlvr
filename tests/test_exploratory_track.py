@@ -10,23 +10,25 @@ from grothendieck_rlvr.io import read_json
 
 def test_exploratory_names_require_explicit_selection():
     name = EXPLORATORY_PREFIX + "theory-seed42"
-    assert experiment_profile(True, name)["judge_protocol"] == "single-v1"
+    assert experiment_profile(True, name)["judge_protocol"] == "single-indexed-v1"
     with pytest.raises(ValueError, match="track"):
         experiment_profile(False, name)
     with pytest.raises(ValueError, match="track"):
         experiment_profile(True, "theory-seed42")
     assert experiment_profile(False, "theory-seed42") is None
+    with pytest.raises(ValueError, match="track"):
+        experiment_profile(False, "exploratory-single-v1-ordinary")
 
 
 def test_exploratory_judge_must_match_its_frozen_single_call_identity():
     profile = experiment_profile(True)
     identity = profile["judge_identities"]["training_judge"]["quoted"]
-    judge = SimpleNamespace(role="training_judge", variant="quoted", protocol="single-v1", identity=identity)
+    judge = SimpleNamespace(role="training_judge", variant="quoted", protocol="single-indexed-v1", identity=identity)
     validate_judge(judge, profile)
     judge.protocol = "specialists-v1"
     with pytest.raises(ValueError, match="single-call"):
         validate_judge(judge, profile)
-    judge.protocol, judge.identity = "single-v1", "changed"
+    judge.protocol, judge.identity = "single-indexed-v1", "changed"
     with pytest.raises(ValueError, match="identity"):
         validate_judge(judge, profile)
 
@@ -59,7 +61,7 @@ def test_exploratory_training_records_separate_identity_before_model_loading(tmp
         training.train(arm="correctness", exploratory=True)
     config = read_json(tmp_path / "runs" / (EXPLORATORY_PREFIX + "correctness-seed42") / "run.json")
     assert config["experiment"]["calibration_required"] is False
-    assert config["config"]["judge_protocol"] == "single-v1"
+    assert config["config"]["judge_protocol"] == "single-indexed-v1"
     assert config["config"]["max_steps"] == 64
     assert not (tmp_path / "runs/correctness-seed42").exists()
 

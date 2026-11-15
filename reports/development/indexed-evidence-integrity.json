@@ -1,0 +1,24 @@
+{
+  "profile_hash": "db39eebece40c7ffbf39731cc9a7bb170f279f681379572368f6e1e4a70803ba",
+  "judge_identities": {
+    "training_judge": {
+      "quoted": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+      "rubric": "369ecf0cbc00b592c5897ea33485091b9dd5fecbed4f622fa18676a93caebc89"
+    },
+    "evaluation_judge": {
+      "quoted": "368baea56bdf984b0554899338734fcdb4eb48071bda3d5d4219ec3700c70464"
+    }
+  },
+  "inference_performed": false,
+  "previous_profile_hash": "8f75ed1026443ab42e2beeea39149a963aa297201447a5ef40631e267db267c8",
+  "input_hashes": {
+    "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
+    "configs/models.lock.json": "19665fe0a0e451deccaa0ea52662b21a2056bdd335b79cc5e9efc58a28fa8495",
+    "configs/policy-selection.json": "698f3ed0cbab3e3a0a307fb0a721d46b7bb0636fe2f633632b2ba69e4a0576bd",
+    "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+    "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062"
+  },
+  "dev_cases_hash": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+  "audit_cases_hash": "f2f0abc95de0c60c0b5b6ff193b2926a3535092dc2912184a5af2a8d0366a07d",
+  "reference_hash": "7d4e36f1f841bb7dc333f8827448eb355bb98434435db1e564844e0ac4ecfe40"
+}

@@ -4,11 +4,24 @@ from collections import Counter
 from .io import PROJECT, digest, read_json
 
 
+def runtime_options(intervals: list[float], judged_arms: int) -> list[dict]:
+    """Scale observed intervals without presenting their extremes as uncertainty bounds."""
+    return [{"updates": updates,
+             "one_judged_arm_hours": [updates * t / 3600 for t in (min(intervals), max(intervals))],
+             "all_judged_arms_hours": [updates * t * judged_arms / 3600 for t in (min(intervals), max(intervals))]}
+            for updates in (32, 64, 128, 256)] if intervals else []
+
+
 def training_budget(feasibility: list[dict], config: dict) -> dict:
     """Do not infer evaluation cost or future reward density from two optimizer intervals."""
     kinds = {"grpo_first_saved_boundary", "grpo_resumed_completion"}
     intervals = [record["step_metrics"]["step_time"] for record in feasibility if record.get("kind") in kinds]
     judged_arms = len(config["training_seeds"]) + 2  # Proposed seeds, permutation control, rubric ablation.
+    exploratory = [r for r in feasibility if r.get("kind") == "exploratory_single_grpo_boundary"]
+    identities = {r["judge_identity"] for r in exploratory}
+    if len(identities) > 1:
+        raise ValueError("Cannot pool runtime intervals from different judge identities")
+    current_intervals = [r["step_metrics"]["step_time"] for r in exploratory]
     # Single-GPU GRPO repeats each prompt num_generations times; shuffle_dataset is False.
     # https://huggingface.co/docs/trl/grpo_trainer#trl.GRPOConfig
     completions = config["max_steps"] * config["per_device_train_batch_size"] * config["gradient_accumulation_steps"]
@@ -27,10 +40,10 @@ def training_budget(feasibility: list[dict], config: dict) -> dict:
                              "assumption": "One GPU, sequential pre-shuffled manifest, one GRPO iteration, completed fixed budget. Actual exposure must be checked against rollout logs."},
         "assumption": "Each future step repeats one observed development interval. These are scenarios, not confidence bounds.",
         "limitations": "Two intervals, including first-use overhead, used the v3 non-thinking judge. Neither the later reasoning-enabled judge nor the decomposed protocols are timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
-        "options": [{"updates": updates,
-                     "one_judged_arm_hours": [updates * t / 3600 for t in (min(intervals), max(intervals))],
-                     "all_judged_arms_hours": [updates * t * judged_arms / 3600 for t in (min(intervals), max(intervals))]}
-                    for updates in (32, 64, 128, 256)] if intervals else [],
+        "options": runtime_options(intervals, judged_arms),
+        "exploratory_single": {"observed_step_seconds": current_intervals,
+                               "judge_identity": next(iter(identities), None),
+                               "options": runtime_options(current_intervals, judged_arms)},
     }
 
 
@@ -47,6 +60,23 @@ def budget_markdown(budget: dict) -> str:
                   "`reports/development/feasibility-grpo-resumed-complete.json`. "
                   "The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). "
                   "This is not a guarantee that the full study fits in one week."])
+    current = budget["exploratory_single"]
+    lines.extend(["", "## Exploratory single-call pilot", "",
+                  "These intervals use the current frozen single-call judge and remain separate from the "
+                  "historical non-thinking pilot above. They include generation, verification, "
+                  "judging and backward work; model loading and evaluation are excluded. "
+                  "Development prompts and few intervals cannot establish steady-state throughput. "
+                  "Future correctness, response lengths and retries affect runtime.", ""])
+    if current["options"]:
+        lines.extend(["| Updates | One judge-scored arm (hours) | All judge-scored arms (hours) |",
+                      "|---:|---:|---:|"])
+        for row in current["options"]:
+            one, all_arms = row["one_judged_arm_hours"], row["all_judged_arms_hours"]
+            lines.append(f"| {row['updates']} | {one[0]:.2f}–{one[1]:.2f} | {all_arms[0]:.2f}–{all_arms[1]:.2f} |")
+        lines.extend(["", "Sources: `reports/development/feasibility-exploratory-single-*.json`. "
+                      f"Judge identity: `{current['judge_identity']}`."])
+    else:
+        lines.append("No completed optimizer interval is recorded for this protocol yet.")
     exposure = budget["planned_exposure"]
     lines.extend(["", "## Planned data exposure", "", exposure["assumption"], "",
                   f"The configured budget schedules {exposure['completions']} completions across "

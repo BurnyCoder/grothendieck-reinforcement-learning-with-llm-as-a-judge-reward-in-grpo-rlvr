@@ -34,6 +34,9 @@ def development_records() -> list[dict]:
                 if isinstance(payload, dict):
                     candidate = {key: payload[key] for key in
                                  ("problem", "conventional_reference", "candidate_response") if key in payload}
+                    for key in ("conventional_reference", "candidate_response"):
+                        if isinstance(candidate.get(key), dict):
+                            candidate[key] = "".join(candidate[key].values())
             elif event["kind"] == "judge_assessment":
                 assessments.append({**event, **candidate})
                 candidate = {}  # Never attach stale text to a later unpaired record.
@@ -175,6 +178,30 @@ def feasibility_text(snapshot) -> str:
                      + ("The offload sweep allocates the registered maximum context. " if offload else
                         "The thread sweep uses a smaller allocated context than the server. ") +
                      "They do not establish end-to-end judgment latency or calibration quality.")
+    for failure in (r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_contract_failure"):
+        text += (f" The {failure['experiment']} pilot generated {failure['policy_completions']} policy completions "
+                 f"but stopped after {failure['judge_requests']} requests failed the evidence contract, with "
+                 f"{failure['accepted_assessments']} accepted judgments and {failure['optimizer_boundaries']} "
+                 "saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed "
+                 "despite bounded validation feedback. This is an execution failure, not a learning result.")
+    current = sorted((r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"),
+                     key=lambda r: r["step"])
+    for saved in current:
+        text += (f" The separate exploratory single-call pilot saved boundary {saved['step']} "
+                 f"{'after resumption' if saved['resumed_from'] else 'from the selected base'}, with a "
+                 f"step interval of {saved['step_metrics']['step_time']:.2f} seconds, learning rate "
+                 f"{saved['step_metrics']['learning_rate']:g}, batch accuracy "
+                 f"{saved['reward_batch']['accuracy']:.1%}, mean theory "
+                 f"{saved['reward_batch']['theory']:.4f}, mean novelty "
+                 f"{saved['reward_batch']['novelty']:.4f}, and {saved['judge_failures']} contract/transport retries. "
+                 f"Peak allocated/reserved GPU memory was {saved['peak_gpu_allocated_bytes']/2**30:.2f}/"
+                 f"{saved['peak_gpu_reserved_bytes']/2**30:.2f} GiB.")
+        if saved["judge_seconds"]:
+            text += (f" Completed judge requests took {min(saved['judge_seconds']):.2f}–"
+                     f"{max(saved['judge_seconds']):.2f} seconds, including unsuccessful contracts.")
+        if "changed_tensors" in saved:
+            text += (f" Resumption changed {saved['changed_tensors']}/{saved['adapter_tensors']} adapter "
+                     "tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.")
     return text
 
 
@@ -216,7 +243,7 @@ def transfer_rows(snapshot):
 def comparison_text(result):
     """The paper uses the saved paired estimates, including uncertainty and missing seed variation."""
     if "metric" not in result:
-        return f"Analysis status: {result['status']}. {result.get('reason', '')}"
+        return f"Analysis status: {result['status']}. {result.get('reason', '')}".rstrip(" .") + "."
     pieces = [f"Analysis status: {result['status']}."]
     for metric, name in (("metric", "C times theory"), ("correct", "accuracy")):
         row = result[metric]
@@ -468,7 +495,10 @@ def paper_sections(snapshot):
         ("Exploratory continuation with a single judge", "The dated amendment explicitly permits training "
          "without calibration qualification. It retains the latest published single-call rubric v7, "
          "fixed references, modest connection credit, weights, correctness gate and training settings. "
-         "A new identity adds context preflight without changing the scoring prompt. Each correct solution "
+         "Following an exact-quotation execution failure, a new identity retains context preflight and "
+         "replaces quotation copying with constrained passage IDs. Code extracts original source text; "
+         "this follows the general source-location citation idea [19], using only local Qwen/Gemma. "
+         "It does not verify that a selected passage entails the judge's claim. Each correct solution "
          "receives one accepted structured assessment; only output or transport failures permit bounded retries. "
          "Separate names and checkpoint identities keep these runs out of the qualified study. "
          "The initial comparison is theory bonus versus correctness-only at seed 42, with ordinary and "
@@ -521,6 +551,7 @@ REFERENCES = [
     ("Naik et al., Do We Need Frontier Models to Verify Mathematical Proofs?", "https://arxiv.org/abs/2604.02450v1"),
     ("Huang et al., Pessimistic Verification for Open Ended Math Questions", "https://arxiv.org/abs/2511.21522v1"),
     ("Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization", "https://proceedings.mlr.press/v202/gao23h.html"),
+    ("Anthropic, source-location citation representation (documentation only)", "https://platform.claude.com/docs/en/build-with-claude/citations"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")

@@ -21,6 +21,13 @@ with the same reward, modest connection credit and training budgets. Run names,
 checkpoints and analyses identify this experiment separately. The original
 calibration thresholds remain fixed; exploratory scores do not establish qualification.
 
+The first single-call pilot stopped before an optimizer update because the
+judge repeatedly altered an exact evidence quotation. The
+[indexed-evidence repair](reports/amendments/2026-11-16-indexed-evidence.md)
+lets the same judge select source passages; code copies their original text.
+It changes citation handling, preserves the scoring rubric, and starts a new
+experiment identity. Mathematical judgment remains unqualified.
+
 The [two-call trial](reports/experiments/qwen-v8-two-stage-learnings.md) credited
 a brief valid commutator connection, but still overcredited routine GCD/LCM
 mathematics and missed developed uses. It failed the fixed development gate.
@@ -82,10 +89,15 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v8.txt) and
-[stage contracts](docs/decomposed-judges.md) produce scores from 0 to 4.
-Code derives novelty from evidence-bearing stage findings and applies validity gates,
-then combines the normalized scores with these weights:
+The exploratory experiment uses the versioned
+[single-call rubric](src/grothendieck_rlvr/prompts/rubric-v7.txt), with scores from
+0 to 4, supporting passage IDs and reference comparison. The
+[citation contract](src/grothendieck_rlvr/prompts/indexed-evidence-v1.txt) replaces
+the rubric's quotation-output paragraph. Code extracts exact text, validates those
+contracts, caps unsupported novelty levels and applies the validity gate.
+The separate [decomposed rubric](src/grothendieck_rlvr/prompts/rubric-v8.txt) and
+[stage contracts](docs/decomposed-judges.md) derive novelty from specialist findings.
+Both instruments combine normalized scores with these unchanged weights:
 
 | Criterion | Weight | What earns credit |
 |---|---:|---|
@@ -256,10 +268,10 @@ transfer, reports and dashboard viewing.
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-prompted | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-theory-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-prompted | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 evaluation_judge/quoted (dev, ef8a300c) failed: 2/4 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
