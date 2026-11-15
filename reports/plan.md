@@ -122,6 +122,14 @@ zero credit for routine methods and decorative terminology. Publish all changes
 before a fresh Qwen quoted development attempt, then the other variants and full
 audits only after complete development passes. Historical rates are not rescored.
 
+The fresh v7 attempt subsequently failed the fixed futility gate; see its
+[failure analysis](experiments/qwen-v7-learnings.md). Its developed frameworks
+ranked above the controls, but the modest-versus-zero control-credit conditions
+failed. No false-theory case was reached. Preserve this distinction in reporting
+and retain the failed run unchanged. Clarify the mathematical scope of the
+conventional references in a separate published amendment before new inference;
+do not change the user preference, cases, labels or acceptance thresholds.
+
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository

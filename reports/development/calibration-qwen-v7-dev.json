@@ -1,0 +1,242 @@
+{
+  "identity": {
+    "judge": "a3fa911eb18ca121ac9b27878079af67795df0e1830e8dc164a9eb7ef35493fa",
+    "cases": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+    "protocol": "graded-connections-development-futility-v2"
+  },
+  "split": "dev",
+  "role": "training_judge",
+  "variant": "quoted",
+  "ordering": [
+    {
+      "id": "novelty-dev-0",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.6625000000000001,
+      "dispreferred": 0.5625,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 2,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "within_reference"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-1",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.6625000000000001,
+      "dispreferred": 0.41250000000000003,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 2,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 0,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": false,
+        "gate_reasons": [
+          "within_reference",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-2",
+      "stratum": "novelty",
+      "expected_control_novelty": "modest",
+      "preferred": 0.7250000000000001,
+      "dispreferred": 0.5625,
+      "preferred_novelty": 0.75,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 3,
+        "effective_score": 3,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "within_reference",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "novelty-dev-3",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.7125,
+      "dispreferred": 0.48750000000000004,
+      "preferred_novelty": 0.75,
+      "dispreferred_novelty": 0.25,
+      "preferred_novelty_credit": {
+        "raw_score": 3,
+        "effective_score": 3,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 1,
+        "score_cap": 1,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": [
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "novelty-dev-4",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.6625000000000001,
+      "dispreferred": 0.3875,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 2,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 0,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": false,
+        "gate_reasons": [
+          "within_reference",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-5",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.7000000000000001,
+      "dispreferred": 0.43750000000000006,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 2,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 0,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": false,
+        "gate_reasons": [
+          "within_reference",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-6",
+      "stratum": "novelty",
+      "expected_control_novelty": "modest",
+      "preferred": 0.6375000000000001,
+      "dispreferred": 0.5125000000000001,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 2,
+        "score_cap": 4,
+        "eligible": true,
+        "withheld": false,
+        "gate_reasons": []
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 0,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": false,
+        "gate_reasons": [
+          "within_reference",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    }
+  ],
+  "suppression": [],
+  "strata": {
+    "theory": {
+      "preference_accuracy": null,
+      "false_theory_suppression": null,
+      "pairs_observed": 0,
+      "pairs_expected": 20,
+      "false_observed": 0,
+      "false_expected": 20,
+      "preference_upper_bound": 1.0,
+      "suppression_upper_bound": 1.0
+    },
+    "novelty": {
+      "preference_accuracy": 0.5714285714285714,
+      "false_theory_suppression": null,
+      "pairs_observed": 7,
+      "pairs_expected": 12,
+      "false_observed": 0,
+      "false_expected": 8,
+      "preference_upper_bound": 0.75,
+      "suppression_upper_bound": 1.0
+    }
+  },
+  "preference_accuracy": 0.5714285714285714,
+  "false_theory_suppression": null,
+  "complete": false,
+  "threshold_unreachable": true,
+  "passed": false,
+  "stopping_reason": "development_threshold_unreachable"
+}

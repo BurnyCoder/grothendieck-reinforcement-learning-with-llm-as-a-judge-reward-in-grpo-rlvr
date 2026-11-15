@@ -2,6 +2,15 @@
 
 evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
 
+| Observed check | Passed | Assessed | Rate |
+|---|---|---|---|
+| Higher theory score | 4 | 4 | 1.0000 |
+| Higher novelty score | 4 | 4 | 1.0000 |
+| Control-credit condition (recorded labels only) | 0 | 0 | Pending |
+| Complete preference contract (stored decision) | 2 | 4 | 0.5000 |
+
+The component checks are descriptive. Correct score rankings alone do not satisfy the full novelty contract, which also checks the control-credit condition. Older records without an explicit control label are excluded only from that component, not from their stored acceptance decisions. No thresholds or outcomes are changed.
+
 | Case | Preferred T | Control T | Preferred novelty | Control novelty | Control novelty expectation | Passed |
 |---|---|---|---|---|---|---|
 | novelty-dev-0 | 0.8625 | 0.5875 | 0.5000 | 0.0000 | Zero | True |

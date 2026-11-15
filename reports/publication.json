@@ -89,5 +89,8 @@
   "declared_eligibility_protocol_pages_workflow": 43726657258,
   "request_latency_report_merge": "0ddf3b41bd9cee4ef4db1a666634b6b11f4bffa1",
   "request_latency_report_huggingface_commit": "67d935ee20fec63558871c01263ff5ea57bf769c",
-  "request_latency_report_pages_workflow": 43728321864
+  "request_latency_report_pages_workflow": 43728321864,
+  "modest_connections_protocol_merge": "c6de6d37f561ce9c976158610316558fdef7a496",
+  "modest_connections_protocol_huggingface_commit": "7b64f0b5ca97d2840157f4caa87a96643b823feb",
+  "modest_connections_protocol_pages_workflow": 43731912996
 }
