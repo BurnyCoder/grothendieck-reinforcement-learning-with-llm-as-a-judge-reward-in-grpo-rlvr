@@ -1,0 +1,12 @@
+{"time": "2026-11-15T10:56:59.904933+00:00", "kind": "phase_failure", "phase": "benchmark-judge", "arguments": {}, "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py\", line 75, in main\n    result = benchmark_judge()\n             ^^^^^^^^^^^^^^^^^\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/benchmark.py\", line 48, in benchmark_judge\n    log.emit(\"benchmark_started\", **config)\nTypeError: EventLog.emit() got multiple values for argument 'kind'\n"}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 103, in <module>
+    main()
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 75, in main
+    result = benchmark_judge()
+             ^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/benchmark.py", line 48, in benchmark_judge
+    log.emit("benchmark_started", **config)
+TypeError: EventLog.emit() got multiple values for argument 'kind'

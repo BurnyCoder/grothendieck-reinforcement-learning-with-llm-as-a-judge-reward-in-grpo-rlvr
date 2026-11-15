@@ -161,3 +161,12 @@ Passing checks are archived in `verification-evaluation-recovery.xml`.
 The implementation uses Python's documented
 [`hashlib.file_digest`](https://docs.python.org/3.12/library/hashlib.html#hashlib.file_digest),
 consistent with the broader [content fingerprinting approach](https://huggingface.co/docs/datasets/about_cache).
+
+## 2026-11-15: bounded runtime diagnostic launcher
+
+The first benchmark invocation stopped before inference: its configuration's
+`kind` field collided with the event logger's positional event kind. The traceback
+is retained as `development/benchmark-initial-failure.log`. Fake-binary regression
+checks reproduce the failure and exercise both successful and timed-out runs.
+Nesting the configuration in its event fixes the collision without changing the
+registered benchmark. The passing evidence is `verification-benchmark.xml`.
