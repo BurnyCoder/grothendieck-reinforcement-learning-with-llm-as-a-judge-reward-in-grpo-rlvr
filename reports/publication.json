@@ -65,5 +65,8 @@
   "calibration_status_docs_pages_workflow": 43714520647,
   "training_exposure_merge": "dddb81b58dfabca08d7cd65671fb90fb82df14bc",
   "training_exposure_huggingface_commit": "8e34f598e8ec00426bc703e1b4cc689875a4d478",
-  "training_exposure_pages_workflow": 43716544786
+  "training_exposure_pages_workflow": 43716544786,
+  "gemma_negative_calibration_merge": "7a97306f17caeaf91f4b30b982643436e251e49d",
+  "gemma_negative_calibration_huggingface_commit": "5433a1b8027536cb37b784df9f3075e36f352035",
+  "gemma_negative_calibration_pages_workflow": 43717566635
 }

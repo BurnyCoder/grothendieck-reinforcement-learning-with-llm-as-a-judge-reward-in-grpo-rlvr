@@ -259,6 +259,11 @@ def paper_sections(snapshot):
          "are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration "
          "fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison "
          f"runtime-budget amendment selects {snapshot['study']['max_steps']} optimizer updates for every training arm. "
+         "The current development inference amendment enables native judge reasoning, capped at "
+         f"{snapshot['study'].get('judge_reasoning_budget_tokens', {}).get('training_judge', 0)} tokens for Qwen and "
+         f"{snapshot['study'].get('judge_reasoning_budget_tokens', {}).get('evaluation_judge', 0)} for Gemma, "
+         "added to the existing visible-assessment allowance. Studies report setting-dependent benefits "
+         "and failures of additional judging computation [12,13]; neither validates this novelty rubric. "
          "Failed feasibility or "
          "calibration is development evidence, not a negative test of the behavioral hypothesis."),
         ("Experimental design and analysis", "Compare ordinary and prompted unmodified models, correctness-only "
@@ -286,6 +291,9 @@ def paper_sections(snapshot):
          "bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty "
          "to some conventional controls. Passive OpenMP waiting completed the observed requests without "
          "a transport failure; that short run does not establish sustained reliability. "
+         "Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional "
+         "generalized explanations. It was interrupted for a documented reasoning-mode development "
+         "revision, without being declared a calibration pass or threshold failure. "
          + calibration_text(snapshot) + " No comparative conclusion follows. "
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
@@ -323,6 +331,8 @@ REFERENCES = [
     ("TRL GRPO", "https://huggingface.co/docs/trl/grpo_trainer"),
     ("Lones, How to avoid machine learning pitfalls", "https://arxiv.org/abs/2108.02497"),
     ("Lipton and Steinhardt, Troubling Trends", "https://arxiv.org/abs/1807.03341"),
+    ("Explicit Reasoning Makes Better Judges", "https://arxiv.org/abs/2509.13332"),
+    ("SLMJury", "https://arxiv.org/abs/2606.07810"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")
@@ -348,6 +358,7 @@ def write_paper(snapshot, rows, destination: Path):
         style.fontName = font_name
     styles["BodyText"].fontSize = 9
     styles["BodyText"].leading = 13
+    styles["Heading2"].keepWithNext = True  # Keep section headings with their first paragraph after pagination.
     title = "Correctness-gated mathematical theory building"
     date = datetime.now(timezone.utc).date().isoformat()
     story = [Paragraph(title, styles["Title"]),

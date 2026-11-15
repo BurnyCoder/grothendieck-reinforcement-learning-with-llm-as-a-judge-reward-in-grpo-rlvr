@@ -50,10 +50,23 @@ def assessment_schema() -> dict:
 class LocalChat:
     """Minimal streaming client; full prompts, chunks and responses are timestamped."""
     def __init__(self, url: str, model: str, log: EventLog, timeout=900, runtime=None,
-                 model_spec=None, context_length=None):
+                 model_spec=None, context_length=None, reasoning_budget_tokens=0):
+        if type(reasoning_budget_tokens) is not int or reasoning_budget_tokens < 0:
+            raise ValueError("Reasoning budget must be a nonnegative integer; zero disables thinking")
         self.url, self.model, self.log, self.timeout = local_url(url), model, log, timeout
         self.runtime = runtime
         self.model_spec, self.context_length = model_spec, context_length
+        self.reasoning_budget_tokens = reasoning_budget_tokens
+
+    def reasoning_options(self) -> dict:
+        """Use the pinned server's native budget and separate thought-channel parser.
+
+        https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/server-common.cpp
+        reads reasoning_budget_tokens and obtains the model's end tags from its template.
+        With thinking disabled, retain the original request and identity byte-for-byte.
+        """
+        return ({"reasoning_budget_tokens": self.reasoning_budget_tokens, "reasoning_format": "deepseek"}
+                if self.reasoning_budget_tokens else {})
 
     def generate(self, messages: list[dict], max_tokens=1024, schema=None, seed=42) -> str:
         """Preserve raw streamed text; malformed responses are handled by the caller."""
@@ -64,8 +77,9 @@ class LocalChat:
             if any(actual.get(k) != v for k, v in expected.items() if v is not None):
                 raise JudgeFailure("Server runtime differs from judge identity; restart with the registered CLI")
         request = {"model": self.model, "messages": messages, "temperature": 0,
-                   "max_tokens": max_tokens, "seed": seed, "stream": True,
-                   "chat_template_kwargs": {"enable_thinking": False}}
+                   "max_tokens": max_tokens + self.reasoning_budget_tokens, "seed": seed, "stream": True,
+                   "chat_template_kwargs": {"enable_thinking": bool(self.reasoning_budget_tokens)},
+                   **self.reasoning_options()}
         if schema:
             request["response_format"] = {"type": "json_schema", "json_schema": {
                 "name": "assessment", "strict": True, "schema": schema}}
@@ -116,8 +130,9 @@ class Judge:
         self.role, self.variant = role, variant
         self.log = log or EventLog(root() / "logs" / f"{role}-{variant}.jsonl")
         runtime = models.judge_runtime(role)
+        reasoning_budget = self.config.get("judge_reasoning_budget_tokens", {}).get(role, 0)
         self.client = LocalChat(url, role, self.log, self.config["judge_timeout_seconds"], runtime,
-                                self.spec, self.config["judge_context_length"])
+                                self.spec, self.config["judge_context_length"], reasoning_budget)
         cache = cache or root() / "judge-cache.sqlite"
         cache.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(cache)
@@ -132,12 +147,14 @@ class Judge:
                                 "novelty_anchors": self.anchors,
                                 "rubric_weights": Assessment.weights,
                                 "context_length": self.config["judge_context_length"], "system": self.system,
-                                "schema": assessment_schema(), "max_tokens": self.config["judge_max_tokens"],
+                                "schema": assessment_schema(),
+                                "max_tokens": self.config["judge_max_tokens"] + reasoning_budget,
                                 "criterion_field_order": list(Criterion.model_fields),
                                 "retry_protocol": RETRY_PROTOCOL,
                                 "transport_protocol": TRANSPORT_PROTOCOL,
                                 "request_deadline_seconds": self.config["judge_timeout_seconds"],
-                                "temperature": 0, "seed": 42, "thinking": False})
+                                "temperature": 0, "seed": 42, "thinking": bool(reasoning_budget),
+                                **self.client.reasoning_options()})
 
     def assess(self, task: Task, response: str) -> Assessment:
         """The correctness gate is externally established before this method is called."""

@@ -78,8 +78,16 @@ The new development run stopped under the fixed futility rule after nonzero
 novelty was assigned to conventional polynomial and probability controls.
 See the [failure analysis](experiments/gemma-v4-learnings.md) and generated
 case table. False-theory cases were not reached. Long training and locked audit
-remain blocked; the behavioral hypothesis is untested. Test Qwen's existing v4
-protocol next, before deciding whether a general protocol revision is justified.
+remain blocked; the behavioral hypothesis is untested. That failure motivated
+testing Qwen's existing v4 protocol before choosing a general inference revision.
+Qwen's existing v4 development run subsequently passed its observed novelty
+contrasts but incorrectly treated conventional generalized explanations as
+offering no theory. It was interrupted for a documented diagnostic revision,
+not declared a completed pass or threshold failure. The
+[bounded-reasoning amendment](amendments/2026-11-15-bounded-judge-reasoning.md)
+keeps the rubric, references, cases and thresholds while enabling a capped native
+reasoning phase for both judges. Run Qwen quoted development first, then the
+remaining required variants if it passes, followed by untouched locked audits.
 Preserve all failed and interrupted opinions as development evidence.
 
 Implementation is present but model-backed integration remains unverified.
