@@ -1,5 +1,20 @@
 # Judge inference: evidence and limits
 
+## Exact evidence transport after the first exploratory pilot
+
+The [archived failure](development/feasibility-exploratory-single-v1-failure.json)
+shows that purported quotations can fail literal matching even after validation
+feedback. The [indexed-evidence amendment](amendments/2026-11-16-indexed-evidence.md)
+replaces copying with constrained source-passage selection, keeping the scoring
+rubric. RULERS' discussion of deterministic-verification brittleness motivates
+distinguishing this execution issue from semantic judge quality.
+[Source-location citation extraction](https://platform.claude.com/docs/en/build-with-claude/citations#how-citations-work)
+provides a relevant representation pattern. Our implementation uses local JSON
+schemas and exact Python lookup only; it does not adopt another model or an API.
+Source membership is checked mechanically. Relevance and mathematical validity
+remain unqualified model opinions. No paper's reported reliability is transferred
+to this implementation.
+
 Reviewed 2026-11-15 after development calibration errors. This supplements the
 [source map](literature-review.md), without treating benchmark findings as local
 measurements or a validated repair.

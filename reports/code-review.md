@@ -49,3 +49,16 @@ Python lint, JavaScript syntax and dashboard metric tests also passed. The new
 model-backed pilot remains required before long training; offline tests are not
 evidence that noisy reward improves behavior. UI browser inspection remains
 unverified for the previously documented environmental restriction.
+
+## Indexed evidence transport
+
+2026-11-16. The focused review checked lossless source reconstruction, separate
+candidate/reference namespaces, dynamic schema constraints, exact extraction,
+unchanged scores/validity gates and cache identity isolation. The full Python
+suite is recorded in [verification-indexed-evidence.xml](verification-indexed-evidence.xml).
+Original single-call identities were recomputed and matched their archived
+profile; unchanged calibration cases, references and input locks are recorded
+in [the integrity artifact](development/indexed-evidence-integrity.json).
+The new contract does not certify that a selected passage supports a claim.
+Rendered paper pages were inspected for clipping, table readability and attribution.
+Model-backed validation of the new transport still requires the fresh pilot.

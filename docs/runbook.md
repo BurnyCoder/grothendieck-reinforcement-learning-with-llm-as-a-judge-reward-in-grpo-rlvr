@@ -160,28 +160,31 @@ do not load Gemma at the same time as policy generation or training.
 ```bash
 source scripts/environment.sh
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --stop-after 1
+PYTHONPATH=src .venv/bin/python reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-single-v2-pilot-theory-seed42"
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --resume
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-ordinary
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-prompted --rising
+PYTHONPATH=src .venv/bin/python reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-single-v2-pilot-theory-seed42"
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-prompted --rising
 bash scripts/run.sh train --exploratory --arm theory --seed 42
 bash scripts/run.sh train --exploratory --arm correctness --seed 42
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v1-theory-seed42/adapter"
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v1-correctness-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v2-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v2-correctness-seed42/adapter"
 ```
 
 Publish the pilot and each training/evaluation milestone. `--resume` restores
 the matching exploratory run; it cannot resume a qualified-study or pilot run
 under another name. Pilot updates are discarded. The single-call protocol uses
-the v7 prompt and context preflight; only contract/transport failures receive
+the v7 rubric with the [indexed evidence contract](../reports/amendments/2026-11-16-indexed-evidence.md)
+and context preflight; only contract/transport failures receive
 bounded retries. Failed or unqualified calibration is explicitly recorded.
 
 After policy generation finishes, stop the CPU judge, load the evaluation server,
 then score each run with `evaluate --exploratory --run-id NAME`. All evaluation
-run names must start with `exploratory-single-v1-`. Use `--split test_ood` and
+run names must start with `exploratory-single-v2-`. Use `--split test_ood` and
 `-ood` run-name suffixes for the separate secondary suite. Generate source notes
 with `--split transfer_source`, then use
 `transfer --exploratory --source-runs NAME ...`; its files live in
-`$GROTH_ROOT/transfer/exploratory-single-v1/`. The same fixed manifests and paired
+`$GROTH_ROOT/transfer/exploratory-single-v2/`. The same fixed manifests and paired
 analyses apply, but all conclusions remain exploratory. Regenerate publications
 with `bash scripts/run.sh report` and view `bash scripts/run.sh dashboard`.
 

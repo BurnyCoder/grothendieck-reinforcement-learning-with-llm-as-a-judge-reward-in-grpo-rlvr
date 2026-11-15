@@ -56,6 +56,21 @@ def test_request_latency_keeps_unfinished_calls_separate_from_observed_times():
     assert rows[2][1:] == ["0", "0", "0", "1", "Pending", "Pending"]
 
 
+def test_indexed_passages_are_reconstructed_in_published_examples(tmp_path, monkeypatch):
+    """The explorer must show the original text rather than a serialized passage map."""
+    monkeypatch.setattr(reporting, "PROJECT", tmp_path)
+    folder = tmp_path / "reports/development"
+    folder.mkdir(parents=True)
+    payload = {"candidate_response": {"C0": "First\n", "C1": "Second"},
+               "conventional_reference": {"R0": "Reference"}}
+    events = [{"kind": "model_request", "request": {"messages": [{"content": json.dumps(payload)}]}},
+              {"kind": "judge_assessment", "task_id": "fixture"}]
+    (folder / "fixture.jsonl").write_text(''.join(json.dumps(e)+'\n' for e in events))
+    example = reporting.development_records()[0]["assessments"][0]
+    assert example["candidate_response"] == "First\nSecond"
+    assert example["conventional_reference"] == "Reference"
+
+
 def test_withheld_novelty_report_uses_stored_credit_without_rescoring_history():
     """Old records without credit metadata must not acquire a v6 gate retrospectively."""
     result = {"ordering": [{"id": "old-case"}, {"id": "new-case",

@@ -178,11 +178,18 @@ The immediate execution path is now: publish the exploratory amendment and
 tested single-call mode; refresh its development save/resume timings; generate
 ordinary/prompted baselines; train theory-bonus and correctness-only seed 42;
 generate and independently score the fixed primary and OOD suites; evaluate
-frozen-recipient note transfer. Use separate `exploratory-single-v1-` identifiers
+frozen-recipient note transfer. Use separate `exploratory-single-v2-` identifiers
 and preserve every original calibration result. Publish each milestone. Matched
 later seeds and controls remain planned within the week; unfinished work is
 reported without reducing budgets or sample sizes. Bigger/better judges are a
 future amended experiment, not a presumed cure or an additional download now.
+
+The first single-call pilot exhausted exact-excerpt retries before an optimizer
+update. Its original profile and full failure logs are archived. The
+[indexed-evidence amendment](amendments/2026-11-16-indexed-evidence.md) replaces
+quotation copying with constrained passage selection and exact extraction in code.
+It retains single-call judging, all scoring rules and the unqualified exploratory
+interpretation. Publish the new identity before restarting the save/resume pilot.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

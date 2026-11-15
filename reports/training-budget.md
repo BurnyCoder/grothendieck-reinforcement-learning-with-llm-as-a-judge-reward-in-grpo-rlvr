@@ -15,6 +15,12 @@ Selected matched budget: **64 optimizer updates per training arm**.
 
 Sources: `reports/development/feasibility-grpo-first-boundary.json` and `reports/development/feasibility-grpo-resumed-complete.json`. The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). This is not a guarantee that the full study fits in one week.
 
+## Exploratory single-call pilot
+
+These intervals use the current frozen single-call judge and remain separate from the historical non-thinking pilot above. They include generation, verification, judging and backward work; model loading and evaluation are excluded. Development prompts and few intervals cannot establish steady-state throughput. Future correctness, response lengths and retries affect runtime.
+
+No completed optimizer interval is recorded for this protocol yet.
+
 ## Planned data exposure
 
 One GPU, sequential pre-shuffled manifest, one GRPO iteration, completed fixed budget. Actual exposure must be checked against rollout logs.

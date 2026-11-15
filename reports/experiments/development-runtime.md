@@ -18,13 +18,14 @@ training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts 
 
 Incomplete development suites stopped under the fixed futility rule. Upper bounds assume every remaining case succeeds solely to test attainability. Unobserved cases are not counted as measured successes or errors; no early pass is allowed.
 
-A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality.
+A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result.
 
 ## Observed request latency
 
 | Development artifact | Completed calls | Accepted opinions | Judge failures | Unfinished calls | Median seconds/call | Observed seconds/call range |
 |---|---|---|---|---|---|---|
 | calibration-gemma-v3-standalone | 5 | 4 | 1 | 1 | 92.21 | 48.71–129.48 |
+| exploratory-single-v1-pilot-failure | 3 | 0 | 3 | 0 | 177.01 | 149.01–260.85 |
 | gemma-cpu-v2 | 1 | 1 | 3 | 3 | 407.72 | 407.72–407.72 |
 | gemma-cuda-v3-interrupted | 0 | 0 | 0 | 1 | Pending | Pending |
 | gemma-cuda24-v4-interrupted | 4 | 4 | 0 | 1 | 97.69 | 58.45–247.47 |
@@ -305,6 +306,21 @@ Stage timings additionally include template/token checks and validation. Cache h
           "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         }
       ],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-single-v1-pilot-failure.jsonl",
+      "requests": 3,
+      "completed_responses": 3,
+      "incomplete_requests": 0,
+      "judge_failures": 3,
+      "response_seconds": [
+        260.8472942189983,
+        177.0105734930039,
+        149.01391051699466
+      ],
+      "assessments": [],
       "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
@@ -15199,6 +15215,127 @@ Stage timings additionally include template/token checks and validation. Cache h
       "peak_gpu_allocated_bytes": 5107058688,
       "peak_gpu_reserved_bytes": 5194645504,
       "pilot_updates_discarded": true
+    },
+    {
+      "kind": "exploratory_single_grpo_contract_failure",
+      "experiment": "exploratory-single-v1",
+      "run_id": "exploratory-single-v1-pilot-theory-seed42",
+      "identity": {
+        "arm": "theory",
+        "seed": 42,
+        "config": {
+          "version": 2,
+          "judge_prompt_version": "v7",
+          "judge_protocol": "single-v1",
+          "judge_framing_version": "v2",
+          "data_seed": 20261115,
+          "training_seeds": [
+            42,
+            43,
+            44
+          ],
+          "max_steps": 2,
+          "max_prompt_length": 512,
+          "max_completion_length": 2048,
+          "num_generations": 4,
+          "per_device_train_batch_size": 1,
+          "gradient_accumulation_steps": 8,
+          "learning_rate": 1e-05,
+          "warmup_ratio": 0.1,
+          "beta": 0.04,
+          "lora_rank": 16,
+          "lora_alpha": 32,
+          "lora_dropout": 0,
+          "save_steps": 1,
+          "train_size": 1024,
+          "dev_size": 64,
+          "test_fresh_size": 200,
+          "test_hard_size": 100,
+          "test_unseen_size": 100,
+          "transfer_sources": 100,
+          "transfer_targets_per_source": 4,
+          "bootstrap_samples": 10000,
+          "judge_max_tokens": 1536,
+          "judge_context_length": 8192,
+          "judge_timeout_seconds": 900,
+          "judge_reasoning_budget_tokens": {
+            "training_judge": 512,
+            "evaluation_judge": 512
+          },
+          "calibration_pairs": 20,
+          "calibration_false_cases": 20,
+          "calibration_novelty_pairs": 12,
+          "calibration_novelty_false_cases": 8,
+          "test_ood_per_family": 50,
+          "ood_seed": 20261116
+        },
+        "manifest": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+        "model": {
+          "repo": "Qwen/Qwen3.5-2B",
+          "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+          "dtype": "bfloat16",
+          "license": "apache-2.0"
+        },
+        "judge": "d7e980a79754bb593ceee04e10abc822143c9ad4cbe0f507d3c9ad66a8adc169",
+        "experiment": {
+          "id": "exploratory-single-v1",
+          "amendment": "reports/amendments/2026-11-16-exploratory-single-judge.md",
+          "authorization": "User explicitly requested single-call judge training despite failed acceptance thresholds on 2026-11-16 Europe/Berlin.",
+          "calibration_required": false,
+          "interpretation": "Exploratory learning with unqualified, potentially systematically biased judges; not the calibration-qualified study.",
+          "judge_protocol": "single-v1",
+          "rubric_version": "v7",
+          "reference_version": "v3",
+          "initial_arms": [
+            "ordinary",
+            "prompted",
+            "theory-seed42",
+            "correctness-seed42"
+          ],
+          "input_hashes": {
+            "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
+            "configs/models.lock.json": "19665fe0a0e451deccaa0ea52662b21a2056bdd335b79cc5e9efc58a28fa8495",
+            "configs/policy-selection.json": "698f3ed0cbab3e3a0a307fb0a721d46b7bb0636fe2f633632b2ba69e4a0576bd",
+            "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+            "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062"
+          },
+          "judge_identities": {
+            "training_judge": {
+              "quoted": "d7e980a79754bb593ceee04e10abc822143c9ad4cbe0f507d3c9ad66a8adc169",
+              "rubric": "f20b72ec9e25412d0cca7e3fdb97739f97b751b7c60cd125c56a14f2acad2bcd"
+            },
+            "evaluation_judge": {
+              "quoted": "5cb69ecd8c29b69c430187baf5a85b3660d1f550e56d98f9bfc0a5124560ff9c"
+            }
+          }
+        }
+      },
+      "events_digest": "edcfcc3615fc6079c4b13a9dcd02c651ea0593491e2109c5104ea3e0d3fbdb62",
+      "started_at": "2026-11-15T23:37:30.148074+00:00",
+      "failed_at": "2026-11-15T23:49:37.935964+00:00",
+      "policy_completions": 8,
+      "judge_requests": 3,
+      "accepted_assessments": 0,
+      "judge_seconds": [
+        260.8472942189983,
+        177.0105734930039,
+        149.01391051699466
+      ],
+      "optimizer_boundaries": 0,
+      "failure": {
+        "time": "2026-11-15T23:49:37.935964+00:00",
+        "kind": "phase_failure",
+        "phase": "train",
+        "arguments": {
+          "arm": "theory",
+          "seed": "42",
+          "resume": "False",
+          "pilot": "True",
+          "stop_after": "1",
+          "exploratory": "True"
+        },
+        "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py\", line 239, in assess\n    assessment.validate_evidence(response)\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/schema.py\", line 86, in validate_evidence\n    raise ValueError(f\"{label}[{index}] must be a nonempty exact \"\nValueError: criteria.structural_understanding.evidence[0] must be a nonempty exact candidate excerpt; do not insert ellipses or paraphrase\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py\", line 77, in main\n    result = train(**args) if command == \"train\" else memory_probe()\n             ^^^^^^^^^^^^^\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/training.py\", line 191, in train\n    result = trainer.train(resume_from_checkpoint=str(checkpoint) if checkpoint else None)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/AI/grothendieck-rlvr/unsloth-cache/UnslothGRPOTrainer.py\", line 122, in wrapper\n    output = f(self, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/unsloth/models/rl.py\", line 225, in _unsloth_train_with_resume_guard\n    return original_train(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/unsloth/models/_gc_train_scope.py\", line 80, in train\n    return original_train(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/transformers/trainer.py\", line 1520, in train\n    return inner_training_loop(\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 81, in _fast_inner_training_loop\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/transformers/trainer.py\", line 1842, in _run_epoch\n    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/unsloth/models/rl.py\", line 2360, in training_step\n    loss = original_training_step(self, model, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/AI/grothendieck-rlvr/unsloth-cache/UnslothGRPOTrainer.py\", line 6781, in training_step\n    output = super().training_step(model, inputs, num_items_in_batch)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/unsloth/models/_utils.py\", line 6426, in _unsloth_training_step_settling_fallbacks\n    return _training_step_before_settle(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 34, in _unsloth_training_step\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/trl/extras/profiling.py\", line 211, in wrapper\n    return func(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/AI/grothendieck-rlvr/unsloth-cache/UnslothGRPOTrainer.py\", line 6810, in _prepare_inputs\n    generation_batch = self._generate_and_score_completions(generation_batch)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/unsloth/models/rl.py\", line 1088, in wrapped\n    return original(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/AI/grothendieck-rlvr/unsloth-cache/UnslothGRPOTrainer.py\", line 8081, in _generate_and_score_completions\n    rewards_per_func = self._calculate_rewards(inputs, prompts, completions, completion_ids_list)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/trl/extras/profiling.py\", line 211, in wrapper\n    return func(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/AI/grothendieck-rlvr/unsloth-cache/UnslothGRPOTrainer.py\", line 6899, in _calculate_rewards\n    output_reward_func = reward_func(\n                         ^^^^^^^^^^^^\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/reward.py\", line 57, in __call__\n    assessments = [self.judge.assess(t, text) if v.correct and self.arm != \"correctness\" else None\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py\", line 251, in assess\n    raise JudgeFailure(f\"Judge failed after three attempts: {exc}\") from exc\ngrothendieck_rlvr.judge.JudgeFailure: Judge failed after three attempts: criteria.structural_understanding.evidence[0] must be a nonempty exact candidate excerpt; do not insert ellipses or paraphrase\n"
+      }
     },
     {
       "kind": "synthetic_judge_runtime_benchmark",
