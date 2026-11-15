@@ -12,7 +12,7 @@ help the first without establishing the second. Neither identifies what was
 absent from a pretrained model's corpus.
 
 `schema.Assessment` implements the weighted score and validity gates;
-`prompts/rubric-v6.txt` supplies ordinal scoring anchors; `novelty-anchors.json`
+`prompts/rubric-v7.txt` supplies ordinal scoring anchors; `novelty-anchors.json`
 defines the comparison references. Both judges use these same frozen rules.
 `novelty_cases.py` constructs valid and deliberately false mathematical bridges.
 The judge must distinguish actual mathematical utility from ornamental theory.
@@ -20,17 +20,24 @@ All positive scores require exact supporting excerpts, but excerpt validation
 does not prove their contents. Wrong answers receive no reward regardless of
 theory or novelty. Both components are logged separately for diagnosis.
 
-The [v6 amendment](../reports/amendments/2026-11-15-declared-novelty-eligibility.md)
+The [v7 amendment](../reports/amendments/2026-11-15-modest-valid-connections.md)
 retains `novelty_comparison`: an exact reference excerpt, candidate excerpts for
 an addition and its use, and the declared relationship to the reference. Code
 awards novelty credit only for supported theory declared `beyond_reference`
-with both evidence lists. `novelty_credit` records raw and effective 0–4 scores,
-eligibility, withheld credit and reasons; the raw assessment remains unchanged.
+with an excerpt identifying a concrete addition. A brief valid connection can
+receive credit without a further worked consequence, capped at 1 out of 4.
+Higher credit requires demonstrated use. `novelty_credit` records raw and
+effective 0–4 scores, the cap, eligibility, withheld credit and reasons; the raw
+assessment remains unchanged.
 Malformed records and fabricated excerpts still trigger bounded retries. The
 reference is a fixed baseline plus routine variations, not every theorem in
 classical mathematics. Conventional general theory remains eligible for the
 other five criteria. These gates do not prove that the declarations are true.
 Historical results are never reinterpreted through the newer reward contract.
+Constructed calibration now compares developed frameworks with both brief valid
+connections and zero-novelty reference controls; the cases explicitly declare
+which expectation applies. All numerical thresholds remain fixed, but the
+changed construct and case set require a new complete calibration and audit.
 
 `ood.py` reuses [Reasoning Gym](https://github.com/open-thought/reasoning-gym)
 and [SymPy](https://docs.sympy.org/latest/modules/matrices/matrices.html).

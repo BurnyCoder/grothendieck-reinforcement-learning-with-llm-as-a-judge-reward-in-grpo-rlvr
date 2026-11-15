@@ -8,6 +8,8 @@ the final answer. GRPO trains Qwen3.5 language adapters. A separate frozen Gemma
 judge, held-out mathematical families and recipient-transfer tests assess behavior.
 New definitions, invariants, frameworks and connections to distant mathematics
 earn additional credit when they are justified and do mathematical work.
+Brief valid connections can earn modest novelty credit; developed, reusable
+frameworks can earn more, even when they use established mathematics.
 
 **Status: pipeline implemented; Gemma and Qwen development novelty calibrations failed.
 Long training remains blocked by the registered calibration gate. No empirical
@@ -56,7 +58,7 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v6.txt) scores
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v7.txt) scores
 each criterion from 0 to 4. Code applies validity and novelty-eligibility gates,
 then combines the normalized scores with these weights:
 
@@ -67,7 +69,7 @@ then combines the normalized scores with these weights:
 | Problem as a consequence | 15% | The solution follows from the framework without hiding the difficult step. |
 | Reuse and connections | 15% | Another consequence or substantive mathematical connection is demonstrated. |
 | Conceptual economy and exposition | 10% | Motivated definitions and lemmas make the explanation understandable. |
-| Constructive novelty | 20% | A justified conceptual departure beyond the documented conventional reference does useful mathematical work. |
+| Constructive novelty | 20% | A valid conceptual departure beyond the fixed reference; brief concrete connections earn modest credit, and developed frameworks earn more. |
 
 Novelty can take the form of a concept, object, definition, invariant,
 relationship, theory, framework, way of thinking, or connection. A proposed
@@ -89,14 +91,18 @@ a repair of novelty discrimination.
 The [first v5 attempt](reports/experiments/qwen-v5-contract-learnings.md)
 terminated after repeated disagreement between a within-reference declaration
 and a positive novelty score. Its completed contrasts do not constitute a pass.
-The [v6 protocol](reports/amendments/2026-11-15-declared-novelty-eligibility.md)
-preserves that raw opinion and computes novelty eligibility in code. Credit
-requires supported theory, an explicit `beyond_reference` declaration, and
-candidate excerpts demonstrating both an added construction and its use.
-Otherwise the novelty contribution is zero, while supported conventional theory
-keeps its other scores. Raw and effective scores, plus reasons for withholding
-credit, are logged and shown in the explorer. This enforces declared prerequisites;
-calibration must still test whether those declarations are mathematically sound.
+The [v6 attempt](reports/experiments/qwen-v6-interruption-learnings.md) demonstrated
+that a code gate could withhold ineligible novelty without changing the raw
+opinion. It was interrupted after the user clarified that valid brief connections
+should earn modest credit. The current
+[v7 protocol](reports/amendments/2026-11-15-modest-valid-connections.md) requires
+supported theory, an explicit `beyond_reference` declaration and an excerpt
+identifying an added construction or concrete relationship. Without a worked
+further use, code caps novelty at **1 out of 4**, rather than forcing it to zero.
+Demonstrated development permits higher credit. Raw scores, credited scores,
+caps and reasons are logged and shown in the explorer. Conventional theory
+keeps its other scores. Calibration must still test mathematical soundness and
+the ordering of developed frameworks, brief connections and routine solutions.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
@@ -110,7 +116,7 @@ A strong conventional explanation still earns the other rubric components.
 False novelty-bearing claims set the whole theory bonus to zero.
 
 The quoted variant includes the supplied
-[Grothendieck passage in McLarty's translation](src/grothendieck_rlvr/prompts/rising-sea-v1.txt).
+[Grothendieck passage in McLarty's translation](src/grothendieck_rlvr/prompts/rising-sea-v2.txt).
 The ablation retains the same rubric and reference approaches while removing
 quotations and persona. Both variants must pass constructed tests for valid
 abstraction, false theory, grading manipulation, useful nonstandard connections

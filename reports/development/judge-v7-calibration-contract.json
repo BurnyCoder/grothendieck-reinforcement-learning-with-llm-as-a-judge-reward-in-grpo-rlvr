@@ -1,0 +1,145 @@
+{
+  "time": "2026-11-15T15:44:03.818209+00:00",
+  "kind": "constructed_calibration_contract",
+  "rubric": "v7",
+  "protocol": "graded-connections-development-futility-v2",
+  "inference_performed": false,
+  "splits": {
+    "dev": {
+      "cases_sha256": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+      "pairs": 32,
+      "false_cases": 28,
+      "assessments_before_retries": 92,
+      "novelty_expectations": [
+        {
+          "id": "novelty-dev-0",
+          "family": "gcd",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-1",
+          "family": "lcm",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-2",
+          "family": "polynomial_multiplication",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-dev-3",
+          "family": "dice",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-4",
+          "family": "gcd",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-5",
+          "family": "lcm",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-6",
+          "family": "polynomial_multiplication",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-dev-7",
+          "family": "dice",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-8",
+          "family": "gcd",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-dev-9",
+          "family": "lcm",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-dev-10",
+          "family": "polynomial_multiplication",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-dev-11",
+          "family": "dice",
+          "control_novelty": "modest"
+        }
+      ]
+    },
+    "audit": {
+      "cases_sha256": "f2f0abc95de0c60c0b5b6ff193b2926a3535092dc2912184a5af2a8d0366a07d",
+      "pairs": 32,
+      "false_cases": 28,
+      "assessments_before_retries": 92,
+      "novelty_expectations": [
+        {
+          "id": "novelty-audit-0",
+          "family": "gcd",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-1",
+          "family": "lcm",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-2",
+          "family": "polynomial_multiplication",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-audit-3",
+          "family": "dice",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-4",
+          "family": "gcd",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-5",
+          "family": "lcm",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-6",
+          "family": "polynomial_multiplication",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-audit-7",
+          "family": "dice",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-8",
+          "family": "gcd",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-audit-9",
+          "family": "lcm",
+          "control_novelty": "modest"
+        },
+        {
+          "id": "novelty-audit-10",
+          "family": "polynomial_multiplication",
+          "control_novelty": "none"
+        },
+        {
+          "id": "novelty-audit-11",
+          "family": "dice",
+          "control_novelty": "modest"
+        }
+      ]
+    }
+  }
+}

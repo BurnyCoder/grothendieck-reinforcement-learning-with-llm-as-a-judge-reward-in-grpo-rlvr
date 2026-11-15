@@ -111,6 +111,17 @@ on complete development passes. Evaluate the combined code-and-judge instrument,
 and separately report differences between raw and effective novelty. Do not
 reinterpret the v5 attempt as a completed pass or a threshold failure.
 
+V6 was subsequently interrupted after the user's explicit clarification that a
+brief valid mathematical connection should receive modest novelty credit even
+without a further worked consequence. Its observations are preserved in the
+[interruption report](experiments/qwen-v6-interruption-learnings.md). The
+[v7 amendment](amendments/2026-11-15-modest-valid-connections.md) implements a
+one-point cap for such connections and higher credit for developed frameworks.
+It changes the constructed calibration expectations and adds contrasts to retain
+zero credit for routine methods and decorative terminology. Publish all changes
+before a fresh Qwen quoted development attempt, then the other variants and full
+audits only after complete development passes. Historical rates are not rescored.
+
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository

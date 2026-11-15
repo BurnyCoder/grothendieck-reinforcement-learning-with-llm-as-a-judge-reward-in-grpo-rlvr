@@ -120,16 +120,17 @@ All thought chunks are logged, but only visible JSON enters the rubric parser.
 Changing this setting invalidates that role's calibration and cache identity.
 Publish configuration changes before inference and keep old results separate.
 
-The v5 Qwen attempt exhausted retries on a reference/score contradiction. The
-[v6 protocol](../reports/amendments/2026-11-15-declared-novelty-eligibility.md)
-computes declared novelty eligibility while preserving raw opinions. Inspect
-`novelty_credit` in assessment, cache-hit, rollout and evaluation events for raw
-and effective scores and withheld-credit reasons. Its changed prompt and reward
-contract invalidate previous cache and calibration identities.
+The [v7 protocol](../reports/amendments/2026-11-15-modest-valid-connections.md)
+permits modest novelty credit for brief valid connections while preserving raw
+opinions. Inspect `novelty_credit` in assessment, cache-hit, rollout and evaluation
+events for raw/effective scores, the cap and withheld-credit reasons. Its changed
+prompt, reward contract and constructed calibration expectations invalidate old
+identities; the earlier v6 attempt remains an interrupted historical record.
 Start Qwen quoted development with `--restart-development`; only a full pass
 permits the other required development variants, followed by untouched audits.
-Keep all reference contents, cases, labels, thresholds and inference budgets
-unchanged. The new fields are judge opinions, not verified mathematical facts.
+Keep the newly registered cases and labels, fixed reference contents, numerical
+thresholds and inference budgets unchanged. The fields are judge opinions,
+not verified mathematical facts.
 
 ## Feasibility, saving and resumption
 
