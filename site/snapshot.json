@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T11:59:05.502957+00:00",
+  "generated_at": "2026-11-15T12:28:44.938811+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v4",
@@ -774,6 +774,822 @@
             ]
           },
           "theory": 0.6000000000000001,
+          "novelty": 0.0
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/gemma-cuda24-v4-resumed-interrupted.jsonl",
+      "requests": 15,
+      "completed_responses": 14,
+      "incomplete_requests": 1,
+      "response_seconds": [
+        112.32233614600045,
+        76.08942682500128,
+        75.60238871600086,
+        70.47537360299975,
+        71.74799940699995,
+        59.43433100100083,
+        102.54135718700127,
+        87.80988769399846,
+        84.90723011800037,
+        65.8993836970003,
+        72.2192907259996,
+        58.66366620000008,
+        54.93276770800003,
+        36.653729019999446
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T11:53:14.698816+00:00",
+          "kind": "judge_assessment",
+          "key": "95e4d71e9e7fdd9599003d5ab513b1c41ca4aa61153ef64221f020022355d96b",
+          "task_id": "novelty-dev-2",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x].",
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The candidate uses the structure of a quadratic algebra and the norm map to explain the difference of squares.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The method generalizes to any $x+ne$ and explains the identity via the norm of a quadratic extension.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The specific result $x^2-64$ follows naturally from the norm of $x+8e$.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs."
+                ],
+                "rationale": "The candidate derives a composition law for norms, connecting the problem to the arithmetic of quadratic forms.",
+                "score": 4
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The definitions of conjugation and norm are standard and directly motivated by the goal of factoring.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1)",
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2"
+                ],
+                "rationale": "The conventional reference is simple distribution. The candidate adds the framework of quadratic algebras and the norm map, demonstrating a composition law for the difference of squares as a consequence of the norm's multiplicativity.",
+                "score": 4
+              }
+            },
+            "problems": []
+          },
+          "theory": 1.0,
+          "novelty": 1.0
+        },
+        {
+          "time": "2026-11-15T11:54:40.614873+00:00",
+          "kind": "judge_assessment",
+          "key": "4cd60bd1363317cd55c6192069a00504cb7b37f99ef181cc2e7bec66aea89a81",
+          "task_id": "novelty-dev-2",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2."
+                ],
+                "rationale": "The explanation identifies the underlying algebraic structure (commutative ring) and the distributive property as the source of the identity.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1."
+                ],
+                "rationale": "It generalizes the specific problem to a standard identity and shows its application to a different specific case.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "(x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2"
+                ],
+                "rationale": "The result x**2-64 follows directly from the expansion of the general form where n=8.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Noncommuting products retain a cross-term commutator."
+                ],
+                "rationale": "The candidate connects the result to non-commutative algebra, noting where the identity would fail.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2."
+                ],
+                "rationale": "The explanation is concise and uses standard algebraic definitions to justify the steps.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Noncommuting products retain a cross-term commutator."
+                ],
+                "rationale": "i) The reference only covers commutative distribution. ii) The candidate introduces the concept of non-commuting products and commutators. iii) This explains why the identity is specific to commutative rings by highlighting the cross-term [x, n].",
+                "score": 2
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.7250000000000001,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T11:56:03.056920+00:00",
+          "kind": "judge_assessment",
+          "key": "276582a546278b92b61d2c66d7d20ae8a8c7ff24d69abd4c6ff6546998d0b89c",
+          "task_id": "novelty-dev-3",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}.",
+                  "Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication."
+                ],
+                "rationale": "The candidate uses a character-theoretic approach to map the additive structure of parity to a multiplicative group.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices."
+                ],
+                "rationale": "The method generalizes to an arbitrary number of independent variables and provides a clear condition for the result.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2.",
+                  "Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2."
+                ],
+                "rationale": "The specific result follows naturally from the expectation of the character over the uniform distribution.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This character transform is a reusable bridge from probability convolution to multiplicative statistics."
+                ],
+                "rationale": "The candidate identifies a connection between probability convolution and multiplicative statistics via characters.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "The even indicator is (1+chi(k))/2."
+                ],
+                "rationale": "The indicator function and character are defined efficiently to solve the problem.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication."
+                ],
+                "rationale": "The conventional reference suggests counting or generating functions. The candidate adds a character-theoretic framework (homomorphism from $(\\mathbb{Z}, +)$ to $(\\{1, -1\\}, \\times)$) to transform a convolution problem into a product of expectations, enabling a general formula for $n$ variables.",
+                "score": 3
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T11:57:20.109668+00:00",
+          "kind": "judge_assessment",
+          "key": "5a270e23c797ee68dab8f39644660eeadee9f89f5400dc180e2c9ca40938ef5d",
+          "task_id": "novelty-dev-3",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The explanation correctly identifies the partition of the sample space into even/odd outcomes and uses the independence property.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q)."
+                ],
+                "rationale": "The candidate generalizes the specific 10-sided case to any two independent dice with arbitrary even-face probabilities.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For an even-sided fair die, half the faces are even and half odd."
+                ],
+                "rationale": "The specific result follows naturally from the established parity distribution of the faces.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No additional consequences or bridges to distant mathematical settings are demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The derivation is direct and avoids unnecessary complexity while maintaining sufficient rigor.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q)."
+                ],
+                "rationale": "The conventional reference includes probability-generating polynomials. The candidate's addition is a simple algebraic generalization of the specific case to arbitrary probabilities p and q, which is a standard extension of the reference's logic.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The response does not demonstrate any connections to other mathematical fields or provide a reusable framework beyond the basic algebraic generalization."
+            ]
+          },
+          "theory": 0.5125000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T11:58:38.774732+00:00",
+          "kind": "judge_assessment",
+          "key": "c1a5d8ba7f80c5e5489f77e468b4c507cbf4fa9c775444b082e32d6cd6066dd8",
+          "task_id": "novelty-dev-4",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The candidate identifies the GCD as the generator of a subgroup (lattice) of integers, providing a structural basis for the calculation.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ."
+                ],
+                "rationale": "The argument generalizes to any pair of integers by characterizing the set of linear combinations as a cyclic group dZ.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ."
+                ],
+                "rationale": "The specific result gcd(24, 36) follows naturally from the lattice construction where n=12.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The construction requires integer signed moves; nonnegative moves do not form a subgroup."
+                ],
+                "rationale": "The candidate connects the problem to group theory (subgroups of Z) and distinguishes it from monoid structures.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line."
+                ],
+                "rationale": "The definition of the lattice I(a,b) is sufficient to derive the GCD and the specific answer.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The conventional reference lists Euclid's algorithm and prime exponents. The candidate adds a group-theoretic framework (Bézout's Identity as a lattice generator). This addition enables viewing the GCD as the 'spacing' of a reachable set, providing a geometric/algebraic interpretation of the Euclidean algorithm's termination.",
+                "score": 2
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.8625,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T11:59:45.282696+00:00",
+          "kind": "judge_assessment",
+          "key": "a4f5c3fab90cd9eba030fe72c773b6f16757d2c3a7f501a9ebc8a2b3c587412f",
+          "task_id": "novelty-dev-4",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The candidate identifies the relationship between divisors of multiples and the common difference.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Thus gcd(2n,3n)=n for positive n."
+                ],
+                "rationale": "The argument generalizes the specific case to a parameterized family of integers.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The result gcd(24, 36) follows naturally from the n=12 case of the established rule.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm."
+                ],
+                "rationale": "The candidate connects the specific divisor logic to the fundamental invariant of Euclid's algorithm.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The explanation is concise and uses the minimal necessary logic to establish the property.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm."
+                ],
+                "rationale": "The conventional reference includes the divisor logic and Euclid's invariant. The candidate's addition is merely a cosmetic renaming of existing concepts without new mathematical content.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The claim of a 'completely new mathematical paradigm' is unsupported as it merely renames existing Euclidean principles."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:01:38.608167+00:00",
+          "kind": "judge_assessment",
+          "key": "fb3328774b2f747cd1989230f78f4e7556cb43ebad93926b8ed4b6ba7c79d9d0",
+          "task_id": "novelty-dev-5",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time.",
+                  "Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l."
+                ],
+                "rationale": "The candidate identifies the LCM as the generator of the intersection of cyclic subgroups of integers.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ.",
+                  "If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The framework generalizes to cosets, covering both periodic events and their relative phases.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k."
+                ],
+                "rationale": "The specific LCM calculation follows naturally from the subgroup intersection logic.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide."
+                ],
+                "rationale": "The candidate connects the LCM to the theory of coset intersections and the Chinese Remainder Theorem's conditions.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time."
+                ],
+                "rationale": "The use of group theory provides a concise and powerful abstraction for periodicity.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The conventional reference uses arithmetic identities (gcd/lcm). The candidate adds a group-theoretic framework of coset intersections (r+aZ), which enables the analysis of phase shifts and non-intersecting schedules (e.g., even/odd parity), a result not provided by the standard LCM formula.",
+                "score": 3
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T12:03:16.946251+00:00",
+          "kind": "judge_assessment",
+          "key": "a48a1dc2bd1865c301d831e78878e710cf1f83be683b73c1ed10e8f80dcd101e",
+          "task_id": "novelty-dev-5",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b"
+                ],
+                "rationale": "The candidate identifies the relationship between prime exponents and the product of the numbers.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "lcm(2n,3n)=6n"
+                ],
+                "rationale": "The candidate generalizes the specific case to a family of multiples of 2 and 3.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "lcm(2n,3n)=6n"
+                ],
+                "rationale": "The result for the specific numbers follows from the derived general form for 2n and 3n.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "gcd(a,b)*lcm(a,b)=a*b"
+                ],
+                "rationale": "The candidate connects the LCM to the GCD and the product of the integers.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k."
+                ],
+                "rationale": "The logic is direct and avoids unnecessary complexity for the given problem.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm."
+                ],
+                "rationale": "The conventional reference includes the prime exponent method and the gcd/lcm product identity. The candidate's addition is merely a cosmetic renaming of these existing methods without any new mathematical construction or framework.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The claim of a 'completely new mathematical paradigm' is unsupported as it merely renames existing identities."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:04:53.978640+00:00",
+          "kind": "judge_assessment",
+          "key": "8092299022591e4b9886db0ced85659c0e5371cad59c21415662b8cf1c26295b",
+          "task_id": "novelty-dev-6",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x].",
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The candidate uses the structure of a quadratic algebra and the norm map to organize the difference of squares.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The method generalizes to any $x^2 - n^2$ by treating it as a norm in a specific ring extension.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The specific result $x^2-256$ follows naturally from the norm definition applied to $n=16$.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs."
+                ],
+                "rationale": "The candidate derives a composition law for norms, demonstrating a connection to the Brahmagupta-Fibonacci identity.",
+                "score": 4
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The definitions of conjugation and norm are standard and directly motivated by the goal of factorizing the expression.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1)",
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2"
+                ],
+                "rationale": "The conventional reference is simple distribution. The candidate adds a bridge to quadratic algebras and the norm map, enabling the derivation of the composition law for differences of squares, which is a substantive structural addition.",
+                "score": 4
+              }
+            },
+            "problems": []
+          },
+          "theory": 1.0,
+          "novelty": 1.0
+        },
+        {
+          "time": "2026-11-15T12:06:07.812080+00:00",
+          "kind": "judge_assessment",
+          "key": "390ae31b380d692bbb0868f1a958442c5a9dec28256c184ca9b1f98ab8696537",
+          "task_id": "novelty-dev-6",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2"
+                ],
+                "rationale": "The explanation correctly identifies the distributive property in a commutative ring as the underlying structure.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1."
+                ],
+                "rationale": "It generalizes the specific problem to a standard algebraic identity applicable to any elements a and b.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "(x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2"
+                ],
+                "rationale": "The specific result x^2 - 256 follows naturally from the expansion of the general form.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Noncommuting products retain a cross-term commutator."
+                ],
+                "rationale": "The candidate briefly connects the result to non-commutative algebra by mentioning commutators.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2"
+                ],
+                "rationale": "The derivation is direct and uses standard algebraic definitions efficiently.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm."
+                ],
+                "rationale": "The conventional reference covers the distributive property and identities. The candidate's addition is merely a cosmetic renaming ('Universal Conceptual Ocean') without any new mathematical construction, operation, or framework.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The claim of a 'completely new mathematical paradigm' is unsupported by any actual mathematical construction or theory."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:07:27.563371+00:00",
+          "kind": "judge_assessment",
+          "key": "b3d72e016d19b5e610078485583e10185d83d54e8134c48056e0901de5a37b69",
+          "task_id": "novelty-dev-7",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}.",
+                  "Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication."
+                ],
+                "rationale": "The candidate uses a character-based transformation to map the additive structure of parity to a multiplicative group.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices."
+                ],
+                "rationale": "The method generalizes to an arbitrary number of independent variables and provides a clear condition for the result.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2.",
+                  "Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2."
+                ],
+                "rationale": "The specific result follows naturally from the expectation of the character over the uniform distribution.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This character transform is a reusable bridge from probability convolution to multiplicative statistics."
+                ],
+                "rationale": "The candidate identifies a connection between probability convolution and multiplicative statistics via characters.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "The even indicator is (1+chi(k))/2."
+                ],
+                "rationale": "The indicator function and character are defined minimally and used directly to solve the problem.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication.",
+                  "This character transform is a reusable bridge from probability convolution to multiplicative statistics."
+                ],
+                "rationale": "(i) The conventional reference uses counting or generating functions. (ii) The candidate introduces a character-based transform $\\chi$ mapping $(\\mathbb{Z}, +)$ to $(\\{1, -1\\}, \\times)$. (iii) This allows the probability of an even sum to be calculated as an expectation of a product of independent characters, effectively linearizing the parity convolution.",
+                "score": 3
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T12:08:33.305437+00:00",
+          "kind": "judge_assessment",
+          "key": "6b0439bdf4b92e3b4bff84a1c4bf62c517c828be0e2fdaf300c38a8f19e636b2",
+          "task_id": "novelty-dev-7",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The explanation correctly identifies the decomposition of the sum's parity into independent component probabilities.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q)."
+                ],
+                "rationale": "The candidate generalizes the specific 18-sided case to any independent dice with arbitrary even-face probabilities.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The specific result follows directly from the stated logic of independent parity sums.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No additional consequences or bridges to other mathematical settings are demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The derivation is direct and uses minimal necessary steps to reach the conclusion.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm."
+                ],
+                "rationale": "The conventional reference covers the probability calculation. The candidate's addition is a cosmetic renaming ('Universal Conceptual Ocean') without any new mathematical objects, operations, or justified consequences.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The claim of a 'completely new mathematical paradigm' is unsupported by any actual mathematical construction or theory building."
+            ]
+          },
+          "theory": 0.48750000000000004,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:09:35.644164+00:00",
+          "kind": "judge_assessment",
+          "key": "35bad9a920d950b1300fcc81223f7197519a7896410ce484f5c1d657fa7de826",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The explanation identifies the relationship between the common divisors of a pair and the difference of those numbers.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate generalizes the specific case to a parameterized family of integers (2n, 3n).",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "With n=4, the answer is 4."
+                ],
+                "rationale": "The specific result follows naturally from the established general rule for gcd(2n, 3n).",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility."
+                ],
+                "rationale": "The candidate connects the specific 2n, 3n case to the general Euclidean algorithm invariant.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The logic is efficient, using a simple bidirectional implication to establish the identity.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The candidate uses the conventional reference method of identifying common divisors and the Euclidean invariant. No new mathematical objects or frameworks are introduced.",
+                "score": 0
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.6625000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:10:15.932637+00:00",
+          "kind": "judge_assessment",
+          "key": "b5efc23b13e6130611b46b780892ffe6434c1a802a43397f34f5ab81fe6da7ef",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [],
+                "rationale": "No theory or structural framework was provided; the response is a direct computation.",
+                "score": 0
+              },
+              "justified_generality": {
+                "evidence": [],
+                "rationale": "The response does not generalize the problem to a family of cases.",
+                "score": 0
+              },
+              "problem_as_consequence": {
+                "evidence": [],
+                "rationale": "The result is not derived from a broader framework.",
+                "score": 0
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings were established.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [],
+                "rationale": "No definitions or lemmas were introduced.",
+                "score": 0
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The response provides a direct answer without any conceptual departure from the conventional reference.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The candidate provided a direct calculation without any theoretical framework, definitions, or generalizations as required by the rubric."
+            ]
+          },
+          "theory": 0.0,
           "novelty": 0.0
         }
       ],

@@ -1,0 +1,212 @@
+[New LWP 161435]
+[New LWP 161408]
+[New LWP 161407]
+[New LWP 161406]
+[New LWP 161405]
+[New LWP 161404]
+[New LWP 161403]
+[New LWP 161402]
+[New LWP 160305]
+[New LWP 160304]
+[New LWP 160294]
+[New LWP 160293]
+[New LWP 160292]
+[New LWP 160291]
+[New LWP 160290]
+[New LWP 160289]
+[New LWP 160288]
+[New LWP 160287]
+[New LWP 160286]
+[New LWP 160285]
+[New LWP 160284]
+[New LWP 160283]
+[New LWP 160282]
+[New LWP 160281]
+[New LWP 160280]
+[New LWP 160279]
+[New LWP 160276]
+[New LWP 160275]
+[New LWP 160255]
+[New LWP 160254]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+0x000070623f8c78a2 in ?? () from /lib/x86_64-linux-gnu/libgomp.so.1
+No symbol matches 0x000070623f8c78a2.
+   0x70623f8c7880:	jne    0x70623f8c78ab
+   0x70623f8c7882:	jmp    0x70623f8c78e0
+   0x70623f8c7884:	data16 cs nopw 0x0(%rax,%rax,1)
+   0x70623f8c788f:	data16 cs nopw 0x0(%rax,%rax,1)
+   0x70623f8c789a:	nopw   0x0(%rax,%rax,1)
+   0x70623f8c78a0:	pause
+=> 0x70623f8c78a2:	add    $0x1,%rax
+   0x70623f8c78a6:	cmp    %rdx,%rax
+   0x70623f8c78a9:	je     0x70623f8c78e0
+   0x70623f8c78ab:	mov    (%r12),%ecx
+   0x70623f8c78af:	cmp    %ecx,%ebx
+   0x70623f8c78b1:	je     0x70623f8c78a0
+   0x70623f8c78b3:	mov    (%r12),%eax
+   0x70623f8c78b7:	test   $0x1,%al
+   0x70623f8c78b9:	jne    0x70623f8c7930
+   0x70623f8c78bb:	mov    %eax,%edx
+
+Thread 31 (Thread 0x70623dfff6c0 (LWP 160254) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 30 (Thread 0x70623d7fe6c0 (LWP 160255) "llama-server"):
+rax            0xfffffffffffffdfc  -516
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 29 (Thread 0x70623cbff6c0 (LWP 160275) "cuda00001800007"):
+rax            0xfffffffffffffdfc  -516
+rcx            0x70623f31b75d      123567269328733
+rdx            0xffffffff          4294967295
+
+Thread 28 (Thread 0x7061f12b96c0 (LWP 160276) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 27 (Thread 0x7061f02b76c0 (LWP 160279) "llama-server"):
+rax            0xfffffffffffffdfc  -516
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 26 (Thread 0x705feae006c0 (LWP 160280) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 25 (Thread 0x705fea5ff6c0 (LWP 160281) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 24 (Thread 0x705fe9dfe6c0 (LWP 160282) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 23 (Thread 0x705fe95fd6c0 (LWP 160283) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 22 (Thread 0x705fe8dfc6c0 (LWP 160284) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 21 (Thread 0x705fe85fb6c0 (LWP 160285) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 20 (Thread 0x705fe7dfa6c0 (LWP 160286) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 19 (Thread 0x705fe75f96c0 (LWP 160287) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 18 (Thread 0x705fe6df86c0 (LWP 160288) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 17 (Thread 0x705fe65f76c0 (LWP 160289) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 16 (Thread 0x705fe5df66c0 (LWP 160290) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 15 (Thread 0x705fe55f56c0 (LWP 160291) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 14 (Thread 0x705fe4df46c0 (LWP 160292) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 13 (Thread 0x705fe45f36c0 (LWP 160293) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 12 (Thread 0x705fe3df26c0 (LWP 160294) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f32bb34      123567269395252
+rdx            0x0                 0
+
+Thread 11 (Thread 0x705fe35f16c0 (LWP 160304) "cuda-EvtHandlr"):
+rax            0xfffffffffffffdfc  -516
+rcx            0x70623f31b75d      123567269328733
+rdx            0x64                100
+
+Thread 10 (Thread 0x705fd9bff6c0 (LWP 160305) "llama-server"):
+rax            0xfffffffffffffdfc  -516
+rcx            0x70623f31b75d      123567269328733
+rdx            0x64                100
+
+Thread 9 (Thread 0x705fe2df06c0 (LWP 161402) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+
+Thread 8 (Thread 0x705fe17ef6c0 (LWP 161403) "llama-server"):
+rax            0xe8f4              59636
+rcx            0x32ec8d8           53397720
+rdx            0x493e0             300000
+
+Thread 7 (Thread 0x705fe0fee6c0 (LWP 161404) "llama-server"):
+rax            0x1922              6434
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+
+Thread 6 (Thread 0x705fd93fe6c0 (LWP 161405) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+
+Thread 5 (Thread 0x705fd8bfd6c0 (LWP 161406) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d8           53397720
+rdx            0x493e0             300000
+
+Thread 4 (Thread 0x705fb5cd06c0 (LWP 161407) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+
+Thread 3 (Thread 0x705fb54cf6c0 (LWP 161408) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+
+Thread 2 (Thread 0x705fb4cce6c0 (LWP 161435) "llama-server"):
+rax            0xfffffffffffffe00  -512
+rcx            0x70623f298e31      123567268793905
+rdx            0x0                 0
+
+Thread 1 (Thread 0x70623f89c380 (LWP 160252) "llama-server"):
+rax            0x1000              4096
+rcx            0x32ec8d0           53397712
+rdx            0x493e0             300000
+[Inferior 1 (process 160252) detached]
