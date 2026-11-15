@@ -86,5 +86,8 @@
   "reference_contract_failure_pages_workflow": 43725798451,
   "declared_eligibility_protocol_merge": "5604015533f78bd9c9ddc6634b40fbdea8004fe3",
   "declared_eligibility_protocol_huggingface_commit": "48640f6590780be7671b310e542f5c2b1157a621",
-  "declared_eligibility_protocol_pages_workflow": 43726657258
+  "declared_eligibility_protocol_pages_workflow": 43726657258,
+  "request_latency_report_merge": "0ddf3b41bd9cee4ef4db1a666634b6b11f4bffa1",
+  "request_latency_report_huggingface_commit": "67d935ee20fec63558871c01263ff5ea57bf769c",
+  "request_latency_report_pages_workflow": 43728321864
 }

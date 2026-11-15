@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py", line 112, in _stream
+    async for line in response.aiter_lines():
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_models.py", line 1031, in aiter_lines
+    async for text in self.aiter_text():
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_models.py", line 1018, in aiter_text
+    async for byte_content in self.aiter_bytes():
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_models.py", line 997, in aiter_bytes
+    async for raw_bytes in self.aiter_raw():
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_models.py", line 1055, in aiter_raw
+    async for raw_stream_bytes in self.stream:
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_client.py", line 176, in __aiter__
+    async for chunk in self._stream:
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 271, in __aiter__
+    async for part in self._httpcore_stream:
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 407, in __aiter__
+    raise exc from None
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 403, in __aiter__
+    async for part in self._stream:
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 342, in __aiter__
+    raise exc
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 334, in __aiter__
+    async for chunk in self._connection._receive_response_body(**kwargs):
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 203, in _receive_response_body
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1431, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 105, in <module>
+    main()
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 71, in main
+    result = calibrate(Judge(url, role, args.pop("variant")), **args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/calibration.py", line 150, in calibrate
+    preferred = judge.assess(task, case["preferred"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py", line 183, in assess
+    output = self.client.generate(messages, self.config["judge_max_tokens"], assessment_schema())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py", line 90, in generate
+    text = asyncio.run(self._stream(request))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
