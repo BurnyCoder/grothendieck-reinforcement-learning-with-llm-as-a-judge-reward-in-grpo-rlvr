@@ -14,3 +14,18 @@ Selected matched budget: **64 optimizer updates per training arm**.
 | 256 | 34.18–49.77 | 170.90–248.86 |
 
 Sources: `reports/development/feasibility-grpo-first-boundary.json` and `reports/development/feasibility-grpo-resumed-complete.json`. The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). This is not a guarantee that the full study fits in one week.
+
+## Planned data exposure
+
+One GPU, sequential pre-shuffled manifest, one GRPO iteration, completed fixed budget. Actual exposure must be checked against rollout logs.
+
+The configured budget schedules 512 completions across 128 prompt occurrences, covering 128 distinct prompts from the 1024-prompt training manifest. All arms use this same order. These are configuration-derived counts, not completed training results.
+
+| Training family | Distinct prompts scheduled |
+|---|---:|
+| dice | 23 |
+| gcd | 32 |
+| lcm | 39 |
+| polynomial_multiplication | 34 |
+
+Source: `data/train.json` and `configs/study.json`. Reducing optimizer updates also reduces task exposure; it does not merely shorten optimization on the full manifest.

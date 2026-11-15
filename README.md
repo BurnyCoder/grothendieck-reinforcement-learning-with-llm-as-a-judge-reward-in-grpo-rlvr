@@ -121,6 +121,9 @@ The [pre-comparison budget amendment](reports/amendments/2026-11-15-training-bud
 fixes 64 updates for every training arm. The
 [generated runtime scenarios](reports/training-budget.md) explain the reduction
 from the original maximum; they do not guarantee completion within a week.
+That report also derives the scheduled prompt and family coverage from the
+locked manifest. The reduced budget consumes only a prefix of the pre-shuffled
+training pool; completed rollout logs determine actual exposure.
 
 Judge backend, GPU offload, KV-cache precision and batching are pinned in
 [the serving configuration](configs/judge-runtime.json) and included in cache
