@@ -17,10 +17,10 @@ rewards, including valid conceptual novelty relative to fixed reference approach
 This repository publishes deterministic Reasoning Gym and SymPy-backed manifests,
 provenance, model/runtime locks, protocol, code and generated research reports.
 Model-generated results are pending unless explicitly recorded in saved results.
-Development evidence includes a failed Gemma novelty calibration and interrupted
-Qwen attempts. No comparative improvement is established. The current bounded
-native-reasoning development amendment retains the rubric and acceptance gates;
-historical failed judgments remain separate from the new configuration.
+Development evidence includes failed Gemma and bounded-reasoning Qwen novelty
+calibrations, as well as interrupted attempts. No comparative improvement is
+established. Long training and locked audits remain blocked; the full negative
+results and their limitations are preserved in `reports/experiments/`.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

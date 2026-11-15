@@ -9,7 +9,7 @@ judge, held-out mathematical families and recipient-transfer tests assess behavi
 New definitions, invariants, frameworks and connections to distant mathematics
 earn additional credit when they are justified and do mathematical work.
 
-**Status: pipeline implemented; Gemma's development novelty calibration failed.
+**Status: pipeline implemented; Gemma and Qwen development novelty calibrations failed.
 Long training remains blocked by the registered calibration gate. No empirical
 improvement or latent-space steering has been demonstrated.**
 
@@ -82,8 +82,9 @@ conventional proofs as novel, while some Qwen judgments incorrectly withheld
 all theory credit from conventional generalizations. The novelty reward is
 implemented but not validated. The [development history](reports/plan.md) and
 [Gemma failure analysis](reports/experiments/gemma-v4-learnings.md) retain these
-negative findings. The [bounded-reasoning amendment](reports/amendments/2026-11-15-bounded-judge-reasoning.md)
-tests native reasoning under the same v4 rubric, cases and thresholds.
+negative findings. The [bounded-reasoning attempt](reports/experiments/qwen-reasoning-v4-learnings.md)
+also failed under the same v4 rubric, cases and thresholds. It did not establish
+a repair of novelty discrimination.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
@@ -208,6 +209,6 @@ transfer, reports and dashboard viewing.
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
 
-evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
+evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 08145e59) failed, with 1/3 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
 
 <!-- RESULTS:END -->
