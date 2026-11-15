@@ -7,5 +7,9 @@
   "huggingface_dataset": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr",
   "pages": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/",
   "collection_status": "pending: API daily creation limit, retry after approximately 15 hours from first attempt",
-  "model_results_at_publication": "none"
+  "model_results_at_publication": "none",
+  "novelty_amendment_merge": "67fab26d84be591a6ddd562137e8637d93c56877",
+  "novelty_huggingface_commit": "b5748d715d7da9f22137f6b91b4f13bf3e5d359e",
+  "novelty_pages_workflow": 43692786523,
+  "novelty_publication_results": "No judge assessment or policy-generated output existed at this publication"
 }

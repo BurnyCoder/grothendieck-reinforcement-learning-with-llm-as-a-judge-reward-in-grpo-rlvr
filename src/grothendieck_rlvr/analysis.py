@@ -88,10 +88,10 @@ def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False)
             "criteria_met": bool(passed) if complete and not secondary else None, **results}
 
 
-def transfer_analysis(rows: list[dict], samples=10000) -> dict:
+def transfer_analysis(rows: list[dict], samples=10000, expected_sources=100) -> dict:
     """Aggregate the four targets per source before paired resampling of source IDs."""
     conditions = sorted({r["condition"] for r in rows})
-    summaries, comparisons = {}, {}
+    summaries = {}
     groups = {}
     for condition in conditions:
         subset = [r for r in rows if r["condition"] == condition]
@@ -99,21 +99,27 @@ def transfer_analysis(rows: list[dict], samples=10000) -> dict:
         groups[condition] = {}
         for row in subset:
             groups[condition].setdefault(row["source_id"], []).append(row)
-    for condition in conditions:
-        if condition == "no_notes" or "no_notes" not in groups:
-            continue
-        baseline = groups["no_notes"]
-        current = groups[condition]
-        if set(current) != set(baseline) or any(len(v) != 4 for v in current.values()):
-            comparisons[condition] = {"status": "incomplete"}
-            continue
+    def compare(left, right):
+        """Keep every target paired and every four-target source clustered in all contrasts."""
+        current, baseline = groups.get(left, {}), groups.get(right, {})
+        if len(current) != expected_sources or set(current) != set(baseline) or any(
+                len(v) != 4 for group in (current, baseline) for v in group.values()):
+            return {"status": "incomplete"}
         ids = sorted(current)
         differences, strata = [], []
         for source in ids:
             a, b = current[source], baseline[source]
-            if {r["task_id"] for r in a} != {r["task_id"] for r in b}:
+            if len({r["task_id"] for r in a}) != 4 or {r["task_id"] for r in a} != {r["task_id"] for r in b}:
                 raise ValueError("Transfer conditions must contain matching probes")
             differences.append(np.mean([r["correct"] for r in a])-np.mean([r["correct"] for r in b]))
             strata.append(a[0]["family"])
-        comparisons[condition] = paired_bootstrap(differences, strata, samples=samples)
-    return {"summaries": summaries, "versus_no_notes": comparisons, "interpretation": "exploratory"}
+        return paired_bootstrap(differences, strata, samples=samples)
+
+    notes = [c for c in conditions if c.endswith(":notes")]
+    return {"summaries": summaries,
+            "versus_no_notes": {c: compare(c, "no_notes") for c in conditions if c != "no_notes"},
+            "versus_unrelated": {c.removesuffix(":notes"): compare(c, c.removesuffix(":notes") + ":unrelated")
+                                 for c in notes},
+            "between_note_sources": {f"{left} minus {right}": compare(left, right)
+                                     for i, left in enumerate(notes) for right in notes[:i]},
+            "interpretation": "exploratory; source-clustered, unadjusted paired intervals"}
