@@ -375,7 +375,10 @@ def paper_sections(snapshot):
          "the declared reference relation and numerical novelty score; that calibration remained incomplete."
          " V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when "
          "the user clarified that brief valid connections should receive modest novelty credit. "
-         "V7 implements that changed construct and requires fresh calibration; historical results are retained."
+         "V7 implements that changed construct. Its first trial failed the control-credit conditions "
+         "despite correct observed framework/control rankings. A later reference-scope amendment "
+         "clarifies commutative-polynomial and ordinary biased-probability baselines; that new identity "
+         "requires fresh calibration. Historical results are retained."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "

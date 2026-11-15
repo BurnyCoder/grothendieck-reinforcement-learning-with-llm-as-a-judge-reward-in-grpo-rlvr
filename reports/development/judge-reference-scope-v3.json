@@ -1,0 +1,25 @@
+{
+  "time": "2026-11-15T16:40:16.501333+00:00",
+  "kind": "reference_scope_integrity",
+  "rubric": "v7",
+  "framing": "v2",
+  "reference_version": "v3",
+  "reference_sha256": "7d4e36f1f841bb7dc333f8827448eb355bb98434435db1e564844e0ac4ecfe40",
+  "changed_reference_keys": [
+    "dice",
+    "polynomial_multiplication",
+    "version"
+  ],
+  "calibration_protocol": "graded-connections-development-futility-v2",
+  "case_hashes": {
+    "dev": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+    "audit": "f2f0abc95de0c60c0b5b6ff193b2926a3535092dc2912184a5af2a8d0366a07d"
+  },
+  "judge_identities": {
+    "training_judge/quoted": "ebe93e9d0be235f21c5406700018aef3af41e81a0ca3629c4c6cb63423a5fe9f",
+    "training_judge/rubric": "3a5ef361688d17bbf19b9bc580143139e3d2d04552de64c5fb8b2c2036cf9cbc",
+    "evaluation_judge/quoted": "d9679b5cb88a2f62e403c26eec89442e5991bac39f69d8c0298035fada721d45"
+  },
+  "inference_performed": false,
+  "previous_contract": "reports/development/judge-v7-calibration-contract.json"
+}

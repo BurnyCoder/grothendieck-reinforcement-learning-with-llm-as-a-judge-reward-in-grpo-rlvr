@@ -1,0 +1,28 @@
+{
+  "time": "2026-11-15T16:40:43.076175+00:00",
+  "kind": "synthetic_judge_template_capacity",
+  "judge_identity": "ebe93e9d0be235f21c5406700018aef3af41e81a0ca3629c4c6cb63423a5fe9f",
+  "model_role": "training_judge",
+  "prompt_version": "v7",
+  "reference_version": "v3",
+  "context_length": 8192,
+  "checks": [
+    {
+      "family": "polynomial_multiplication",
+      "candidate_tokens": 2048,
+      "formatted_prompt_tokens": 4492,
+      "completion_ceiling": 2048,
+      "remaining_tokens_after_ceiling": 1652
+    },
+    {
+      "family": "dice",
+      "candidate_tokens": 2048,
+      "formatted_prompt_tokens": 4482,
+      "completion_ceiling": 2048,
+      "remaining_tokens_after_ceiling": 1662
+    }
+  ],
+  "inference_performed": false,
+  "candidate_construction": "The literal string space+theorem repeated max_completion_length times, verified with the served tokenizer. No mathematical assessment was requested.",
+  "limitation": "Short constructed tasks under the two changed references; not a guarantee for other task lengths, retries, tokenizers or genuine explanations."
+}

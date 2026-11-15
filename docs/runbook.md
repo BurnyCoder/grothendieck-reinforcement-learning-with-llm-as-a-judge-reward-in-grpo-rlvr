@@ -132,6 +132,15 @@ Keep the newly registered cases and labels, fixed reference contents, numerical
 thresholds and inference budgets unchanged. The fields are judge opinions,
 not verified mathematical facts.
 
+The first v7 attempt failed the control-credit conditions despite correct
+framework/control rankings. The current
+[reference-scope amendment](../reports/amendments/2026-11-15-explicit-reference-scope.md)
+changes two conventional references under the same rubric and cases. This also
+changes cache/calibration identities. Use `--restart-development` once to archive
+the prior completed failure before the newly registered trial; subsequent
+resumption of that unchanged trial does not need the flag. No old result
+qualifies the current identity.
+
 ## Feasibility, saving and resumption
 
 After publication, use development-only pilots:
