@@ -34,5 +34,9 @@
   "grpo_recovery_huggingface_commit": "25e2f7512002d39ed5141d6d97164bf19b3ae862",
   "grpo_recovery_pages_workflow": 43704715610,
   "evaluation_identity_merge": "9d472bfdab8577755a8ddf74b2bc454f31315982",
-  "evaluation_identity_huggingface_commit": "ad0ffcd48121f7fdd3f132fd7315511506028651"
+  "evaluation_identity_huggingface_commit": "ad0ffcd48121f7fdd3f132fd7315511506028651",
+  "evaluation_identity_pages_workflow": 43705945149,
+  "thread_diagnostic_protocol_merge": "f00356e0fb88e24151c2997bdf87348646c31bc1",
+  "thread_diagnostic_protocol_huggingface_commit": "e7f7b6d77ec0489da6607676fd666c4c29abafa1",
+  "thread_diagnostic_protocol_pages_workflow": 43706470828
 }

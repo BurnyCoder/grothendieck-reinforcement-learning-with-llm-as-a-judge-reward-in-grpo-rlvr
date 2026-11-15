@@ -45,7 +45,7 @@ def benchmark_judge() -> dict:
               "command": command, "timeout_seconds": 900, "threads": [1, 4, 8],
               "environment": {k: os.environ.get(k) for k in ("OMP_NUM_THREADS", "OMP_WAIT_POLICY", "GOMP_SPINCOUNT")}}
     atomic_json(directory / "config.json", config)
-    log.emit("benchmark_started", **config)
+    log.emit("benchmark_started", configuration=config)
     with (directory / "timings.jsonl").open("wb") as output, (directory / "stderr.log").open("wb") as errors:
         try:
             completed = subprocess.run(command, stdout=output, stderr=errors, timeout=900, check=False)
