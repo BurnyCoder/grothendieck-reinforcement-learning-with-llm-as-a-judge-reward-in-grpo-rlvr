@@ -53,6 +53,9 @@ benefit from explicit reasoning when detailed criteria and references are
 present in their evaluated settings. Their tasks and evaluators differ from
 ours. Any reasoning-order or decoding change here therefore needs its own
 development experiment and fresh audit, not an assumed reliability improvement.
+The [subsequent inference review](judge-inference-review.md) examines native
+thinking and small-judge budget studies after the observed v4 failures. It
+distinguishes pairwise preference, final-answer judging and our theory rubric.
 
 The evaluation structure follows the separation of development and testing
 discussed by [Lones](https://arxiv.org/html/2108.02497v4). Claims about a latent

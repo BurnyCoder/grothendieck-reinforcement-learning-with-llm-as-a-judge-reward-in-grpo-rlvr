@@ -110,6 +110,9 @@ understanding or a latent-space mechanism. The exact combination has not been
 found in the reviewed sources; this is not an exhaustive novelty claim.
 
 No source's published benchmark number is treated as a local measurement.
+The later [judge-inference review](judge-inference-review.md) adds primary
+studies of native reasoning and budget-dependent judging. Their settings do not
+validate this project's novelty criterion; the local calibration gates remain.
 
 The pre-judgment novelty amendment adds a project-specific criterion; this is
 an experimental design choice, not a metric established by a cited paper.

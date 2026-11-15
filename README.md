@@ -78,21 +78,14 @@ Cosmetic renaming, exotic terminology and unsupported originality claims score z
 Standard correctness proofs, routine parameter substitutions and equivalent
 descriptions of a listed method also receive zero novelty credit. They can
 still score highly for justified theory. Development judgments overcredited
-conventional proofs. The [v3 clarification](reports/amendments/2026-11-15-novelty-reference-boundary.md)
-has not eliminated that error in the observed development cases. Calibration
-remains incomplete; the novelty reward is implemented but not yet validated.
-The [v4 evidence protocol](reports/amendments/2026-11-15-judge-evidence-protocol.md)
-asks for exact excerpts and rationales before scores, supplies validation feedback
-on bounded retries, and checks novelty contrasts first. Development runs stop as
-failed if the fixed thresholds become unreachable; passing requires the full suite.
-Sustained Gemma serving later stalled despite successful short benchmarks.
-The [runtime/deadline amendment](reports/amendments/2026-11-15-judge-stream-deadline.md)
-tests passive OpenMP waiting and enforces a total request deadline. Interrupted
-judgments remain development evidence; changed runtime identities require
-fresh calibration. The passive-waiting attempt completed its observed requests
-but stopped when the novelty threshold became unreachable. See the
-[failure analysis](reports/experiments/gemma-v4-learnings.md) and generated
-calibration results below.
+conventional proofs as novel, while some Qwen judgments incorrectly withheld
+all theory credit from conventional generalizations. The novelty reward is
+implemented but not validated. The [development history](reports/plan.md) and
+[Gemma failure analysis](reports/experiments/gemma-v4-learnings.md) retain these
+negative findings. The [bounded-reasoning amendment](reports/amendments/2026-11-15-bounded-judge-reasoning.md)
+tests native reasoning under the same v4 rubric, cases and thresholds.
+Exact supporting excerpts remain required; development may stop as failed when
+the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,
@@ -134,18 +127,16 @@ Judge backend, GPU offload, KV-cache precision and batching are pinned in
 and calibration identities. Evaluation offload is tested separately from policy
 generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or comparative training result is claimed yet.
-Gemma's initial CUDA attempt decoded too slowly to complete usefully. A
-[bounded thread-count diagnostic](reports/amendments/2026-11-15-judge-thread-diagnostic.md)
-favored the existing thread count, which is retained. A clean standalone retry
-completed judgments, including an invalid-excerpt failure followed by an accepted
-retry. The slowdown's cause remains unisolated; all attempts are preserved.
-The initial v4 novelty contrasts included passes and a disagreement over novelty
-in a conventional control; full calibration remains unfinished.
-The [registered offload diagnostic](reports/amendments/2026-11-15-evaluation-offload-diagnostic.md)
-did not favor greater GPU use, so the GPU layer count is retained. Its full-context
-timings are in the generated development report. Passive OpenMP waiting and the
-new total streaming deadline change the calibration identity; previous judgments
-remain archived rather than being pooled with the new run.
+Judge requests now allow 512 native reasoning tokens within a 2,048-token total
+ceiling; thought tokens are logged separately from the JSON assessment. Greedy
+decoding, the rubric and score weights remain fixed. This is a development test,
+not evidence that additional reasoning improves judging. Each inference setting
+is included in cache/calibration identity. See the
+[inference review](reports/judge-inference-review.md) for the mixed prior evidence.
+The [runtime/deadline amendment](reports/amendments/2026-11-15-judge-stream-deadline.md)
+uses passive OpenMP waiting for Gemma and bounds complete requests in time.
+Short runtime benchmarks did not establish sustained serving reliability;
+the generated development report retains the diagnostics and interrupted runs.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving

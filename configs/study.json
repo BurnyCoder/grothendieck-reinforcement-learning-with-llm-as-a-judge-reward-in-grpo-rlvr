@@ -27,6 +27,7 @@
   "judge_max_tokens": 1536,
   "judge_context_length": 8192,
   "judge_timeout_seconds": 900,
+  "judge_reasoning_budget_tokens": {"training_judge": 512, "evaluation_judge": 512},
   "calibration_pairs": 20,
   "calibration_false_cases": 20,
   "calibration_novelty_pairs": 8,

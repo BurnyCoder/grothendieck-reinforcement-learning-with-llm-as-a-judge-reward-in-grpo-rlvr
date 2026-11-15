@@ -111,6 +111,15 @@ only a full pass with matching judge and protocol identities authorizes training
 Evidence-format retries include validation feedback, with at most three total
 attempts. An infrastructure failure still terminates, rather than reducing reward.
 
+The [bounded-reasoning amendment](../reports/amendments/2026-11-15-bounded-judge-reasoning.md)
+sets `judge_reasoning_budget_tokens` per role in `configs/study.json`. A positive
+value enables the native thought channel and adds that allowance to the existing
+assessment-token ceiling; zero retains the original non-thinking request.
+The current development attempt uses 512 reasoning tokens and 2,048 total tokens.
+All thought chunks are logged, but only visible JSON enters the rubric parser.
+Changing this setting invalidates that role's calibration and cache identity.
+Publish configuration changes before inference and keep old results separate.
+
 ## Feasibility, saving and resumption
 
 After publication, use development-only pilots:
