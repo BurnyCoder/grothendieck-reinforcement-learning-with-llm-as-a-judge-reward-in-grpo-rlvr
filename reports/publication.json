@@ -16,7 +16,7 @@
   "transfer_analysis_huggingface_commit": "e3a66e46e38a22102f012444963917b79c423805",
   "verifier_repair_merge": "a7ed085",
   "verifier_repair_huggingface_commit": "caaa3ed63bd3102250719ca06908451201a27081",
-  "development_status": "Incomplete Qwen and Gemma development calibration preserved; maximum-length BF16 backward probe passed; full GRPO save/resume pending",
+  "development_status": "Incomplete Qwen and Gemma development calibration preserved; maximum-length BF16 backward and four-completion GRPO save/resume passed; no comparative result",
   "runtime_provenance_merge": "759aed1d39a897f684ab777658606449ff5f5c8c",
   "runtime_provenance_huggingface_commit": "a1867b05998a9ba1bcdd6582dc8caaa37560965d",
   "runtime_provenance_pages_workflow": 43696863397,
@@ -26,5 +26,8 @@
   "native_environment_huggingface_commit": "221ffba928cc19f863f50a5491cb06ec13c6f314",
   "novelty_boundary_v3_merge": "f6af57ed2aa4d9720ddf0debebfbe60109880c7e",
   "novelty_boundary_v3_huggingface_commit": "dae97e22ffcc8a364238b10b98b01f333ba91656",
-  "novelty_boundary_v3_pages_workflow": 43700432131
+  "novelty_boundary_v3_pages_workflow": 43700432131,
+  "launcher_and_logging_merge": "a546d3ceb4e79db160d06796a8d6318a77c38f59",
+  "launcher_and_logging_huggingface_commit": "9a36bc594ec8af5363baafdb769cca0d92af333a",
+  "launcher_and_logging_pages_workflow": 43701707310
 }

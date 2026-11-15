@@ -67,11 +67,35 @@ def feasibility_text(snapshot) -> str:
             f"{first['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
             f"{first['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
             "input checks execution and memory, not mathematical ability or steady-state throughput. "
-            "It does not establish four-completion GRPO or checkpoint-resumption feasibility.")
+            "That probe alone does not establish GRPO or checkpoint-resumption feasibility.")
     if any(r.get("kind") == "grpo_initial_generation_failure" for r in snapshot["feasibility"]):
         text += (" The initial GRPO attempt failed during generation prefill when a carriage return "
                  "entered the compiler-cache path. No optimizer update completed in that attempt; "
                  "its failure record is preserved separately from the successful backward probe.")
+    boundaries = [r for r in snapshot["feasibility"] if r.get("kind") == "grpo_first_saved_boundary"]
+    if boundaries:
+        saved = boundaries[0]
+        text += (f" A repaired GRPO pilot reached optimizer boundary {saved['step']} and saved its checkpoint, "
+                 f"with peak allocated memory {saved['peak_gpu_allocated_bytes']/2**30:.2f} GiB and "
+                 f"reserved memory {saved['peak_gpu_reserved_bytes']/2**30:.2f} GiB. "
+                 f"Its recorded learning rate was {saved['step_metrics']['learning_rate']:g}; "
+                 f"the sampled batch had verified accuracy {saved['reward_batch']['accuracy']:.1%} and "
+                 f"mean supported theory {saved['reward_batch']['theory']:g}. "
+                 "A warmup boundary does not demonstrate learning. "
+                 "Successful resumption must be established by a separate completion record.")
+    resumed = [r for r in snapshot["feasibility"] if r.get("kind") == "grpo_resumed_completion"]
+    if resumed:
+        saved = resumed[0]
+        text += (f" The resumed pilot completed boundary {saved['step']} at learning rate "
+                 f"{saved['step_metrics']['learning_rate']:g}, with a recorded step interval of "
+                 f"{saved['step_metrics']['step_time']:.2f} seconds. "
+                 f"Peak allocated memory was {saved['peak_gpu_allocated_bytes']/2**30:.2f} GiB and "
+                 f"reserved memory {saved['peak_gpu_reserved_bytes']/2**30:.2f} GiB. "
+                 f"Its batch accuracy was {saved['reward_batch']['accuracy']:.1%}, and mean supported "
+                 f"theory was {saved['reward_batch']['theory']:g}. "
+                 "Checkpoint recovery and a parameter change are feasibility evidence, not an "
+                 "improvement estimate. A single resumed interval is not a stable throughput benchmark. "
+                 "Pilot adapters are excluded from comparative initialization.")
     return text
 
 
@@ -210,8 +234,9 @@ def paper_sections(snapshot):
          f"{sum(r['incomplete_requests'] for r in snapshot['development'])} requests without a completed response. "
          "These counts are generated from reports/development logs. An interrupted CPU judging attempt and "
          "runtime changes are documented in the dated judge-runtime amendment. Partial judgments do not "
-         "establish calibration reliability. The first conventional proof received nonzero novelty credit; "
-         "dedicated contrasts must test whether novelty is measured consistently. No comparative conclusion follows. "
+         "establish calibration reliability. Conventional arguments received nonzero novelty credit, including "
+         "after the v3 clarification. Dedicated contrasts must test whether novelty is measured consistently. "
+         "No comparative conclusion follows. "
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
@@ -220,7 +245,9 @@ def paper_sections(snapshot):
          "and all pairs of note-source policies, with unadjusted exploratory intervals."),
         ("Discussion and limitations", "Judge scores are imperfect proxies and the two model families may "
          "share biases or training data. Quantization can change judgments. Synthetic elementary tasks limit "
-         "external validity, and fixed small-seed comparisons may be inconclusive. Reusable exposition is not "
+         "external validity. The constructed audit changes numerical instances while sharing mathematical "
+         "templates with development; it does not establish generalization to unseen failure types. "
+         "Fixed small-seed comparisons may be inconclusive. Reusable exposition is not "
          "equivalent to historically novel mathematics. Higher training scores without independent or transfer "
          "improvement are consistent with proxy optimization. Do not infer a latent mechanism from behavioral "
          "scores alone. Development/test separation and scoped claims follow methodological guidance [10,11]."),

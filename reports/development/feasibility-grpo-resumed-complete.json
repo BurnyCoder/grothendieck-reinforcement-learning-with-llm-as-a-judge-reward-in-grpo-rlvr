@@ -1,0 +1,112 @@
+{
+  "run_id": "pilot-theory-seed42",
+  "step": 2,
+  "metrics": {
+    "train_runtime": 535.3241,
+    "train_samples_per_second": 0.03,
+    "train_steps_per_second": 0.004,
+    "total_flos": 0.0,
+    "train_loss": 0.04452633112668991,
+    "epoch": 0.0625
+  },
+  "elapsed_seconds": 492.45487092300027,
+  "peak_gpu_allocated_bytes": 5338635264,
+  "peak_gpu_reserved_bytes": 6706692096,
+  "completed": true,
+  "pilot": true,
+  "kind": "grpo_resumed_completion",
+  "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/pilot-theory-seed42/checkpoint-1",
+  "step_metrics": {
+    "loss": 0.08905266225337982,
+    "grad_norm": 0.07683244347572327,
+    "learning_rate": 1e-05,
+    "num_tokens": 20718.0,
+    "completions/mean_length": 1280.0,
+    "completions/min_length": 405.0,
+    "completions/max_length": 2048.0,
+    "completions/clipped_ratio": 0.375,
+    "completions/mean_terminated_length": 819.2000122070312,
+    "completions/min_terminated_length": 405.0,
+    "completions/max_terminated_length": 1053.0,
+    "rewards/correctness_gated_theory/mean": 0.5,
+    "rewards/correctness_gated_theory/std": 0.5345224738121033,
+    "reward": 0.5,
+    "reward_std": 0.5345224738121033,
+    "frac_reward_zero_std": 0.0,
+    "completion_length": 1280.0,
+    "kl": 8.445791036137962e-05,
+    "clip_ratio/low_mean": 0.0,
+    "clip_ratio/low_min": 0.0,
+    "clip_ratio/high_mean": 0.0,
+    "clip_ratio/high_max": 0.0,
+    "clip_ratio/region_mean": 0.0,
+    "step_time": 480.664855666997,
+    "epoch": 0.0625
+  },
+  "reward_batch": {
+    "time": "2026-11-15T10:28:40.534727+00:00",
+    "kind": "reward_batch",
+    "reward_call": 1,
+    "accuracy": 0.5,
+    "theory": 0.0,
+    "novelty": 0.0,
+    "zero_variance": false,
+    "permutation_eligible": true
+  },
+  "checkpoint_states": [
+    {
+      "identity_hash": "f7d749ba1da528bdea956a3561731ea0f93999e91dacd9a10c6ad82855acd6d2",
+      "reward_calls": 1,
+      "global_step": 1,
+      "epoch": 0.03125,
+      "data_seed": 20261115,
+      "complete": true
+    },
+    {
+      "identity_hash": "f7d749ba1da528bdea956a3561731ea0f93999e91dacd9a10c6ad82855acd6d2",
+      "reward_calls": 2,
+      "global_step": 2,
+      "epoch": 0.0625,
+      "data_seed": 20261115,
+      "complete": true
+    }
+  ],
+  "checkpoint_files": [
+    "adapter_model.safetensors",
+    "optimizer.pt",
+    "scheduler.pt",
+    "rng_state.pth",
+    "trainer_state.json",
+    "groth-state.json",
+    "judge-cache.sqlite"
+  ],
+  "task_groups": {
+    "0": [
+      "dev-762a8cd54c022d27bb19",
+      "dev-9e2760c33e4413a0cbc7"
+    ],
+    "1": [
+      "dev-e35360a905d64b24d291",
+      "dev-e57b1263bc87b1ad2844"
+    ]
+  },
+  "adapter_sha256": [
+    "3019142d31657685cfd0d551e495df3fe26af4783e17a80cac6b535e63c30984",
+    "c8006f007d2c0a1ce2fb521bb5e12d880903570b6f3a581336c2b262f3cb8858"
+  ],
+  "changed_tensors": 96,
+  "adapter_tensors": 192,
+  "maximum_parameter_change": 1.0013236533268355e-05,
+  "judge_seconds": [
+    67.61513415000081,
+    96.94919308700082,
+    71.29852653499984,
+    79.3811234449986,
+    58.72902571099985,
+    94.32750590900105,
+    68.71908656999949,
+    90.65393820700046,
+    66.25125011500131
+  ],
+  "pilot_updates_excluded_from_comparisons": true
+}

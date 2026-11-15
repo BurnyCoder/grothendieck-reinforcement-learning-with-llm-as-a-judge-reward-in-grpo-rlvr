@@ -27,6 +27,7 @@ required. No comparative run has begun.
 - [x] Implement a separately locked OOD suite and component-level reporting.
 - [x] Run offline reward, verifier, isolation, recovery, novelty/OOD and reporting checks.
 - [ ] Exercise model-backed training, resumption, evaluation and complete workflow.
+- [x] Exercise development GRPO generation, backward, checkpoint saving and resumption.
 - [x] Publish initial implementation, manifests, paper and site to GitHub/Hugging Face.
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
@@ -39,16 +40,21 @@ required. No comparative run has begun.
 - [ ] Publish each milestone, including negative/unfinished outcomes.
 
 Model downloads and artifact hashes are complete. The maximum-length BF16 LoRA
-backward probe passed; four-completion GRPO and checkpoint resumption remain
-pending. Development judging by both models has started but is incomplete;
+backward probe passed; the repaired four-completion GRPO pilot completed
+checkpoint resumption and a nonzero parameter update. Its first boundary had
+a zero warmup learning rate. These are execution checks, not learning evidence;
+pilot updates are excluded from comparative initialization.
+Development judging by both models has started but is incomplete;
 the initial GRPO attempt failed during generation on a CRLF configuration-path
-bug, now repaired and regression-tested, with no optimizer update completed;
+bug, now repaired and regression-tested, before its first optimizer update;
 the interrupted CPU attempts are retained. Evaluation
 GPU offload and the remaining policy feasibility checks follow the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
-policy evaluation or training result is claimed. Initial local constraints are
+policy evaluation or comparative training result is claimed. Initial local constraints are
 environment observations rather than comparative experimental results. Publication and
-calibration gates must be satisfied before long training. Week-budget decisions
+calibration gates must be satisfied before long training. The observed v3
+development judgments still assign novelty to some conventional arguments;
+the clarification has not established a successful repair. Week-budget decisions
 use measured pilot throughput and are documented before comparison runs.
 
 Implementation is present but model-backed integration remains unverified.

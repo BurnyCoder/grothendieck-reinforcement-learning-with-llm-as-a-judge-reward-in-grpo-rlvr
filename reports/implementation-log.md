@@ -119,3 +119,27 @@ artifact root, and the retry starts from the unchanged base because no complete
 checkpoint exists. The LF/CRLF launcher and failure-preservation tests are in
 `verification-launch-and-logging.xml`. The corrected GRPO execution still needs
 to demonstrate generation, backward, saving and resumption.
+
+## 2026-11-15: first saved GRPO boundary
+
+The corrected pilot generated separate groups of answers, ran the external
+verifier and CPU judge, completed backward, and saved a complete optimizer-boundary
+checkpoint. The observed warmup learning rate was zero: this boundary establishes
+execution and state saving, not a learned improvement. The next invocation
+explicitly resumed that checkpoint. Its prompts are the next development tasks
+and its reward-call counter continues from the saved value. It completed the
+remaining boundary with finite loss/gradient metrics at a nonzero learning rate.
+Direct tensor comparison confirms a parameter change; both checkpoint directories
+contain adapter, optimizer, scheduler, RNG, trainer and judge-cache state.
+The full execution log and derived recovery checks are preserved under
+`reports/development/`. A single resumed step does not establish stable throughput
+or a mathematical improvement. Pilot adapters are excluded from initialization.
+
+Qwen development calibration was paused to give the pilot exclusive access to
+the CPU judge and its cache during recovery. The partial v3 stream and its lock
+are preserved. Some v3 judgments still overcredit conventional generalizations;
+the longer reference clarification has not established a repair. No locked
+audit or comparative experiment has run, and long training remains gated.
+After pilot completion the unchanged development calibration was resumed from
+its content-addressed cache. Gemma's registered CUDA runtime is now being loaded
+with the policy stopped; successful serving and calibration remain separate checks.
