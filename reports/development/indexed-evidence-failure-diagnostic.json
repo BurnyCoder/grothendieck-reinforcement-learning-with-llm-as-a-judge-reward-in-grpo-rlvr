@@ -1,0 +1,20 @@
+{
+  "method": "difflib closest-line diagnostic only; no scores repaired",
+  "examples": [
+    {
+      "quote": "we will use the distributive property (also known as the FOIL method for binomials), which states that (a + b)(c + d) = ac + ad + bc + bd",
+      "is_exact_substring": false,
+      "nearest_source_line": "To calculate the expression $(-11x^2 - 1)(6x^2 + 2)$, we will use the distributive property (also known as the FOIL method for binomials), which states that $(a + b)(c + d) = ac + ad + bc + bd$."
+    },
+    {
+      "quote": "we will use the distributive property (also known as the FOIL method for binomials), which states that (a + b)(c + d) = ac + ad + bc + bd",
+      "is_exact_substring": false,
+      "nearest_source_line": "To calculate the expression $(-11x^2 - 1)(6x^2 + 2)$, we will use the distributive property (also known as the FOIL method for binomials), which states that $(a + b)(c + d) = ac + ad + bc + bd$."
+    },
+    {
+      "quote": "we will use the distributive property (also known as the FOIL method for binomials), which states that (a + b)(c + d) = ac + ad + bc + bd",
+      "is_exact_substring": false,
+      "nearest_source_line": "To calculate the expression $(-11x^2 - 1)(6x^2 + 2)$, we will use the distributive property (also known as the FOIL method for binomials), which states that $(a + b)(c + d) = ac + ad + bc + bd$."
+    }
+  ]
+}

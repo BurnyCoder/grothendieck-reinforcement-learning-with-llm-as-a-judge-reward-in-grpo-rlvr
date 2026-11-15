@@ -117,5 +117,8 @@
   "specialist_quoted_failure_pages_workflow": 43768145801,
   "research_collection_merge": "274a086022bbd32636f77fba1d1145204f35c229",
   "research_collection_huggingface_commit": "bcbefd78568f429b41917a956cbe1262a9d4bda5",
-  "research_collection_pages_workflow": 43768467094
+  "research_collection_pages_workflow": 43768467094,
+  "exploratory_single_protocol_merge": "fb0d24e4f0dd1e9c77053ba914cb8a5645edd087",
+  "exploratory_single_protocol_huggingface_commit": "3929b020d01c7118df09866b128740552a6621d3",
+  "exploratory_single_protocol_pages_workflow": 43775363802
 }
