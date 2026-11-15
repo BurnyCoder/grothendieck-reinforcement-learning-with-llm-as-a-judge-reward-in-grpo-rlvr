@@ -46,6 +46,14 @@ All tables and figures in this paper are generated from saved records. Pending c
 }
 ```
 
+## Transfer evaluation
+
+Recipient accuracy is compared with no notes, unrelated notes of matched length, and notes from other frozen source policies. Paired uncertainty resamples source problems with all four targets retained. Comparisons require complete matching source and target coverage. The machine-readable report publishes each source policy's related-minus-unrelated contrast and all pairs of note-source policies, with unadjusted exploratory intervals.
+
+| Note condition | Probes | Recipient accuracy |
+|---|---|---|
+| Registered transfer conditions | Pending | Pending |
+
 ## Discussion and limitations
 
 Judge scores are imperfect proxies and the two model families may share biases or training data. Quantization can change judgments. Synthetic elementary tasks limit external validity, and fixed small-seed comparisons may be inconclusive. Reusable exposition is not equivalent to historically novel mathematics. Higher training scores without independent or transfer improvement are consistent with proxy optimization. Do not infer a latent mechanism from behavioral scores alone. Development/test separation and scoped claims follow methodological guidance [10,11].

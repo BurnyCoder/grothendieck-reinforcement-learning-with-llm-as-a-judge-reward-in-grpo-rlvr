@@ -24,7 +24,7 @@ evidence of model performance.
 - [x] Run offline reward, verifier, isolation, recovery, novelty/OOD and reporting checks.
 - [ ] Exercise model-backed training, resumption, evaluation and complete workflow.
 - [x] Publish initial implementation, manifests, paper and site to GitHub/Hugging Face.
-- [ ] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
+- [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Calibrate both frozen judges and rubric-only variant.
 - [ ] Run development feasibility pilot; freeze policy and training configuration.
 - [ ] Evaluate unmodified ordinary and prompted policies.

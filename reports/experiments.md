@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-15T07:57:22.830109+00:00.
+Generated from saved artifacts at 2026-11-15T08:08:30.849720+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -34,5 +34,21 @@ Descriptive paired intervals; not a replacement success criterion.
 {
   "status": "pending",
   "reason": "No matched trained arms have been evaluated"
+}
+```
+
+## Frozen-recipient transfer
+
+| Note condition | Probes | Recipient accuracy |
+|---|---|---|
+| Registered transfer conditions | Pending | Pending |
+
+```json
+{
+  "summaries": {},
+  "versus_no_notes": {},
+  "versus_unrelated": {},
+  "between_note_sources": {},
+  "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
 }
 ```

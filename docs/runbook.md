@@ -145,6 +145,9 @@ The recipient is the frozen unmodified base. Related/unrelated notes are truncat
 to identical token lengths, capped at 1024 tokens; raw source notes are retained.
 The four targets remain grouped by source for uncertainty. No target is exposed
 to the source-note generation phase.
+Reports include related versus unrelated notes, each condition versus no notes,
+and pairs of note-source policies. Paired intervals require every registered
+source and its four matching targets; partial runs retain descriptive summaries.
 
 ## Reports and dashboard
 

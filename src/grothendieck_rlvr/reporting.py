@@ -31,7 +31,8 @@ def collect() -> dict:
                                 for family in sorted({r["family"] for r in rows})}
                          for name, rows in evaluations.items()},
             "calibration": calibration, "examples": examples,
-            "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"]),
+            "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
+                                          cfg["transfer_sources"]),
             "feasibility": [read_json(p) for p in (root() / "feasibility").glob("*.json")]}
 
 
@@ -54,6 +55,14 @@ def markdown_table(rows) -> str:
     """Render the same computed rows in README, reports and the paper source."""
     return "\n".join(["| " + " | ".join(rows[0]) + " |", "|" + "---|" * len(rows[0])] +
                      ["| " + " | ".join(row) + " |" for row in rows[1:]])
+
+
+def transfer_rows(snapshot):
+    """Recipient results come from the same records as the clustered comparisons."""
+    rows = [["Note condition", "Probes", "Recipient accuracy"]]
+    rows.extend([condition, display(metrics["n"]), display(metrics["accuracy"])]
+                for condition, metrics in snapshot["transfer"]["summaries"].items())
+    return rows if len(rows) > 1 else rows + [["Registered transfer conditions", "Pending", "Pending"]]
 
 
 def figures(snapshot, destination: Path) -> None:
@@ -157,6 +166,11 @@ def paper_sections(snapshot):
          "Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary "
          f"analysis reports {status}. Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
+        ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
+         "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
+         "with all four targets retained. Comparisons require complete matching source and target coverage. "
+         "The machine-readable report publishes each source policy's related-minus-unrelated contrast "
+         "and all pairs of note-source policies, with unadjusted exploratory intervals."),
         ("Discussion and limitations", "Judge scores are imperfect proxies and the two model families may "
          "share biases or training data. Quantization can change judgments. Synthetic elementary tasks limit "
          "external validity, and fixed small-seed comparisons may be inconclusive. Reusable exposition is not "
@@ -231,6 +245,15 @@ def write_paper(snapshot, rows, destination: Path):
                 story.append(Image(str(PROJECT / "site/figures/evaluation.png"), width=6.5*inch, height=2.6*inch))
             markdown.append(markdown_table(rows))
             markdown.append("```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```")
+        if heading == "Transfer evaluation":
+            transfer_table = transfer_rows(snapshot)
+            formatted = [[Paragraph(html.escape(cell), styles["BodyText"]) for cell in row] for row in transfer_table]
+            table = Table(formatted, colWidths=[3.8*inch, .8*inch, 1.0*inch], repeatRows=1)
+            table.setStyle(TableStyle([("BACKGROUND", (0,0), (-1,0), colors.HexColor("#edf5f5")),
+                                      ("VALIGN", (0,0), (-1,-1), "TOP"),
+                                      ("LINEBELOW", (0,0), (-1,0), .5, colors.grey)]))
+            story.extend([Spacer(1, 8), table])
+            markdown.append(markdown_table(transfer_table))
     story.append(Paragraph("References", styles["Heading2"]))
     markdown.append("## References")
     for i, (title, url) in enumerate(REFERENCES, 1):
@@ -262,7 +285,9 @@ def report() -> dict:
                "Pending means no result, not zero performance.\n\n" + table +
                "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
                "\n## Secondary OOD analysis\n\nDescriptive paired intervals; not a replacement success criterion.\n\n```json\n" +
-               json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n")
+               json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n" +
+               "\n## Frozen-recipient transfer\n\n" + markdown_table(transfer_rows(snapshot)) +
+               "\n\n```json\n" + json.dumps(snapshot["transfer"], indent=2) + "\n```\n")
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     for run, metrics in snapshot["summaries"].items():
         folder = PROJECT / "reports/experiments"

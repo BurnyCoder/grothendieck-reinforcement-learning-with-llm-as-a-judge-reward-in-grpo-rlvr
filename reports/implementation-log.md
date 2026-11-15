@@ -47,3 +47,11 @@ records them in `data/ood.lock.json`. This source-level correction was selected
 without policy outputs. Existing generators and SymPy operations were reused
 instead of duplicating their implementations; independent reference algorithms
 and bounded candidate parsing check the resulting scalar answers.
+
+The pre-inference analysis review also found that transfer generation included
+all registered controls, while reporting only computed contrasts against no
+notes. A regression test first exposed the missing related/unrelated and
+between-source contrasts. The shared source-clustered comparison now covers
+all of them and requires complete matched coverage. Evidence is retained in
+`verification-analysis.xml`. This completes the existing transfer analysis plan
+rather than adding an outcome selected from results.
