@@ -1,16 +1,35 @@
 [project]
 name = "grothendieck-rlvr"
 version = "0.1.0"
-description = "Add your description here"
+description = "Correctness-gated mathematical theory-building rewards and local GRPO experiments"
 readme = "README.md"
 authors = [
     { name = "BurnyCoder", email = "happymancz@email.cz" }
 ]
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "reasoning-gym", "math-verify", "sympy", "pydantic>=2", "httpx",
+    "python-dotenv", "numpy", "huggingface-hub", "reportlab", "matplotlib",
+]
+
+[project.optional-dependencies]
+train = ["unsloth==2026.11.4", "trl<=1.15.0", "transformers>=5,<=5.17.0",
+         "torch<2.15", "datasets", "peft", "accelerate"]
+
+[dependency-groups]
+dev = ["pytest", "ruff"]
 
 [project.scripts]
-grothendieck-rlvr = "grothendieck_rlvr:main"
+grothendieck-rlvr = "grothendieck_rlvr.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
 
 [build-system]
 requires = ["uv_build>=0.13.6,<0.14.0"]

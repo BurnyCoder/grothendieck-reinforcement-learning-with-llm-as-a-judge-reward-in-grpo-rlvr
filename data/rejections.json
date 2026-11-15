@@ -1,0 +1,100 @@
+[
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 15,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 37,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 122,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 164,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 212,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 224,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "train",
+    "family": "polynomial_multiplication",
+    "seed": 30461115,
+    "index": 252,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "test_fresh",
+    "family": "polynomial_multiplication",
+    "seed": 50461115,
+    "index": 19,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "test_fresh",
+    "family": "polynomial_multiplication",
+    "seed": 50461115,
+    "index": 40,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "transfer_target",
+    "family": "polynomial_multiplication",
+    "seed": 90461115,
+    "index": 8,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "transfer_target",
+    "family": "polynomial_multiplication",
+    "seed": 90461115,
+    "index": 39,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "transfer_target",
+    "family": "polynomial_multiplication",
+    "seed": 90461115,
+    "index": 44,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "transfer_target",
+    "family": "polynomial_multiplication",
+    "seed": 90461115,
+    "index": 57,
+    "reason": "Degenerate polynomial instance"
+  },
+  {
+    "split": "transfer_target",
+    "family": "polynomial_multiplication",
+    "seed": 90461115,
+    "index": 97,
+    "reason": "Degenerate polynomial instance"
+  }
+]

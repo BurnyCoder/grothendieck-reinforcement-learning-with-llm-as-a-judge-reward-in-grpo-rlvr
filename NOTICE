@@ -1,0 +1,19 @@
+Grothendieck RLVR
+Copyright 2026 Libor Burian
+
+This project imports Reasoning Gym, Math-Verify, Unsloth, TRL, Transformers,
+PyTorch, PEFT and other dependencies under their respective upstream licenses.
+It does not relicense those projects or their model artifacts.
+
+Reasoning Gym: https://github.com/open-thought/reasoning-gym (Apache-2.0)
+Math-Verify: https://github.com/huggingface/Math-Verify (Apache-2.0; component notices apply)
+Unsloth: https://github.com/unslothai/unsloth (Apache-2.0)
+TRL: https://github.com/huggingface/trl (Apache-2.0)
+llama.cpp: https://github.com/ggml-org/llama.cpp (MIT)
+Model repositories and revisions are recorded in configs/models.lock.json.
+
+The user-supplied Grothendieck passage is attributed to Colin McLarty's
+translation of Recoltes et Semailles, pp. 552-553, reproduced in his discussion:
+https://ncatlab.org/nlab/files/McLartyRisingSea.pdf
+That historical quotation is not claimed as original project text or relicensed
+by the code license. The rubric is a research operationalization.

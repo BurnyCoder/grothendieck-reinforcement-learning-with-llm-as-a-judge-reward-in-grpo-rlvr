@@ -1,0 +1,4087 @@
+[
+  {
+    "id": "test_unseen-15305c8307b6a93d4d2a",
+    "problem": "Solve for real v: 15*v**3 + 8*v**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.5333, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 10,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real v: 15*v**3 + 8*v**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 10,
+      "polynomial_expr": "15*v**3 + 8*v**2",
+      "variable": "v",
+      "degree": 3,
+      "real_solutions": [
+        -0.5333,
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bd33f144798fbc122e46",
+    "problem": "Find the prime factorization of 4223. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "41 × 103",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 33,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4223. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 33,
+      "number": 4223,
+      "factors": [
+        41,
+        103
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-6ded88a98c8337429cd0",
+    "problem": "Find the real value(s) of b in the equation: -7*b**3 + 2*b = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.5345, 0.0, 0.5345",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 14,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of b in the equation: -7*b**3 + 2*b = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 14,
+      "polynomial_expr": "-7*b**3 + 2*b",
+      "variable": "b",
+      "degree": 3,
+      "real_solutions": [
+        -0.5345,
+        0.0,
+        0.5345
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-20a3a263f25f56d2b640",
+    "problem": "Find the real value(s) of g in the equation: 3*g**3 + 10*g**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-3.3333, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 64,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of g in the equation: 3*g**3 + 10*g**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 64,
+      "polynomial_expr": "3*g**3 + 10*g**2",
+      "variable": "g",
+      "degree": 3,
+      "real_solutions": [
+        -3.3333,
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-3513dcd2c59f2b84aee7",
+    "problem": "Find the prime factorization of 8503. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "11 × 773",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 11,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 8503. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 11,
+      "number": 8503,
+      "factors": [
+        11,
+        773
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-7aa3e5da9493620ae824",
+    "problem": "Solve for real o: 5*o**2 - 10 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.4142, 1.4142",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 61,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real o: 5*o**2 - 10 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 61,
+      "polynomial_expr": "5*o**2 - 10",
+      "variable": "o",
+      "degree": 2,
+      "real_solutions": [
+        -1.4142,
+        1.4142
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-33a0924c28dec5c44256",
+    "problem": "Solve for real v: 3*v + 9 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-3.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 2,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real v: 3*v + 9 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 2,
+      "polynomial_expr": "3*v + 9",
+      "variable": "v",
+      "degree": 1,
+      "real_solutions": [
+        -3.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-ebf6d28cc5a4166e00a4",
+    "problem": "Solve for real x: 4 - 10*x = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.4",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 46,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real x: 4 - 10*x = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 46,
+      "polynomial_expr": "4 - 10*x",
+      "variable": "x",
+      "degree": 1,
+      "real_solutions": [
+        0.4
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-ec4eb249abf7a8f63612",
+    "problem": "Find the prime factorization of 7282. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 11 × 331",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 36,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 7282. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 36,
+      "number": 7282,
+      "factors": [
+        2,
+        11,
+        331
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-e0e636df4246022f8b00",
+    "problem": "Solve the polynomial equation for real y:\n2*y**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 6,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real y:\n2*y**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 6,
+      "polynomial_expr": "2*y**2",
+      "variable": "y",
+      "degree": 2,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-62f1fbe6846718291e67",
+    "problem": "Find the prime factorization of 5634. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 3 × 313",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 37,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 5634. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 37,
+      "number": 5634,
+      "factors": [
+        2,
+        3,
+        3,
+        313
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-8f5595ea03bd1ec97f5d",
+    "problem": "Find the prime factorization of 3544. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 443",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 14,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 3544. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 14,
+      "number": 3544,
+      "factors": [
+        2,
+        2,
+        2,
+        443
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-2fdcabaef970aa1d070b",
+    "problem": "Find the prime factorization of 7835. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 1567",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 32,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 7835. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 32,
+      "number": 7835,
+      "factors": [
+        5,
+        1567
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-d5c74788ba50d8f2b841",
+    "problem": "Determine the real value(s) of o that satisfies: 9 - 4*o**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.5, 1.5",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 27,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of o that satisfies: 9 - 4*o**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 27,
+      "polynomial_expr": "9 - 4*o**2",
+      "variable": "o",
+      "degree": 2,
+      "real_solutions": [
+        -1.5,
+        1.5
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-1bdb606b9533d3a33940",
+    "problem": "Determine the real value(s) of g that satisfies: 8*g**3 + 5*g = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 40,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of g that satisfies: 8*g**3 + 5*g = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 40,
+      "polynomial_expr": "8*g**3 + 5*g",
+      "variable": "g",
+      "degree": 3,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-250dad7590f24f33de4a",
+    "problem": "Find the prime factorization of 3925. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 5 × 157",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 34,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 3925. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 34,
+      "number": 3925,
+      "factors": [
+        5,
+        5,
+        157
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0b70c7dd84a0ed78f724",
+    "problem": "Solve for real v: 11*v - 4 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.3636",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 4,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real v: 11*v - 4 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 4,
+      "polynomial_expr": "11*v - 4",
+      "variable": "v",
+      "degree": 1,
+      "real_solutions": [
+        0.3636
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-8894f5afd98fb0c85fd0",
+    "problem": "Determine the real value(s) of e that satisfies: 7*e**3 + 3*e**2 - e = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.6488, 0.0, 0.2202",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 38,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of e that satisfies: 7*e**3 + 3*e**2 - e = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 38,
+      "polynomial_expr": "7*e**3 + 3*e**2 - e",
+      "variable": "e",
+      "degree": 3,
+      "real_solutions": [
+        -0.6488,
+        0.0,
+        0.2202
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-ddb9a9f1f33ee2977b2b",
+    "problem": "Determine the real value(s) of g that satisfies: -15*g**3 - 5*g = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 26,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of g that satisfies: -15*g**3 - 5*g = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 26,
+      "polynomial_expr": "-15*g**3 - 5*g",
+      "variable": "g",
+      "degree": 3,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-1f65b95d5d06470a33eb",
+    "problem": "Find the prime factorization of 9613. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "9613",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 27,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9613. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 27,
+      "number": 9613,
+      "factors": [
+        9613
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-143b4f0c98efa66a1cd8",
+    "problem": "Solve the polynomial equation for real v:\n3*v**3 + 2*v**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.6667, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 34,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real v:\n3*v**3 + 2*v**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 34,
+      "polynomial_expr": "3*v**3 + 2*v**2",
+      "variable": "v",
+      "degree": 3,
+      "real_solutions": [
+        -0.6667,
+        0.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c96af2aa1179b049dd94",
+    "problem": "Find the real value(s) of q in the equation: -q**2 - 8*q + 3 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-8.3589, 0.3589",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 8,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of q in the equation: -q**2 - 8*q + 3 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 8,
+      "polynomial_expr": "-q**2 - 8*q + 3",
+      "variable": "q",
+      "degree": 2,
+      "real_solutions": [
+        -8.3589,
+        0.3589
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-db326857f292ff94947c",
+    "problem": "Find the prime factorization of 7325. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 5 × 293",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 25,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 7325. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 25,
+      "number": 7325,
+      "factors": [
+        5,
+        5,
+        293
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-fe3aae2e9d4abb36f0dd",
+    "problem": "Find the prime factorization of 8410. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 5 × 29 × 29",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 18,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 8410. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 18,
+      "number": 8410,
+      "factors": [
+        2,
+        5,
+        29,
+        29
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-75cdf60c8da2c8dd70e7",
+    "problem": "Find the prime factorization of 9320. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 5 × 233",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 30,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9320. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 30,
+      "number": 9320,
+      "factors": [
+        2,
+        2,
+        2,
+        5,
+        233
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a2e4f12682e286871a1f",
+    "problem": "Solve the polynomial equation for real h:\n-h**3 + h**2 + h = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.618, 0.0, 1.618",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 39,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real h:\n-h**3 + h**2 + h = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 39,
+      "polynomial_expr": "-h**3 + h**2 + h",
+      "variable": "h",
+      "degree": 3,
+      "real_solutions": [
+        -0.618,
+        0.0,
+        1.618
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-36c502b1dbecc6e95b74",
+    "problem": "Find the prime factorization of 4535. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 907",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 43,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4535. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 43,
+      "number": 4535,
+      "factors": [
+        5,
+        907
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-1335da48ea89b8691c28",
+    "problem": "Find the prime factorization of 1901. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "1901",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 21,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1901. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 21,
+      "number": 1901,
+      "factors": [
+        1901
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0453f981cb34fbb93af5",
+    "problem": "Find the prime factorization of 2592. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 2 × 2 × 3 × 3 × 3 × 3",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 9,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 2592. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 9,
+      "number": 2592,
+      "factors": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-d2792b200411655e5a7f",
+    "problem": "Find the prime factorization of 515. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 103",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 4,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 515. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 4,
+      "number": 515,
+      "factors": [
+        5,
+        103
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-d96c78d1dff9599bad07",
+    "problem": "Find the prime factorization of 9671. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "19 × 509",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 8,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9671. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 8,
+      "number": 9671,
+      "factors": [
+        19,
+        509
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c2173d01908442607625",
+    "problem": "Solve for real y: 7*y**2 + 10*y - 5 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.8209, 0.3923",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 29,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real y: 7*y**2 + 10*y - 5 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 29,
+      "polynomial_expr": "7*y**2 + 10*y - 5",
+      "variable": "y",
+      "degree": 2,
+      "real_solutions": [
+        -1.8209,
+        0.3923
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-fa26183418a40bda81ee",
+    "problem": "Find the prime factorization of 8454. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 1409",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 0,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 8454. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 0,
+      "number": 8454,
+      "factors": [
+        2,
+        3,
+        1409
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bee642ab548700d5ebfc",
+    "problem": "Find the prime factorization of 2917. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2917",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 42,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 2917. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 42,
+      "number": 2917,
+      "factors": [
+        2917
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-28690505688d24135198",
+    "problem": "Find the prime factorization of 8778. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 7 × 11 × 19",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 16,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 8778. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 16,
+      "number": 8778,
+      "factors": [
+        2,
+        3,
+        7,
+        11,
+        19
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-4968a3d47a159aad8994",
+    "problem": "Determine the real value(s) of c that satisfies: -9*c**2 - 10*c = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.1111, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 48,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of c that satisfies: -9*c**2 - 10*c = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 48,
+      "polynomial_expr": "-9*c**2 - 10*c",
+      "variable": "c",
+      "degree": 2,
+      "real_solutions": [
+        -1.1111,
+        0.0
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a728b9b199024e5de0d2",
+    "problem": "Find the prime factorization of 9318. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 1553",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 38,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9318. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 38,
+      "number": 9318,
+      "factors": [
+        2,
+        3,
+        1553
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-1f2ccf4c310e1a60b4b4",
+    "problem": "Find the prime factorization of 3293. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "37 × 89",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 40,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 3293. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 40,
+      "number": 3293,
+      "factors": [
+        37,
+        89
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-9d41df9c08e29b5a11c1",
+    "problem": "Find the prime factorization of 1428. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 3 × 7 × 17",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 15,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1428. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 15,
+      "number": 1428,
+      "factors": [
+        2,
+        2,
+        3,
+        7,
+        17
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-d29f4aa0370eaf162a4c",
+    "problem": "Find the prime factorization of 1958. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 11 × 89",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 7,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1958. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 7,
+      "number": 1958,
+      "factors": [
+        2,
+        11,
+        89
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a95db1f43b50bf8ceeac",
+    "problem": "Find the prime factorization of 1232. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 2 × 7 × 11",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 35,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1232. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 35,
+      "number": 1232,
+      "factors": [
+        2,
+        2,
+        2,
+        2,
+        7,
+        11
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-213933e01d87dd5fb5fa",
+    "problem": "Solve for real r: 6*r**3 - 3*r = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.7071, 0.0, 0.7071",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 24,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real r: 6*r**3 - 3*r = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 24,
+      "polynomial_expr": "6*r**3 - 3*r",
+      "variable": "r",
+      "degree": 3,
+      "real_solutions": [
+        -0.7071,
+        0.0,
+        0.7071
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a49eb97b8ede8ff533ec",
+    "problem": "Find the prime factorization of 9482. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 11 × 431",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 45,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9482. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 45,
+      "number": 9482,
+      "factors": [
+        2,
+        11,
+        431
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0e68e4c36fb77a75e6f4",
+    "problem": "Determine the real value(s) of o that satisfies: 3*o - 2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.6667",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 17,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of o that satisfies: 3*o - 2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 17,
+      "polynomial_expr": "3*o - 2",
+      "variable": "o",
+      "degree": 1,
+      "real_solutions": [
+        0.6667
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-59cde6e1405b05864ad4",
+    "problem": "Find the prime factorization of 2583. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 3 × 7 × 41",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 28,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 2583. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 28,
+      "number": 2583,
+      "factors": [
+        3,
+        3,
+        7,
+        41
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-fc82dd67f1b5fa91164f",
+    "problem": "Determine the real value(s) of w that satisfies: 12*w = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 0,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of w that satisfies: 12*w = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 0,
+      "polynomial_expr": "12*w",
+      "variable": "w",
+      "degree": 1,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-7e4d5a15ebfd50621df6",
+    "problem": "Find the prime factorization of 2971. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2971",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 41,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 2971. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 41,
+      "number": 2971,
+      "factors": [
+        2971
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-65cc84e3afdba90b03fa",
+    "problem": "Find the prime factorization of 3513. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 1171",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 26,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 3513. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 26,
+      "number": 3513,
+      "factors": [
+        3,
+        1171
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-f2b93ac8c2218e4c06e4",
+    "problem": "Find the prime factorization of 1913. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "1913",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 2,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1913. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 2,
+      "number": 1913,
+      "factors": [
+        1913
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-2300bbae6a1de84b0ff6",
+    "problem": "Find the prime factorization of 270. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 3 × 3 × 5",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 6,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 270. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 6,
+      "number": 270,
+      "factors": [
+        2,
+        3,
+        3,
+        3,
+        5
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-2c0f630aee4ac0b18d51",
+    "problem": "Determine the real value(s) of m that satisfies: 7*m**3 + 8*m = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 15,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of m that satisfies: 7*m**3 + 8*m = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 15,
+      "polynomial_expr": "7*m**3 + 8*m",
+      "variable": "m",
+      "degree": 3,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-67fdb21a3085bb8651ef",
+    "problem": "Find the prime factorization of 1655. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 331",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 13,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1655. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 13,
+      "number": 1655,
+      "factors": [
+        5,
+        331
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-21e6e26e73d4ab3d9336",
+    "problem": "Find the prime factorization of 4477. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "11 × 11 × 37",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 48,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4477. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 48,
+      "number": 4477,
+      "factors": [
+        11,
+        11,
+        37
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-f411ad51697bd088a735",
+    "problem": "Solve for real v: 13*v + 7 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.5385",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 20,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real v: 13*v + 7 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 20,
+      "polynomial_expr": "13*v + 7",
+      "variable": "v",
+      "degree": 1,
+      "real_solutions": [
+        -0.5385
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bf67135e4950fa599861",
+    "problem": "Find the real value(s) of e in the equation: -e**2 - 4*e = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-4.0, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 63,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of e in the equation: -e**2 - 4*e = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 63,
+      "polynomial_expr": "-e**2 - 4*e",
+      "variable": "e",
+      "degree": 2,
+      "real_solutions": [
+        -4.0,
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bc48c21ab362232e988f",
+    "problem": "Solve for real x: 11*x**3 - 6*x = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.7385, 0.0, 0.7385",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 1,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real x: 11*x**3 - 6*x = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 1,
+      "polynomial_expr": "11*x**3 - 6*x",
+      "variable": "x",
+      "degree": 3,
+      "real_solutions": [
+        -0.7385,
+        0.0,
+        0.7385
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0964762d237231195979",
+    "problem": "Determine the real value(s) of v that satisfies: -21*v - 3 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.1429",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 47,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of v that satisfies: -21*v - 3 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 47,
+      "polynomial_expr": "-21*v - 3",
+      "variable": "v",
+      "degree": 1,
+      "real_solutions": [
+        -0.1429
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-cf9d86f0c350025c1657",
+    "problem": "Determine the real value(s) of y that satisfies: -4*y - 10 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-2.5",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 22,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of y that satisfies: -4*y - 10 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 22,
+      "polynomial_expr": "-4*y - 10",
+      "variable": "y",
+      "degree": 1,
+      "real_solutions": [
+        -2.5
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-9de99389840242855520",
+    "problem": "Solve for real f: 9*f**3 + f = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 59,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real f: 9*f**3 + f = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 59,
+      "polynomial_expr": "9*f**3 + f",
+      "variable": "f",
+      "degree": 3,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-17b60fb42661497cdc7e",
+    "problem": "Determine the real value(s) of r that satisfies: -3*r**3 - 4*r**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.3333, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 49,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of r that satisfies: -3*r**3 - 4*r**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 49,
+      "polynomial_expr": "-3*r**3 - 4*r**2",
+      "variable": "r",
+      "degree": 3,
+      "real_solutions": [
+        -1.3333,
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-6dff176c61270008ba22",
+    "problem": "Find the real value(s) of g in the equation: -5*g**3 - 3*g**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.6, 0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 30,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of g in the equation: -5*g**3 - 3*g**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 30,
+      "polynomial_expr": "-5*g**3 - 3*g**2",
+      "variable": "g",
+      "degree": 3,
+      "real_solutions": [
+        -0.6,
+        0.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-628bcb8db974d571c7e1",
+    "problem": "Find the prime factorization of 4288. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 2 × 2 × 2 × 67",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 50,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4288. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 50,
+      "number": 4288,
+      "factors": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        67
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-077138b498a8c8254672",
+    "problem": "Find the prime factorization of 6729. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 2243",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 51,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 6729. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 51,
+      "number": 6729,
+      "factors": [
+        3,
+        2243
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a5db7f1f74e456a51691",
+    "problem": "Find the real value(s) of c in the equation: 3 - 18*c = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.1667",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 65,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of c in the equation: 3 - 18*c = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 65,
+      "polynomial_expr": "3 - 18*c",
+      "variable": "c",
+      "degree": 1,
+      "real_solutions": [
+        0.1667
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-2d63ab9fb427c95ff51a",
+    "problem": "Find the real value(s) of s in the equation: 17*s**3 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 32,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of s in the equation: 17*s**3 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 32,
+      "polynomial_expr": "17*s**3",
+      "variable": "s",
+      "degree": 3,
+      "real_solutions": [
+        0.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0befb2ece881a092d204",
+    "problem": "Find the prime factorization of 9340. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 5 × 467",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 1,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 9340. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 1,
+      "number": 9340,
+      "factors": [
+        2,
+        2,
+        5,
+        467
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-65f022b5e21c4a37ebd1",
+    "problem": "Find the real value(s) of y in the equation: 3*y**2 - 10*y = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0, 3.3333",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 5,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of y in the equation: 3*y**2 - 10*y = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 5,
+      "polynomial_expr": "3*y**2 - 10*y",
+      "variable": "y",
+      "degree": 2,
+      "real_solutions": [
+        0.0,
+        3.3333
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-eb012747ca62fec31f75",
+    "problem": "Find the real value(s) of h in the equation: h**3 + h**2 + 2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.6956",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 60,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of h in the equation: h**3 + h**2 + 2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 60,
+      "polynomial_expr": "h**3 + h**2 + 2",
+      "variable": "h",
+      "degree": 3,
+      "real_solutions": [
+        -1.6956
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a6dce9fae1ade877a654",
+    "problem": "Find the real value(s) of w in the equation: 14*w + 10 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.7143",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 54,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of w in the equation: 14*w + 10 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 54,
+      "polynomial_expr": "14*w + 10",
+      "variable": "w",
+      "degree": 1,
+      "real_solutions": [
+        -0.7143
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-098e48b5c23ce8cb7c86",
+    "problem": "Solve the polynomial equation for real z:\n-4*z**3 + 4*z**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0, 1.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 25,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real z:\n-4*z**3 + 4*z**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 25,
+      "polynomial_expr": "-4*z**3 + 4*z**2",
+      "variable": "z",
+      "degree": 3,
+      "real_solutions": [
+        0.0,
+        1.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-f3933233d1e6168e2e91",
+    "problem": "Solve the polynomial equation for real g:\n3 - 10*g**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.5477, 0.5477",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 11,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real g:\n3 - 10*g**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 11,
+      "polynomial_expr": "3 - 10*g**2",
+      "variable": "g",
+      "degree": 2,
+      "real_solutions": [
+        -0.5477,
+        0.5477
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bd7d81854784879e916c",
+    "problem": "Find the prime factorization of 8451. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 3 × 3 × 313",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 47,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 8451. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 47,
+      "number": 8451,
+      "factors": [
+        3,
+        3,
+        3,
+        313
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-7935571f97044b7dbf9f",
+    "problem": "Find the prime factorization of 5494. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 41 × 67",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 17,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 5494. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 17,
+      "number": 5494,
+      "factors": [
+        2,
+        41,
+        67
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c91d019eb9b375cf5384",
+    "problem": "Solve for real l: 9*l + 3 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.3333",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 28,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real l: 9*l + 3 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 28,
+      "polynomial_expr": "9*l + 3",
+      "variable": "l",
+      "degree": 1,
+      "real_solutions": [
+        -0.3333
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-650d7bb412824ed3eb17",
+    "problem": "Find the prime factorization of 1709. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "1709",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 44,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1709. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 44,
+      "number": 1709,
+      "factors": [
+        1709
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-4ae7ab6e4fdd9dafa6b4",
+    "problem": "Solve for real m: m + 16 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-16.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 18,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real m: m + 16 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 18,
+      "polynomial_expr": "m + 16",
+      "variable": "m",
+      "degree": 1,
+      "real_solutions": [
+        -16.0
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-99f42d7e17667f1ccb56",
+    "problem": "Solve the polynomial equation for real t:\n-15*t**2 + t + 6 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.6, 0.6667",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 57,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve the polynomial equation for real t:\n-15*t**2 + t + 6 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 57,
+      "polynomial_expr": "-15*t**2 + t + 6",
+      "variable": "t",
+      "degree": 2,
+      "real_solutions": [
+        -0.6,
+        0.6667
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-ceb63c3c339d913d93ae",
+    "problem": "Solve for real l: -4*l**3 + 6*l**2 + 4*l = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.5, 0.0, 2.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 16,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real l: -4*l**3 + 6*l**2 + 4*l = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 16,
+      "polynomial_expr": "-4*l**3 + 6*l**2 + 4*l",
+      "variable": "l",
+      "degree": 3,
+      "real_solutions": [
+        -0.5,
+        0.0,
+        2.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-a759e8c0813676b8e864",
+    "problem": "Solve for real t: -7*t - 20 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-2.8571",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 23,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real t: -7*t - 20 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 23,
+      "polynomial_expr": "-7*t - 20",
+      "variable": "t",
+      "degree": 1,
+      "real_solutions": [
+        -2.8571
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-84cff6ceea64eacd656b",
+    "problem": "Find the prime factorization of 6207. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 2069",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 10,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 6207. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 10,
+      "number": 6207,
+      "factors": [
+        3,
+        2069
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c4cf26a8f67c54cbd2fb",
+    "problem": "Find the prime factorization of 5356. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 13 × 103",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 19,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 5356. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 19,
+      "number": 5356,
+      "factors": [
+        2,
+        2,
+        13,
+        103
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-b205877d361c28f62141",
+    "problem": "Find the prime factorization of 4481. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "4481",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 23,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4481. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 23,
+      "number": 4481,
+      "factors": [
+        4481
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-4277402990c3297cab38",
+    "problem": "Find the real value(s) of h in the equation: h**3 - 6*h**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0, 6.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 19,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of h in the equation: h**3 - 6*h**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 19,
+      "polynomial_expr": "h**3 - 6*h**2",
+      "variable": "h",
+      "degree": 3,
+      "real_solutions": [
+        0.0,
+        6.0
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c2711e6c98c2366f153e",
+    "problem": "Find the prime factorization of 881. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "881",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 31,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 881. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 31,
+      "number": 881,
+      "factors": [
+        881
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-026cd51a3cad049888c0",
+    "problem": "Find the prime factorization of 4817. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "4817",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 5,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4817. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 5,
+      "number": 4817,
+      "factors": [
+        4817
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-abd30ef0ec1078f14c11",
+    "problem": "Find the prime factorization of 561. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "3 × 11 × 17",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 12,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 561. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 12,
+      "number": 561,
+      "factors": [
+        3,
+        11,
+        17
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-e8e319211e8c47eb5893",
+    "problem": "Find the prime factorization of 7288. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 911",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 24,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 7288. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 24,
+      "number": 7288,
+      "factors": [
+        2,
+        2,
+        2,
+        911
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-fe1f1f1365205afd0716",
+    "problem": "Solve for real k: -10*k**2 + 10*k = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0, 1.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 37,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real k: -10*k**2 + 10*k = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 37,
+      "polynomial_expr": "-10*k**2 + 10*k",
+      "variable": "k",
+      "degree": 2,
+      "real_solutions": [
+        0.0,
+        1.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-35eec996c7d32f037999",
+    "problem": "Determine the real value(s) of t that satisfies: -15*t**3 + 10*t**2 - 7 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.6056",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 9,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of t that satisfies: -15*t**3 + 10*t**2 - 7 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 9,
+      "polynomial_expr": "-15*t**3 + 10*t**2 - 7",
+      "variable": "t",
+      "degree": 3,
+      "real_solutions": [
+        -0.6056
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-b664dfa9162048a1c146",
+    "problem": "Find the real value(s) of y in the equation: 9 - 6*y**3 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "1.1447",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 62,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of y in the equation: 9 - 6*y**3 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 62,
+      "polynomial_expr": "9 - 6*y**3",
+      "variable": "y",
+      "degree": 3,
+      "real_solutions": [
+        1.1447
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-7a4d661be9dd1041e48e",
+    "problem": "Find the prime factorization of 7780. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 5 × 389",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 22,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 7780. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 22,
+      "number": 7780,
+      "factors": [
+        2,
+        2,
+        5,
+        389
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-44df329fcf8f499350fb",
+    "problem": "Find the prime factorization of 1672. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 2 × 11 × 19",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 46,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 1672. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 46,
+      "number": 1672,
+      "factors": [
+        2,
+        2,
+        2,
+        11,
+        19
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-c1799482a89e5cf2d53b",
+    "problem": "Find the prime factorization of 6635. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "5 × 1327",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 20,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 6635. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 20,
+      "number": 6635,
+      "factors": [
+        5,
+        1327
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0135cf19d07bebf4f2c2",
+    "problem": "Determine the real value(s) of b that satisfies: 7*b**2 - 9 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-1.1339, 1.1339",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 31,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of b that satisfies: 7*b**2 - 9 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 31,
+      "polynomial_expr": "7*b**2 - 9",
+      "variable": "b",
+      "degree": 2,
+      "real_solutions": [
+        -1.1339,
+        1.1339
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-d5c882f75975eb6a7755",
+    "problem": "Solve for real r: -8*r - 6 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "-0.75",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 42,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real r: -8*r - 6 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 42,
+      "polynomial_expr": "-8*r - 6",
+      "variable": "r",
+      "degree": 1,
+      "real_solutions": [
+        -0.75
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-1c9c0007854e0acd2651",
+    "problem": "Solve for real l: 7*l**3 - 5*l**2 = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "0.0, 0.7143",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 55,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Solve for real l: 7*l**3 - 5*l**2 = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 55,
+      "polynomial_expr": "7*l**3 - 5*l**2",
+      "variable": "l",
+      "degree": 3,
+      "real_solutions": [
+        0.0,
+        0.7143
+      ],
+      "num_terms": 4,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-927cb689475fce1af0b1",
+    "problem": "Determine the real value(s) of v that satisfies: 10 - 6*v = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "1.6667",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 51,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Determine the real value(s) of v that satisfies: 10 - 6*v = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 51,
+      "polynomial_expr": "10 - 6*v",
+      "variable": "v",
+      "degree": 1,
+      "real_solutions": [
+        1.6667
+      ],
+      "num_terms": 2,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-b18604a98f391c8a0960",
+    "problem": "Find the real value(s) of f in the equation: 5 - 5*f = 0 Give all real roots as comma-separated decimals rounded to nearest four decimal places, or an empty answer if there are no real roots.",
+    "answer": "1.0",
+    "family": "polynomial_equations",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70361115,
+      "index": 13,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 4,
+        "min_degree": 1,
+        "max_degree": 3,
+        "min_value": 1,
+        "max_value": 10
+      },
+      "original_question": "Find the real value(s) of f in the equation: 5 - 5*f = 0\nIn solving equations, please follow these instructions:\n1. Provide all answers as comma-separated decimal values. For example: \"-0.3773, 0.4005\"\n2. For solutions that can be expressed in exact form (like \"u = 2 + sqrt(4560)/172\" and \"u = 2 - sqrt(4560)/172\"), convert them to decimal form in your final answer.\n3. If there are no real values that satisfy the equation, report your answer as an empty string: \"\"\n4. Format your answer based on the number of solutions:\n   - For 1 solution: a single decimal number\n   - For 2 solutions: two comma-separated decimal numbers\n   - For 3 or more solutions: all values as comma-separated decimal numbers\n5. Round all decimal values to 4 decimal places (rounding down when the 5th decimal place is 5 or greater).\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_equations",
+      "source_index": 13,
+      "polynomial_expr": "5 - 5*f",
+      "variable": "f",
+      "degree": 1,
+      "real_solutions": [
+        1.0
+      ],
+      "num_terms": 3,
+      "difficulty": {
+        "terms": [
+          2,
+          4
+        ],
+        "degree": [
+          1,
+          3
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-0c686c58bdce916cdfc9",
+    "problem": "Find the prime factorization of 774. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 3 × 3 × 43",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 3,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 774. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 3,
+      "number": 774,
+      "factors": [
+        2,
+        3,
+        3,
+        43
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "test_unseen-bcb483fec827e4428ae0",
+    "problem": "Find the prime factorization of 4460. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+    "answer": "2 × 2 × 5 × 223",
+    "family": "prime_factorization",
+    "split": "test_unseen",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 70261115,
+      "index": 39,
+      "parameters": {
+        "min_value": 100,
+        "max_value": 10000
+      },
+      "original_question": "Find the prime factorization of 4460. Write the factors separated by × (Example: for 12 the answer would be: 2 × 2 × 3)",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "prime_factorization",
+      "source_index": 39,
+      "number": 4460,
+      "factors": [
+        2,
+        2,
+        5,
+        223
+      ],
+      "difficulty": {
+        "value": [
+          100,
+          10000
+        ]
+      }
+    },
+    "source_id": null
+  }
+]
