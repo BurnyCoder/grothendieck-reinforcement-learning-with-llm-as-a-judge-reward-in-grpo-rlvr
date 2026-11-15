@@ -56,3 +56,25 @@ decisions but exhausted retries on a conventional probability argument. The
 eligibility from the declarations and retains raw scores for inspection. It
 cannot independently certify mathematical truth. Fresh development calibration
 under the new identity is required before audit; historical outcomes remain fixed.
+
+The user's subsequent clarification permits modest credit for a brief valid
+connection without a further worked consequence. The
+[v7 amendment](amendments/2026-11-15-modest-valid-connections.md) implements that
+construct with a capped contribution, preserving raw opinions. Neither the cap
+nor an exact quotation settles whether an added relationship lies beyond the
+fixed reference. Those semantic decisions still need calibration.
+
+## Novelty-specific judge instability
+
+[Sternlicht et al.](https://arxiv.org/html/2610.02022v1) vary prompts, retrieval,
+reasoning and aggregation for research-idea novelty judgments. Their results
+depend on the evaluator and on whether ideas are human-authored or generated;
+retrieval and extra reasoning provide no uniform repair. The generated pool has
+weak novelty labels, with a limited expert check rather than exhaustive human
+validation. Some prompt variants also change the stated decision task, so their
+differences are not purely wording effects. This study concerns originality
+relative to scientific literature, not our finite-reference mathematical rubric
+or quantized local models. We infer that passing familiar constructed templates
+is insufficient evidence of reliable novelty scoring on policy outputs. The
+full paper, methods, results and appendix prompts were examined; no code or
+prompt text is imported, and the active v7 calibration remains unchanged.

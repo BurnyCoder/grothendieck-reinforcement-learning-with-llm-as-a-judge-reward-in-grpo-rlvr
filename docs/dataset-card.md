@@ -27,7 +27,10 @@ intended scoring construct. Rubric v7 permits modest credit for brief valid
 connections without a further worked use, with higher credit for developed
 frameworks. Raw and credited scores, caps and reasons remain separate. Weights
 remain fixed; changed calibration contrasts now distinguish brief connections
-from zero-novelty reference controls. The revised instrument needs fresh calibration.
+from zero-novelty reference controls. The fresh v7 attempt failed its fixed
+futility gate: developed frameworks ranked higher, but the control-credit
+conditions failed. False-theory suppression was not reached. The generated
+reports separate those checks and preserve every raw opinion.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
