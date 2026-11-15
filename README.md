@@ -202,6 +202,8 @@ All measured tables and plots will be generated from saved artifacts. The
 dashboard shows saved correctness, theory, novelty, losses, KL, lengths, throughput and
 checkpoint state. The GitHub Pages explorer will contain published snapshots,
 confidence intervals and output comparisons.
+Local calibration records show their judge identity, last update and stored
+outcome. A partial record alone does not imply that a process is still running.
 Its judge inspector also exposes every accepted assessment from published
 development logs alongside the exact candidate and conventional reference,
 including failed calibration attempts. These are separated from comparative
