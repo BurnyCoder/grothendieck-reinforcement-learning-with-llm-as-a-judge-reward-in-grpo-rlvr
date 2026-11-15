@@ -7,10 +7,10 @@ from .schema import Task
 DIRECTORY = Path(__file__).with_name("prompts")
 
 
-def judge_system(variant="quoted") -> str:
+def judge_system(variant="quoted", version=None) -> str:
     """The ablation changes only the historical framing, retaining the whole rubric."""
     config = read_json(PROJECT / "configs/study.json")
-    version = config["judge_prompt_version"]
+    version = version or config["judge_prompt_version"]
     rubric = (DIRECTORY / f"rubric-{version}.txt").read_text(encoding="utf-8")
     if variant == "rubric":
         return rubric

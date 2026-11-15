@@ -20,6 +20,10 @@ withheld novelty from the routine probability controls, but still misgraded
 brief connections and a developed-framework comparison. The evidence log also
 shows why exact quotations alone cannot validate a claimed use of a concept.
 The modest-credit rule remains implemented; judge reliability is unresolved.
+The next [registered repair](reports/amendments/2026-11-15-decomposed-judges.md)
+separates conceptual analysis from theory scoring. If any required development
+configuration fails, an eight-specialist protocol repeats all development checks.
+Neither protocol has yet qualified. Thresholds, cases, labels and weights stay fixed.
 
 ![Pipeline architecture](site/figures/architecture.png)
 
@@ -32,7 +36,7 @@ research interpretation, not a simulation of his personal judgments.
 flowchart LR
   G[Reasoning Gym + locked manifests] --> P[Qwen3.5 policy: four answers]
   P --> V[Bounded final-answer verifier]
-  V -->|correct| J[Frozen local Qwen rubric judge]
+  V -->|correct| J[Frozen Qwen: isolated judge stages]
   V --> R[Composite reward C times 1 + 0.5T]
   J --> R
   R --> T[TRL Dr. GRPO + LoRA]
@@ -64,8 +68,9 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v7.txt) scores
-each criterion from 0 to 4. Code applies validity and novelty-eligibility gates,
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v8.txt) and
+[stage contracts](docs/decomposed-judges.md) produce scores from 0 to 4.
+Code derives novelty from evidence-bearing stage findings and applies validity gates,
 then combines the normalized scores with these weights:
 
 | Criterion | Weight | What earns credit |
@@ -100,7 +105,7 @@ and a positive novelty score. Its completed contrasts do not constitute a pass.
 The [v6 attempt](reports/experiments/qwen-v6-interruption-learnings.md) demonstrated
 that a code gate could withhold ineligible novelty without changing the raw
 opinion. It was interrupted after the user clarified that valid brief connections
-should earn modest credit. The current
+should earn modest credit. The historical
 [v7 protocol](reports/amendments/2026-11-15-modest-valid-connections.md) requires
 supported theory, an explicit `beyond_reference` declaration and an excerpt
 identifying an added construction or concrete relationship. Without a worked
@@ -119,6 +124,18 @@ keeps rubric v7 and its cases while stating that conventional polynomial methods
 concern commuting variables and ordinary probability methods include biased
 dice. That reference change creates a new judge identity requiring fresh checks;
 it has not established a repair.
+The active two-call protocol separately assesses conceptual additions/development
+and overall validity/quality. Its registered fallback separates validity, reference
+comparison, development, and each of the five quality criteria into eight calls.
+Calls reuse the frozen local model. Code combines them without voting or selecting
+favorable opinions; any substantive mathematical objection vetoes the theory bonus.
+Conventional work that establishes a connection is not automatically a further
+application of that connection. Valid brief connections retain one novelty point;
+demonstrated operations, consequences and reusable frameworks earn higher levels.
+Raw stage findings are preserved; their combined novelty score is derived in code.
+See [decomposed judging and recovery](docs/decomposed-judges.md) for interfaces,
+budgets, stage caching and the development-to-audit sequence.
+
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
@@ -134,7 +151,7 @@ False novelty-bearing claims set the whole theory bonus to zero.
 The quoted variant includes the supplied
 [Grothendieck passage in McLarty's translation](src/grothendieck_rlvr/prompts/rising-sea-v2.txt).
 The ablation retains the same rubric and reference approaches while removing
-quotations and persona. Both variants must pass constructed tests for valid
+quotations and persona from every stage. Both variants must pass constructed tests for valid
 abstraction, false theory, grading manipulation, useful nonstandard connections
 and cosmetic novelty. These tests are not human preference evidence.
 

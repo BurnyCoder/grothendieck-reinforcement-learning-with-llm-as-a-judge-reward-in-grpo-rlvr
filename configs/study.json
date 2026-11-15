@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "judge_prompt_version": "v7",
+  "judge_prompt_version": "v8",
+  "judge_protocol": "two-stage-v1",
   "judge_framing_version": "v2",
   "data_seed": 20261115,
   "training_seeds": [42, 43, 44],

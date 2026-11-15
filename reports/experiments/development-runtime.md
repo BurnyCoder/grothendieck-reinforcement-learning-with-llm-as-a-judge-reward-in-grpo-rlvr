@@ -27,7 +27,14 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
 | qwen-v7-anchors-v3-dev | 19 | 18 | 1 | 0 | 174.27 | 140.90–231.58 |
 | qwen-v7-dev | 14 | 14 | 0 | 0 | 179.41 | 144.36–248.77 |
 
-Timings include prefill and decoding for completed calls, including invalid assessments. Unfinished calls have no completed latency and are counted separately, not assigned zero. Accepted opinions exclude failed validations and cache hits. Rows use different prompts and runtime settings; their medians are not controlled speed comparisons, confidence intervals, or forecasts for training, evaluation, transfer or a complete calibration suite.
+Timings include prefill and decoding for completed calls, including invalid assessments. Unfinished calls have no completed latency and are counted separately, not assigned zero. Accepted opinions are combined assessments, excluding failed validations and cache hits. Decomposed protocols require multiple accepted stage calls per combined assessment. Rows use different prompts and runtime settings; their medians are not controlled speed comparisons, confidence intervals, or forecasts for training, evaluation, transfer or a complete calibration suite.
+
+## Accepted stage latency
+
+| Development artifact | Protocol | Stage | Accepted calls | Median seconds |
+|---|---|---|---|---|
+
+Stage timings additionally include template/token checks and validation. Cache hits are excluded.
 
 ```json
 {
@@ -263,6 +270,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -337,6 +345,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -347,6 +356,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
       "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -609,6 +619,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b.\n<final>36</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -1468,6 +1479,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "I computed this instance directly and obtained 4.\n<final>4</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -1975,6 +1987,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "For an even-sided fair die, half the faces are even and half odd. Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2. More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q).\n<final>1/2</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -1985,6 +1998,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
       "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -2450,6 +2464,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "To simplify the expression $(1 - 14x)(6x - 5)$, we will distribute each term in the first parenthesis across the terms in the second parenthesis. This is commonly known as the FOIL method (First, Outer, Inner, Last).\n\n**Step 1: Multiply the \"First\" terms**\nThe first terms are $1$ and $6x$.\n$1 \\cdot 6x = 6x$\n\n**Step 2: Multiply the \"Outer\" terms**\nThe outer terms are $1$ and $-5$.\n$1 \\cdot (-5) = -5$\n\n**Step 3: Multiply the \"Inner\" terms**\nThe inner terms are $-14x$ and $6x$.\n$-14x \\cdot 6x = -84x^2$ (Note: $x$ multiplied by $x$ becomes $x^2$).\n\n**Step 4: Multiply the \"Last\" terms**\nThe last terms are $-14x$ and $-5$.\n$-14x \\cdot (-5) = +70x$\n\n**Step 5: Combine all the terms**\nNow, we sum the results from Steps 1 through 4:\n$6x - 5 - 84x^2 + 70x$\n\n**Step 6: Arrange the terms in standard polynomial order**\nStandard order is usually from highest degree to lowest degree. Here, the highest degree term is $-84x^2$.\nWe also combine the $x$ terms: $6x + 70x = 76x$.\n\nSo the expression becomes:\n$-84x^2 + 76x - 5$\n\nThe guidelines require using $**$ for exponents (though not strictly necessary here since there are no negative numbers or complex fractions, it adheres to the format) and ensuring the $*$ symbol is used for all multiplications in the reasoning steps.\n\n*   $1 \\cdot 6x = 6x$\n*   $1 \\cdot (-5) = -5$\n*   $-14x \\cdot 6x = -84x^2$\n*   $-14x \\cdot (-5) = 70x$\n\nSumming these up: $-84x^2 + 6x + 70x - 5 = -84x^2 + 76x - 5$.\n\n<final>-84*x**2 + 76*x - 5</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -2683,6 +2698,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -3642,6 +3658,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=28, the answer is 28. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>28</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -4032,6 +4049,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator.\n<final>x**2-64</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -4600,6 +4618,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>12</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -5122,6 +5141,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication. The even indicator is (1+chi(k))/2. Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2. Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2. For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices. Independence matters: for Y=X with X uniform on {1,2}, each expectation is zero but X+Y is always even. This character transform is a reusable bridge from probability convolution to multiplicative statistics.\n<final>1/2</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -6261,6 +6281,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator. I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>x**2-256</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -7732,6 +7753,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm. The gcd also generates the additive subgroup {ua+vb: u,v integers}: Euclid's division steps preserve these combinations, and reversing the steps expresses the gcd as one such combination.\n<final>20</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -8882,6 +8904,7 @@ Timings include prefill and decoding for completed calls, including invalid asse
           "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator. I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>x**2-256</final>"
         }
       ],
+      "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     }
   ],

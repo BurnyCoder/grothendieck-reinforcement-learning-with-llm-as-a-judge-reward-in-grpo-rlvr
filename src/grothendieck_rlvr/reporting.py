@@ -43,6 +43,9 @@ def development_records() -> list[dict]:
                         "judge_failures": sum(e["kind"] == "judge_failure" for e in events),
                         "response_seconds": [e["seconds"] for e in responses],
                         "assessments": assessments,
+                        "stages": [{key: event[key] for key in
+                                    ("time", "protocol", "stage", "seconds", "task_id") if key in event}
+                                   for event in events if event["kind"] == "judge_stage_assessment"],
                         "interpretation": "Development evidence only; not a completed calibration or evaluation."})
     return records
 
@@ -206,6 +209,19 @@ def request_latency_rows(records):
     return rows
 
 
+def stage_latency_rows(records):
+    """Keep protocol/role stage timings separate, including validated-stage overhead."""
+    rows = [["Development artifact", "Protocol", "Stage", "Accepted calls", "Median seconds"]]
+    for record in records:
+        groups = {}
+        for stage in record.get("stages", []):
+            groups.setdefault((stage["protocol"], stage["stage"]), []).append(stage["seconds"])
+        for (protocol, stage), seconds in groups.items():
+            rows.append([Path(record["artifact"]).stem, protocol, stage, str(len(seconds)),
+                         display(median(seconds), 2)])
+    return rows
+
+
 def withheld_novelty_rows(result):
     """Publish stored gate applications without reinterpreting historical assessments."""
     rows = [["Case", "Response", "Raw novelty (0–4)", "Credited novelty (0–4)", "Gate reasons"]]
@@ -253,7 +269,7 @@ def figures(snapshot, destination: Path) -> None:
     ax.set(xlim=(0, 11), ylim=(0, 3.3))
     ax.axis("off")
     boxes = [(0.2, 1.8, "Locked tasks\nReasoning Gym"), (3.0, 1.8, "Qwen policy\nfour completions"),
-             (5.8, 1.8, "Answer verifier\ncorrectness gate"), (8.6, 1.8, "Frozen Qwen\nrubric judgment"),
+             (5.8, 1.8, "Answer verifier\ncorrectness gate"), (8.6, 1.8, "Frozen Qwen\nisolated judge stages"),
              (3.0, .15, "TRL Dr. GRPO\nLoRA updates"), (5.8, .15, "C × (1 + 0.5T)\ncomposite reward"),
              (8.6, .15, "Frozen Gemma\nand recipient tests")]
     for x, y, label in boxes:
@@ -323,12 +339,14 @@ def paper_sections(snapshot):
          "20% weight, judged relative to published conventional approaches. New objects, definitions, invariants, "
          "frameworks and distant mathematical connections earn that credit only when justified and useful. "
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
-         "The current reference-comparison protocol records an added construction and its use before scoring "
-         "novelty. The current code gate withholds novelty credit unless supported theory is declared "
+         "The current decomposed protocol separates conceptual analysis from overall validity and quality. "
+         "Its registered fallback has eight specialist roles. Code derives novelty from explicit addition, "
+         "application and consequence findings, and withholds novelty unless supported theory is declared "
          "beyond-reference with an excerpt identifying a concrete addition. Brief valid connections can "
          "earn one novelty point without a further worked use; developed mathematics can earn up to four. "
-         "Code caps credit at one point when use evidence is absent. Raw scores remain unchanged; "
-         "effective scores, caps and gate reasons are logged. Checklist-based judging [14] motivates auditable "
+         "A reference argument establishing a connection is not itself a further application. Raw stage "
+         "findings are retained; code derives combined scores and any substantive objection vetoes the bonus. "
+         "Checklist-based judging [14] and decomposition [15] motivate auditable "
          "prerequisites; the checks do not certify mathematical entailment. "
          "Final-answer verification does not certify surrounding proofs."),
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
@@ -336,10 +354,9 @@ def paper_sections(snapshot):
          "are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration "
          "fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison "
          f"runtime-budget amendment selects {snapshot['study']['max_steps']} optimizer updates for every training arm. "
-         "The current development inference amendment enables native judge reasoning, capped at "
-         f"{snapshot['study'].get('judge_reasoning_budget_tokens', {}).get('training_judge', 0)} tokens for Qwen and "
-         f"{snapshot['study'].get('judge_reasoning_budget_tokens', {}).get('evaluation_judge', 0)} for Gemma, "
-         "added to the existing visible-assessment allowance. Studies report setting-dependent benefits "
+         f"The active instrument is {snapshot['study'].get('judge_protocol', 'legacy')}; per-role prompts, "
+         "visible/reasoning budgets and dependencies are locked in its identity. Separate calls reuse the "
+         "same frozen model and may share errors. Studies report setting-dependent benefits "
          "and failures of additional judging computation [12,13]; neither validates this novelty rubric. "
          "Failed feasibility or "
          "calibration is development evidence, not a negative test of the behavioral hypothesis."),
@@ -423,6 +440,7 @@ REFERENCES = [
     ("Explicit Reasoning Makes Better Judges", "https://arxiv.org/abs/2509.13332"),
     ("SLMJury", "https://arxiv.org/abs/2606.07810"),
     ("RULERS: Locked Rubrics and Evidence-Anchored Scoring", "https://arxiv.org/abs/2601.08654"),
+    ("DnA-Eval: Decomposition and Aggregation", "https://aclanthology.org/2025.coling-main.156/"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")
@@ -531,9 +549,12 @@ def report() -> dict:
         "\n\n## Observed request latency\n\n" + markdown_table(request_latency_rows(snapshot["development"])) +
         "\n\nTimings include prefill and decoding for completed calls, including invalid assessments. "
         "Unfinished calls have no completed latency and are counted separately, not assigned zero. "
-        "Accepted opinions exclude failed validations and cache hits. Rows use different prompts and "
+        "Accepted opinions are combined assessments, excluding failed validations and cache hits. "
+        "Decomposed protocols require multiple accepted stage calls per combined assessment. Rows use different prompts and "
         "runtime settings; their medians are not controlled speed comparisons, confidence intervals, "
-        "or forecasts for training, evaluation, transfer or a complete calibration suite.\n\n```json\n" +
+        "or forecasts for training, evaluation, transfer or a complete calibration suite.\n\n" +
+        "## Accepted stage latency\n\n" + markdown_table(stage_latency_rows(snapshot["development"])) +
+        "\n\nStage timings additionally include template/token checks and validation. Cache hits are excluded.\n\n```json\n" +
         json.dumps({"judging": snapshot["development"], "calibration": snapshot["calibration"],
                     "feasibility": snapshot["feasibility"]},
                    indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")

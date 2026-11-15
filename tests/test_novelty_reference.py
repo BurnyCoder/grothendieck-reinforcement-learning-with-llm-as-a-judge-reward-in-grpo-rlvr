@@ -89,7 +89,7 @@ def test_conventional_general_theory_keeps_its_other_scores():
 
 
 def test_withheld_credit_is_visible_in_fresh_and_cached_events(tmp_path, monkeypatch):
-    judge = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "events.jsonl"),
+    judge = Judge("http://127.0.0.1:8081", protocol="legacy", log=EventLog(tmp_path / "events.jsonl"),
                   cache=tmp_path / "cache.sqlite")
     task = Task(id="reference-contract", problem="gcd(12,18)", answer="6", family="gcd",
                 split="dev", provenance={})
@@ -121,7 +121,7 @@ def test_eligibility_protocol_changes_cache_identity(tmp_path, monkeypatch):
 
 
 def test_reward_callback_uses_effective_credit_and_retains_raw_opinion(tmp_path, monkeypatch):
-    judge = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "judge.jsonl"),
+    judge = Judge("http://127.0.0.1:8081", protocol="legacy", log=EventLog(tmp_path / "judge.jsonl"),
                   cache=tmp_path / "cache.sqlite")
     task = Task(id="reference-contract", problem="gcd(12,18)", answer="6", family="gcd",
                 split="dev", provenance={})
@@ -138,7 +138,7 @@ def test_reward_callback_uses_effective_credit_and_retains_raw_opinion(tmp_path,
 
 
 def test_invented_reference_never_enters_cache(tmp_path, monkeypatch):
-    judge = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "events.jsonl"),
+    judge = Judge("http://127.0.0.1:8081", protocol="legacy", log=EventLog(tmp_path / "events.jsonl"),
                   cache=tmp_path / "cache.sqlite")
     task = Task(id="reference-contract", problem="gcd(12,18)", answer="6", family="gcd",
                 split="dev", provenance={})

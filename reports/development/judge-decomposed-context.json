@@ -1,0 +1,88 @@
+{
+  "time": "2026-11-15T19:56:08.971678+00:00",
+  "kind": "synthetic_stage_context_capacity",
+  "inference_performed": false,
+  "checks": [
+    {
+      "protocol": "two-stage-v1",
+      "stage": "concepts",
+      "reserved_generation": 2048,
+      "fits": true,
+      "formatted_prompt_tokens": 3799,
+      "remaining_tokens_after_ceiling": 2345
+    },
+    {
+      "protocol": "two-stage-v1",
+      "stage": "quality",
+      "reserved_generation": 2048,
+      "fits": true,
+      "formatted_prompt_tokens": 3734,
+      "remaining_tokens_after_ceiling": 2410
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "validity",
+      "reserved_generation": 1536,
+      "fits": true,
+      "formatted_prompt_tokens": 3391,
+      "remaining_tokens_after_ceiling": 3265
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "reference",
+      "reserved_generation": 1536,
+      "fits": true,
+      "formatted_prompt_tokens": 3409,
+      "remaining_tokens_after_ceiling": 3247
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "development",
+      "reserved_generation": 1536,
+      "fits": true,
+      "formatted_prompt_tokens": 3654,
+      "remaining_tokens_after_ceiling": 3002
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "structural_understanding",
+      "reserved_generation": 768,
+      "fits": true,
+      "formatted_prompt_tokens": 3452,
+      "remaining_tokens_after_ceiling": 3972
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "justified_generality",
+      "reserved_generation": 768,
+      "fits": true,
+      "formatted_prompt_tokens": 3453,
+      "remaining_tokens_after_ceiling": 3971
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "problem_as_consequence",
+      "reserved_generation": 768,
+      "fits": true,
+      "formatted_prompt_tokens": 3453,
+      "remaining_tokens_after_ceiling": 3971
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "reuse_and_connections",
+      "reserved_generation": 768,
+      "fits": true,
+      "formatted_prompt_tokens": 3450,
+      "remaining_tokens_after_ceiling": 3974
+    },
+    {
+      "protocol": "specialists-v1",
+      "stage": "conceptual_economy",
+      "reserved_generation": 768,
+      "fits": true,
+      "formatted_prompt_tokens": 3455,
+      "remaining_tokens_after_ceiling": 3969
+    }
+  ],
+  "limitation": "Short GCD task, synthetic 2048-repetition candidate, Qwen template only. Every actual stage and retry also checks its exact input before inference."
+}

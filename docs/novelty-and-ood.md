@@ -12,8 +12,14 @@ help the first without establishing the second. Neither identifies what was
 absent from a pretrained model's corpus.
 
 `schema.Assessment` implements the weighted score and validity gates;
-`prompts/rubric-v7.txt` supplies ordinal scoring anchors; `novelty-anchors.json`
+`prompts/rubric-v8.txt` and the versioned stage prompts supply scoring anchors; `novelty-anchors.json`
 defines the comparison references. Both judges use these same frozen rules.
+The [decomposed protocol](decomposed-judges.md) first uses two calls, then eight
+specialists if development fails. `judge_stages.py` derives constructive novelty
+from declared additions, demonstrated uses and consequences. It preserves raw
+findings and gates the entire bonus on supported validity without substantive
+objections. Its combined score is derived; older raw numerical opinions are not
+rewritten or rescored. Historical v7 behavior is described below.
 `novelty_cases.py` constructs valid and deliberately false mathematical bridges.
 The judge must distinguish actual mathematical utility from ornamental theory.
 All positive scores require exact supporting excerpts, but excerpt validation

@@ -192,6 +192,12 @@ remain unavailable. Its metric contracts can be checked with
 
 ## Comparative runs and independent evaluation
 
+The active [decomposed-judge workflow](decomposed-judges.md) must complete all
+development configurations before any audit. Its specialist fallback changes
+the instrument identity and restarts all development; prior partial or passing
+two-call results do not qualify the fallback. Re-measure pilot throughput after
+qualification; old single-call timing scenarios do not time the new protocol.
+
 After passing audit and freezing the policy selection:
 
 ```bash

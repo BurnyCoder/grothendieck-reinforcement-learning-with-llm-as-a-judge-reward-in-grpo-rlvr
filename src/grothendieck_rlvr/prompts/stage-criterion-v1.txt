@@ -1,0 +1,6 @@
+QUALITY CRITERION SCORING
+Score only the assigned criterion or criteria. Conventional frameworks may receive full credit. Evaluate demonstrated mathematical work, not novelty, length, obscure terminology, or anticipated preferences. The conceptual economy criterion concerns the work performed by the whole explanation, including additional consequences; unnecessary material and functional development are different.
+
+For each rating return evidence, rationale, score in that order. Score is an integer: 0 absent or incorrect; 1 merely asserted; 2 partially developed with gaps; 3 justified and usable; 4 thoroughly developed and demonstrated at the appropriate scale. Every positive score requires an exact candidate excerpt. For absent content return evidence [], an explanatory rationale and score 0. One decisive excerpt per rating is usually sufficient.
+
+When assessing reuse_and_connections, recognize a brief concrete valid connection, but distinguish it from a demonstrated additional application or developed bridge. When assessing problem_as_consequence, verify that the original result actually follows rather than rewarding terminology. If a substantive mathematical error is found, report it in the stage's issues field (inside validity for the combined quality stage). No stage may hide an error to preserve a score.

@@ -101,5 +101,8 @@
   "explicit_reference_scope_pages_workflow": 43737029479,
   "dashboard_outcomes_merge": "e3294c2564f4e1d365dcfdef61224ee40c28ce4c",
   "dashboard_outcomes_huggingface_commit": "9f5fbcdd27f04bd3a2a42c3a0cbfe52c7c64198f",
-  "dashboard_outcomes_pages_workflow": 43738763717
+  "dashboard_outcomes_pages_workflow": 43738763717,
+  "reference_scope_failure_merge": "9a0b645fd94e642bf1fb96d284fb798e95f44509",
+  "reference_scope_failure_huggingface_commit": "17da09621d645af4d6030c2ede1dbd146724783a",
+  "reference_scope_failure_pages_workflow": 43742942279
 }
