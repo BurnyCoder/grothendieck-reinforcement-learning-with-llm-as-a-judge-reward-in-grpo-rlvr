@@ -3,7 +3,7 @@
 # Release: https://github.com/ggml-org/llama.cpp/releases/tag/b12359
 set -euo pipefail
 cd "$(dirname "$0")/.."
-test ! -f .env || { set -a; source .env; set +a; }
+source scripts/environment.sh
 destination="${GROTH_ROOT:-/mnt/d/AI/grothendieck-rlvr}/tools/llama-b12359-cuda12"
 mkdir -p "$destination/bin"
 base=https://github.com/ggml-org/llama.cpp/releases/download/b12359

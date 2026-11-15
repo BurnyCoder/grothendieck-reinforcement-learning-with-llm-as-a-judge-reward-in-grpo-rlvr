@@ -47,6 +47,12 @@ class CompositeReward:
         tasks = [Task.model_validate(t) for t in task_record]
         if len(texts) != len(tasks):
             raise ValueError("TRL task/completion alignment mismatch")
+        # Archive the whole sampled batch before any external check can fail. These
+        # records are observations only; a failed check must not create a reward.
+        for index, (task, text) in enumerate(zip(tasks, texts, strict=True)):
+            self.log.emit("policy_completion", task_id=task.id, completion_index=index,
+                          prompt=prompts[index] if prompts else task.problem, response=text,
+                          reward_call=self.calls)
         verdicts = [verify_answer(t, text) for t, text in zip(tasks, texts, strict=True)]
         assessments = [self.judge.assess(t, text) if v.correct and self.arm != "correctness" else None
                        for t, text, v in zip(tasks, texts, verdicts, strict=True)]

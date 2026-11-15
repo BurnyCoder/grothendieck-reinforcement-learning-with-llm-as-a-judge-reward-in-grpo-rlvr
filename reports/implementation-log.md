@@ -86,3 +86,36 @@ Official CUDA archives use the already-pinned source commit and independently
 published SHA-256 values. The setup script verifies them before extraction.
 CUDA availability and BF16 support are confirmed; policy backward/GRPO feasibility
 remains to be measured. Full interpreter output is unbuffered through the CLI.
+
+## 2026-11-15: native environment and pilot failure observability
+
+The native WSL environment uses the same source checkout and exactly the same
+package versions as the original environment; their complete `uv pip freeze`
+outputs compare equal. The published inventory is `environment-native.txt`,
+and workflow regression evidence is `verification-native-environment.xml`.
+This is an installation check, not a controlled import-speed experiment.
+
+Before the first optimizer update, inspection found that the reward callback
+logged policy completions only after all verifier/judge calls succeeded. A
+failure could therefore lose unassessed answers from that sampled batch. New
+failure-injection tests reproduced the loss. The callback now records every
+complete prompt/answer before verification or judging, without assigning a
+reward in those observation records. Scoring and training settings are unchanged.
+The in-flight pilot loaded the prior callback; the repair applies to subsequent
+processes. Both execution versions remain distinguishable in publication history.
+
+The first GRPO attempt then stopped during generation prefill, before any reward
+call or optimizer update. Its traceback contains a literal carriage return in
+the generated-module path. A byte check of the ignored `.env` confirmed CRLF on
+the compiler-cache assignment; Bash's original `source .env` preserved that
+character. A launcher regression reproduced the failure with a fake interpreter,
+without loading a model. The shared loader now strips only end-of-line carriage
+returns before sourcing configuration. Model versions and hyperparameters are
+unchanged; no PyTorch patch or fallback policy is warranted by this failure.
+
+The console, traceback, and derived failure record are retained under
+`reports/development/`. The interrupted run directory is archived under the
+artifact root, and the retry starts from the unchanged base because no complete
+checkpoint exists. The LF/CRLF launcher and failure-preservation tests are in
+`verification-launch-and-logging.xml`. The corrected GRPO execution still needs
+to demonstrate generation, backward, saving and resumption.

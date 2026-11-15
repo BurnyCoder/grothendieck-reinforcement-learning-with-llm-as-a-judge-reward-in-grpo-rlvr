@@ -113,6 +113,9 @@ evidence is retained. No calibration pass or training result is claimed yet.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 Four-completion GRPO and interrupted-checkpoint recovery remain to be exercised.
+The initial GRPO attempt stopped before an update because a Windows line ending
+entered the compiler-cache path. The launcher's configuration reader is repaired
+and regression-tested; the failed attempt remains in the development evidence.
 
 Target runtime is WSL Ubuntu, Python 3.12 and uv, with a project-local `.venv`.
 Large caches and run artifacts belong under `D:\AI\grothendieck-rlvr`
