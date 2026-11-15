@@ -83,5 +83,8 @@
   "judgment_explorer_pages_workflow": 43723292574,
   "reference_contract_failure_merge": "1d4bbb22c8eb8437083a0a2fa30365dab3f87cfd",
   "reference_contract_failure_huggingface_commit": "7acde613b4dbff502bc4ee03d6573565fba1e0df",
-  "reference_contract_failure_pages_workflow": 43725798451
+  "reference_contract_failure_pages_workflow": 43725798451,
+  "declared_eligibility_protocol_merge": "5604015533f78bd9c9ddc6634b40fbdea8004fe3",
+  "declared_eligibility_protocol_huggingface_commit": "48640f6590780be7671b310e542f5c2b1157a621",
+  "declared_eligibility_protocol_pages_workflow": 43726657258
 }
