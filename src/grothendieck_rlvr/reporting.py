@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .analysis import primary_comparison, summarize, transfer_analysis
-from .io import PROJECT, atomic_json, read_json, read_jsonl, root
+from .io import PROJECT, atomic_json, digest, read_json, read_jsonl, root
 
 ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
         "correctness-seed43", "theory-seed43", "correctness-seed44", "theory-seed44",
@@ -36,6 +36,9 @@ def collect() -> dict:
     calibration = [read_json(p) for p in (root() / "calibration").glob("*.json")
                    if ".lock." not in p.name and ".progress." not in p.name]
     examples = {name: sorted(rows, key=lambda r: r["task_id"])[:12] for name, rows in evaluations.items()}
+    feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json")) + list(
+        (root() / "feasibility").glob("*.json"))
+    feasibility = {digest(record): record for record in map(read_json, feasibility_paths)}
     return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg,
             "summaries": {name: summarize(rows) for name, rows in evaluations.items()},
             "strata": {name: {split: summarize([r for r in rows if r["split"] == split])
@@ -49,7 +52,22 @@ def collect() -> dict:
             "calibration": calibration, "development": development_records(), "examples": examples,
             "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
                                           cfg["transfer_sources"]),
-            "feasibility": [read_json(p) for p in (root() / "feasibility").glob("*.json")]}
+            "feasibility": list(feasibility.values())}
+
+
+def feasibility_text(snapshot) -> str:
+    """Memory evidence is distinct from mathematical accuracy and GRPO throughput."""
+    probes = [r for r in snapshot["feasibility"] if r.get("kind") == "maximum_length_backward"]
+    if not probes:
+        return "No completed maximum-length backward probe is recorded."
+    first = probes[0]
+    return (f"A recorded BF16 LoRA backward probe completed at {first['length']} tokens and microbatch "
+            f"{first['microbatch']}, with peak allocated GPU memory "
+            f"{first['peak_gpu_allocated_bytes']/2**30:.2f} GiB and reserved memory "
+            f"{first['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
+            f"{first['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
+            "input checks execution and memory, not mathematical ability or steady-state throughput. "
+            "It does not establish four-completion GRPO or checkpoint-resumption feasibility.")
 
 
 def display(value, digits=4) -> str:
@@ -188,7 +206,8 @@ def paper_sections(snapshot):
          "These counts are generated from reports/development logs. An interrupted CPU judging attempt and "
          "runtime changes are documented in the dated judge-runtime amendment. Partial judgments do not "
          "establish calibration reliability. The first conventional proof received nonzero novelty credit; "
-         "dedicated contrasts must test whether novelty is measured consistently. No comparative conclusion follows."),
+         "dedicated contrasts must test whether novelty is measured consistently. No comparative conclusion follows. "
+         + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
          "with all four targets retained. Comparisons require complete matching source and target coverage. "
@@ -317,8 +336,10 @@ def report() -> dict:
     (folder / "development-runtime.md").write_text(
         "# Development execution records\n\nGenerated from preserved timestamped logs. "
         "These are incomplete development attempts, not calibrated judges or comparative results. "
-        "See the dated runtime amendment for rationale, interruptions and next checks.\n\n```json\n" +
-        json.dumps(snapshot["development"], indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
+        "See the dated runtime amendment for rationale, interruptions and next checks.\n\n" +
+        feasibility_text(snapshot) + "\n\n```json\n" +
+        json.dumps({"judging": snapshot["development"], "feasibility": snapshot["feasibility"]},
+                   indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
     for run, metrics in snapshot["summaries"].items():
         folder = PROJECT / "reports/experiments"
         folder.mkdir(exist_ok=True)

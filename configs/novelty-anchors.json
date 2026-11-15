@@ -1,7 +1,7 @@
 {
-  "version": "v1",
+  "version": "v2",
   "interpretation": "Conventional reference approaches for task-relative novelty, not a map of model pretraining data or a historical novelty oracle.",
-  "gcd": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Merely restating or renaming these earns no novelty credit.",
+  "gcd": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
   "lcm": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
   "polynomial_multiplication": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
   "dice": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",

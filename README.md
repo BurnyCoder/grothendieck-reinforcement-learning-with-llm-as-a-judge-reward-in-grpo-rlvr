@@ -55,7 +55,7 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v2.txt) scores
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v3.txt) scores
 each criterion from 0 to 4, then takes a weighted mean divided by four:
 
 | Criterion | Weight | What earns credit |
@@ -74,6 +74,11 @@ not its name. The highest novelty score requires a reusable framework that
 organizes a meaningful family, demonstrates consequences and states boundaries.
 More distant connections are welcome when the bridge is established explicitly.
 Cosmetic renaming, exotic terminology and unsupported originality claims score zero.
+Standard correctness proofs, routine parameter substitutions and equivalent
+descriptions of a listed method also receive zero novelty credit. They can
+still score highly for justified theory. Early development judgments overcredited
+a conventional proof; the [v3 clarification](reports/amendments/2026-11-15-novelty-reference-boundary.md)
+addresses that observed failure, with recalibration still required.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,
@@ -105,6 +110,9 @@ Judge backend, GPU offload, KV-cache precision and batching are pinned in
 and calibration identities. Evaluation offload is tested separately from policy
 generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or training result is claimed yet.
+The first maximum-length BF16 LoRA backward probe passed; its measured memory
+and timing are in the [generated development report](reports/experiments/development-runtime.md).
+Four-completion GRPO and interrupted-checkpoint recovery remain to be exercised.
 
 Target runtime is WSL Ubuntu, Python 3.12 and uv, with a project-local `.venv`.
 Large caches and run artifacts belong under `D:\AI\grothendieck-rlvr`

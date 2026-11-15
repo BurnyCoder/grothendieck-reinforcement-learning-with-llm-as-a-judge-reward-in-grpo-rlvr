@@ -1,0 +1,10 @@
+{
+  "kind": "maximum_length_backward",
+  "length": 2560,
+  "microbatch": 1,
+  "seconds": 941.7167526960002,
+  "loss": 0.000297099380986765,
+  "peak_gpu_allocated_bytes": 5107058688,
+  "peak_gpu_reserved_bytes": 5194645504,
+  "pilot_updates_discarded": true
+}
