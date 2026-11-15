@@ -3,6 +3,7 @@
 Server API: https://github.com/ggml-org/llama.cpp/tree/master/tools/server
 SQLite durability: https://docs.python.org/3/library/sqlite3.html
 """
+import asyncio
 import json
 import sqlite3
 import time
@@ -19,6 +20,7 @@ from .schema import Assessment, Criterion, Task
 
 RETRY_PROTOCOL = {"version": "validation-feedback-v1", "max_attempts": 3,
                   "error_character_limit": 2000, "feedback_history": "latest_invalid_assessment_only"}
+TRANSPORT_PROTOCOL = "stream-total-deadline-v1"
 
 
 class JudgeFailure(RuntimeError):
@@ -68,25 +70,40 @@ class LocalChat:
             request["response_format"] = {"type": "json_schema", "json_schema": {
                 "name": "assessment", "strict": True, "schema": schema}}
         self.log.emit("model_request", model=self.model, request=request)
-        pieces = []
         start = time.monotonic()
-        with httpx.Client(timeout=self.timeout, trust_env=False) as client:
-            with client.stream("POST", self.url + "/v1/chat/completions", json=request) as response:
-                response.raise_for_status()
-                for line in response.iter_lines():
-                    if not line.startswith("data: ") or line == "data: [DONE]":
-                        continue
-                    chunk = json.loads(line[6:])
-                    for choice in chunk.get("choices", []):
-                        delta = choice.get("delta", {})
-                        if delta:
-                            self.log.emit("model_chunk", model=self.model, delta=delta)
-                        pieces.append(delta.get("content") or "")
-        text = "".join(pieces)
+        try:
+            text = asyncio.run(self._stream(request))
+        except TimeoutError as exc:
+            self.log.emit("model_timeout", model=self.model, seconds=time.monotonic()-start,
+                          deadline_seconds=self.timeout)
+            raise JudgeFailure(f"Local server exceeded total request deadline ({self.timeout}s)") from exc
         self.log.emit("model_response", model=self.model, response=text, seconds=time.monotonic()-start)
         if not text:
             raise JudgeFailure("Local server returned no visible content")
         return text
+
+    async def _stream(self, request: dict) -> str:
+        """Cancel and close slow streams, even when each chunk beats HTTPX's read timeout.
+
+        https://www.python-httpx.org/advanced/timeouts/ describes per-chunk limits.
+        https://docs.python.org/3.12/library/asyncio-task.html#asyncio.timeout
+        supplies the enclosing wall-clock deadline, including connection and prefill.
+        """
+        pieces = []
+        async with asyncio.timeout(self.timeout):
+            async with httpx.AsyncClient(timeout=self.timeout, trust_env=False) as client:
+                async with client.stream("POST", self.url + "/v1/chat/completions", json=request) as response:
+                    response.raise_for_status()
+                    async for line in response.aiter_lines():
+                        if not line.startswith("data: ") or line == "data: [DONE]":
+                            continue
+                        chunk = json.loads(line[6:])
+                        for choice in chunk.get("choices", []):
+                            delta = choice.get("delta", {})
+                            if delta:
+                                self.log.emit("model_chunk", model=self.model, delta=delta)
+                            pieces.append(delta.get("content") or "")
+        return "".join(pieces)
 
 
 class Judge:
@@ -118,6 +135,8 @@ class Judge:
                                 "schema": assessment_schema(), "max_tokens": self.config["judge_max_tokens"],
                                 "criterion_field_order": list(Criterion.model_fields),
                                 "retry_protocol": RETRY_PROTOCOL,
+                                "transport_protocol": TRANSPORT_PROTOCOL,
+                                "request_deadline_seconds": self.config["judge_timeout_seconds"],
                                 "temperature": 0, "seed": 42, "thinking": False})
 
     def assess(self, task: Task, response: str) -> Assessment:

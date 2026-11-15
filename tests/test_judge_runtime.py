@@ -17,6 +17,18 @@ def test_runtime_changes_judge_identity(tmp_path, monkeypatch):
     assert judge.identity != changed.identity
 
 
+def test_runtime_environment_overrides_inherited_wait_settings(monkeypatch):
+    """A shell setting must not silently alter the registered synchronization policy."""
+    monkeypatch.setenv("OMP_WAIT_POLICY", "ACTIVE")
+    monkeypatch.setenv("GOMP_SPINCOUNT", "INFINITE")
+    monkeypatch.setenv("UNRELATED_FIXTURE", "preserved")
+    passive = models.judge_environment({"environment": {"OMP_WAIT_POLICY": "PASSIVE", "GOMP_SPINCOUNT": "0"}})
+    assert passive["OMP_WAIT_POLICY"] == "PASSIVE" and passive["GOMP_SPINCOUNT"] == "0"
+    defaults = models.judge_environment({"environment": {"OMP_WAIT_POLICY": None, "GOMP_SPINCOUNT": None}})
+    assert "OMP_WAIT_POLICY" not in defaults and "GOMP_SPINCOUNT" not in defaults
+    assert defaults["UNRELATED_FIXTURE"] == "preserved"
+
+
 def test_training_judge_cannot_offload_and_unregistered_override_is_rejected(monkeypatch):
     """Reject configuration drift before opening either weights or a server."""
     monkeypatch.setattr(models.subprocess, "run", lambda *a, **k: pytest.fail("Must reject before launch"))

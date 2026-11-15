@@ -4,12 +4,12 @@ https://github.com/ggml-org/llama.cpp/tree/b1b770d90d94cad9e9ea5b993bdbc383a522f
 These synthetic token timings never enter mathematical evaluation results.
 """
 import hashlib
-import os
 import socket
 import subprocess
 from datetime import datetime, timezone
 
 from .io import PROJECT, EventLog, atomic_json, read_json, read_jsonl, root
+from .models import judge_environment
 
 
 def benchmark_judge(sweep="threads") -> dict:
@@ -47,16 +47,18 @@ def benchmark_judge(sweep="threads") -> dict:
                       ("-fa", "flash_attention"), ("-ctk", "cache_type_k"), ("-ctv", "cache_type_v")):
         command += [flag, str(runtime[key])]
     log = EventLog(directory / "events.jsonl")
+    environment = judge_environment(runtime)
     config = {"kind": "synthetic_judge_runtime_benchmark", "sweep": sweep, "model": model, "runtime": runtime,
               "source_revision": revision, "executable_sha256": executable_hash,
               "command": command, "timeout_seconds": 900, "threads": threads,
               "gpu_layers": gpu_layers, "depth": depth,
-              "environment": {k: os.environ.get(k) for k in ("OMP_NUM_THREADS", "OMP_WAIT_POLICY", "GOMP_SPINCOUNT")}}
+              "environment": {k: environment.get(k) for k in ("OMP_NUM_THREADS", "OMP_WAIT_POLICY", "GOMP_SPINCOUNT")}}
     atomic_json(directory / "config.json", config)
     log.emit("benchmark_started", configuration=config)
     with (directory / "timings.jsonl").open("wb") as output, (directory / "stderr.log").open("wb") as errors:
         try:
-            completed = subprocess.run(command, stdout=output, stderr=errors, timeout=900, check=False)
+            completed = subprocess.run(command, stdout=output, stderr=errors, timeout=900, check=False,
+                                       env=environment)
             status = {"exit_code": completed.returncode, "timed_out": False}
         except subprocess.TimeoutExpired:
             status = {"exit_code": None, "timed_out": True}

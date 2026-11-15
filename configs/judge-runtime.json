@@ -8,7 +8,8 @@
     "ubatch_size": 512,
     "flash_attention": "auto",
     "cache_type_k": "f16",
-    "cache_type_v": "f16"
+    "cache_type_v": "f16",
+    "environment": {"OMP_WAIT_POLICY": null, "GOMP_SPINCOUNT": null}
   },
   "evaluation_judge": {
     "backend": "cuda12.8",
@@ -19,6 +20,7 @@
     "ubatch_size": 512,
     "flash_attention": "auto",
     "cache_type_k": "f16",
-    "cache_type_v": "f16"
+    "cache_type_v": "f16",
+    "environment": {"OMP_WAIT_POLICY": "PASSIVE", "GOMP_SPINCOUNT": "0"}
   }
 }
