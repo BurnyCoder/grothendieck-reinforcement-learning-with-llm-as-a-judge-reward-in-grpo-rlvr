@@ -71,5 +71,8 @@
   "gemma_negative_calibration_pages_workflow": 43717566635,
   "bounded_reasoning_protocol_merge": "9c7c574989bb92184bd60774d7a7a7842f010be1",
   "bounded_reasoning_protocol_huggingface_commit": "a040d614140943560ec9a239c614ca07fc11db00",
-  "bounded_reasoning_protocol_pages_workflow": 43719772427
+  "bounded_reasoning_protocol_pages_workflow": 43719772427,
+  "bounded_reasoning_failure_merge": "e9a152e7429b605d84c1e597456d359cbeb02077",
+  "bounded_reasoning_failure_huggingface_commit": "17456e36ab367f160f3e3eb569887df410a30a41",
+  "bounded_reasoning_failure_pages_workflow": 43721721463
 }

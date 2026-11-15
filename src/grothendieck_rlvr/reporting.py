@@ -253,6 +253,10 @@ def paper_sections(snapshot):
          "20% weight, judged relative to published conventional approaches. New objects, definitions, invariants, "
          "frameworks and distant mathematical connections earn that credit only when justified and useful. "
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
+         "The current reference-comparison protocol records an added construction and its use before scoring "
+         "novelty. Code rejects positive novelty without an explicit beyond-reference decision and matching "
+         "excerpts. Checklist-based judging [14] motivates these auditable prerequisites; the checks do not "
+         "certify mathematical entailment. "
          "Final-answer verification does not certify surrounding proofs."),
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
          "on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies "
@@ -293,8 +297,8 @@ def paper_sections(snapshot):
          "a transport failure; that short run does not establish sustained reliability. "
          "Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional "
          "generalized explanations. It was interrupted for a documented reasoning-mode development "
-         "revision, without being declared a calibration pass or threshold failure. "
-         + calibration_text(snapshot) + " No comparative conclusion follows. "
+         "revision, without being declared a calibration pass or threshold failure."
+         + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
@@ -333,6 +337,7 @@ REFERENCES = [
     ("Lipton and Steinhardt, Troubling Trends", "https://arxiv.org/abs/1807.03341"),
     ("Explicit Reasoning Makes Better Judges", "https://arxiv.org/abs/2509.13332"),
     ("SLMJury", "https://arxiv.org/abs/2606.07810"),
+    ("RULERS: Locked Rubrics and Evidence-Anchored Scoring", "https://arxiv.org/abs/2601.08654"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")
@@ -366,7 +371,8 @@ def write_paper(snapshot, rows, destination: Path):
     markdown = [f"# {title}", f"Libor “Burny” Burian · {date}"]
     for heading, body in paper_sections(snapshot):
         markdown.extend([f"## {heading}", body])
-        story.extend([Paragraph(heading, styles["Heading2"]), Paragraph(html.escape(body), styles["BodyText"])])
+        story.append(Paragraph(heading, styles["Heading2"]))
+        story.extend(Paragraph(html.escape(paragraph), styles["BodyText"]) for paragraph in body.split("\n\n"))
         if heading == "Method":
             story.append(Image(str(PROJECT / "site/figures/architecture.png"), width=6.7*inch, height=2.01*inch))
         if heading == "Results and claims":

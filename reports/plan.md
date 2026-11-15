@@ -94,6 +94,11 @@ That Qwen reasoning attempt has now failed the unchanged futility gate; see its
 variants under that protocol will not run. Investigate explicit comparison with
 the fixed conventional reference before choosing a numerical novelty score;
 publish a further amendment before new inference. Acceptance gates remain fixed.
+The [v5 amendment](amendments/2026-11-15-explicit-reference-decisions.md)
+implements this explicit decision and consistency check. It clarifies the finite
+reference boundary while preserving all cases, labels, ordering and thresholds.
+Test Qwen quoted development first, then the remaining variants only on a full
+pass. Schema compliance alone cannot establish valid novelty discrimination.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
