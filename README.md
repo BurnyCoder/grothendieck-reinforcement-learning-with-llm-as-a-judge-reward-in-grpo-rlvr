@@ -132,11 +132,13 @@ Gemma's initial CUDA attempt decoded too slowly to complete usefully. A
 favored the existing thread count, which is retained. A clean standalone retry
 completed judgments, including an invalid-excerpt failure followed by an accepted
 retry. The slowdown's cause remains unisolated; all attempts are preserved.
-The initial v4 novelty contrasts passed, but full calibration remains unfinished.
+The initial v4 novelty contrasts included passes and a disagreement over novelty
+in a conventional control; full calibration remains unfinished.
 The [registered offload diagnostic](reports/amendments/2026-11-15-evaluation-offload-diagnostic.md)
-did not favor greater GPU use, so the existing evaluation runtime is retained.
-Its full-context timings are in the generated development report. Calibration
-resumes with the same identity and cached judgments.
+did not favor greater GPU use, so the GPU layer count is retained. Its full-context
+timings are in the generated development report. Passive OpenMP waiting and the
+new total streaming deadline change the calibration identity; previous judgments
+remain archived rather than being pooled with the new run.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving

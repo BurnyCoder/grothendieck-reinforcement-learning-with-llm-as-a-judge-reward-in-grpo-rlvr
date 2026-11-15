@@ -56,5 +56,8 @@
   "offload_evidence_pages_workflow": 43710850634,
   "matched_training_budget_merge": "370878dfda5a21899ac5a8f38f36e8c7d059108b",
   "matched_training_budget_huggingface_commit": "107970effe7415d1bfda1202aae144b6847f0f49",
-  "matched_training_budget_pages_workflow": 43711637902
+  "matched_training_budget_pages_workflow": 43711637902,
+  "judge_deadline_merge": "8b60192f99e9eb3da5127e2f1fd365f3fd7af2f0",
+  "judge_deadline_huggingface_commit": "691f1cbf098236a642d8a19e0885ff9251eaa039",
+  "judge_deadline_pages_workflow": 43714169055
 }
