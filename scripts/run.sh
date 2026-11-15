@@ -8,4 +8,5 @@ if test -f .env; then
   set +a
 fi
 export PYTHONHASHSEED=0
+export PYTHONUNBUFFERED=1
 exec .venv/bin/python -m grothendieck_rlvr.cli "$@"
