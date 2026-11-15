@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "judge_prompt_version": "v2",
+  "judge_prompt_version": "v3",
   "data_seed": 20261115,
   "training_seeds": [42, 43, 44],
   "max_steps": 256,

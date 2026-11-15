@@ -6,6 +6,10 @@ Updated 2026-11-15. Authority: user-approved Qwen3.5/Gemma plan and
 This checklist is a status record, not
 evidence of model performance.
 
+Development judging motivated a [v3 novelty-boundary clarification](amendments/2026-11-15-novelty-reference-boundary.md).
+The v2 attempts are preserved; v3 calibration and untouched locked audits remain
+required. No comparative run has begun.
+
 - [x] Inspect workspace, local hardware and publication accounts.
 - [x] Review relevant mathematics, rubric RL, theory formation and runtime sources.
 - [x] Specify hypotheses, splits, reward, controls, calibration and analysis.
@@ -34,7 +38,9 @@ evidence of model performance.
 - [ ] Evaluate all frozen comparison checkpoints on the separate OOD suite.
 - [ ] Publish each milestone, including negative/unfinished outcomes.
 
-Model downloads and artifact hashes are complete. Development Gemma judging has
+Model downloads and artifact hashes are complete. The maximum-length BF16 LoRA
+backward probe passed; four-completion GRPO and checkpoint resumption remain
+pending. Development Gemma judging has
 started but is incomplete; the interrupted CPU attempt is retained. Evaluation
 GPU offload and the policy backward probe are being checked under the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
