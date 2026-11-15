@@ -59,5 +59,8 @@
   "matched_training_budget_pages_workflow": 43711637902,
   "judge_deadline_merge": "8b60192f99e9eb3da5127e2f1fd365f3fd7af2f0",
   "judge_deadline_huggingface_commit": "691f1cbf098236a642d8a19e0885ff9251eaa039",
-  "judge_deadline_pages_workflow": 43714169055
+  "judge_deadline_pages_workflow": 43714169055,
+  "calibration_status_docs_merge": "189194418a8b699dfcbf38d64ebe27d95bc5cb24",
+  "calibration_status_docs_huggingface_commit": "109b016b020e26b1d5791857a56a20f45f8de7a8",
+  "calibration_status_docs_pages_workflow": 43714520647
 }

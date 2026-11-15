@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T12:28:44.938811+00:00",
+  "generated_at": "2026-11-15T12:56:58.563721+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v4",
@@ -3177,6 +3177,20 @@
     ],
     "judged_training_arms": 5,
     "selected_updates": 64,
+    "planned_exposure": {
+      "completions": 512,
+      "prompt_occurrences": 128,
+      "distinct_prompts": 128,
+      "manifest_prompts": 1024,
+      "distinct_by_family": {
+        "dice": 23,
+        "gcd": 32,
+        "lcm": 39,
+        "polynomial_multiplication": 34
+      },
+      "manifest_hash": "9d9d665ec3b483f0fe07f64f48d57988a18f6554348412774f4fe1ef2a556cd5",
+      "assumption": "One GPU, sequential pre-shuffled manifest, one GRPO iteration, completed fixed budget. Actual exposure must be checked against rollout logs."
+    },
     "assumption": "Each future step repeats one observed development interval. These are scenarios, not confidence bounds.",
     "limitations": "Two intervals, including first-use overhead; v3 judge protocol. Future lengths, accuracy, theory and v4 latency may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
     "options": [
