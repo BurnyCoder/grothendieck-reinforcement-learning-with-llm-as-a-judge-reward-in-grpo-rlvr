@@ -76,9 +76,10 @@ More distant connections are welcome when the bridge is established explicitly.
 Cosmetic renaming, exotic terminology and unsupported originality claims score zero.
 Standard correctness proofs, routine parameter substitutions and equivalent
 descriptions of a listed method also receive zero novelty credit. They can
-still score highly for justified theory. Early development judgments overcredited
-a conventional proof; the [v3 clarification](reports/amendments/2026-11-15-novelty-reference-boundary.md)
-addresses that observed failure, with recalibration still required.
+still score highly for justified theory. Development judgments overcredited
+conventional proofs. The [v3 clarification](reports/amendments/2026-11-15-novelty-reference-boundary.md)
+has not eliminated that error in the observed development cases. Calibration
+remains incomplete; the novelty reward is implemented but not yet validated.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,
@@ -112,7 +113,10 @@ generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or training result is claimed yet.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
-Four-completion GRPO and interrupted-checkpoint recovery remain to be exercised.
+The repaired four-completion GRPO pilot completed backward, checkpoint saving
+and resumption. The resumed boundary used a nonzero learning rate and changed
+the adapter tensors; pilot adapters are excluded from experimental initialization.
+This establishes execution feasibility, not improved mathematical behavior.
 The initial GRPO attempt stopped before an update because a Windows line ending
 entered the compiler-cache path. The launcher's configuration reader is repaired
 and regression-tested; the failed attempt remains in the development evidence.

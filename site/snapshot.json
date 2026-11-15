@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T09:56:16.727903+00:00",
+  "generated_at": "2026-11-15T10:32:36.233367+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v3",
@@ -46,7 +46,184 @@
     "status": "pending",
     "reason": "No matched trained arms have been evaluated"
   },
-  "training": {},
+  "training": {
+    "pilot-theory-seed42": [
+      {
+        "time": "2026-11-15T10:14:09.964405+00:00",
+        "kind": "reward_batch",
+        "reward_call": 0,
+        "accuracy": 0.625,
+        "theory": 0.0,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      {
+        "time": "2026-11-15T10:15:37.567241+00:00",
+        "kind": "training_metrics",
+        "step": 1,
+        "metrics": {
+          "loss": 0.0416717529296875,
+          "grad_norm": 0.08497752994298935,
+          "learning_rate": 0.0,
+          "num_tokens": 9310.0,
+          "completions/mean_length": 1009.25,
+          "completions/min_length": 464.0,
+          "completions/max_length": 2048.0,
+          "completions/clipped_ratio": 0.125,
+          "completions/mean_terminated_length": 860.857177734375,
+          "completions/min_terminated_length": 464.0,
+          "completions/max_terminated_length": 1793.0,
+          "rewards/correctness_gated_theory/mean": 0.625,
+          "rewards/correctness_gated_theory/std": 0.5175492167472839,
+          "reward": 0.625,
+          "reward_std": 0.5175492167472839,
+          "frac_reward_zero_std": 0.0,
+          "completion_length": 1009.25,
+          "kl": 0.0,
+          "clip_ratio/low_mean": 0.0,
+          "clip_ratio/low_min": 0.0,
+          "clip_ratio/high_mean": 0.0,
+          "clip_ratio/high_max": 0.0,
+          "clip_ratio/region_mean": 0.0,
+          "step_time": 699.9325059050007,
+          "epoch": 0.03125
+        },
+        "elapsed_seconds": 706.9352667179992,
+        "peak_gpu_allocated_bytes": 5255273984,
+        "peak_gpu_reserved_bytes": 6524239872
+      },
+      {
+        "time": "2026-11-15T10:15:41.733429+00:00",
+        "kind": "checkpoint",
+        "step": 1,
+        "path": "/mnt/d/AI/grothendieck-rlvr/runs/pilot-theory-seed42/checkpoint-1",
+        "status": "complete"
+      },
+      {
+        "time": "2026-11-15T10:15:41.744369+00:00",
+        "kind": "training_metrics",
+        "step": 1,
+        "metrics": {
+          "train_runtime": 773.0708,
+          "train_samples_per_second": 0.021,
+          "train_steps_per_second": 0.003,
+          "total_flos": 0.0,
+          "train_loss": 0.0416717529296875,
+          "epoch": 0.03125
+        },
+        "elapsed_seconds": 711.1123849469986,
+        "peak_gpu_allocated_bytes": 5255273984,
+        "peak_gpu_reserved_bytes": 6524239872
+      },
+      {
+        "time": "2026-11-15T10:15:44.482395+00:00",
+        "kind": "training_finished",
+        "run_id": "pilot-theory-seed42",
+        "step": 1,
+        "metrics": {
+          "train_runtime": 773.0708,
+          "train_samples_per_second": 0.021,
+          "train_steps_per_second": 0.003,
+          "total_flos": 0.0,
+          "train_loss": 0.0416717529296875,
+          "epoch": 0.03125
+        },
+        "elapsed_seconds": 713.7929937680001,
+        "peak_gpu_allocated_bytes": 5255273984,
+        "peak_gpu_reserved_bytes": 6524239872,
+        "completed": false,
+        "pilot": true
+      },
+      {
+        "time": "2026-11-15T10:28:40.534727+00:00",
+        "kind": "reward_batch",
+        "reward_call": 1,
+        "accuracy": 0.5,
+        "theory": 0.0,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      {
+        "time": "2026-11-15T10:29:39.613798+00:00",
+        "kind": "training_metrics",
+        "step": 2,
+        "metrics": {
+          "loss": 0.08905266225337982,
+          "grad_norm": 0.07683244347572327,
+          "learning_rate": 1e-05,
+          "num_tokens": 20718.0,
+          "completions/mean_length": 1280.0,
+          "completions/min_length": 405.0,
+          "completions/max_length": 2048.0,
+          "completions/clipped_ratio": 0.375,
+          "completions/mean_terminated_length": 819.2000122070312,
+          "completions/min_terminated_length": 405.0,
+          "completions/max_terminated_length": 1053.0,
+          "rewards/correctness_gated_theory/mean": 0.5,
+          "rewards/correctness_gated_theory/std": 0.5345224738121033,
+          "reward": 0.5,
+          "reward_std": 0.5345224738121033,
+          "frac_reward_zero_std": 0.0,
+          "completion_length": 1280.0,
+          "kl": 8.445791036137962e-05,
+          "clip_ratio/low_mean": 0.0,
+          "clip_ratio/low_min": 0.0,
+          "clip_ratio/high_mean": 0.0,
+          "clip_ratio/high_max": 0.0,
+          "clip_ratio/region_mean": 0.0,
+          "step_time": 480.664855666997,
+          "epoch": 0.0625
+        },
+        "elapsed_seconds": 486.2043343870009,
+        "peak_gpu_allocated_bytes": 5338635264,
+        "peak_gpu_reserved_bytes": 6706692096
+      },
+      {
+        "time": "2026-11-15T10:29:43.275703+00:00",
+        "kind": "checkpoint",
+        "step": 2,
+        "path": "/mnt/d/AI/grothendieck-rlvr/runs/pilot-theory-seed42/checkpoint-2",
+        "status": "complete"
+      },
+      {
+        "time": "2026-11-15T10:29:43.287157+00:00",
+        "kind": "training_metrics",
+        "step": 2,
+        "metrics": {
+          "train_runtime": 535.3241,
+          "train_samples_per_second": 0.03,
+          "train_steps_per_second": 0.004,
+          "total_flos": 0.0,
+          "train_loss": 0.04452633112668991,
+          "epoch": 0.0625
+        },
+        "elapsed_seconds": 489.87809499800096,
+        "peak_gpu_allocated_bytes": 5338635264,
+        "peak_gpu_reserved_bytes": 6706692096
+      },
+      {
+        "time": "2026-11-15T10:29:45.872054+00:00",
+        "kind": "training_finished",
+        "run_id": "pilot-theory-seed42",
+        "step": 2,
+        "metrics": {
+          "train_runtime": 535.3241,
+          "train_samples_per_second": 0.03,
+          "train_steps_per_second": 0.004,
+          "total_flos": 0.0,
+          "train_loss": 0.04452633112668991,
+          "epoch": 0.0625
+        },
+        "elapsed_seconds": 492.45487092300027,
+        "peak_gpu_allocated_bytes": 5338635264,
+        "peak_gpu_reserved_bytes": 6706692096,
+        "completed": true,
+        "pilot": true
+      }
+    ]
+  },
   "secondary_ood": {
     "status": "pending",
     "reason": "No matched trained arms have been evaluated"
@@ -131,6 +308,443 @@
       "incomplete_requests": 0,
       "response_seconds": [],
       "assessments": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/pilot-theory-seed42.jsonl",
+      "requests": 9,
+      "completed_responses": 9,
+      "incomplete_requests": 0,
+      "response_seconds": [
+        67.61513415000081,
+        96.94919308700082,
+        71.29852653499984,
+        79.3811234449986,
+        58.72902571099985,
+        94.32750590900105,
+        68.71908656999949,
+        90.65393820700046,
+        66.25125011500131
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T10:08:31.608483+00:00",
+          "kind": "judge_assessment",
+          "key": "ec553d8bc22510be33cdaca5a332f55c8d1f4daeab783652f5ca1193a3281f18",
+          "task_id": "dev-762a8cd54c022d27bb19",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions introduced; purely procedural calculation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization beyond the specific instance provided."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Result derived via direct computation, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual economy achieved; standard algorithmic expansion used."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Response follows conventional reference method exactly with no conceptual departure."
+              }
+            },
+            "problems": [
+              "Candidate response is a direct execution of the conventional reference method (distributive property) without introducing any new objects, definitions, invariants, or frameworks."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:10:17.724559+00:00",
+          "kind": "judge_assessment",
+          "key": "ccf5ab759e578eac3e06080378a71a8198ae0d8e769a269c7b2cc7b38fcfd0c2",
+          "task_id": "dev-762a8cd54c022d27bb19",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions introduced; purely procedural calculation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization beyond the specific instance provided."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Result derived via standard arithmetic, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical domains or applications demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual economy achieved; standard expansion method used without abstraction."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Solution follows conventional reference method exactly; no novel concepts or frameworks added."
+              }
+            },
+            "problems": [
+              "Response is a direct execution of the conventional reference method (distributive property) with no theoretical contribution.",
+              "No new objects, definitions, invariants, or frameworks are introduced to reorganize the problem.",
+              "The solution adheres strictly to formatting constraints but offers no mathematical insight beyond the specific calculation."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:11:35.198760+00:00",
+          "kind": "judge_assessment",
+          "key": "8d9f3c3447feb14c7df4e1225f7cb5e9464337b20eec4b7de95f25b062c66053",
+          "task_id": "dev-762a8cd54c022d27bb19",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions introduced; purely procedural calculation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization beyond the specific instance provided."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Result derived via standard arithmetic, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual economy achieved; standard algorithmic execution."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Response uses conventional reference method (distributive property) with no novel construction."
+              }
+            },
+            "problems": [
+              "Candidate response is a standard arithmetic calculation without any theoretical framework, definitions, or generalizations."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:13:04.414151+00:00",
+          "kind": "judge_assessment",
+          "key": "3da68664e2b7dcef65453da81ef26862a8ab55c914b4173cfa90fed72a022b28",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions beyond standard arithmetic were introduced."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The solution is specific to the given numbers with no generalization attempted."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result was derived via direct computation, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical domains or applications were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The explanation relies on standard elementary methods without conceptual refinement."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses the conventional reference method (prime factorization) with no novel conceptual departure."
+              }
+            },
+            "problems": [
+              "The response provides a correct computational solution but offers no theoretical framework, definitions, or generalizations. It strictly adheres to the conventional reference method (prime factorization) without introducing any new mathematical objects, invariants, or structures. Consequently, it fails to meet the criteria for structural understanding, generality, or novelty."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:14:09.685952+00:00",
+          "kind": "judge_assessment",
+          "key": "6aae9deccd7f50281912a4f12bd882752f6c408d86e8dd683db5996926fe781a",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions beyond standard arithmetic were introduced."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The solution is specific to the given numbers with no generalization attempted."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is derived via direct computation, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The explanation uses standard factorization without unnecessary or motivated abstraction."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response relies entirely on the conventional reference method of prime factorization with no novel conceptual departure."
+              }
+            },
+            "problems": [
+              "The response provides a correct computational solution but fails to offer any theoretical framework, definitions, or generalizations. It adheres strictly to the conventional reference method (prime factorization) without introducing new objects, invariants, or relationships that would elevate the understanding of the problem beyond routine calculation."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:24:31.055772+00:00",
+          "kind": "judge_assessment",
+          "key": "e66152357d614e2600a193799d000756ad407ecac8346868877db0dd7b8f431e",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions introduced; purely procedural calculation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization beyond the specific instance of three numbers."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Result derived via standard algorithm, not as a consequence of a new theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical domains or applications demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Standard arithmetic steps lack the motivation or economy of a theoretical framework."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Uses conventional prime factorization method; no novel concepts, definitions, or frameworks added."
+              }
+            },
+            "problems": [
+              "Response relies entirely on conventional arithmetic algorithms without introducing any new mathematical objects, definitions, or theoretical frameworks."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:25:46.346484+00:00",
+          "kind": "judge_assessment",
+          "key": "28a035fa6a447691c8a565dce981e15e983c3bcfe1e2b380f2888b1ff51b5500",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions introduced; purely computational."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general method or family of problems addressed."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Result derived via standard algorithm, not as a consequence of theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications made."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Standard arithmetic steps lack conceptual motivation or economy."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Uses conventional prime factorization method; no novel concepts or frameworks added."
+              }
+            },
+            "problems": [
+              "Response relies entirely on standard arithmetic algorithms without introducing any new mathematical objects, definitions, or theoretical frameworks."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:27:26.975681+00:00",
+          "kind": "judge_assessment",
+          "key": "37cc920d8cc2ce7333865a1d30c32c0e7cce37ae7442e2ccc6794c602a5259dd",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions beyond standard arithmetic steps were introduced."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The solution is specific to the given numbers with no generalization attempted."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is derived via direct calculation, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical domains or applications were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The explanation uses standard, non-abridged methods without conceptual economy."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response strictly follows the conventional reference method of prime factorization without any novel conceptual departure."
+              }
+            },
+            "problems": [
+              "The response provides a correct computational solution but fails to offer any theoretical framework, definitions, or generalizations. It adheres entirely to the conventional reference method, resulting in a score of zero for all criteria requiring theory building or novelty."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:28:39.905410+00:00",
+          "kind": "judge_assessment",
+          "key": "1df8e9ed833579e53492b5ffdd682712136dba390f61e67274bcd11e3b8c842a",
+          "task_id": "dev-e57b1263bc87b1ad2844",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or structural analysis provided; only procedural calculation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization beyond the specific instance of the given polynomial."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is derived via direct computation, not as a consequence of a broader theory."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical domains or reusable constructions demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The explanation relies on standard arithmetic steps without conceptual economy or abstraction."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses the conventional FOIL method with no novel definitions, invariants, or conceptual departures."
+              }
+            },
+            "problems": [
+              "The response provides only a standard arithmetic calculation without any theoretical framework, definitions, or generalizations.",
+              "No constructive novelty is present; the method is identical to the conventional reference."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        }
+      ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -352,6 +966,913 @@
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/qwen-cpu-v3-interrupted.jsonl",
+      "requests": 18,
+      "completed_responses": 17,
+      "incomplete_requests": 1,
+      "response_seconds": [
+        125.11962845000016,
+        46.77010226099992,
+        106.27432312999917,
+        46.44797811200078,
+        86.64615638299983,
+        50.82657603000007,
+        110.032264597,
+        46.792062558,
+        84.03816312900017,
+        51.14394685100069,
+        89.54981391700039,
+        56.53132961600022,
+        82.38844162300029,
+        60.352860060999774,
+        77.89780322700062,
+        68.88939599399964,
+        93.1076658009988
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T09:44:15.405695+00:00",
+          "kind": "judge_assessment",
+          "key": "4124b1be3d35058ac3eb16de79e7d462e086e6781dc4bc2563a148d9a25bfefd",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Defines the invariant relationship between gcd(2n,3n) and n via linear combination, explaining the structure of common divisors."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "Validly generalizes the specific instance to a parameterized family of integers with clear assumptions."
+              },
+              "problem_as_consequence": {
+                "score": 3,
+                "evidence": [
+                  "With n=4, the answer is 4."
+                ],
+                "rationale": "The specific result follows directly and naturally from the established general principle without hiding steps."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility."
+                ],
+                "rationale": "Demonstrates a substantive connection to Euclid's algorithm, showing how the specific invariant generalizes to a broader class of problems."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Uses a concise, functional definition of the invariant to solve the problem and derive further consequences efficiently."
+              },
+              "constructive_novelty": {
+                "score": 2,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate reframes the specific gcd(8,12) problem as a consequence of the general invariant gcd(2n,3n)=n. This is a valid, nontrivial organizing definition that explains the problem and supports the connection to Euclid's algorithm, exceeding the conventional reference of simply listing divisors or applying the algorithm directly to 8 and 12."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.7000000000000001,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T09:45:05.800217+00:00",
+          "kind": "judge_assessment",
+          "key": "17684f0aa228da18cb4ecf3293c350145f3cddc173ac28af3074053e63dd363b",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions, objects, or relationships were introduced to explain the problem."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general method or family of assumptions was established."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result was stated directly without derivation from a framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or consequences were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or lemmas were provided to assess economy."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response used a direct computation, which is the conventional reference method; no novel construction was added."
+              }
+            },
+            "problems": [
+              "The candidate provided only a direct computation of the specific instance without constructing any theory, definitions, or general principles."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:47:03.192320+00:00",
+          "kind": "judge_assessment",
+          "key": "fd56b1caaf4f4da93bcfc241431120d7b55ea360fa42ab3842e420b67e2faddd",
+          "task_id": "calibration-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple.",
+                  "max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Candidate correctly identifies prime exponent maximization as the structural definition of LCM and links it to GCD via exponent arithmetic."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents."
+                ],
+                "rationale": "The argument generalizes from the specific 2n, 3n case to arbitrary positive integers a,b using prime exponent logic."
+              },
+              "problem_as_consequence": {
+                "score": 3,
+                "evidence": [
+                  "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6. Conversely 6n is a multiple of each. Hence lcm(2n,3n)=6n for positive integer n, giving 42."
+                ],
+                "rationale": "The specific result 42 follows directly from the general principle that lcm(2n,3n)=6n derived from coprimality."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Candidate connects LCM to GCD via the identity max+min=u+v, demonstrating a reusable algebraic relationship between the two concepts."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Definitions are concise and motivated by the fundamental property of prime exponents, avoiding unnecessary abstraction."
+              },
+              "constructive_novelty": {
+                "score": 1,
+                "evidence": [
+                  "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6."
+                ],
+                "rationale": "The response uses a specific coprime scaling (2n, 3n) to derive the general case. While valid and slightly more structured than brute force, it lacks a substantial conceptual departure or distant bridge beyond standard number theory."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.6125,
+          "novelty": 0.25
+        },
+        {
+          "time": "2026-11-15T09:47:56.897299+00:00",
+          "kind": "judge_assessment",
+          "key": "b7056be1cd64afce40ee4d063e2f6ff13114a3c4bd51f113b6b3e7e23d4c1657",
+          "task_id": "calibration-dev-1",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or structural objects introduced; only a direct computation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general method or family of cases was developed or justified."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result was obtained by direct calculation, not as a consequence of a framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual economy achieved; the response is a bare calculation."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses the conventional reference method (direct computation) with no conceptual departure."
+              }
+            },
+            "problems": [
+              "Candidate provided only a direct computation without any theoretical framework, definitions, or generalization."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:49:53.480690+00:00",
+          "kind": "judge_assessment",
+          "key": "c36c024d4db3bb69e1d6f9fc23ab54e888184bfc77950b111ce51b5e516f6411",
+          "task_id": "calibration-dev-2",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2."
+                ],
+                "rationale": "Defines the identity in a commutative ring, explaining the cancellation mechanism clearly."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "The same identity computes (m+1)*(m-1)=m**2-1 for every integer m. Commutativity is the boundary: for noncommuting matrices the middle terms need not cancel."
+                ],
+                "rationale": "Validly generalizes to integers and explicitly identifies the boundary condition regarding non-commutativity."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "Taking a=x and b=10 yields x**2-100."
+                ],
+                "rationale": "The specific result follows directly and naturally from the established general framework."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "for noncommuting matrices the middle terms need not cancel."
+                ],
+                "rationale": "Connects the scalar case to the matrix case, highlighting the necessity of commutativity."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2."
+                ],
+                "rationale": "Uses standard algebraic definitions efficiently without unnecessary abstraction."
+              },
+              "constructive_novelty": {
+                "score": 1,
+                "evidence": [
+                  "Commutativity is the boundary: for noncommuting matrices the middle terms need not cancel."
+                ],
+                "rationale": "The candidate reframes the problem within a commutative ring and notes the matrix boundary. This is a modest but valid reframing beyond simple distribution, identifying the structural requirement (commutativity) that the conventional reference often glosses over, though it does not build a new theory."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.65,
+          "novelty": 0.25
+        },
+        {
+          "time": "2026-11-15T09:50:51.497116+00:00",
+          "kind": "judge_assessment",
+          "key": "2b836da7130be1c3f5130e0a800ef95ac7f5cbf11724ba12cbc5a634092bc65b",
+          "task_id": "calibration-dev-2",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No structural objects or definitions introduced; only a direct computation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general family or assumptions stated; only a specific instance solved."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is asserted via computation, not derived from a broader framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings or consequences demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or lemmas provided; the response is a bare calculation."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses the conventional reference method (direct distribution) with no conceptual departure."
+              }
+            },
+            "problems": [
+              "The candidate provided only a direct computation without any theoretical framework, definitions, or generalization."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:52:52.563759+00:00",
+          "kind": "judge_assessment",
+          "key": "c739c11b738ac7f3aeebacc77ac8d3a4ab6532f5efff8f560bc27e8f3b11df93",
+          "task_id": "calibration-dev-3",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "For independent fair dice the ordered sample space is the Cartesian product of their face sets, and each ordered pair is equally likely."
+                ],
+                "rationale": "Correctly identifies the Cartesian product structure and equiprobability of the sample space."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "With s and t faces there are s*t pairs and one pair of maximal faces, giving 1/(s*t)."
+                ],
+                "rationale": "Validly generalizes to arbitrary face counts s and t with clear assumptions."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "Here s=t=13, giving 1/169."
+                ],
+                "rationale": "The specific result follows directly and transparently from the established general framework."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "For three independent dice with s,t,u faces, the same product construction has s*t*u equally likely triples, so all maxima occur with probability 1/(s*t*u)."
+                ],
+                "rationale": "Demonstrates the method's extension to n-dice, though the 'maxima' phrasing is slightly imprecise regarding the specific event."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "Fairness and independence are essential."
+                ],
+                "rationale": "Definitions are minimal, functional, and explicitly state necessary conditions without redundancy."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses standard probability theory (Cartesian products, independence) without introducing new objects, invariants, or frameworks beyond the conventional reference."
+              }
+            },
+            "problems": [
+              "No substantive mathematical errors found; the solution is correct and standard."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:53:46.343257+00:00",
+          "kind": "judge_assessment",
+          "key": "02763570a326eb4c1396b289bc6fc94ea2057e26fe9a94fcf37d92e2ba556eed",
+          "task_id": "calibration-dev-3",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theoretical framework or definitions provided; only a direct computation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No generalization or family of problems was addressed or assumed."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result was not derived from a broader principle but stated as a direct computation."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or applications were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response contains no definitions, lemmas, or structured arguments to evaluate for economy."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response offers no conceptual departure, merely restating the conventional calculation without new objects or frameworks."
+              }
+            },
+            "problems": [
+              "The candidate provided only a direct computation of the specific instance without constructing any theory, definitions, or general principles."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:55:17.756140+00:00",
+          "kind": "judge_assessment",
+          "key": "b8dcad512615f03bf768a78822f850d87129fc67ed5ed2af9b72df8320881300",
+          "task_id": "calibration-dev-4",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Identifies the linear combination invariant and establishes the equivalence of divisor sets rigorously."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "Proves the result for a parameterized family (2n, 3n) with explicit boundary conditions."
+              },
+              "problem_as_consequence": {
+                "score": 3,
+                "evidence": [
+                  "With n=16, the answer is 16."
+                ],
+                "rationale": "The specific instance follows directly and logically from the established general theorem."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility."
+                ],
+                "rationale": "Explicitly connects the specific linear combination to the general Euclidean step and algorithm."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Uses a single concise invariant to solve the specific problem and derive the general algorithm."
+              },
+              "constructive_novelty": {
+                "score": 1,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The candidate reframes the specific numbers as a linear combination (2n, 3n) to derive a general invariant. This is a modest but valid reframing beyond the standard 'list divisors' approach, explicitly linking the specific case to the general Euclidean step."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.65,
+          "novelty": 0.25
+        },
+        {
+          "time": "2026-11-15T09:56:15.828868+00:00",
+          "kind": "judge_assessment",
+          "key": "9de2be09ad9232bf51c68531fd2e092ceb2b3d1f2aa7d8f38082c6f16e065d7a",
+          "task_id": "calibration-dev-4",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No mathematical objects or definitions introduced; only a direct computation claim."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general method or family of problems addressed; only a specific instance."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is asserted without derivation from a framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or consequences demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "Response consists of repetitive filler text with no functional definitions."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual departure; relies on conventional computation without new theory."
+              }
+            },
+            "problems": [
+              "Candidate fails to provide any mathematical reasoning, definitions, or framework.",
+              "Response contains only repetitive filler text and a final answer.",
+              "No theory building, novelty, or structural understanding is demonstrated."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T09:57:56.018604+00:00",
+          "kind": "judge_assessment",
+          "key": "c443f9e0d3dbbd2607c132ba7075e88dbb1880f34e16c334ecfe07c831f704c6",
+          "task_id": "calibration-dev-5",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple.",
+                  "max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Candidate correctly identifies prime exponent maximization as the structural definition of LCM and links it to GCD via exponent arithmetic."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents."
+                ],
+                "rationale": "The explanation generalizes from the specific 2n, 3n case to arbitrary positive integers a,b with valid assumptions and boundaries."
+              },
+              "problem_as_consequence": {
+                "score": 3,
+                "evidence": [
+                  "Hence lcm(2n,3n)=6n for positive integer n, giving 114."
+                ],
+                "rationale": "The specific result follows directly from the established general principle regarding prime exponents and the coprime property."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Candidate connects LCM to GCD via the identity max+min=u+v, demonstrating a substantive relationship between the two concepts."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd"
+                ],
+                "rationale": "Definitions are concise and functional, avoiding unnecessary abstraction while clearly distinguishing LCM and GCD mechanisms."
+              },
+              "constructive_novelty": {
+                "score": 1,
+                "evidence": [
+                  "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6."
+                ],
+                "rationale": "The response reframes the specific instance (38, 57) as (2n, 3n) to derive the general formula. This is a modest but valid reframing beyond the standard 'search multiples' reference, explicitly used to solve the problem."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.6125,
+          "novelty": 0.25
+        },
+        {
+          "time": "2026-11-15T09:58:55.840950+00:00",
+          "kind": "judge_assessment",
+          "key": "53e8fd979391ca06f3e654ee081c9707f76e68c18c9d5dc14f485aa7ea3277f9",
+          "task_id": "calibration-dev-5",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions, objects, or relationships were introduced to explain the problem."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general method or family of assumptions was established."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result was asserted via repetition rather than derived from a framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or consequences were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response contains no functional definitions or lemmas, only filler text."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response relies on a conventional direct computation and offers no conceptual departure."
+              }
+            },
+            "problems": [
+              "The candidate failed to provide any mathematical theory, definitions, or reasoning, offering only a correct answer repeated with filler text.",
+              "No structural understanding or generalization was attempted; the response is purely computational without theoretical framing."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:00:47.564227+00:00",
+          "kind": "judge_assessment",
+          "key": "a5352b095846cfcb6a3baa91559c8bba54d9a459fd502419a341cdc702bca26e",
+          "task_id": "calibration-dev-6",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2."
+                ],
+                "rationale": "Defines the difference of squares identity within a commutative ring framework, explaining the cancellation mechanism."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "Taking a=x and b=22 yields x**2-484. The same identity computes (m+1)*(m-1)=m**2-1 for every integer m."
+                ],
+                "rationale": "Validly generalizes the specific instance to arbitrary integers and commutative rings with clear boundaries."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "Taking a=x and b=22 yields x**2-484."
+                ],
+                "rationale": "The specific result follows directly and naturally from the established general identity."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "Commutativity is the boundary: for noncommuting matrices the middle terms need not cancel."
+                ],
+                "rationale": "Connects the scalar case to matrix algebra, highlighting the necessity of commutativity for the identity."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2."
+                ],
+                "rationale": "Uses a single, standard algebraic identity to solve the problem efficiently without unnecessary complexity."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response relies entirely on the standard difference of squares identity and a standard matrix counterexample. It offers no new objects, invariants, or frameworks beyond the conventional reference method of distributing factors."
+              }
+            },
+            "problems": [
+              "No constructive novelty; the response uses standard algebraic identities and a standard counterexample without introducing new mathematical structures or demonstrating consequences beyond the conventional reference."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:01:54.553296+00:00",
+          "kind": "judge_assessment",
+          "key": "2007066d95921c5dc29211b247c3bc71b51976e6474fc720815e08e8e1cfca3d",
+          "task_id": "calibration-dev-6",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No structural objects or definitions introduced; only a direct computation was performed."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general family or assumptions were stated; the solution is specific to the instance."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is asserted as a consequence of 'profound understanding' rather than derived from a framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings or consequences were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response contains no definitions or lemmas; it consists of repetition and a final answer."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response relies entirely on the conventional reference method (direct computation) with no conceptual departure."
+              }
+            },
+            "problems": [
+              "The candidate failed to provide any mathematical theory, definitions, or framework, offering only a direct computation and repetitive filler text.",
+              "The claim of 'profound mathematical understanding' is unsupported by any mathematical content or justification."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:03:22.956024+00:00",
+          "kind": "judge_assessment",
+          "key": "65e8bee7305791194d08f9a72c616ce003a5d4e9691c85fb5f8b1bc132a44763",
+          "task_id": "calibration-dev-7",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "For independent fair dice the ordered sample space is the Cartesian product of their face sets, and each ordered pair is equally likely."
+                ],
+                "rationale": "Correctly identifies the Cartesian product structure and equiprobability of the sample space."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "With s and t faces there are s*t pairs and one pair of maximal faces, giving 1/(s*t)."
+                ],
+                "rationale": "Validly generalizes to arbitrary face counts s and t with clear assumptions."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "Here s=t=25, giving 1/625."
+                ],
+                "rationale": "The specific result follows directly and transparently from the established general formula."
+              },
+              "reuse_and_connections": {
+                "score": 2,
+                "evidence": [
+                  "For three independent dice with s,t,u faces, the same product construction has s*t*u equally likely triples, so all maxima occur with probability 1/(s*t*u)."
+                ],
+                "rationale": "Demonstrates the method's extension to n-dice, though the 'maxima' phrasing is slightly imprecise regarding the specific event."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "Fairness and independence are essential."
+                ],
+                "rationale": "Concise and functional; definitions are minimal and necessary for the argument."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response uses standard probability theory (Cartesian products, independence) without introducing new objects, invariants, or frameworks beyond the conventional reference."
+              }
+            },
+            "problems": [
+              "No constructive novelty; the solution relies entirely on standard elementary probability methods already listed in the conventional reference."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:04:38.286996+00:00",
+          "kind": "judge_assessment",
+          "key": "7b03e1d30ac5839543640e7af315319d8c0b76c73473a27a65b4f17d7b724882",
+          "task_id": "calibration-dev-7",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No mathematical objects or definitions introduced; only a direct computation claim."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No general framework or family of problems addressed."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is asserted without derivation from a constructed framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or consequences demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or lemmas provided; response consists of filler text."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No conceptual departure; response relies on conventional computation and filler."
+              }
+            },
+            "problems": [
+              "Response contains no mathematical theory, definitions, or derivations, only a direct answer and filler text.",
+              "Candidate fails to construct any framework, violating the requirement for theory building."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T10:06:20.832142+00:00",
+          "kind": "judge_assessment",
+          "key": "1329668ad151b2c00320e6a20a032f51c8543e31e6f78ce75cc2b9346420a3f0",
+          "task_id": "calibration-dev-8",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Identifies the linear combination invariant and establishes the equivalence of divisor sets rigorously."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "Proves the result for a parameterized family (2n, 3n) with explicit assumptions on n."
+              },
+              "problem_as_consequence": {
+                "score": 3,
+                "evidence": [
+                  "With n=28, the answer is 28."
+                ],
+                "rationale": "Correctly applies the general theorem to the specific instance without hiding the logic."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm."
+                ],
+                "rationale": "Demonstrates how the specific linear combination invariant generalizes to the standard Euclidean step."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "Uses a single concise logical equivalence to solve the problem and derive further properties."
+              },
+              "constructive_novelty": {
+                "score": 2,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate reframes the specific instance (56, 84) as a special case of the general invariant gcd(2n, 3n)=n. This is a valid, nontrivial organizing definition that explains the problem and supports the derivation of Euclid's algorithm, exceeding the conventional reference which only lists methods."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.7000000000000001,
+          "novelty": 0.5
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
     }
   ],
   "examples": {},
@@ -372,6 +1893,228 @@
       "peak_gpu_allocated_bytes": 5107058688,
       "peak_gpu_reserved_bytes": 5194645504,
       "pilot_updates_discarded": true
+    },
+    {
+      "run_id": "pilot-theory-seed42",
+      "step": 1,
+      "metrics": {
+        "train_runtime": 773.0708,
+        "train_samples_per_second": 0.021,
+        "train_steps_per_second": 0.003,
+        "total_flos": 0.0,
+        "train_loss": 0.0416717529296875,
+        "epoch": 0.03125
+      },
+      "elapsed_seconds": 713.7929937680001,
+      "peak_gpu_allocated_bytes": 5255273984,
+      "peak_gpu_reserved_bytes": 6524239872,
+      "completed": false,
+      "pilot": true,
+      "kind": "grpo_first_saved_boundary",
+      "step_metrics": {
+        "loss": 0.0416717529296875,
+        "grad_norm": 0.08497752994298935,
+        "learning_rate": 0.0,
+        "num_tokens": 9310.0,
+        "completions/mean_length": 1009.25,
+        "completions/min_length": 464.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.125,
+        "completions/mean_terminated_length": 860.857177734375,
+        "completions/min_terminated_length": 464.0,
+        "completions/max_terminated_length": 1793.0,
+        "rewards/correctness_gated_theory/mean": 0.625,
+        "rewards/correctness_gated_theory/std": 0.5175492167472839,
+        "reward": 0.625,
+        "reward_std": 0.5175492167472839,
+        "frac_reward_zero_std": 0.0,
+        "completion_length": 1009.25,
+        "kl": 0.0,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 699.9325059050007,
+        "epoch": 0.03125
+      },
+      "reward_batch": {
+        "time": "2026-11-15T11:14:09.964405+01:00",
+        "kind": "reward_batch",
+        "reward_call": 0,
+        "accuracy": 0.625,
+        "theory": 0.0,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      "configuration": {
+        "version": 2,
+        "judge_prompt_version": "v3",
+        "data_seed": 20261115,
+        "training_seeds": [
+          42,
+          43,
+          44
+        ],
+        "max_steps": 2,
+        "max_prompt_length": 512,
+        "max_completion_length": 2048,
+        "num_generations": 4,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "learning_rate": 1e-05,
+        "warmup_ratio": 0.1,
+        "beta": 0.04,
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0,
+        "save_steps": 1,
+        "train_size": 1024,
+        "dev_size": 64,
+        "test_fresh_size": 200,
+        "test_hard_size": 100,
+        "test_unseen_size": 100,
+        "transfer_sources": 100,
+        "transfer_targets_per_source": 4,
+        "bootstrap_samples": 10000,
+        "judge_max_tokens": 1536,
+        "judge_context_length": 8192,
+        "judge_timeout_seconds": 900,
+        "calibration_pairs": 20,
+        "calibration_false_cases": 20,
+        "calibration_novelty_pairs": 8,
+        "calibration_novelty_false_cases": 8,
+        "test_ood_per_family": 50,
+        "ood_seed": 20261116
+      },
+      "checkpoint_files": [
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "chat_template.jinja",
+        "groth-state.json",
+        "judge-cache.sqlite",
+        "optimizer.pt",
+        "README.md",
+        "rng_state.pth",
+        "scheduler.pt",
+        "tokenizer_config.json",
+        "tokenizer.json",
+        "trainer_state.json",
+        "training_args.bin"
+      ]
+    },
+    {
+      "run_id": "pilot-theory-seed42",
+      "step": 2,
+      "metrics": {
+        "train_runtime": 535.3241,
+        "train_samples_per_second": 0.03,
+        "train_steps_per_second": 0.004,
+        "total_flos": 0.0,
+        "train_loss": 0.04452633112668991,
+        "epoch": 0.0625
+      },
+      "elapsed_seconds": 492.45487092300027,
+      "peak_gpu_allocated_bytes": 5338635264,
+      "peak_gpu_reserved_bytes": 6706692096,
+      "completed": true,
+      "pilot": true,
+      "kind": "grpo_resumed_completion",
+      "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/pilot-theory-seed42/checkpoint-1",
+      "step_metrics": {
+        "loss": 0.08905266225337982,
+        "grad_norm": 0.07683244347572327,
+        "learning_rate": 1e-05,
+        "num_tokens": 20718.0,
+        "completions/mean_length": 1280.0,
+        "completions/min_length": 405.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.375,
+        "completions/mean_terminated_length": 819.2000122070312,
+        "completions/min_terminated_length": 405.0,
+        "completions/max_terminated_length": 1053.0,
+        "rewards/correctness_gated_theory/mean": 0.5,
+        "rewards/correctness_gated_theory/std": 0.5345224738121033,
+        "reward": 0.5,
+        "reward_std": 0.5345224738121033,
+        "frac_reward_zero_std": 0.0,
+        "completion_length": 1280.0,
+        "kl": 8.445791036137962e-05,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 480.664855666997,
+        "epoch": 0.0625
+      },
+      "reward_batch": {
+        "time": "2026-11-15T10:28:40.534727+00:00",
+        "kind": "reward_batch",
+        "reward_call": 1,
+        "accuracy": 0.5,
+        "theory": 0.0,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      "checkpoint_states": [
+        {
+          "identity_hash": "f7d749ba1da528bdea956a3561731ea0f93999e91dacd9a10c6ad82855acd6d2",
+          "reward_calls": 1,
+          "global_step": 1,
+          "epoch": 0.03125,
+          "data_seed": 20261115,
+          "complete": true
+        },
+        {
+          "identity_hash": "f7d749ba1da528bdea956a3561731ea0f93999e91dacd9a10c6ad82855acd6d2",
+          "reward_calls": 2,
+          "global_step": 2,
+          "epoch": 0.0625,
+          "data_seed": 20261115,
+          "complete": true
+        }
+      ],
+      "checkpoint_files": [
+        "adapter_model.safetensors",
+        "optimizer.pt",
+        "scheduler.pt",
+        "rng_state.pth",
+        "trainer_state.json",
+        "groth-state.json",
+        "judge-cache.sqlite"
+      ],
+      "task_groups": {
+        "0": [
+          "dev-762a8cd54c022d27bb19",
+          "dev-9e2760c33e4413a0cbc7"
+        ],
+        "1": [
+          "dev-e35360a905d64b24d291",
+          "dev-e57b1263bc87b1ad2844"
+        ]
+      },
+      "adapter_sha256": [
+        "3019142d31657685cfd0d551e495df3fe26af4783e17a80cac6b535e63c30984",
+        "c8006f007d2c0a1ce2fb521bb5e12d880903570b6f3a581336c2b262f3cb8858"
+      ],
+      "changed_tensors": 96,
+      "adapter_tensors": 192,
+      "maximum_parameter_change": 1.0013236533268355e-05,
+      "judge_seconds": [
+        67.61513415000081,
+        96.94919308700082,
+        71.29852653499984,
+        79.3811234449986,
+        58.72902571099985,
+        94.32750590900105,
+        68.71908656999949,
+        90.65393820700046,
+        66.25125011500131
+      ],
+      "pilot_updates_excluded_from_comparisons": true
     },
     {
       "kind": "grpo_initial_generation_failure",
