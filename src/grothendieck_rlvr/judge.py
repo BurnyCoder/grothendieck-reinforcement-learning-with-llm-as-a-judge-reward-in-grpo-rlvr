@@ -80,6 +80,7 @@ class Judge:
     def __init__(self, url: str, role="training_judge", variant="quoted", log=None, cache: Path | None=None):
         self.spec = read_json(PROJECT / "configs/models.lock.json")[role]
         self.config = read_json(PROJECT / "configs/study.json")
+        self.anchors = read_json(PROJECT / "configs/novelty-anchors.json")
         self.system = judge_system(variant)
         self.role, self.variant = role, variant
         self.log = log or EventLog(root() / "logs" / f"{role}-{variant}.jsonl")
@@ -92,6 +93,8 @@ class Judge:
         self.db.execute("CREATE TABLE IF NOT EXISTS assessments (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
         self.identity = digest({"model": self.spec,
                                 "runtime": read_json(PROJECT / "configs/models.lock.json")["llama_cpp"],
+                                "novelty_anchors": self.anchors,
+                                "rubric_weights": Assessment.weights,
                                 "context_length": self.config["judge_context_length"], "system": self.system,
                                 "schema": assessment_schema(), "max_tokens": self.config["judge_max_tokens"],
                                 "temperature": 0, "seed": 42, "thinking": False})
@@ -106,6 +109,7 @@ class Judge:
             self.log.emit("judge_cache_hit", key=key, task_id=task.id)
             return assessment
         payload = json.dumps({"problem": task.problem, "reference_answer": task.answer,
+                              "conventional_reference": self.anchors[task.family],
                               "external_final_answer_verdict": "correct", "candidate_response": response},
                              ensure_ascii=False)
         messages = [{"role": "system", "content": self.system}, {"role": "user", "content": payload}]
@@ -118,7 +122,7 @@ class Judge:
                                 (key, assessment.model_dump_json()))
                 self.db.commit()
                 self.log.emit("judge_assessment", key=key, task_id=task.id,
-                              assessment=assessment.model_dump(), theory=assessment.quality)
+                              assessment=assessment.model_dump(), theory=assessment.quality, novelty=assessment.novelty)
                 return assessment
             except (httpx.HTTPError, ValueError, JudgeFailure) as exc:
                 self.log.emit("judge_failure", attempt=attempt + 1, task_id=task.id, error=str(exc))

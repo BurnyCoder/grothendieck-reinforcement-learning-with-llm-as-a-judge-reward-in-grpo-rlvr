@@ -43,9 +43,9 @@ class Criterion(Record):
 class Assessment(Record):
     """Evidence-bearing opinion from a frozen judge, not a proof certificate."""
     weights: ClassVar[dict[str, float]] = {
-        "structural_understanding": .25, "justified_generality": .25,
-        "problem_as_consequence": .20, "reuse_and_connections": .20,
-        "conceptual_economy": .10,
+        "structural_understanding": .20, "justified_generality": .20,
+        "problem_as_consequence": .15, "reuse_and_connections": .15,
+        "conceptual_economy": .10, "constructive_novelty": .20,
     }
     theory_validity: Literal["none", "supported", "unsupported", "contradicted"]
     criteria: dict[str, Criterion]
@@ -55,7 +55,7 @@ class Assessment(Record):
     def all_criteria(self):
         """Require every declared criterion exactly once before computing a score."""
         if set(self.criteria) != set(self.weights):
-            raise ValueError("Judge must return exactly the five rubric criteria")
+            raise ValueError("Judge must return exactly the declared rubric criteria")
         if any(c.score and not c.evidence for c in self.criteria.values()):
             raise ValueError("Positive scores require supporting excerpts")
         return self
@@ -64,6 +64,11 @@ class Assessment(Record):
         """Reject fabricated spans; this checks attribution, not mathematical truth."""
         if any(not e.strip() or e not in response for c in self.criteria.values() for e in c.evidence):
             raise ValueError("Judge evidence must be a nonempty exact response excerpt")
+
+    @property
+    def novelty(self) -> float:
+        """A separately reported, validity-gated conceptual novelty score in [0, 1]."""
+        return self.criteria["constructive_novelty"].score / 4 if self.theory_validity == "supported" else 0.0
 
     @property
     def quality(self) -> float:

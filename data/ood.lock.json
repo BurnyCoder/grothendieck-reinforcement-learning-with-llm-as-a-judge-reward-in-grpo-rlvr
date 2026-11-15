@@ -1,0 +1,175 @@
+{
+  "identity": {
+    "seed": 20261116,
+    "per_family": 50,
+    "parameters": {
+      "largest_island": {
+        "min_rows": 5,
+        "max_rows": 8,
+        "min_cols": 5,
+        "max_cols": 8,
+        "min_num_islands": 2,
+        "max_num_islands": 6,
+        "min_island_size": 2,
+        "max_island_size": 12
+      },
+      "simple_geometry": {
+        "min_sides": 3,
+        "max_sides": 6,
+        "min_angle": 30,
+        "max_angle": 160
+      },
+      "matrix_rank": {
+        "min_size": 2,
+        "max_size": 4,
+        "entry_bound": 5
+      },
+      "modular_inverse": {
+        "min_modulus": 31,
+        "max_modulus": 300
+      }
+    },
+    "reasoning_gym": "0.1.25",
+    "sympy": "1.14.0",
+    "generator_version": 1
+  },
+  "manifest_hash": "0c7c5bd88e161748d1accca10e8054883be6d04ca33a2311e3514423d1528ea0",
+  "count": 200,
+  "rejections": [
+    {
+      "family": "simple_geometry",
+      "index": 0,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 2,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 3,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 6,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 11,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 12,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 14,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 16,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 18,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 20,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 26,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 29,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 31,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 32,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 34,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 36,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 40,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 43,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 46,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 47,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 48,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 50,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 51,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 54,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 62,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 72,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    },
+    {
+      "family": "simple_geometry",
+      "index": 73,
+      "reason": "Generated missing angle is incompatible with a convex polygon"
+    }
+  ]
+}

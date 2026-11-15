@@ -1,7 +1,9 @@
 # Implementation and experiment plan
 
 Updated 2026-11-15. Authority: user-approved Qwen3.5/Gemma plan and
-[preregistration](preregistration.md). This checklist is a status record, not
+[preregistration](preregistration.md), amended before judgments by the
+[valid-novelty/OOD protocol](amendments/2026-11-15-valid-novelty-and-ood.md).
+This checklist is a status record, not
 evidence of model performance.
 
 - [x] Inspect workspace, local hardware and publication accounts.
@@ -15,14 +17,21 @@ evidence of model performance.
 - [x] Implement Unsloth/TRL training, checkpoint/resume and feasibility probe.
 - [x] Implement unchanged-policy, independent-judge and transfer evaluation.
 - [x] Implement statistics, artifact-driven reports/PDF and dashboard/Pages.
-- [ ] Run unit, integration and complete workflow checks before model runs.
-- [ ] Publish implementation, manifests, paper and site to GitHub/Hugging Face.
+- [x] Add constructive novelty to the versioned judge prompt and reward schema.
+- [x] Add conventional reference anchors and explicit rejection of false/decorative novelty.
+- [x] Add constructed calibration contrasts for useful distant mathematical bridges.
+- [x] Implement a separately locked OOD suite and component-level reporting.
+- [x] Run offline reward, verifier, isolation, recovery, novelty/OOD and reporting checks.
+- [ ] Exercise model-backed training, resumption, evaluation and complete workflow.
+- [x] Publish initial implementation, manifests, paper and site to GitHub/Hugging Face.
+- [ ] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Calibrate both frozen judges and rubric-only variant.
 - [ ] Run development feasibility pilot; freeze policy and training configuration.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.
 - [ ] Train/evaluate matched seeds 43 and 44, plus seed-42 controls.
 - [ ] Evaluate note transfer and regenerate all analysis artifacts.
+- [ ] Evaluate all frozen comparison checkpoints on the separate OOD suite.
 - [ ] Publish each milestone, including negative/unfinished outcomes.
 
 All model steps are pending. The initial local constraints are recorded as
@@ -32,7 +41,7 @@ use measured pilot throughput and are documented before comparison runs.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
-https://github.com/BurnyCoder/grothendieck-rlvr . The Hugging Face dataset repository
+https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository
 exists at https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr . Collection
 creation returned an account-level daily rate limit and remains pending.
 The in-app browser backend was unavailable; Windows browser inspection was

@@ -20,3 +20,30 @@ successfully. No inference measurement is implied by a successful build.
 
 Generator-source observations and corrected rounding instructions are documented
 in the state-of-the-art review. No policy outputs informed these decisions.
+
+## 2026-11-15: valid novelty and secondary task-family generalization
+
+The user requested greater reward for valid conceptual novelty and more distant
+mathematical content. Before any judge request, rubric v2 and its dated amendment
+were implemented together: fixed conventional references, an explicit novelty
+criterion, validity-gated component logs, constructed bridge/false-theory
+calibration, and a separate locked OOD suite. The original primary manifests
+remain byte-for-byte unchanged. The primary formula and acceptance thresholds
+are retained; the revised meaning of T is disclosed rather than retroactively
+editing the initial preregistration.
+
+New tests were written first and failed for the absent novelty property,
+calibration stratum and OOD module. Their passing results are archived in
+`verification-novelty.xml`; full-suite evidence is in `verification.xml`.
+These are software checks, not model performance results. The regenerated PDF
+was rendered and all pages visually inspected. Local dashboard HTTP responses
+were checked; browser UI inspection remains unverified for the previously
+recorded environment limitation.
+
+Inspecting Reasoning Gym's polygon generator showed that it only constrains the
+known-angle sum below the full sum, which can leave a missing angle outside
+the convex range. The OOD wrapper rejects these instances before locking and
+records them in `data/ood.lock.json`. This source-level correction was selected
+without policy outputs. Existing generators and SymPy operations were reused
+instead of duplicating their implementations; independent reference algorithms
+and bounded candidate parsing check the resulting scalar answers.

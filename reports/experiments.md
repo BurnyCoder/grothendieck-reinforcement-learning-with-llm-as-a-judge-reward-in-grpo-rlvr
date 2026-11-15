@@ -1,10 +1,10 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-15T07:35:59.457903+00:00.
+Generated from saved artifacts at 2026-11-15T07:57:22.830109+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
-| Arm | Problems | Accuracy | C × theory | Theory | correct |
+| Arm | Problems | Accuracy | C × theory | C × novelty |
 |---|---|---|---|---|
 | ordinary | Pending | Pending | Pending | Pending |
 | prompted | Pending | Pending | Pending | Pending |
@@ -18,6 +18,17 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | rubric-seed42 | Pending | Pending | Pending | Pending |
 
 ## Primary analysis
+
+```json
+{
+  "status": "pending",
+  "reason": "No matched trained arms have been evaluated"
+}
+```
+
+## Secondary OOD analysis
+
+Descriptive paired intervals; not a replacement success criterion.
 
 ```json
 {

@@ -110,6 +110,19 @@ understanding or a latent-space mechanism. The exact combination has not been
 found in the reviewed sources; this is not an exhaustive novelty claim.
 
 No source's published benchmark number is treated as a local measurement.
+
+The pre-judgment novelty amendment adds a project-specific criterion; this is
+an experimental design choice, not a metric established by a cited paper.
+[FERMAT sections 3–5](https://arxiv.org/html/2511.14778v1) constructs definitions
+and conjectures, checks them using formal backends, and evaluates recovery of
+curated mathematical entities. Its comparisons show that simple novelty alone
+is not a sufficient interestingness objective in that setting. We therefore
+require justified utility and consequences, while acknowledging that our
+natural-language judge supplies weaker validity evidence than formal checking.
+The additional OOD suite uses existing [Reasoning Gym generators](https://github.com/open-thought/reasoning-gym)
+and [SymPy matrix operations](https://docs.sympy.org/latest/modules/matrices/matrices.html)
+and [modular inverses](https://docs.sympy.org/latest/modules/core.html#sympy.core.intfunc.mod_inverse).
+These held-out families do not establish out-of-pretraining generalization.
 No code from papers is copied where an existing library implements the method.
 Runtime and task-source compatibility will be checked against the locked release,
 with deviations documented before comparative results.

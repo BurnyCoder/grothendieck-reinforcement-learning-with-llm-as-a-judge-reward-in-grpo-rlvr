@@ -12,7 +12,7 @@ def parser():
     """Keep phase selection explicit so generation never implicitly starts training."""
     p = argparse.ArgumentParser(description="Local Grothendieck-inspired RLVR research environment")
     sub = p.add_subparsers(dest="command", required=True)
-    for name in ("prepare", "doctor", "hash-models", "report", "memory-probe"):
+    for name in ("prepare", "prepare-ood", "doctor", "hash-models", "report", "memory-probe"):
         sub.add_parser(name)
     download = sub.add_parser("download")
     download.add_argument("--role", default="all", choices=["all", "policy", "training_judge", "evaluation_judge"])
@@ -33,7 +33,7 @@ def parser():
     generate.add_argument("--run-id", required=True)
     generate.add_argument("--adapter", type=Path)
     generate.add_argument("--rising", action="store_true")
-    generate.add_argument("--split", default="test", choices=["test", "dev", "transfer_source"])
+    generate.add_argument("--split", default="test", choices=["test", "test_ood", "dev", "transfer_source"])
     generate.add_argument("--seed", type=int, default=42)
     evaluate = sub.add_parser("evaluate")
     evaluate.add_argument("--run-id", required=True)
@@ -52,6 +52,9 @@ def main():
         if command == "prepare":
             from .data import prepare
             result = prepare()
+        elif command == "prepare-ood":
+            from .ood import prepare_ood
+            result = prepare_ood()
         elif command in ("doctor", "download", "serve", "hash-models"):
             from . import models
             result = getattr(models, "artifact_hashes" if command == "hash-models" else command)(**args)

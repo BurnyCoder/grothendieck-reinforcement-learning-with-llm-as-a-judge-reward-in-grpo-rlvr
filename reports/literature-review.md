@@ -15,6 +15,13 @@ Its formal entities differ from the explanations scored here. The present
 project therefore measures supported exposition and recipient transfer, not
 discovery of a new mathematical theory.
 
+The [novelty/OOD amendment](amendments/2026-11-15-valid-novelty-and-ood.md)
+explicitly tests useful departures from documented conventional approaches.
+FERMAT's definition/conjecture production and productivity/comprehensibility
+measures motivate checking what a construction enables, beyond its name or
+unfamiliarity. Its results do not validate our natural-language novelty score;
+the calibration and held-out evaluations must establish its local usefulness.
+
 ## How is behavior selected?
 
 [DeepSeekMath](https://arxiv.org/html/2402.03300v3) supplies the original GRPO

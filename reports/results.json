@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-11-15T07:35:59.457903+00:00",
+  "generated_at": "2026-11-15T07:57:22.830109+00:00",
   "study": {
-    "version": 1,
+    "version": 2,
+    "judge_prompt_version": "v2",
     "data_seed": 20261115,
     "training_seeds": [
       42,
@@ -29,11 +30,15 @@
     "transfer_sources": 100,
     "transfer_targets_per_source": 4,
     "bootstrap_samples": 10000,
-    "judge_max_tokens": 1024,
+    "judge_max_tokens": 1536,
     "judge_context_length": 8192,
     "judge_timeout_seconds": 900,
     "calibration_pairs": 20,
-    "calibration_false_cases": 20
+    "calibration_false_cases": 20,
+    "calibration_novelty_pairs": 8,
+    "calibration_novelty_false_cases": 8,
+    "test_ood_per_family": 50,
+    "ood_seed": 20261116
   },
   "summaries": {},
   "strata": {},
@@ -42,6 +47,11 @@
     "reason": "No matched trained arms have been evaluated"
   },
   "training": {},
+  "secondary_ood": {
+    "status": "pending",
+    "reason": "No matched trained arms have been evaluated"
+  },
+  "families": {},
   "calibration": [],
   "examples": {},
   "transfer": {

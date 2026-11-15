@@ -1,6 +1,7 @@
 """Versioned judge interpretation and identical ordinary policy prompts across arms."""
 from pathlib import Path
 
+from .io import PROJECT, read_json
 from .schema import Task
 
 DIRECTORY = Path(__file__).with_name("prompts")
@@ -8,7 +9,8 @@ DIRECTORY = Path(__file__).with_name("prompts")
 
 def judge_system(variant="quoted") -> str:
     """The ablation changes only the historical framing, retaining the whole rubric."""
-    rubric = (DIRECTORY / "rubric-v1.txt").read_text(encoding="utf-8")
+    version = read_json(PROJECT / "configs/study.json")["judge_prompt_version"]
+    rubric = (DIRECTORY / f"rubric-{version}.txt").read_text(encoding="utf-8")
     if variant == "rubric":
         return rubric
     if variant != "quoted":
@@ -21,7 +23,9 @@ def policy_messages(task: Task, rising=False, notes=None, request_notes=False) -
     instruction = "Solve the mathematical problem and explain your reasoning clearly."
     if rising:
         instruction += (" Develop a useful, justified general framework, show how the problem follows "
-                        "from it, and demonstrate a reusable consequence where appropriate.")
+                        "from it, and demonstrate a reusable consequence. Seek valid, nonstandard concepts, "
+                        "invariants or connections, including a distant mathematical setting when it helps. "
+                        "Justify the construction and its boundaries; novelty claims alone are insufficient.")
     if request_notes:
         instruction += (" Include reusable mathematical notes within exactly one <notes>...</notes> "
                         "section. State assumptions and justify any general claims.")

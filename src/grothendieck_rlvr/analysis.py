@@ -36,21 +36,23 @@ def summarize(rows: list[dict]) -> dict:
     correct = [r for r in rows if r["correct"]]
     return {"n": len(rows), "accuracy": sum(r["correct"] for r in rows)/len(rows),
             "metric": sum(r["metric"] for r in rows)/len(rows),
+            "correctness_weighted_novelty": sum(float(r["correct"])*r["novelty"] for r in rows)/len(rows)
+            if all("novelty" in r for r in rows) else None,
             "theory_given_correct": sum(r["theory"] for r in correct)/len(correct) if correct else None,
             "mean_response_tokens": sum(r["response_tokens"] for r in rows)/len(rows),
             "valid_format_rate": sum(r["verification"]["status"] != "invalid_format" for r in rows)/len(rows)}
 
 
-def primary_comparison(evaluations: dict, cfg: dict) -> dict:
+def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False) -> dict:
     """Do not turn a first-seed or partial result into a confirmatory success claim."""
     seeds = [s for s in cfg["training_seeds"]
-             if f"theory-seed{s}" in evaluations and f"correctness-seed{s}" in evaluations]
+             if f"theory-seed{s}{suffix}" in evaluations and f"correctness-seed{s}{suffix}" in evaluations]
     if not seeds:
         return {"status": "pending", "reason": "No matched trained arms have been evaluated"}
     maps = {}
     for seed in seeds:
         for arm in ("theory", "correctness"):
-            rows = evaluations[f"{arm}-seed{seed}"]
+            rows = evaluations[f"{arm}-seed{seed}{suffix}"]
             if len({r["task_id"] for r in rows}) != len(rows):
                 raise ValueError("Duplicate problem in evaluation")
             maps[arm, seed] = {r["task_id"]: r for r in rows}
@@ -58,12 +60,15 @@ def primary_comparison(evaluations: dict, cfg: dict) -> dict:
     if not all(ids == id_sets[0] for ids in id_sets):
         return {"status": "incomplete", "reason": "Matched runs have different evaluated problem IDs"}
     identifiers = sorted(id_sets[0])
-    strata = [maps["theory", seeds[0]][i]["split"] for i in identifiers]
+    strata = [maps["theory", seeds[0]][i]["family" if secondary else "split"] for i in identifiers]
     judgments = {r["judge_identity"] for m in maps.values() for r in m.values()}
     if len(judgments) != 1:
         raise ValueError("Primary comparison requires identical frozen independent judge settings")
     results = {}
-    for metric in ("metric", "correct"):
+    metrics = ["metric", "correct"]
+    if all("novelty" in r for m in maps.values() for r in m.values()):
+        metrics.append("novelty")
+    for metric in metrics:
         difference = [[float(maps["theory", s][i][metric])-float(maps["correctness", s][i][metric])
                        for s in seeds] for i in identifiers]
         results[metric] = paired_bootstrap(difference, strata, cfg["bootstrap_samples"], cfg["data_seed"])
@@ -71,11 +76,16 @@ def primary_comparison(evaluations: dict, cfg: dict) -> dict:
             difference, strata, cfg["bootstrap_samples"], cfg["data_seed"], hierarchical=True)
     expected = {"test_fresh": cfg["test_fresh_size"], "test_hard": cfg["test_hard_size"],
                 "test_unseen": cfg["test_unseen_size"]}
-    complete = seeds == cfg["training_seeds"] and all(strata.count(k) == n for k, n in expected.items())
+    if secondary:
+        from .ood import OOD_FAMILIES
+        expected = {"test_ood": cfg["test_ood_per_family"] * len(OOD_FAMILIES)}
+    observed = [maps["theory", seeds[0]][i]["split"] for i in identifiers]
+    complete = seeds == cfg["training_seeds"] and len(observed) == sum(expected.values()) \
+        and all(observed.count(k) == n for k, n in expected.items())
     passed = results["metric"]["difference"] >= .05 and results["metric"]["ci95"][0] > 0 \
         and results["correct"]["ci95"][0] > -.03
-    return {"status": "confirmatory" if complete else "exploratory", "seeds": seeds,
-            "criteria_met": bool(passed) if complete else None, **results}
+    return {"status": ("secondary" if secondary else "confirmatory") if complete else "exploratory", "seeds": seeds,
+            "criteria_met": bool(passed) if complete and not secondary else None, **results}
 
 
 def transfer_analysis(rows: list[dict], samples=10000) -> dict:
