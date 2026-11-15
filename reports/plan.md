@@ -99,6 +99,12 @@ implements this explicit decision and consistency check. It clarifies the finite
 reference boundary while preserving all cases, labels, ordering and thresholds.
 Test Qwen quoted development first, then the remaining variants only on a full
 pass. Schema compliance alone cannot establish valid novelty discrimination.
+That attempt ended in a repeated score-consistency contract failure before the
+probability contrast completed. Preserve its
+[negative execution result](experiments/qwen-v5-contract-learnings.md).
+Investigate a declared-eligibility gate in code while retaining raw opinions;
+register that change before fresh inference. Do not reinterpret this attempt as
+a completed pass or a threshold failure.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

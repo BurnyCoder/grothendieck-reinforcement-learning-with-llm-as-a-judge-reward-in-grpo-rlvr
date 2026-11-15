@@ -91,6 +91,9 @@ quotes the baseline and supplies candidate evidence for an added construction
 and its use. Code rejects a positive novelty score paired with a declaration
 that the response stays within the reference. These checks establish internal
 consistency and attribution; calibration must still test mathematical judgment.
+The [first v5 attempt](reports/experiments/qwen-v5-contract-learnings.md)
+terminated after repeated disagreement between a within-reference declaration
+and a positive novelty score. Its completed contrasts do not constitute a pass.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 

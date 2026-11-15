@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py", line 182, in assess
+    assessment = Assessment.model_validate_json(output)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/burny/projects/grothendieck-rlvr-runtime/.venv/lib/python3.12/site-packages/pydantic/main.py", line 847, in model_validate_json
+    return cls.__pydantic_validator__.validate_json(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Assessment
+  Value error, Positive constructive_novelty requires relation beyond_reference [type=value_error, input_value={'theory_validity': 'supp...conceptual departure.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 105, in <module>
+    main()
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/cli.py", line 71, in main
+    result = calibrate(Judge(url, role, args.pop("variant")), **args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/calibration.py", line 151, in calibrate
+    dispreferred = judge.assess(task, case["dispreferred"])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Happy/Documents/projects/grothendieck-reinforcement-learning-with-LLM-as-a-judge-reward-in-GRPO/src/grothendieck_rlvr/judge.py", line 194, in assess
+    raise JudgeFailure(f"Judge failed after three attempts: {exc}") from exc
+grothendieck_rlvr.judge.JudgeFailure: Judge failed after three attempts: 1 validation error for Assessment
+  Value error, Positive constructive_novelty requires relation beyond_reference [type=value_error, input_value={'theory_validity': 'supp...conceptual departure.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
