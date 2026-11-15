@@ -22,6 +22,10 @@ class FixtureJudge:
         self.calls += 1
         positive = response in self.preferred and not self.fail
         return SimpleNamespace(quality=float(positive), novelty=float(positive),
+                               novelty_credit={"raw_score": 4 if positive else 0,
+                                               "effective_score": 4 if positive else 0,
+                                               "eligible": positive, "withheld": False,
+                                               "gate_reasons": [] if positive else ["theory_not_supported"]},
                                theory_validity="supported" if positive else "none")
 
 

@@ -73,12 +73,6 @@ class Assessment(Record):
             raise ValueError("Judge must return exactly the declared rubric criteria")
         if any(c.score and not c.evidence for c in self.criteria.values()):
             raise ValueError("Positive scores require supporting excerpts")
-        comparison = self.novelty_comparison
-        if self.criteria["constructive_novelty"].score:
-            if comparison.relation != "beyond_reference":
-                raise ValueError("Positive constructive_novelty requires relation beyond_reference")
-            if not comparison.addition_evidence or not comparison.use_evidence:
-                raise ValueError("Positive constructive_novelty requires both addition and use evidence")
         return self
 
     def validate_evidence(self, response: str) -> None:
@@ -100,13 +94,35 @@ class Assessment(Record):
                              "conventional reference excerpt")
 
     @property
+    def novelty_credit(self) -> dict:
+        """Expose the declared eligibility gate without rewriting the judge's opinion.
+
+        Like the global validity gate, this executes prerequisites, not a proof.
+        RULERS section 3 motivates deterministic gates: https://arxiv.org/html/2601.08654v1.
+        """
+        comparison = self.novelty_comparison
+        reasons = []
+        if self.theory_validity != "supported":
+            reasons.append("theory_not_supported")
+        if comparison.relation != "beyond_reference":
+            reasons.append(comparison.relation)
+        for field in ("addition_evidence", "use_evidence"):
+            if not getattr(comparison, field):
+                reasons.append(f"missing_{field}")
+        raw = self.criteria["constructive_novelty"].score
+        effective = 0 if reasons else raw
+        return {"raw_score": raw, "effective_score": effective, "eligible": not reasons,
+                "withheld": effective < raw, "gate_reasons": reasons}
+
+    @property
     def novelty(self) -> float:
-        """A separately reported, validity-gated conceptual novelty score in [0, 1]."""
-        return self.criteria["constructive_novelty"].score / 4 if self.theory_validity == "supported" else 0.0
+        """Normalized credit after validity and declared-eligibility gates, in [0, 1]."""
+        return self.novelty_credit["effective_score"] / 4
 
     @property
     def quality(self) -> float:
         """The preregistered validity gate precedes the normalized weighted mean."""
         if self.theory_validity != "supported":
             return 0.0
-        return sum(self.weights[k] * self.criteria[k].score / 4 for k in self.weights)
+        return sum(weight * (self.novelty if key == "constructive_novelty" else self.criteria[key].score / 4)
+                   for key, weight in self.weights.items())

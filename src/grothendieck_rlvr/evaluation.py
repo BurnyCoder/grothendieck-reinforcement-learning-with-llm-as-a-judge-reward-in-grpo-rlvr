@@ -135,6 +135,7 @@ def evaluate(run_id: str, judge) -> dict:
         log.emit("evaluation", task_id=task.id, family=task.family, split=task.split,
                  correct=verdict.correct, verification=verdict.model_dump(), theory=quality,
                  novelty=assessment.novelty if assessment else 0.0,
+                 novelty_credit=assessment.novelty_credit if assessment else None,
                  metric=float(verdict.correct)*quality, assessment=assessment.model_dump() if assessment else None,
                  response_tokens=row["response_tokens"], judge_identity=judge.identity,
                  response=row["response"], prompt=row["prompt"])

@@ -21,7 +21,7 @@ from .schema import Assessment, Criterion, NoveltyComparison, Task
 RETRY_PROTOCOL = {"version": "validation-feedback-v1", "max_attempts": 3,
                   "error_character_limit": 2000, "feedback_history": "latest_invalid_assessment_only"}
 TRANSPORT_PROTOCOL = "stream-total-deadline-v1"
-ASSESSMENT_PROTOCOL = "reference-comparison-consistency-v1"
+ASSESSMENT_PROTOCOL = "declared-novelty-eligibility-v1"
 
 
 class JudgeFailure(RuntimeError):
@@ -168,7 +168,9 @@ class Judge:
             assessment = Assessment.model_validate_json(cached[0])
             assessment.validate_evidence(response)
             assessment.validate_reference(self.anchors[task.family])
-            self.log.emit("judge_cache_hit", key=key, task_id=task.id)
+            self.log.emit("judge_cache_hit", key=key, task_id=task.id,
+                          assessment=assessment.model_dump(), theory=assessment.quality,
+                          novelty=assessment.novelty, novelty_credit=assessment.novelty_credit)
             return assessment
         payload = {"problem": task.problem, "reference_answer": task.answer,
                    "conventional_reference": self.anchors[task.family],
@@ -186,7 +188,8 @@ class Judge:
                                 (key, assessment.model_dump_json()))
                 self.db.commit()
                 self.log.emit("judge_assessment", key=key, task_id=task.id,
-                              assessment=assessment.model_dump(), theory=assessment.quality, novelty=assessment.novelty)
+                              assessment=assessment.model_dump(), theory=assessment.quality,
+                              novelty=assessment.novelty, novelty_credit=assessment.novelty_credit)
                 return assessment
             except (httpx.HTTPError, ValueError, JudgeFailure) as exc:
                 self.log.emit("judge_failure", attempt=attempt + 1, task_id=task.id, error=str(exc))

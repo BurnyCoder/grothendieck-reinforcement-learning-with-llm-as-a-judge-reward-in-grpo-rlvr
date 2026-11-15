@@ -65,6 +65,7 @@ class CompositeReward:
             self.log.emit("rollout", task_id=task.id, family=task.family, prompt=prompts[index] if prompts else task.problem,
                           response=text, verification=verdict.model_dump(),
                           assessment=assessment.model_dump() if assessment else None,
+                          novelty_credit=assessment.novelty_credit if assessment else None,
                           theory=quality[index], novelty=novelty[index],
                           assigned_theory=assigned[index], reward=rewards[index],
                           response_characters=len(text), reward_call=self.calls)

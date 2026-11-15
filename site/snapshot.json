@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-15T14:41:52.316183+00:00",
+  "generated_at": "2026-11-15T14:50:05.599781+00:00",
   "study": {
     "version": 2,
-    "judge_prompt_version": "v5",
+    "judge_prompt_version": "v6",
     "data_seed": 20261115,
     "training_seeds": [
       42,

@@ -21,9 +21,11 @@ Development evidence includes failed Gemma and bounded-reasoning Qwen novelty
 calibrations, as well as interrupted attempts. No comparative improvement is
 established. Long training and locked audits remain blocked; the full negative
 results and their limitations are preserved in `reports/experiments/`.
-Rubric v5 adds an explicit reference-comparison record and rejects inconsistent
-positive novelty scores. It preserves the reward weights and calibration cases;
-its mathematical grading reliability remains to be tested.
+The v5 attempt stopped on repeated reference/score contradictions. Rubric v6
+retains the raw assessment and computes novelty eligibility from supported
+validity, a beyond-reference declaration, and excerpts for a construction and
+its use. Withheld credit and reasons are logged. Weights and calibration cases
+remain fixed; the combined code-and-judge instrument still needs calibration.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

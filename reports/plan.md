@@ -102,9 +102,14 @@ pass. Schema compliance alone cannot establish valid novelty discrimination.
 That attempt ended in a repeated score-consistency contract failure before the
 probability contrast completed. Preserve its
 [negative execution result](experiments/qwen-v5-contract-learnings.md).
-Investigate a declared-eligibility gate in code while retaining raw opinions;
-register that change before fresh inference. Do not reinterpret this attempt as
-a completed pass or a threshold failure.
+The [v6 amendment](amendments/2026-11-15-declared-novelty-eligibility.md)
+implements a declared-eligibility gate while retaining raw opinions. It withholds
+the novelty component for unmet prerequisites and logs the reason, preserving
+the other supported-theory components. Publish before one fresh Qwen quoted
+development attempt; keep remaining variants and untouched audits conditional
+on complete development passes. Evaluate the combined code-and-judge instrument,
+and separately report differences between raw and effective novelty. Do not
+reinterpret the v5 attempt as a completed pass or a threshold failure.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

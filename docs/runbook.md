@@ -120,10 +120,12 @@ All thought chunks are logged, but only visible JSON enters the rubric parser.
 Changing this setting invalidates that role's calibration and cache identity.
 Publish configuration changes before inference and keep old results separate.
 
-The bounded-reasoning v4 Qwen attempt failed development calibration. The
-[v5 protocol](../reports/amendments/2026-11-15-explicit-reference-decisions.md)
-adds an explicit reference comparison and score-consistency validation. Its
-changed prompt/schema invalidate previous cache and calibration identities.
+The v5 Qwen attempt exhausted retries on a reference/score contradiction. The
+[v6 protocol](../reports/amendments/2026-11-15-declared-novelty-eligibility.md)
+computes declared novelty eligibility while preserving raw opinions. Inspect
+`novelty_credit` in assessment, cache-hit, rollout and evaluation events for raw
+and effective scores and withheld-credit reasons. Its changed prompt and reward
+contract invalidate previous cache and calibration identities.
 Start Qwen quoted development with `--restart-development`; only a full pass
 permits the other required development variants, followed by untouched audits.
 Keep all reference contents, cases, labels, thresholds and inference budgets
