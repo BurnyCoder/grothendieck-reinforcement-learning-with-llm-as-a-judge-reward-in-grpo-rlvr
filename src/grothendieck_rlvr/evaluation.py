@@ -1,4 +1,5 @@
 """Separate policy generation, frozen-judge assessment and recipient transfer phases."""
+import hashlib
 import re
 import time
 from pathlib import Path
@@ -7,6 +8,27 @@ from .data import load_tasks
 from .io import PROJECT, EventLog, atomic_json, digest, read_json, read_jsonl, root
 from .prompts import policy_messages
 from .verify import verify_answer
+
+
+def inference_identity(adapter: Path | None = None) -> dict:
+    """Bind recoverable outputs to inference bytes/settings, not a mutable adapter path."""
+    identity = {"model": read_json(PROJECT / "configs/models.lock.json")["policy"],
+                "max_new_tokens": read_json(PROJECT / "configs/study.json")["max_completion_length"],
+                "context_length": 8192, "do_sample": False, "enable_thinking": False}
+    files = [PROJECT / "uv.lock"]
+    if adapter is not None:
+        for required in ("adapter_config.json", "adapter_model.safetensors"):
+            if not (adapter / required).is_file():
+                raise FileNotFoundError(f"Incomplete adapter: missing {required}")
+        files += sorted(p for p in adapter.iterdir() if p.is_file() and
+                        p.suffix in (".json", ".safetensors", ".jinja", ".model", ".txt"))
+    # Standard-library streaming hashing avoids loading adapter tensors just to identify them.
+    # https://docs.python.org/3.12/library/hashlib.html#hashlib.file_digest
+    identity["files"] = {}
+    for path in files:
+        with path.open("rb") as handle:
+            identity["files"][path.name] = hashlib.file_digest(handle, "sha256").hexdigest()
+    return identity
 
 
 class PolicyGenerator:
@@ -63,8 +85,11 @@ def generate(run_id: str, adapter: Path | None=None, rising=False, split="test",
     """Resume by completed task ID; a partial file cannot silently redefine the experiment."""
     directory = root() / "evaluations" / run_id
     directory.mkdir(parents=True, exist_ok=True)
+    tasks = evaluation_tasks(split)
+    prompts = {t.id: policy_messages(t, rising=rising, request_notes=split == "transfer_source") for t in tasks}
     config = {"run_id": run_id, "adapter": str(adapter) if adapter else None, "rising": rising,
-              "split": split, "seed": seed, "models": read_json(PROJECT / "configs/models.lock.json")}
+              "split": split, "seed": seed, "inference": inference_identity(adapter),
+              "tasks": digest([t.model_dump() for t in tasks]), "prompts": digest(prompts)}
     path = directory / "generation-config.json"
     if path.exists() and read_json(path) != config:
         raise ValueError("Generation configuration changed for existing run")
@@ -73,12 +98,11 @@ def generate(run_id: str, adapter: Path | None=None, rising=False, split="test",
     done = {row["task_id"] for row in saved}
     log = EventLog(directory / "events.jsonl")
     records = EventLog(directory / "generations.jsonl")
-    tasks = evaluation_tasks(split)
     pending = [t for t in tasks if t.id not in done]
     if pending:
         generator = PolicyGenerator(log, adapter, seed)
         for task in pending:
-            messages = policy_messages(task, rising=rising, request_notes=split == "transfer_source")
+            messages = prompts[task.id]
             result = generator.generate(messages, seed)
             records.emit("generation", task_id=task.id, family=task.family, split=task.split,
                          prompt=messages, **result)
@@ -90,6 +114,8 @@ def evaluate(run_id: str, judge) -> dict:
     directory = root() / "evaluations" / run_id
     config = read_json(directory / "generation-config.json")
     tasks = {t.id: t for t in evaluation_tasks(config["split"])}
+    if config.get("tasks") != digest([t.model_dump() for t in tasks.values()]):
+        raise ValueError("Evaluation task manifest changed since generation")
     rows = read_jsonl(directory / "generations.jsonl")
     if len({r["task_id"] for r in rows}) != len(rows):
         raise ValueError("Duplicate generated task records")
@@ -132,20 +158,23 @@ def transfer(source_run_ids: list[str], seed=42) -> dict:
     source_map = {t.id: t for t in sources}
     directory = root() / "transfer"
     directory.mkdir(parents=True, exist_ok=True)
-    config = {"source_runs": source_run_ids, "seed": seed,
-              "policy": read_json(PROJECT / "configs/models.lock.json")["policy"]}
-    if (directory / "config.json").exists() and read_json(directory / "config.json") != config:
-        raise ValueError("Transfer configuration changed; requires a separate amended run")
-    atomic_json(directory / "config.json", config)
-    note_sets = {}
+    note_sets, source_configs = {}, {}
     for run in source_run_ids:
         path = root() / "evaluations" / run
-        if read_json(path / "generation-config.json")["split"] != "transfer_source":
+        source_configs[run] = read_json(path / "generation-config.json")
+        if source_configs[run]["split"] != "transfer_source":
             raise ValueError("Notes must have been generated on isolated source tasks")
         records = read_jsonl(path / "generations.jsonl")
         if {r["task_id"] for r in records} != set(source_map):
             raise ValueError("Generate every source note before recipient evaluation")
         note_sets[run] = {r["task_id"]: extract_notes(r["response"]) for r in records}
+    config = {"source_runs": source_run_ids, "source_configs": source_configs, "seed": seed,
+              "inference": inference_identity(), "notes": digest(note_sets), "note_token_limit": 1024,
+              "tasks": digest([t.model_dump() for t in sources + targets]),
+              "prompts": digest([[policy_messages(t), policy_messages(t, notes="")] for t in targets])}
+    if (directory / "config.json").exists() and read_json(directory / "config.json") != config:
+        raise ValueError("Transfer configuration changed; requires a separate amended run")
+    atomic_json(directory / "config.json", config)
     log = EventLog(directory / "events.jsonl")
     scores = EventLog(directory / "scores.jsonl")
     done = {(r["condition"], r["task_id"]) for r in read_jsonl(scores.path)}
@@ -161,7 +190,7 @@ def transfer(source_run_ids: list[str], seed=42) -> dict:
             related = tokenizer.encode(notes[target.source_id], add_special_tokens=False)
             other = tokenizer.encode(notes[unrelated[target.source_id]], add_special_tokens=False)
             # Trim both directions to the same token count; never pad with answer-bearing target data.
-            length = min(len(related), len(other), 1024)
+            length = min(len(related), len(other), config["note_token_limit"])
             conditions[f"{run}:notes"] = (tokenizer.decode(related[:length]), unrelated[target.source_id])
             conditions[f"{run}:unrelated"] = (tokenizer.decode(other[:length]), unrelated[target.source_id])
         for condition, (notes, other_id) in conditions.items():

@@ -29,5 +29,8 @@
   "novelty_boundary_v3_pages_workflow": 43700432131,
   "launcher_and_logging_merge": "a546d3ceb4e79db160d06796a8d6318a77c38f59",
   "launcher_and_logging_huggingface_commit": "9a36bc594ec8af5363baafdb769cca0d92af333a",
-  "launcher_and_logging_pages_workflow": 43701707310
+  "launcher_and_logging_pages_workflow": 43701707310,
+  "grpo_recovery_merge": "46d64bcad43cc894d57d6951f1ee68dde71616ab",
+  "grpo_recovery_huggingface_commit": "25e2f7512002d39ed5141d6d97164bf19b3ae862",
+  "grpo_recovery_pages_workflow": 43704715610
 }

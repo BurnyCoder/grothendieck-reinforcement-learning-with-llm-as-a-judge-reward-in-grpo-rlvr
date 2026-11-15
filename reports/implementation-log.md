@@ -143,3 +143,21 @@ audit or comparative experiment has run, and long training remains gated.
 After pilot completion the unchanged development calibration was resumed from
 its content-addressed cache. Gemma's registered CUDA runtime is now being loaded
 with the policy stopped; successful serving and calibration remain separate checks.
+
+## 2026-11-15: evaluation identity before the first comparison
+
+Reviewing recovery before the first evaluation found that generation identified
+an adapter only by its path. Replacing weights or tokenizer files at that path,
+or changing prompts, task instances or token budgets, could reuse old records.
+Transfer similarly omitted the actual source-note contents from its identity.
+Failure-injection tests reproduced these cases without running a model.
+
+The recovery identity now includes streamed SHA-256 file hashes, the dependency
+lock, exact task/prompt hashes and inference settings. Transfer binds source
+generation configurations and note contents as well. Evaluation refuses changed
+reference manifests. This repairs experiment provenance before any comparative
+output exists; it does not change the rubric, sampling rule or acceptance tests.
+Passing checks are archived in `verification-evaluation-recovery.xml`.
+The implementation uses Python's documented
+[`hashlib.file_digest`](https://docs.python.org/3.12/library/hashlib.html#hashlib.file_digest),
+consistent with the broader [content fingerprinting approach](https://huggingface.co/docs/datasets/about_cache).
