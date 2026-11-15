@@ -1,6 +1,6 @@
 # Implementation and experiment plan
 
-Updated 2026-11-15. Authority: user-approved Qwen3.5/Gemma plan and
+Updated 2026-11-16. Authority: user-approved Qwen3.5/Gemma plan and
 [preregistration](preregistration.md), amended before judgments by the
 [valid-novelty/OOD protocol](amendments/2026-11-15-valid-novelty-and-ood.md).
 This checklist is a status record, not
@@ -11,7 +11,10 @@ The v2 and v3 attempts are preserved. The
 [v4 evidence protocol](amendments/2026-11-15-judge-evidence-protocol.md) now requires
 evidence before scoring and explicit validation feedback on retries. Development
 calibration checks novelty first and can stop when the fixed thresholds become
-unreachable. Untouched full locked audits remain required. No comparative run has begun.
+unreachable. Untouched full locked audits remain required for the qualified study.
+The [new user-authorized exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
+permits separate single-call judge training despite failed calibration. No
+comparative run has begun; these experiments will not qualify the original study.
 
 - [x] Inspect workspace, local hardware and publication accounts.
 - [x] Review relevant mathematics, rubric RL, theory formation and runtime sources.
@@ -165,9 +168,21 @@ deficiencies. Their vetoes removed all observed theory bonuses, including the
 brief valid connection. Exact post-hoc checks of selected disputed steps do not
 rescore the run. The [execution clarification](amendments/2026-11-15-specialist-development-matrix.md)
 corrects the runbook to complete all three specialist development configurations
-as requested. Rubric-only Qwen and quoted Gemma remain pending; no outcome from
-them can bypass the failed quoted-Qwen gate. Audits and comparative runs remain
-unstarted. Reporting now exposes role-level objections alongside latencies.
+as requested. Rubric-only Qwen subsequently failed the unchanged futility rule;
+its [complete evidence and interpretation](experiments/qwen-v8-specialist-rubric-learnings.md)
+are preserved. Quoted Gemma specialist development is deferred after the user's
+new instruction to test single-call training despite the failures. Audits remain
+unstarted. Reporting exposes role-level objections alongside latencies.
+
+The immediate execution path is now: publish the exploratory amendment and
+tested single-call mode; refresh its development save/resume timings; generate
+ordinary/prompted baselines; train theory-bonus and correctness-only seed 42;
+generate and independently score the fixed primary and OOD suites; evaluate
+frozen-recipient note transfer. Use separate `exploratory-single-v1-` identifiers
+and preserve every original calibration result. Publish each milestone. Matched
+later seeds and controls remain planned within the week; unfinished work is
+reported without reducing budgets or sample sizes. Bigger/better judges are a
+future amended experiment, not a presumed cure or an additional download now.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
@@ -176,6 +191,6 @@ exists at https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr . Collect
 creation initially returned an account-level daily rate limit. After that limit
 cleared, the single [research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
 was created and populated with the artifact repository and external frozen model
-references. Project-trained adapters remain pending qualification and training.
+references. Project-trained adapters remain pending training.
 The in-app browser backend was unavailable; Windows browser inspection was
 stopped by URL-policy enforcement. No UI validation success is claimed.

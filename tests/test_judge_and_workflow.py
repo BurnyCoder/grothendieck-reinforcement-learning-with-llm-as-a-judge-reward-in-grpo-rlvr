@@ -36,6 +36,28 @@ def test_judge_retries_and_cache_recovery(tmp_path, monkeypatch):
     assert restored.assess(task, response).quality == pytest.approx(.75)
 
 
+def test_single_protocol_uses_one_assessment_and_isolates_legacy_cache(tmp_path, monkeypatch):
+    """Context preflight is not a second opinion; repeated solutions reuse one accepted call."""
+    judge = Judge("http://127.0.0.1:8081", protocol="single-v1",
+                  log=EventLog(tmp_path / "single.jsonl"), cache=tmp_path / "cache.sqlite")
+    legacy = make_judge(tmp_path)
+    assert not judge.stages and judge.client.check_context
+    assert judge.system == legacy.system and judge.identity != legacy.identity
+    task = Task(id="fixture", problem="gcd(12,18)", answer="6", family="gcd", split="dev", provenance={})
+    calls = []
+    def respond(*args, **kwargs):
+        calls.append(args)
+        return json.dumps(fixture_assessment())
+    monkeypatch.setattr(judge.client, "generate", respond)
+    monkeypatch.setattr(legacy.client, "generate", respond)
+    response = "Divisors are preserved. <final>6</final>"
+    judge.assess(task, response)
+    judge.assess(task, response)
+    assert len(calls) == 1
+    legacy.assess(task, response)
+    assert len(calls) == 2
+
+
 def test_invalid_evidence_is_never_silently_rewarded(tmp_path, monkeypatch):
     judge = make_judge(tmp_path)
     monkeypatch.setattr(judge.client, "generate", lambda *a, **k: json.dumps(fixture_assessment()))

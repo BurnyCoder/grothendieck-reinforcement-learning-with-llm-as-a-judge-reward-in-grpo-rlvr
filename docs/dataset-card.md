@@ -14,7 +14,7 @@ tags:
 
 The single [research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
 links these artifacts and the frozen upstream models. Project-trained adapters
-remain pending qualification and training.
+remain pending training.
 
 Preregistered local Qwen/Gemma research on correctness-gated theory-building
 rewards, including valid conceptual novelty relative to fixed reference approaches.
@@ -23,7 +23,7 @@ provenance, model/runtime locks, protocol, code and generated research reports.
 Model-generated results are pending unless explicitly recorded in saved results.
 Development evidence includes failed Gemma and bounded-reasoning Qwen novelty
 calibrations, as well as interrupted attempts. No comparative improvement is
-established. Long training and locked audits remain blocked; the full negative
+established. Qualification-study training and locked audits remain blocked; the full negative
 results and their limitations are preserved in `reports/experiments/`.
 The v5 attempt stopped on repeated reference/score contradictions; v6 executed
 an explicit eligibility gate and was interrupted after the user clarified the
@@ -43,7 +43,7 @@ the constructed expectations. A routine reference excerpt was incorrectly used
 as evidence of an additional connection's application. Exact substring checks
 cannot certify that semantic relationship. The negative result is preserved in
 `reports/experiments/qwen-v7-reference-scope-learnings.md`; remaining calibration,
-audits and comparative training stay blocked.
+audits and qualification-study training stay blocked.
 
 The registered v8 two-call repair failed its fixed development gate. It credited
 a brief valid commutator connection, but overcredited routine GCD/LCM mathematics
@@ -62,9 +62,13 @@ gate. False mathematical objections vetoed valid frameworks and the brief
 commutator connection. Full evidence, selected exact mathematical checks and
 limitations are in `reports/experiments/qwen-v8-specialist-learnings.md`.
 Role-level issue counts and timings are generated from the stored findings.
-Rubric-only Qwen and quoted Gemma specialist development remain pending. The
-failed configuration blocks audits and comparative training regardless of their
-outcomes; the full development matrix is still completed as requested.
+Rubric-only Qwen specialist development also failed its fixed gate. Quoted Gemma
+specialist development is deferred under the user's new instruction. The
+`2026-11-16-exploratory-single-judge` amendment authorizes a separate single-call
+training experiment despite unqualified judges. It preserves the reward, modest
+connection credit, weights, thresholds and saved failures. Explicit experiment
+names and report fields separate it from the still-gated qualified study. Neither
+judge scores nor completed training can retroactively establish calibration.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 
 from .data import load_tasks
+from .experiments import EXPLORATORY_ID, experiment_profile, validate_judge
 from .io import PROJECT, EventLog, atomic_json, digest, read_json, read_jsonl, root
 from .prompts import policy_messages
 from .verify import verify_answer
@@ -81,8 +82,10 @@ def evaluation_tasks(split="test"):
     return load_tasks(split)
 
 
-def generate(run_id: str, adapter: Path | None=None, rising=False, split="test", seed=42) -> dict:
+def generate(run_id: str, adapter: Path | None=None, rising=False, split="test", seed=42,
+             exploratory=False) -> dict:
     """Resume by completed task ID; a partial file cannot silently redefine the experiment."""
+    profile = experiment_profile(exploratory, run_id)
     directory = root() / "evaluations" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     tasks = evaluation_tasks(split)
@@ -90,6 +93,8 @@ def generate(run_id: str, adapter: Path | None=None, rising=False, split="test",
     config = {"run_id": run_id, "adapter": str(adapter) if adapter else None, "rising": rising,
               "split": split, "seed": seed, "inference": inference_identity(adapter),
               "tasks": digest([t.model_dump() for t in tasks]), "prompts": digest(prompts)}
+    if profile:
+        config["experiment"] = profile
     path = directory / "generation-config.json"
     if path.exists() and read_json(path) != config:
         raise ValueError("Generation configuration changed for existing run")
@@ -109,10 +114,14 @@ def generate(run_id: str, adapter: Path | None=None, rising=False, split="test",
     return {"run_id": run_id, "completed": len(tasks), "split": split}
 
 
-def evaluate(run_id: str, judge) -> dict:
+def evaluate(run_id: str, judge, exploratory=False) -> dict:
     """Run only after generation, allowing evaluation-model GPU offload separately."""
+    profile = experiment_profile(exploratory, run_id)
+    validate_judge(judge, profile)
     directory = root() / "evaluations" / run_id
     config = read_json(directory / "generation-config.json")
+    if config.get("experiment") != profile:
+        raise ValueError("Evaluation experiment track changed since generation")
     tasks = {t.id: t for t in evaluation_tasks(config["split"])}
     if config.get("tasks") != digest([t.model_dump() for t in tasks.values()]):
         raise ValueError("Evaluation task manifest changed since generation")
@@ -138,10 +147,12 @@ def evaluate(run_id: str, judge) -> dict:
                  novelty_credit=assessment.novelty_credit if assessment else None,
                  metric=float(verdict.correct)*quality, assessment=assessment.model_dump() if assessment else None,
                  response_tokens=row["response_tokens"], judge_identity=judge.identity,
-                 response=row["response"], prompt=row["prompt"])
+                 response=row["response"], prompt=row["prompt"],
+                 experiment=profile["id"] if profile else "qualified-study")
     scored = read_jsonl(output)
     summary = {"run_id": run_id, "expected": len(tasks), "scored": len(scored),
-               "complete": len(scored) == len(tasks), "judge_identity": judge.identity}
+               "complete": len(scored) == len(tasks), "judge_identity": judge.identity,
+               "experiment": profile["id"] if profile else "qualified-study"}
     atomic_json(directory / "status.json", summary)
     return summary
 
@@ -152,17 +163,23 @@ def extract_notes(response: str) -> str:
     return matches[0].strip() if len(matches) == 1 else ""
 
 
-def transfer(source_run_ids: list[str], seed=42) -> dict:
+def transfer(source_run_ids: list[str], seed=42, exploratory=False) -> dict:
     """A frozen unmodified recipient receives notes without exposing targets to note writers."""
     sources = load_tasks("transfer_source")
     targets = load_tasks("transfer_target")
     source_map = {t.id: t for t in sources}
+    profile = experiment_profile(exploratory)
     directory = root() / "transfer"
+    if profile:
+        directory = directory / EXPLORATORY_ID
     directory.mkdir(parents=True, exist_ok=True)
     note_sets, source_configs = {}, {}
     for run in source_run_ids:
+        experiment_profile(exploratory, run)
         path = root() / "evaluations" / run
         source_configs[run] = read_json(path / "generation-config.json")
+        if source_configs[run].get("experiment") != profile:
+            raise ValueError("Transfer sources have a different experiment track")
         if source_configs[run]["split"] != "transfer_source":
             raise ValueError("Notes must have been generated on isolated source tasks")
         records = read_jsonl(path / "generations.jsonl")
@@ -173,6 +190,8 @@ def transfer(source_run_ids: list[str], seed=42) -> dict:
               "inference": inference_identity(), "notes": digest(note_sets), "note_token_limit": 1024,
               "tasks": digest([t.model_dump() for t in sources + targets]),
               "prompts": digest([[policy_messages(t), policy_messages(t, notes="")] for t in targets])}
+    if profile:
+        config["experiment"] = profile
     if (directory / "config.json").exists() and read_json(directory / "config.json") != config:
         raise ValueError("Transfer configuration changed; requires a separate amended run")
     atomic_json(directory / "config.json", config)

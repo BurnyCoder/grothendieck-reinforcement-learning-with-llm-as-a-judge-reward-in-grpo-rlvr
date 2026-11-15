@@ -154,14 +154,16 @@ class Judge:
         self.config = read_json(PROJECT / "configs/study.json")
         self.anchors = read_json(PROJECT / "configs/novelty-anchors.json")
         self.protocol = protocol or self.config.get("judge_protocol", "legacy")
-        self.stages = [] if self.protocol == "legacy" else stage_specs(self.protocol, variant)
-        self.system = judge_system(variant, version="v7" if self.protocol == "legacy" else "v8")
+        single = self.protocol in ("legacy", "single-v1")
+        self.stages = [] if single else stage_specs(self.protocol, variant)
+        self.system = judge_system(variant, version="v7" if single else "v8")
         self.role, self.variant = role, variant
         self.log = log or EventLog(root() / "logs" / f"{role}-{variant}.jsonl")
         runtime = models.judge_runtime(role)
         reasoning_budget = self.config.get("judge_reasoning_budget_tokens", {}).get(role, 0)
         self.client = LocalChat(url, role, self.log, self.config["judge_timeout_seconds"], runtime,
-                                self.spec, self.config["judge_context_length"], reasoning_budget)
+                                self.spec, self.config["judge_context_length"], reasoning_budget,
+                                check_context=self.protocol == "single-v1")
         cache = cache or root() / "judge-cache.sqlite"
         cache.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(cache)
@@ -192,6 +194,10 @@ class Judge:
         if self.stages:
             self.identity = digest({"base": self.identity, "protocol": self.protocol,
                                     "stages": [s.manifest() for s in self.stages],
+                                    "context_check": "served-template-tokenizer-reserve-full-generation-v1"})
+        elif self.protocol == "single-v1":
+            # Keep historical legacy scores intact; preflight behavior has its own identity.
+            self.identity = digest({"base": self.identity, "protocol": self.protocol,
                                     "context_check": "served-template-tokenizer-reserve-full-generation-v1"})
 
     def assess(self, task: Task, response: str) -> Assessment:

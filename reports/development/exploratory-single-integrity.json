@@ -1,0 +1,16 @@
+{
+  "profile_hash": "8f75ed1026443ab42e2beeea39149a963aa297201447a5ef40631e267db267c8",
+  "judge_identities": {
+    "training_judge": {
+      "quoted": "d7e980a79754bb593ceee04e10abc822143c9ad4cbe0f507d3c9ad66a8adc169",
+      "rubric": "f20b72ec9e25412d0cca7e3fdb97739f97b751b7c60cd125c56a14f2acad2bcd"
+    },
+    "evaluation_judge": {
+      "quoted": "5cb69ecd8c29b69c430187baf5a85b3660d1f550e56d98f9bfc0a5124560ff9c"
+    }
+  },
+  "inference_performed": false,
+  "dev_cases_hash": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+  "audit_cases_hash": "f2f0abc95de0c60c0b5b6ff193b2926a3535092dc2912184a5af2a8d0366a07d",
+  "reference_hash": "7d4e36f1f841bb7dc333f8827448eb355bb98434435db1e564844e0ac4ecfe40"
+}

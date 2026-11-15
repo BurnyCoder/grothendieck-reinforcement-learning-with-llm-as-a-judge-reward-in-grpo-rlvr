@@ -105,3 +105,25 @@ def test_stage_report_preserves_objections_despite_a_supported_verdict(tmp_path,
     rows = reporting.stage_latency_rows(records)
     assert rows[1][1:] == ["two-stage-v1", "quality", "1", "1", "1", "1", "12.00"]
     assert rows[2][1:] == ["specialists-v1", "validity", "2", "1", "2", "0", "9.00"]
+
+
+def test_exploratory_results_never_fill_the_qualified_comparison(tmp_path, monkeypatch):
+    """Name isolation must survive the actual artifact-reading report entry point."""
+    from grothendieck_rlvr.experiments import EXPLORATORY_PREFIX
+    monkeypatch.setattr(reporting, "root", lambda: tmp_path)
+    monkeypatch.setattr(reporting, "calibration_records", lambda: [])
+    monkeypatch.setattr(reporting, "development_records", lambda: [])
+    monkeypatch.setattr(reporting, "training_budget", lambda *a: {})
+    for arm, value in [("theory", .8), ("correctness", .4)]:
+        folder = tmp_path / "evaluations" / (EXPLORATORY_PREFIX + arm + "-seed42")
+        folder.mkdir(parents=True)
+        row = {"task_id": "fixture", "family": "gcd", "split": "test_fresh", "correct": True,
+               "metric": value, "theory": value, "response_tokens": 10,
+               "verification": {"status": "correct"}, "judge_identity": "same-fixture"}
+        (folder / "scores.jsonl").write_text(json.dumps(row)+'\n')
+    snapshot = reporting.collect()
+    assert snapshot["primary"]["status"] == "pending"
+    assert snapshot["exploratory_single"]["primary"]["status"] == "exploratory_uncalibrated"
+    rows = reporting.table_rows(snapshot)
+    standard = next(row for row in rows if row[0] == "theory-seed42")
+    assert standard[1:] == ["Pending"] * 4

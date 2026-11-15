@@ -1,10 +1,10 @@
 # Correctness-gated mathematical theory building
 
-Libor “Burny” Burian · 2026-11-15
+Libor “Burny” Burian · 2026-11-16
 
 ## Abstract
 
-We specify a local experiment testing whether correctness-gated rubric rewards improve useful mathematical theory building. A frozen Qwen judge assesses explanations; external arithmetic verifies final answers. Independent Gemma judgment and frozen-recipient transfer assess behavior. Primary analysis status: pending. No latent-space mechanism is established.
+We specify a local experiment testing whether correctness-gated rubric rewards improve useful mathematical theory building. A frozen Qwen judge assesses explanations; external arithmetic verifies final answers. Independent Gemma judgment and frozen-recipient transfer assess behavior. Qualified-study analysis status: pending. After calibration failures, a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. Its results remain separate. No latent-space mechanism is established.
 
 ## Context, motivation and related work
 
@@ -16,7 +16,7 @@ Tasks come from pinned Reasoning Gym generators [6]. Training families are GCD, 
 
 ## Models and training
 
-Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison runtime-budget amendment selects 64 optimizer updates for every training arm. The active instrument is specialists-v1; per-role prompts, visible/reasoning budgets and dependencies are locked in its identity. Separate calls reuse the same frozen model and may share errors. Studies report setting-dependent benefits and failures of additional judging computation [12,13]; neither validates this novelty rubric. Failed feasibility or calibration is development evidence, not a negative test of the behavioral hypothesis.
+Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison runtime-budget amendment selects 64 optimizer updates for every training arm. The qualification protocol is specialists-v1; per-role prompts, visible/reasoning budgets and dependencies are locked in its identity. Separate calls reuse the same frozen model and may share errors. Studies report setting-dependent benefits and failures of additional judging computation [12,13]; neither validates this novelty rubric. Failed feasibility or calibration is development evidence, not a negative test of the behavioral hypothesis.
 
 ## Experimental design and analysis
 
@@ -24,7 +24,7 @@ Compare ordinary and prompted unmodified models, correctness-only training, the 
 
 ## Results and claims
 
-All tables and figures in this paper are generated from saved records. Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary analysis reports pending. Implementation checks do not establish mathematical performance. Calibration cases are constructed expectations, not human preference evidence.
+All tables and figures in this paper are generated from saved records. Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary analysis reports pending. Analysis status: pending. No matched trained arms have been evaluated Implementation checks do not establish mathematical performance. Calibration cases are constructed expectations, not human preference evidence.
 
 | Arm | Problems | Accuracy | C × theory | C × novelty |
 |---|---|---|---|---|
@@ -38,6 +38,10 @@ All tables and figures in this paper are generated from saved records. Pending c
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-prompted | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 ```json
 {
@@ -48,7 +52,7 @@ All tables and figures in this paper are generated from saved records. Pending c
 
 ## Development execution
 
-Preserved development logs contain 205 completed judge responses and 10 requests without a completed response. These counts are generated from reports/development logs. Interrupted CPU and CUDA judging attempts and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not establish calibration reliability. Conventional arguments received nonzero novelty credit, including after the v3 clarification. The clean standalone Gemma retry completed judgments, including a rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty to some conventional controls. Passive OpenMP waiting completed the observed requests without a transport failure; that short run does not establish sustained reliability. Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional generalized explanations. It was interrupted for a documented reasoning-mode development revision, without being declared a calibration pass or threshold failure. The later v5 attempt stopped after bounded retries repeated a contradiction between the declared reference relation and numerical novelty score; that calibration remained incomplete. V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when the user clarified that brief valid connections should receive modest novelty credit. V7 implements that changed construct. Its first trial failed the control-credit conditions despite correct observed framework/control rankings. A later reference-scope amendment clarified commutative-polynomial and ordinary biased-probability baselines. That trial also failed: routine probability controls received zero novelty, but brief commutator connections remained uncredited and a brief subgroup connection tied a developed framework on novelty while scoring higher overall. A conventional invariant was cited as a use of the added connection; exact-excerpt validation cannot establish that semantic attribution. Historical results are retained, and the remaining model runs stay gated. The two-call decomposition subsequently failed development: it credited a brief commutator connection but overcredited conventional GCD/LCM mathematics and missed developed uses. The preserved stage findings and case report document these errors. The preregistered specialist fallback also failed quoted-Qwen development. Its roles emitted mathematical objections to omitted elementary steps, conventionality and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. Selected exact checks of the disputed steps are preserved without rescoring the trial. The remaining specialist development configurations are diagnostic; they cannot bypass this failed gate. Related proof-verification studies discuss false rejection [16,17], but use different models and aggregation rules and do not qualify this instrument.
+Preserved development logs contain 253 completed judge responses and 10 requests without a completed response. These counts are generated from reports/development logs. Interrupted CPU and CUDA judging attempts and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not establish calibration reliability. Conventional arguments received nonzero novelty credit, including after the v3 clarification. The clean standalone Gemma retry completed judgments, including a rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty to some conventional controls. Passive OpenMP waiting completed the observed requests without a transport failure; that short run does not establish sustained reliability. Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional generalized explanations. It was interrupted for a documented reasoning-mode development revision, without being declared a calibration pass or threshold failure. The later v5 attempt stopped after bounded retries repeated a contradiction between the declared reference relation and numerical novelty score; that calibration remained incomplete. V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when the user clarified that brief valid connections should receive modest novelty credit. V7 implements that changed construct. Its first trial failed the control-credit conditions despite correct observed framework/control rankings. A later reference-scope amendment clarified commutative-polynomial and ordinary biased-probability baselines. That trial also failed: routine probability controls received zero novelty, but brief commutator connections remained uncredited and a brief subgroup connection tied a developed framework on novelty while scoring higher overall. A conventional invariant was cited as a use of the added connection; exact-excerpt validation cannot establish that semantic attribution. Historical results are retained, and qualification remains unestablished. The two-call decomposition subsequently failed development: it credited a brief commutator connection but overcredited conventional GCD/LCM mathematics and missed developed uses. The preserved stage findings and case report document these errors. The preregistered specialist fallback also failed quoted-Qwen development. Its roles emitted mathematical objections to omitted elementary steps, conventionality and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. Selected exact checks of the disputed steps are preserved without rescoring the trial. Rubric-only Qwen specialist development also failed: correct validity findings were vetoed by other roles, while a conventional calculation was mistaken for use of a brief connection. Quoted Gemma specialist development was deferred following the user's new execution instruction. Related proof-verification studies discuss false rejection [16,17], but use different models and aggregation rules and do not qualify this instrument.
 
 evaluation_judge/quoted (dev, ef8a300c) failed: 2/4 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
@@ -60,11 +64,69 @@ training_judge/quoted (dev, a3fa911e) failed: 4/7 observed preference contracts 
 
 training_judge/quoted (dev, b33cb353) failed: 0/3 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
+training_judge/rubric (dev, c07b8d14) failed: 0/3 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
+
 training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
 Incomplete development suites stopped under the fixed futility rule. Upper bounds assume every remaining case succeeds solely to test attainability. Unobserved cases are not counted as measured successes or errors; no early pass is allowed. No comparative conclusion follows.
 
 A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality.
+
+## Exploratory continuation with a single judge
+
+The dated amendment explicitly permits training without calibration qualification. It retains the latest published single-call rubric v7, fixed references, modest connection credit, weights, correctness gate and training settings. A new identity adds context preflight without changing the scoring prompt. Each correct solution receives one accepted structured assessment; only output or transport failures permit bounded retries. Separate names and checkpoint identities keep these runs out of the qualified study. The initial comparison is theory bonus versus correctness-only at seed 42, with ordinary and rising-sea prompted baselines. Gemma's single-call scores are also unqualified. Held-out correctness and recipient transfer are therefore particularly useful checks, while judged theory remains a potentially biased proxy. Reward-model overoptimization has been observed in a distinct synthetic reward-model setting [18]; it does not determine this experiment's outcome. All uncertainty remains exploratory even if later seeds or nominal targets agree. Larger, better judges are future experiments requiring new frozen identities and fresh held-out confirmation. Analysis status: pending. No matched trained arms have been evaluated
+
+```json
+{
+  "profile": {
+    "id": "exploratory-single-v1",
+    "amendment": "reports/amendments/2026-11-16-exploratory-single-judge.md",
+    "authorization": "User explicitly requested single-call judge training despite failed acceptance thresholds on 2026-11-16 Europe/Berlin.",
+    "calibration_required": false,
+    "interpretation": "Exploratory learning with unqualified, potentially systematically biased judges; not the calibration-qualified study.",
+    "judge_protocol": "single-v1",
+    "rubric_version": "v7",
+    "reference_version": "v3",
+    "initial_arms": [
+      "ordinary",
+      "prompted",
+      "theory-seed42",
+      "correctness-seed42"
+    ],
+    "input_hashes": {
+      "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
+      "configs/models.lock.json": "19665fe0a0e451deccaa0ea52662b21a2056bdd335b79cc5e9efc58a28fa8495",
+      "configs/policy-selection.json": "698f3ed0cbab3e3a0a307fb0a721d46b7bb0636fe2f633632b2ba69e4a0576bd",
+      "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+      "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062"
+    },
+    "judge_identities": {
+      "training_judge": {
+        "quoted": "d7e980a79754bb593ceee04e10abc822143c9ad4cbe0f507d3c9ad66a8adc169",
+        "rubric": "f20b72ec9e25412d0cca7e3fdb97739f97b751b7c60cd125c56a14f2acad2bcd"
+      },
+      "evaluation_judge": {
+        "quoted": "5cb69ecd8c29b69c430187baf5a85b3660d1f550e56d98f9bfc0a5124560ff9c"
+      }
+    }
+  },
+  "primary": {
+    "status": "pending",
+    "reason": "No matched trained arms have been evaluated"
+  },
+  "secondary_ood": {
+    "status": "pending",
+    "reason": "No matched trained arms have been evaluated"
+  },
+  "transfer": {
+    "summaries": {},
+    "versus_no_notes": {},
+    "versus_unrelated": {},
+    "between_note_sources": {},
+    "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
+  }
+}
+```
 
 ## Transfer evaluation
 
@@ -121,5 +183,7 @@ The repository contains the dated preregistration, model and data locks, full pr
 [16] [Naik et al., Do We Need Frontier Models to Verify Mathematical Proofs?](https://arxiv.org/abs/2604.02450v1)
 
 [17] [Huang et al., Pessimistic Verification for Open Ended Math Questions](https://arxiv.org/abs/2511.21522v1)
+
+[18] [Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization](https://proceedings.mlr.press/v202/gao23h.html)
 
 AI statement: Codex wrote this codebase and paper from the exact specification provided by a human. Human cleanup and rewriting are in progress.

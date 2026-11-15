@@ -4,9 +4,11 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
+from zoneinfo import ZoneInfo
 
 from .analysis import primary_comparison, summarize, transfer_analysis
 from .budget import training_budget, budget_markdown
+from .experiments import EXPLORATORY_ID, EXPLORATORY_PREFIX, experiment_profile
 from .io import PROJECT, atomic_json, digest, read_json, read_jsonl, root
 
 ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
@@ -89,6 +91,8 @@ def collect() -> dict:
     """Missing artifacts remain missing; they never become fabricated zero results."""
     evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
     cfg = read_json(PROJECT / "configs/study.json")
+    exploratory = {name.removeprefix(EXPLORATORY_PREFIX): rows for name, rows in evaluations.items()
+                   if name.startswith(EXPLORATORY_PREFIX)}
     training = {p.parent.name: read_jsonl(p) for p in (root() / "runs").glob("*/metrics.jsonl")}
     calibration = calibration_records()
     examples = {name: sorted(rows, key=lambda r: r["task_id"])[:12] for name, rows in evaluations.items()}
@@ -101,6 +105,13 @@ def collect() -> dict:
                               for split in sorted({r["split"] for r in rows})}
                        for name, rows in evaluations.items()},
             "primary": primary_comparison(evaluations, cfg), "training": training,
+            "exploratory_single": {
+                "profile": experiment_profile(True),
+                "primary": primary_comparison(exploratory, cfg, exploratory=True),
+                "secondary_ood": primary_comparison(exploratory, cfg, suffix="-ood", secondary=True,
+                                                     exploratory=True),
+                "transfer": transfer_analysis(read_jsonl(root() / "transfer" / EXPLORATORY_ID / "scores.jsonl"),
+                                              cfg["bootstrap_samples"], cfg["transfer_sources"])},
             "secondary_ood": primary_comparison(evaluations, cfg, suffix="-ood", secondary=True),
             "families": {name: {family: summarize([r for r in rows if r["family"] == family])
                                 for family in sorted({r["family"] for r in rows})}
@@ -175,7 +186,9 @@ def display(value, digits=4) -> str:
 def table_rows(snapshot):
     """Include every planned arm, even before that arm has an evaluated model."""
     rows = [["Arm", "Problems", "Accuracy", "C × theory", "C × novelty"]]
-    for arm in dict.fromkeys(ARMS + sorted(snapshot["summaries"])):
+    exploratory = [EXPLORATORY_PREFIX + arm for arm in
+                   snapshot.get("exploratory_single", {}).get("profile", {}).get("initial_arms", [])]
+    for arm in dict.fromkeys(ARMS + exploratory + sorted(snapshot["summaries"])):
         s = snapshot["summaries"].get(arm, {})
         rows.append([arm, display(s.get("n")), display(s.get("accuracy")),
                      display(s.get("metric")), display(s.get("correctness_weighted_novelty"))])
@@ -193,7 +206,27 @@ def transfer_rows(snapshot):
     rows = [["Note condition", "Probes", "Recipient accuracy"]]
     rows.extend([condition, display(metrics["n"]), display(metrics["accuracy"])]
                 for condition, metrics in snapshot["transfer"]["summaries"].items())
+    rows.extend(["exploratory: " + condition.removeprefix(EXPLORATORY_PREFIX),
+                 display(metrics["n"]), display(metrics["accuracy"])]
+                for condition, metrics in snapshot.get("exploratory_single", {}).get(
+                    "transfer", {}).get("summaries", {}).items())
     return rows if len(rows) > 1 else rows + [["Registered transfer conditions", "Pending", "Pending"]]
+
+
+def comparison_text(result):
+    """The paper uses the saved paired estimates, including uncertainty and missing seed variation."""
+    if "metric" not in result:
+        return f"Analysis status: {result['status']}. {result.get('reason', '')}"
+    pieces = [f"Analysis status: {result['status']}."]
+    for metric, name in (("metric", "C times theory"), ("correct", "accuracy")):
+        row = result[metric]
+        pieces.append(f"Theory-minus-correctness {name} difference {row['difference']:.4f}, "
+                      f"paired 95% interval [{row['ci95'][0]:.4f}, {row['ci95'][1]:.4f}].")
+    row = result["metric"]
+    seed_sd = display(row["between_seed_sd"]) if row["between_seed_sd"] is not None else "not estimable from one seed"
+    pieces.append(f"Matched problems: {row['problems']}; seeds: {row['seeds']}; "
+                  f"between-seed SD of the theory difference: {seed_sd}.")
+    return " ".join(pieces)
 
 
 def request_latency_rows(records):
@@ -284,7 +317,7 @@ def figures(snapshot, destination: Path) -> None:
     ax.set(xlim=(0, 11), ylim=(0, 3.3))
     ax.axis("off")
     boxes = [(0.2, 1.8, "Locked tasks\nReasoning Gym"), (3.0, 1.8, "Qwen policy\nfour completions"),
-             (5.8, 1.8, "Answer verifier\ncorrectness gate"), (8.6, 1.8, "Frozen Qwen\nisolated judge stages"),
+             (5.8, 1.8, "Answer verifier\ncorrectness gate"), (8.6, 1.8, "Frozen Qwen\nstructured judgment"),
              (3.0, .15, "TRL Dr. GRPO\nLoRA updates"), (5.8, .15, "C × (1 + 0.5T)\ncomposite reward"),
              (8.6, .15, "Frozen Gemma\nand recipient tests")]
     for x, y, label in boxes:
@@ -340,7 +373,9 @@ def paper_sections(snapshot):
         ("Abstract", "We specify a local experiment testing whether correctness-gated rubric rewards "
          "improve useful mathematical theory building. A frozen Qwen judge assesses explanations; "
          "external arithmetic verifies final answers. Independent Gemma judgment and frozen-recipient "
-         f"transfer assess behavior. Primary analysis status: {status}. No latent-space mechanism is established."),
+         f"transfer assess behavior. Qualified-study analysis status: {status}. After calibration failures, "
+         "a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. "
+         "Its results remain separate. No latent-space mechanism is established."),
         ("Context, motivation and related work", "Grothendieck's rising-sea metaphor motivates building "
          "structures until a specific question becomes a consequence. McLarty's account supplies the "
          "historical attribution [1]. We combine GRPO [2], Dr. GRPO normalization [3], and rubric rewards [4]. "
@@ -369,7 +404,7 @@ def paper_sections(snapshot):
          "are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration "
          "fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison "
          f"runtime-budget amendment selects {snapshot['study']['max_steps']} optimizer updates for every training arm. "
-         f"The active instrument is {snapshot['study'].get('judge_protocol', 'legacy')}; per-role prompts, "
+         f"The qualification protocol is {snapshot['study'].get('judge_protocol', 'legacy')}; per-role prompts, "
          "visible/reasoning budgets and dependencies are locked in its identity. Separate calls reuse the "
          "same frozen model and may share errors. Studies report setting-dependent benefits "
          "and failures of additional judging computation [12,13]; neither validates this novelty rubric. "
@@ -386,7 +421,8 @@ def paper_sections(snapshot):
          "out from project training, not necessarily from model pretraining."),
         ("Results and claims", "All tables and figures in this paper are generated from saved records. "
          "Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary "
-         f"analysis reports {status}. Implementation checks do not establish mathematical performance. "
+         f"analysis reports {status}. {comparison_text(snapshot['primary'])} "
+         "Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
         ("Development execution", f"Preserved development logs contain "
          f"{sum(r['completed_responses'] for r in snapshot['development'])} completed judge responses and "
@@ -414,7 +450,7 @@ def paper_sections(snapshot):
          "remained uncredited and a brief subgroup connection tied a developed framework on novelty "
          "while scoring higher overall. A conventional invariant was cited as a use of the added "
          "connection; exact-excerpt validation cannot establish that semantic attribution. "
-         "Historical results are retained, and the remaining model runs stay gated. "
+         "Historical results are retained, and qualification remains unestablished. "
          "The two-call decomposition subsequently failed development: it credited a brief "
          "commutator connection but overcredited conventional GCD/LCM mathematics and missed "
          "developed uses. The preserved stage findings and case report document these errors. "
@@ -422,11 +458,27 @@ def paper_sections(snapshot):
          "Its roles emitted mathematical objections to omitted elementary steps, conventionality "
          "and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. "
          "Selected exact checks of the disputed steps are preserved without rescoring the trial. "
-         "The remaining specialist development configurations are diagnostic; they cannot bypass "
-         "this failed gate. Related proof-verification studies discuss false rejection [16,17], "
+         "Rubric-only Qwen specialist development also failed: correct validity findings were "
+         "vetoed by other roles, while a conventional calculation was mistaken for use of a brief connection. "
+         "Quoted Gemma specialist development was deferred following the user's new execution instruction. "
+         "Related proof-verification studies discuss false rejection [16,17], "
          "but use different models and aggregation rules and do not qualify this instrument."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
+        ("Exploratory continuation with a single judge", "The dated amendment explicitly permits training "
+         "without calibration qualification. It retains the latest published single-call rubric v7, "
+         "fixed references, modest connection credit, weights, correctness gate and training settings. "
+         "A new identity adds context preflight without changing the scoring prompt. Each correct solution "
+         "receives one accepted structured assessment; only output or transport failures permit bounded retries. "
+         "Separate names and checkpoint identities keep these runs out of the qualified study. "
+         "The initial comparison is theory bonus versus correctness-only at seed 42, with ordinary and "
+         "rising-sea prompted baselines. Gemma's single-call scores are also unqualified. "
+         "Held-out correctness and recipient transfer are therefore particularly useful checks, while "
+         "judged theory remains a potentially biased proxy. Reward-model overoptimization has been observed "
+         "in a distinct synthetic reward-model setting [18]; it does not determine this experiment's outcome. "
+         "All uncertainty remains exploratory even if later seeds or nominal targets agree. Larger, better "
+         "judges are future experiments requiring new frozen identities and fresh held-out confirmation. "
+         + comparison_text(snapshot['exploratory_single']['primary'])),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
          "with all four targets retained. Comparisons require complete matching source and target coverage. "
@@ -468,6 +520,7 @@ REFERENCES = [
     ("DnA-Eval: Decomposition and Aggregation", "https://aclanthology.org/2025.coling-main.156/"),
     ("Naik et al., Do We Need Frontier Models to Verify Mathematical Proofs?", "https://arxiv.org/abs/2604.02450v1"),
     ("Huang et al., Pessimistic Verification for Open Ended Math Questions", "https://arxiv.org/abs/2511.21522v1"),
+    ("Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization", "https://proceedings.mlr.press/v202/gao23h.html"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")
@@ -495,7 +548,7 @@ def write_paper(snapshot, rows, destination: Path):
     styles["BodyText"].leading = 13
     styles["Heading2"].keepWithNext = True  # Keep section headings with their first paragraph after pagination.
     title = "Correctness-gated mathematical theory building"
-    date = datetime.now(timezone.utc).date().isoformat()
+    date = datetime.fromisoformat(snapshot["generated_at"]).astimezone(ZoneInfo("Europe/Berlin")).date().isoformat()
     story = [Paragraph(title, styles["Title"]),
              Paragraph(f"Libor “Burny” Burian · {date}", styles["Normal"]), Spacer(1, .15*inch)]
     markdown = [f"# {title}", f"Libor “Burny” Burian · {date}"]
@@ -507,7 +560,8 @@ def write_paper(snapshot, rows, destination: Path):
         if heading == "Method":
             story.append(Image(str(PROJECT / "site/figures/architecture.png"), width=6.7*inch, height=2.01*inch))
         if heading == "Results and claims":
-            formatted = [[Paragraph(html.escape(cell), styles["BodyText"]) for cell in row] for row in rows]
+            paper_rows = [[row[0].replace(EXPLORATORY_PREFIX, "exploratory: ", 1), *row[1:]] for row in rows]
+            formatted = [[Paragraph(html.escape(cell), styles["BodyText"]) for cell in row] for row in paper_rows]
             formatted[0][1] = Paragraph("n", styles["BodyText"])
             table = Table(formatted, colWidths=[2.1*inch, .7*inch, .8*inch, .9*inch, 1.05*inch], repeatRows=1)
             table.setStyle(TableStyle([("BACKGROUND", (0,0), (-1,0), colors.HexColor("#edf5f5")),
@@ -519,6 +573,8 @@ def write_paper(snapshot, rows, destination: Path):
                 story.append(Image(str(PROJECT / "site/figures/evaluation.png"), width=6.5*inch, height=2.6*inch))
             markdown.append(markdown_table(rows))
             markdown.append("```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```")
+        if heading == "Exploratory continuation with a single judge":
+            markdown.append("```json\n" + json.dumps(snapshot["exploratory_single"], indent=2) + "\n```")
         if heading == "Transfer evaluation":
             transfer_table = transfer_rows(snapshot)
             formatted = [[Paragraph(html.escape(cell), styles["BodyText"]) for cell in row] for row in transfer_table]
@@ -561,6 +617,9 @@ def report() -> dict:
                "Pending means no result, not zero performance.\n\n" + table +
                "\n\n## Judge calibration\n\n" + calibration_text(snapshot) +
                "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
+               "\n## Exploratory single-call experiment\n\nThe user authorized training with unqualified judges. " +
+               "These analyses cannot establish that the original calibration-qualified criteria were met.\n\n```json\n" +
+               json.dumps(snapshot["exploratory_single"], indent=2) + "\n```\n" +
                "\n## Secondary OOD analysis\n\nDescriptive paired intervals; not a replacement success criterion.\n\n```json\n" +
                json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n" +
                "\n## Frozen-recipient transfer\n\n" + markdown_table(transfer_rows(snapshot)) +

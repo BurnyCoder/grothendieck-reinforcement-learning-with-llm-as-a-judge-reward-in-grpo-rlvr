@@ -43,15 +43,16 @@ function judgeOptions() {
   renderJudge();
 }
 function render(){
-  $('status').textContent=snapshot.primary.status==='pending'?
+  $('status').textContent=snapshot.exploratory_single?
+    'Exploratory single-call experiment · judges unqualified · calibration failures preserved':snapshot.primary.status==='pending'?
     (snapshot.calibration.some(c=>!c.passed)?'Development calibration failures recorded · comparative evidence pending':'Preregistered · experiments pending'):
     `Analysis: ${snapshot.primary.status}`;
   $('updated').textContent='Snapshot '+new Date(snapshot.generated_at).toLocaleString();
-  const arms=['ordinary','prompted','correctness-seed42','theory-seed42','correctness-seed43','theory-seed43','correctness-seed44','theory-seed44','shuffled-seed42','rubric-seed42'];
+  const arms=['ordinary','prompted','correctness-seed42','theory-seed42','correctness-seed43','theory-seed43','correctness-seed44','theory-seed44','shuffled-seed42','rubric-seed42',...(snapshot.exploratory_single?.profile.initial_arms||[]).map(arm=>snapshot.exploratory_single.profile.id+'-'+arm)];
   $('result-rows').replaceChildren(...[...new Set([...arms,...Object.keys(snapshot.summaries)])].map(arm=>{const row=element('tr'),s=snapshot.summaries[arm]||{};[arm,s.n,s.accuracy,s.metric,s.correctness_weighted_novelty,s.mean_response_tokens].forEach(value=>row.append(element('td',number(value))));return row;}));
-  $('analysis').textContent=JSON.stringify(snapshot.primary,null,2);
-  $('ood-analysis').textContent=JSON.stringify({secondary:snapshot.secondary_ood,families:snapshot.families},null,2);
-  $('transfer-analysis').textContent=JSON.stringify(snapshot.transfer,null,2);
+  $('analysis').textContent=JSON.stringify({qualified_study:snapshot.primary,exploratory_single:snapshot.exploratory_single?.primary},null,2);
+  $('ood-analysis').textContent=JSON.stringify({qualified_study:snapshot.secondary_ood,exploratory_single:snapshot.exploratory_single?.secondary_ood,families:snapshot.families},null,2);
+  $('transfer-analysis').textContent=JSON.stringify({qualified_study:snapshot.transfer,exploratory_single:snapshot.exploratory_single?.transfer},null,2);
   $('development').textContent=JSON.stringify(snapshot.development||[],null,2);
   $('calibration').replaceChildren(...snapshot.calibration.map(c=>element('p',`${c.role} / ${c.variant} / ${c.split} (${c.identity?.judge?.slice(0,8)??'unrecorded identity'}): ${c.complete===false?'partial observed rates; ':''}preference contract ${number(c.preference_accuracy)}, false-theory suppression ${number(c.false_theory_suppression)}, novelty contract ${number(c.strata?.novelty?.preference_accuracy)} — ${c.passed?'passed':'failed'}${c.stopping_reason?' ('+c.stopping_reason+')':''}`)));
   for(const progress of snapshot.calibration_progress||[]){$('calibration').append(element('p',`${progress.role} / ${progress.variant} / ${progress.split} (${progress.judge_identity?.slice(0,8)??'unknown identity'}): ${progress.status==='partial'?'partial record; no terminal result':progress.status??'outcome unavailable'}; ${progress.pairs_completed}/${progress.pairs_total} preference pairs; ${progress.false_cases_completed}/${progress.false_cases_total} false-theory cases completed. Updated ${progress.updated_at??'at an unrecorded time'}.`));}
