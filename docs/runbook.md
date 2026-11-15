@@ -11,6 +11,7 @@ directory. Copy `.env.example` to `.env` when cloning on another machine.
 bash scripts/setup-wsl.sh
 bash scripts/run.sh doctor
 bash scripts/run.sh prepare
+bash scripts/run.sh prepare-ood
 .venv/bin/python -m pytest -q
 .venv/bin/ruff check src tests
 ```
@@ -117,6 +118,21 @@ the report generator pairs them. Generate the unmodified baselines with
 `generate --run-id ordinary` and `generate --run-id prompted --rising`.
 No adapter means the frozen unmodified selected policy. Development snapshots
 use `--split dev` and a distinct run ID, never the primary test run ID.
+
+Run the separate broader-family suite with the same checkpoint and a `-ood`
+suffix. This leaves the original primary evaluation intact:
+
+```bash
+bash scripts/run.sh generate --run-id ordinary-ood --split test_ood
+bash scripts/run.sh evaluate --run-id ordinary-ood
+bash scripts/run.sh generate --run-id theory-seed42-ood --split test_ood --adapter /mnt/d/AI/grothendieck-rlvr/runs/theory-seed42/adapter
+bash scripts/run.sh evaluate --run-id theory-seed42-ood
+```
+
+Repeat the OOD commands for the matched checkpoints and baselines; include
+`--rising` only for the prompted baseline. The report command keeps secondary
+OOD comparisons, per-family scores and constructive novelty separate from
+the primary success test. See [the amendment](../reports/amendments/2026-11-15-valid-novelty-and-ood.md).
 
 For transfer, generate all source notes first with `--split transfer_source`
 under separate run IDs for proposed/baseline checkpoints. Then:

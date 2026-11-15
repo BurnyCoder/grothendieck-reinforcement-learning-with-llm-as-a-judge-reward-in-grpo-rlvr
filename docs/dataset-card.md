@@ -13,7 +13,8 @@ tags:
 # Grothendieck RLVR research artifacts
 
 Preregistered local Qwen/Gemma research on correctness-gated theory-building
-rewards. This repository publishes deterministic Reasoning Gym manifests,
+rewards, including valid conceptual novelty relative to fixed reference approaches.
+This repository publishes deterministic Reasoning Gym and SymPy-backed manifests,
 provenance, model/runtime locks, protocol, code and generated research reports.
 Model-generated results are pending unless explicitly recorded in saved results.
 
@@ -34,3 +35,10 @@ quotation retain their respective licenses/notices. See `NOTICE`.
 These synthetic tasks test narrow behavioral hypotheses; they do not establish
 new mathematical discoveries, human preference alignment, or a latent-space
 mechanism. Constructed judge calibration is separate from the locked policy test.
+
+The pre-judgment amendment in `reports/amendments/2026-11-15-valid-novelty-and-ood.md`
+adds a separately locked `test_ood` suite (`data/ood.lock.json`) covering grid
+connectivity, polygon geometry, rational matrix rank and modular inverses.
+These families are held out from project training, not asserted absent from
+pretraining. Original primary and transfer manifests are unchanged. Fixed
+novelty references and the six-criterion rubric are versioned with the code.

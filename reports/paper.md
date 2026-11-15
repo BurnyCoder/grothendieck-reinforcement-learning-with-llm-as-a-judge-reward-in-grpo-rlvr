@@ -12,7 +12,7 @@ Grothendieck's rising-sea metaphor motivates building structures until a specifi
 
 ## Method
 
-Tasks come from pinned Reasoning Gym generators [6]. Training families are GCD, LCM, polynomial multiplication and dice probabilities. Semantic deduplication separates train, development, fresh, harder and unseen-family evaluation. One terminal final-answer field is checked by restricted arithmetic and Math-Verify [7]. Correctness C multiplies the entire reward: R=C(1+0.5T). Theory T is a weighted rubric score gated by supported validity. Supporting excerpts are required. Final-answer verification does not certify surrounding proofs.
+Tasks come from pinned Reasoning Gym generators [6]. Training families are GCD, LCM, polynomial multiplication and dice probabilities. Semantic deduplication separates train, development, fresh, harder and unseen-family evaluation. One terminal final-answer field is checked by restricted arithmetic and Math-Verify [7]. Correctness C multiplies the entire reward: R=C(1+0.5T). Theory T is a six-criterion rubric score gated by supported validity. Constructive novelty receives 20% weight, judged relative to published conventional approaches. New objects, definitions, invariants, frameworks and distant mathematical connections earn that credit only when justified and useful. Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. Final-answer verification does not certify surrounding proofs.
 
 ## Models and training
 
@@ -20,13 +20,13 @@ Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training on CPU, and
 
 ## Experimental design and analysis
 
-Compare ordinary and prompted unmodified models, correctness-only training, the proposed bonus, shuffled bonuses and a rubric-only ablation. The main trained comparison uses matched seeds. The primary measure is mean C*T from frozen Gemma, with paired stratified problem-level bootstrap intervals and an accuracy noninferiority condition. Transfer resamples source problems while retaining their related probes. Single-seed findings are exploratory. No adaptive sample extension is allowed to obtain significance.
+Compare ordinary and prompted unmodified models, correctness-only training, the proposed bonus, shuffled bonuses and a rubric-only ablation. The main trained comparison uses matched seeds. The primary measure is mean C*T from frozen Gemma, with paired stratified problem-level bootstrap intervals and an accuracy noninferiority condition. Transfer resamples source problems while retaining their related probes. Single-seed findings are exploratory. No adaptive sample extension is allowed to obtain significance. A pre-judgment amendment adds a separate locked secondary set for graph connectivity, polygon geometry, rational matrix rank and modular inverses; it does not replace the primary split. Valid novelty is also reported separately. OOD means held out from project training, not necessarily from model pretraining.
 
 ## Results and claims
 
 All tables and figures in this paper are generated from saved records. Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary analysis reports pending. Implementation checks do not establish mathematical performance. Calibration cases are constructed expectations, not human preference evidence.
 
-| Arm | Problems | Accuracy | C × theory | Theory | correct |
+| Arm | Problems | Accuracy | C × theory | C × novelty |
 |---|---|---|---|---|
 | ordinary | Pending | Pending | Pending | Pending |
 | prompted | Pending | Pending | Pending | Pending |

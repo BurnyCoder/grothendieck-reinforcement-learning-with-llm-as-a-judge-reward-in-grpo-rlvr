@@ -1,10 +1,13 @@
 # Grothendieck RLVR
 
 A local mathematics environment for testing whether correctness-gated rubric
-rewards encourage useful, justified theory building. A frozen Qwen judge scores
-structures, generality and reusable consequences; an external verifier checks
+rewards encourage useful, justified theory building and **valid conceptual novelty**.
+A frozen Qwen judge scores structures, generality, reusable consequences and
+useful departures from conventional approaches; an external verifier checks
 the final answer. GRPO trains Qwen3.5 language adapters. A separate frozen Gemma
-judge and recipient-transfer tests assess behavior.
+judge, held-out mathematical families and recipient-transfer tests assess behavior.
+New definitions, invariants, frameworks and connections to distant mathematics
+earn additional credit when they are justified and do mathematical work.
 
 **Status: preregistered design; pipeline implemented and undergoing local validation. No
 empirical improvement or latent-space steering has been demonstrated.**
@@ -33,8 +36,10 @@ flowchart LR
 
 ## Research protocol
 
-Read the [literature review](reports/state-of-the-art-review.md),
-[preregistration](reports/preregistration.md), and [implementation status](reports/plan.md).
+Read the [literature review](reports/literature-review.md),
+[preregistration](reports/preregistration.md),
+[novelty and OOD amendment](reports/amendments/2026-11-15-valid-novelty-and-ood.md),
+and [implementation status](reports/plan.md).
 We reuse [Reasoning Gym](https://github.com/open-thought/reasoning-gym),
 [Math-Verify](https://github.com/huggingface/Math-Verify),
 [TRL GRPO](https://huggingface.co/docs/trl/grpo_trainer), and
@@ -47,6 +52,44 @@ receive one, and supported useful theory can add at most one half. A correct
 answer does not certify its explanation. Judge errors are not ground truth.
 Unsupported or contradicted theory earns no bonus. Length and terminology alone
 earn no bonus. Infrastructure failures stop or retry explicitly.
+
+## What the judge rewards
+
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v2.txt) scores
+each criterion from 0 to 4, then takes a weighted mean divided by four:
+
+| Criterion | Weight | What earns credit |
+|---|---:|---|
+| Structural understanding | 20% | Useful objects, definitions, invariants and relationships explain the problem. |
+| Justified generality | 20% | A valid method covers a meaningful family with clear assumptions. |
+| Problem as a consequence | 15% | The solution follows from the framework without hiding the difficult step. |
+| Reuse and connections | 15% | Another consequence or substantive mathematical connection is demonstrated. |
+| Conceptual economy and exposition | 10% | Motivated definitions and lemmas make the explanation understandable. |
+| Constructive novelty | 20% | A justified conceptual departure beyond the documented conventional reference does useful mathematical work. |
+
+Novelty can take the form of a concept, object, definition, invariant,
+relationship, theory, framework, way of thinking, or connection. A proposed
+subfield or paradigm earns credit for the mathematics actually developed,
+not its name. The highest novelty score requires a reusable framework that
+organizes a meaningful family, demonstrates consequences and states boundaries.
+More distant connections are welcome when the bridge is established explicitly.
+Cosmetic renaming, exotic terminology and unsupported originality claims score zero.
+
+Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
+not a claim of historical discovery or absence from pretraining. For example,
+a justified lattice interpretation of GCD that also characterizes reachable
+integer displacements can earn additional credit beyond a conventional Euclidean
+solution. This is established mathematics used as a nonstandard connection.
+Holding the other scores fixed, greater supported novelty increases reward.
+A strong conventional explanation still earns the other rubric components.
+False novelty-bearing claims set the whole theory bonus to zero.
+
+The quoted variant includes the supplied
+[Grothendieck passage in McLarty's translation](src/grothendieck_rlvr/prompts/rising-sea-v1.txt).
+The ablation retains the same rubric and reference approaches while removing
+quotations and persona. Both variants must pass constructed tests for valid
+abstraction, false theory, grading manipulation, useful nonstandard connections
+and cosmetic novelty. These tests are not human preference evidence.
 
 ## Models and runtime
 
@@ -68,10 +111,17 @@ Compare ordinary/prompted unmodified policy, correctness-only GRPO, theory-bonus
 GRPO, shuffled bonuses and a rubric-only ablation. The main trained pair uses
 three seeds. Locked evaluation distinguishes fresh instances, harder parameters,
 and unseen families; transfer measures whether notes help a frozen recipient.
+The original primary evaluation remains 400 problems. A separate locked
+200-problem secondary suite adds graph connectivity, polygon geometry, rational
+matrix rank and modular inverses, with 50 problems per family. These families
+are absent from project training. They are not asserted to be outside the
+models' pretraining distributions. Report accuracy, supported theory and
+constructive novelty separately; secondary results do not replace the primary
+success criteria. See the [OOD protocol](docs/novelty-and-ood.md).
 
 Result tables are pending; missing results will never be represented as zeros.
 All measured tables and plots will be generated from saved artifacts. The
-dashboard will show correctness, theory, losses, KL, lengths, throughput and
+dashboard shows saved correctness, theory, novelty, losses, KL, lengths, throughput and
 checkpoint state. The GitHub Pages explorer will contain published snapshots,
 confidence intervals and output comparisons.
 
@@ -86,11 +136,17 @@ See the checklist in [reports/plan.md](reports/plan.md) for outstanding work.
 New code will use Apache-2.0; upstream libraries and model artifacts retain their
 own licenses. The paper author is Libor “Burny” Burian.
 
+For the additional locked families, run `bash scripts/run.sh prepare-ood`,
+then `generate --run-id ordinary-ood --split test_ood` and
+`evaluate --run-id ordinary-ood` through `scripts/run.sh`. The full
+[runbook](docs/runbook.md) covers setup, judges, training/resumption, all arms,
+transfer, reports and dashboard viewing.
+
 ## Recorded evaluation results
 
 <!-- RESULTS:START -->
 
-| Arm | Problems | Accuracy | C × theory | Theory | correct |
+| Arm | Problems | Accuracy | C × theory | C × novelty |
 |---|---|---|---|---|
 | ordinary | Pending | Pending | Pending | Pending |
 | prompted | Pending | Pending | Pending | Pending |
