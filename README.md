@@ -6,8 +6,10 @@ structures, generality and reusable consequences; an external verifier checks
 the final answer. GRPO trains Qwen3.5 language adapters. A separate frozen Gemma
 judge and recipient-transfer tests assess behavior.
 
-**Status: preregistered design; implementation and experiments pending. No
+**Status: preregistered design; pipeline implemented and undergoing local validation. No
 empirical improvement or latent-space steering has been demonstrated.**
+
+![Pipeline architecture](site/figures/architecture.png)
 
 The motivation is [Grothendieck's rising-sea philosophy, discussed by Colin
 McLarty](https://ncatlab.org/nlab/files/McLartyRisingSea.pdf): develop concepts
@@ -57,8 +59,8 @@ only. Fine-tuning memory advertisements do not guarantee GRPO feasibility.
 
 Target runtime is WSL Ubuntu, Python 3.12 and uv, with a project-local `.venv`.
 Large caches and run artifacts belong under `D:\AI\grothendieck-rlvr`
-(`/mnt/d/AI/grothendieck-rlvr`). Exact installation and CLI instructions will be
-added with tested code before model inference. No paid API services are used.
+(`/mnt/d/AI/grothendieck-rlvr`). See the [installation and experiment runbook](docs/runbook.md).
+No paid API services are used.
 
 ## Planned comparisons and reporting
 
@@ -83,3 +85,22 @@ See the checklist in [reports/plan.md](reports/plan.md) for outstanding work.
 
 New code will use Apache-2.0; upstream libraries and model artifacts retain their
 own licenses. The paper author is Libor “Burny” Burian.
+
+## Recorded evaluation results
+
+<!-- RESULTS:START -->
+
+| Arm | Problems | Accuracy | C × theory | Theory | correct |
+|---|---|---|---|---|
+| ordinary | Pending | Pending | Pending | Pending |
+| prompted | Pending | Pending | Pending | Pending |
+| correctness-seed42 | Pending | Pending | Pending | Pending |
+| theory-seed42 | Pending | Pending | Pending | Pending |
+| correctness-seed43 | Pending | Pending | Pending | Pending |
+| theory-seed43 | Pending | Pending | Pending | Pending |
+| correctness-seed44 | Pending | Pending | Pending | Pending |
+| theory-seed44 | Pending | Pending | Pending | Pending |
+| shuffled-seed42 | Pending | Pending | Pending | Pending |
+| rubric-seed42 | Pending | Pending | Pending | Pending |
+
+<!-- RESULTS:END -->

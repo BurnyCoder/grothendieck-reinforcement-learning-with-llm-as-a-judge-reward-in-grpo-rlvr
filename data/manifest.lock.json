@@ -1,0 +1,23 @@
+{
+  "config_hash": "86bca49fcde7fbc9ac797796f8e33888e208220bd55d46bad66c80fde736407b",
+  "generator_version": "0.1.25",
+  "files": {
+    "dev.json": "39ce10823fde0892a252dea7b467497da2fb5555de70d8ec16399880c3fe5399",
+    "rejections.json": "fc5cbe68094df2aa6daeab38177cea01f2ffc6680e7e0ed60ba04c0183eb8955",
+    "test_fresh.json": "70186388c3cd0fc9214f4e40a516b290240868e48c6472e2a227b2c80a1f637d",
+    "test_hard.json": "433de489a69d6d2bd2be212971182ad938070ac4c30d162757ed9551b2a83791",
+    "test_unseen.json": "40be9b0e2913c4d62ddb27635c97ddecccc076b5ae4bfef6b3fa5df7a8bf72b1",
+    "train.json": "9d9d665ec3b483f0fe07f64f48d57988a18f6554348412774f4fe1ef2a556cd5",
+    "transfer_source.json": "a9c54f3325b65a23f73b2b4206394e63013bccff8eb2d45f4f13950e9fa3e1a0",
+    "transfer_target.json": "69e0cdc3037eaaa6c2c4d4a180a5178810ce27506a132708eeb9996360d1620a"
+  },
+  "counts": {
+    "train": 1024,
+    "dev": 64,
+    "test_fresh": 200,
+    "test_hard": 100,
+    "test_unseen": 100,
+    "transfer_source": 100,
+    "transfer_target": 400
+  }
+}

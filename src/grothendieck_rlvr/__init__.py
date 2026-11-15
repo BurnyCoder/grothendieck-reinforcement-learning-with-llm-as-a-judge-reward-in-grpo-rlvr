@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from grothendieck-rlvr!")
+"""Local, auditable experiments in correctness-gated mathematical theory building."""

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rising Sea · Grothendieck RLVR</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><p class="eyebrow">LOCAL MATHEMATICAL LEARNING · OPEN RESEARCH</p>
+<h1>Theory must do<br>mathematical work.</h1>
+<p class="lede">Testing whether useful structures, justified generality and reusable consequences can improve mathematical explanations—while keeping correctness first.</p>
+<div class="status"><span id="status">Loading saved evidence…</span><span id="updated"></span></div>
+<nav aria-label="Research views"><a href="#results">Results</a><a href="#live">Live training</a><a href="#examples">Outputs</a><a href="#method">Method</a><a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr">Repository ↗</a></nav></header>
+<section id="results"><div class="section-title"><h2>Evidence, with its limits</h2><span class="tag">Independent Gemma assessment</span></div>
+<p>Missing results are pending. The main score is answer correctness multiplied by supported theory quality. Judge assessments are opinions, not proof certificates.</p>
+<div class="table-wrap"><table><thead><tr><th>Arm</th><th>Problems</th><th>Accuracy</th><th>Correctness × theory</th><th>Tokens / answer</th></tr></thead><tbody id="result-rows"></tbody></table></div>
+<details><summary>Paired uncertainty and acceptance criteria</summary><pre id="analysis"></pre></details>
+<div id="calibration"></div></section>
+<section id="live"><div class="section-title"><h2>Training observatory</h2><label>Run <select id="run" aria-label="Training run"></select></label></div>
+<p id="live-status">Published checkpoint snapshot. A local dashboard refreshes automatically.</p>
+<div class="metrics" id="metrics"></div><div class="charts" id="charts"></div>
+<p class="caption">Correctness and theory use reward-batch indices. Loss and KL use optimizer steps. Fixed score axes run from zero to one.</p></section>
+<section id="examples"><div class="section-title"><h2>Inspect the actual output</h2><label>Arm <select id="example-arm" aria-label="Output arm"></select></label></div>
+<p>Examples are the first saved problems by stable task ID, not selected for high scores. Complete records are retained with the experiment artifacts.</p>
+<label>Problem <select id="example-task" aria-label="Output problem"></select></label>
+<div class="output-grid"><article><h3>Problem and response</h3><pre id="response">No evaluated outputs yet.</pre></article><article><h3>Verification and assessment</h3><pre id="assessment">Pending.</pre></article></div></section>
+<section id="method"><h2>A correctness gate, then a theory bonus</h2><div class="formula">R = C × (1 + 0.5T)</div>
+<p>Wrong or malformed answer: zero. Correct answer: one. Supported, useful theory can add up to one half. The rubric rewards structure, justified generality, derivation, reuse and conceptual economy. Length, terminology and historical name-dropping earn no bonus.</p>
+<img src="figures/architecture.svg" alt="Locked tasks feed the policy, verifier and judge; a composite reward updates the policy; independent evaluation checks the result.">
+<p>The rising-sea philosophy motivates building definitions and general principles until the original problem becomes a consequence. This rubric is a research interpretation of Grothendieck, not a claim to reproduce his personal judgments.</p>
+<p><a href="https://ncatlab.org/nlab/files/McLartyRisingSea.pdf">Historical source: Colin McLarty</a> · <a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/preregistration.md">Preregistered protocol</a> · <a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/paper.pdf">Research paper</a></p></section>
+<footer>Grothendieck RLVR · Libor “Burny” Burian<br>Behavior and transfer are measured. Latent-space steering remains motivation.</footer>
+</main><script src="app.js"></script></body></html>

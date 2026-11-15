@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-11-15T07:35:59.457903+00:00",
+  "study": {
+    "version": 1,
+    "data_seed": 20261115,
+    "training_seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_steps": 256,
+    "max_prompt_length": 512,
+    "max_completion_length": 2048,
+    "num_generations": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 1e-05,
+    "warmup_ratio": 0.1,
+    "beta": 0.04,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0,
+    "save_steps": 8,
+    "train_size": 1024,
+    "dev_size": 64,
+    "test_fresh_size": 200,
+    "test_hard_size": 100,
+    "test_unseen_size": 100,
+    "transfer_sources": 100,
+    "transfer_targets_per_source": 4,
+    "bootstrap_samples": 10000,
+    "judge_max_tokens": 1024,
+    "judge_context_length": 8192,
+    "judge_timeout_seconds": 900,
+    "calibration_pairs": 20,
+    "calibration_false_cases": 20
+  },
+  "summaries": {},
+  "strata": {},
+  "primary": {
+    "status": "pending",
+    "reason": "No matched trained arms have been evaluated"
+  },
+  "training": {},
+  "calibration": [],
+  "examples": {},
+  "transfer": {
+    "summaries": {},
+    "versus_no_notes": {},
+    "interpretation": "exploratory"
+  },
+  "feasibility": []
+}

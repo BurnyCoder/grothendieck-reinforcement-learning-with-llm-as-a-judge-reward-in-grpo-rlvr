@@ -1,0 +1,109 @@
+"""Prespecified paired analyses; resampling units are problems or transfer sources."""
+import numpy as np
+
+
+def paired_bootstrap(differences, strata, samples=10000, seed=20261115, hierarchical=False):
+    """Keep matched seeds together within each problem; optionally resample seed pairs too."""
+    values = np.asarray(differences, dtype=float)
+    if values.ndim == 1:
+        values = values[:, None]
+    if not len(values) or len(values) != len(strata) or not np.isfinite(values).all():
+        raise ValueError("Require finite paired observations with one stratum per problem")
+    rng = np.random.default_rng(seed)
+    draws = np.zeros(samples)
+    labels = np.asarray(strata)
+    seed_indices = rng.integers(values.shape[1], size=(samples, values.shape[1])) if hierarchical else None
+    for label in sorted(set(strata)):
+        group = values[labels == label]
+        indices = rng.integers(len(group), size=(samples, len(group)))
+        sampled = group[indices]
+        if hierarchical:
+            sampled = np.take_along_axis(sampled, seed_indices[:, None, :], axis=2)
+        draws += sampled.mean(axis=(1, 2)) * len(group) / len(values)
+    low, high = np.quantile(draws, [.025, .975])
+    per_seed = values.mean(axis=0)
+    return {"difference": float(values.mean()), "ci95": [float(low), float(high)],
+            "per_seed_differences": per_seed.tolist(),
+            "between_seed_sd": float(per_seed.std(ddof=1)) if len(per_seed) > 1 else None,
+            "problems": len(values), "seeds": values.shape[1],
+            "bootstrap_samples": samples, "hierarchical": hierarchical}
+
+
+def summarize(rows: list[dict]) -> dict:
+    """All reported scalar evaluation values derive from saved per-problem records."""
+    if not rows:
+        return {"n": 0, "accuracy": None, "metric": None, "theory_given_correct": None}
+    correct = [r for r in rows if r["correct"]]
+    return {"n": len(rows), "accuracy": sum(r["correct"] for r in rows)/len(rows),
+            "metric": sum(r["metric"] for r in rows)/len(rows),
+            "theory_given_correct": sum(r["theory"] for r in correct)/len(correct) if correct else None,
+            "mean_response_tokens": sum(r["response_tokens"] for r in rows)/len(rows),
+            "valid_format_rate": sum(r["verification"]["status"] != "invalid_format" for r in rows)/len(rows)}
+
+
+def primary_comparison(evaluations: dict, cfg: dict) -> dict:
+    """Do not turn a first-seed or partial result into a confirmatory success claim."""
+    seeds = [s for s in cfg["training_seeds"]
+             if f"theory-seed{s}" in evaluations and f"correctness-seed{s}" in evaluations]
+    if not seeds:
+        return {"status": "pending", "reason": "No matched trained arms have been evaluated"}
+    maps = {}
+    for seed in seeds:
+        for arm in ("theory", "correctness"):
+            rows = evaluations[f"{arm}-seed{seed}"]
+            if len({r["task_id"] for r in rows}) != len(rows):
+                raise ValueError("Duplicate problem in evaluation")
+            maps[arm, seed] = {r["task_id"]: r for r in rows}
+    id_sets = [set(m) for m in maps.values()]
+    if not all(ids == id_sets[0] for ids in id_sets):
+        return {"status": "incomplete", "reason": "Matched runs have different evaluated problem IDs"}
+    identifiers = sorted(id_sets[0])
+    strata = [maps["theory", seeds[0]][i]["split"] for i in identifiers]
+    judgments = {r["judge_identity"] for m in maps.values() for r in m.values()}
+    if len(judgments) != 1:
+        raise ValueError("Primary comparison requires identical frozen independent judge settings")
+    results = {}
+    for metric in ("metric", "correct"):
+        difference = [[float(maps["theory", s][i][metric])-float(maps["correctness", s][i][metric])
+                       for s in seeds] for i in identifiers]
+        results[metric] = paired_bootstrap(difference, strata, cfg["bootstrap_samples"], cfg["data_seed"])
+        results[metric + "_hierarchical"] = paired_bootstrap(
+            difference, strata, cfg["bootstrap_samples"], cfg["data_seed"], hierarchical=True)
+    expected = {"test_fresh": cfg["test_fresh_size"], "test_hard": cfg["test_hard_size"],
+                "test_unseen": cfg["test_unseen_size"]}
+    complete = seeds == cfg["training_seeds"] and all(strata.count(k) == n for k, n in expected.items())
+    passed = results["metric"]["difference"] >= .05 and results["metric"]["ci95"][0] > 0 \
+        and results["correct"]["ci95"][0] > -.03
+    return {"status": "confirmatory" if complete else "exploratory", "seeds": seeds,
+            "criteria_met": bool(passed) if complete else None, **results}
+
+
+def transfer_analysis(rows: list[dict], samples=10000) -> dict:
+    """Aggregate the four targets per source before paired resampling of source IDs."""
+    conditions = sorted({r["condition"] for r in rows})
+    summaries, comparisons = {}, {}
+    groups = {}
+    for condition in conditions:
+        subset = [r for r in rows if r["condition"] == condition]
+        summaries[condition] = {"n": len(subset), "accuracy": sum(r["correct"] for r in subset)/len(subset)}
+        groups[condition] = {}
+        for row in subset:
+            groups[condition].setdefault(row["source_id"], []).append(row)
+    for condition in conditions:
+        if condition == "no_notes" or "no_notes" not in groups:
+            continue
+        baseline = groups["no_notes"]
+        current = groups[condition]
+        if set(current) != set(baseline) or any(len(v) != 4 for v in current.values()):
+            comparisons[condition] = {"status": "incomplete"}
+            continue
+        ids = sorted(current)
+        differences, strata = [], []
+        for source in ids:
+            a, b = current[source], baseline[source]
+            if {r["task_id"] for r in a} != {r["task_id"] for r in b}:
+                raise ValueError("Transfer conditions must contain matching probes")
+            differences.append(np.mean([r["correct"] for r in a])-np.mean([r["correct"] for r in b]))
+            strata.append(a[0]["family"])
+        comparisons[condition] = paired_bootstrap(differences, strata, samples=samples)
+    return {"summaries": summaries, "versus_no_notes": comparisons, "interpretation": "exploratory"}

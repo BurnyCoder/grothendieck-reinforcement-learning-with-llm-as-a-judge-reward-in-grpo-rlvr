@@ -1,0 +1,2658 @@
+[
+  {
+    "id": "dev-762a8cd54c022d27bb19",
+    "problem": "Calculate the following: (-11*x**2 - 1)*(6*x**2 + 2)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-66*x**4 - 28*x**2 - 2",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 3,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: (-11*x**2 - 1)*(6*x**2 + 2)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 3,
+      "polynomial_expr": "(-11*x**2 - 1)*(6*x**2 + 2)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-9e2760c33e4413a0cbc7",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+    "answer": "2",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 4,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 4,
+      "numbers": [
+        510,
+        522,
+        14
+      ],
+      "result": 2,
+      "num_terms": 3,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-e35360a905d64b24d291",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+    "answer": "26166",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 8,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 8,
+      "numbers": [
+        89,
+        98,
+        42
+      ],
+      "result": 26166,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-e57b1263bc87b1ad2844",
+    "problem": "Simplify this expression: (1 - 14*x)*(6*x - 5)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-84*x**2 + 76*x - 5",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 11,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: (1 - 14*x)*(6*x - 5)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 11,
+      "polynomial_expr": "(1 - 14*x)*(6*x - 5)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-242a626b797c177a0eeb",
+    "problem": "I have these dice: 1d20, 1d19, 1d14. What are the odds of rolling 21 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "15/19",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 2,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d19, 1d14. What are the odds of rolling 21 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 2,
+      "puzzle": {
+        "dice_str": "1d20, 1d19, 1d14",
+        "target": 21,
+        "num": 15,
+        "den": 19,
+        "probability": 0.7894736842105263
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-13b36e6c4a1c5d449a0d",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 18, 58, 13",
+    "answer": "6786",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 0,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 18, 58, 13",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 0,
+      "numbers": [
+        18,
+        58,
+        13
+      ],
+      "result": 6786,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-dfc5f218af31e2d0e8ae",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 90, 84",
+    "answer": "112140",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 11,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 89, 90, 84",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 11,
+      "numbers": [
+        89,
+        90,
+        84
+      ],
+      "result": 112140,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-cc7f395e1b2eaa111f33",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 745, 991. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 7,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 745, 991. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 7,
+      "numbers": [
+        745,
+        991
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-f9ce895db7b761fb2be4",
+    "problem": "Simplify this expression: (-4*x - 3)*(-3*x**2 + 3*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "12*x**3 - 3*x**2 - 9*x",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 5,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: (-4*x - 3)*(-3*x**2 + 3*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 5,
+      "polynomial_expr": "(-4*x - 3)*(-3*x**2 + 3*x)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-b0b6a2dcd755ec5970bf",
+    "problem": "I have these dice: 1d20, 1d18, 1d8. What are the odds of rolling 29 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "23/72",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 10,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d18, 1d8. What are the odds of rolling 29 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 10,
+      "puzzle": {
+        "dice_str": "1d20, 1d18, 1d8",
+        "target": 29,
+        "num": 23,
+        "den": 72,
+        "probability": 0.3194444444444444
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-e77fc54ab5a93f871431",
+    "problem": "I have these dice: 1d20, 1d17, 1d3. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "79/255",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 8,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d17, 1d3. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 8,
+      "puzzle": {
+        "dice_str": "1d20, 1d17, 1d3",
+        "target": 26,
+        "num": 79,
+        "den": 255,
+        "probability": 0.30980392156862746
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-4b8dc3dcb39a3afc8d09",
+    "problem": "I have these dice: 1d20, 1d13, 1d9. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "829/2340",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 13,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d13, 1d9. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 13,
+      "puzzle": {
+        "dice_str": "1d20, 1d13, 1d9",
+        "target": 26,
+        "num": 829,
+        "den": 2340,
+        "probability": 0.3542735042735043
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-7dcf735a309c92faab4e",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 936, 619. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 3,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 936, 619. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 3,
+      "numbers": [
+        936,
+        619
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-88476fe3da8265c932c1",
+    "problem": "I have these dice: 1d20, 1d14, 1d3. What are the odds of rolling 14 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "337/420",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 0,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d14, 1d3. What are the odds of rolling 14 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 0,
+      "puzzle": {
+        "dice_str": "1d20, 1d14, 1d3",
+        "target": 14,
+        "num": 337,
+        "den": 420,
+        "probability": 0.8023809523809524
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-c94558757a85aedd0032",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 25, 21",
+    "answer": "525",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 9,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 25, 21",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 9,
+      "numbers": [
+        25,
+        21
+      ],
+      "result": 525,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-aaa04eeeeb4eec759231",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 30, 20, 73",
+    "answer": "4380",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 2,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 30, 20, 73",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 2,
+      "numbers": [
+        30,
+        20,
+        73
+      ],
+      "result": 4380,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-283a344ebeed48b96ce5",
+    "problem": "Simplify this expression: (5 - x**2)*(-7*x - 16)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "7*x**3 + 16*x**2 - 35*x - 80",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 14,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: (5 - x**2)*(-7*x - 16)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 14,
+      "polynomial_expr": "(5 - x**2)*(-7*x - 16)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-7c77ea6c8e4b4436643f",
+    "problem": "I have these dice: 1d20, 1d5, 1d4. What are the odds of rolling 17 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "19/40",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 9,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d5, 1d4. What are the odds of rolling 17 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 9,
+      "puzzle": {
+        "dice_str": "1d20, 1d5, 1d4",
+        "target": 17,
+        "num": 19,
+        "den": 40,
+        "probability": 0.475
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-b5a22f63bcb6389cbe95",
+    "problem": "Simplify this expression: -12*x**2 - 96\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-12*x**2 - 96",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 4,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: -12*x**2 - 96\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 4,
+      "polynomial_expr": "-12*x**2 - 96",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-3f047bdf42b4b659c414",
+    "problem": "Calculate the following: (7 - 9*x**2)*(5*x**2 + 6)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-45*x**4 - 19*x**2 + 42",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 15,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: (7 - 9*x**2)*(5*x**2 + 6)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 15,
+      "polynomial_expr": "(7 - 9*x**2)*(5*x**2 + 6)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-cbaf778ab649f9052912",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 36, 18",
+    "answer": "36",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 10,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 36, 18",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 10,
+      "numbers": [
+        36,
+        18
+      ],
+      "result": 36,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-40ab0359d2335f85f75a",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 75, 60, 48",
+    "answer": "1200",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 13,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 75, 60, 48",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 13,
+      "numbers": [
+        75,
+        60,
+        48
+      ],
+      "result": 1200,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-1423d19f62f984092587",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 905, 782. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 0,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 905, 782. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 0,
+      "numbers": [
+        905,
+        782
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-dbcaf40aa95ff9ac8ba2",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 619, 262. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 13,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 619, 262. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 13,
+      "numbers": [
+        619,
+        262
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-72bd01ca2b21437a6c3e",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 100, 6",
+    "answer": "300",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 3,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 100, 6",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 3,
+      "numbers": [
+        100,
+        6
+      ],
+      "result": 300,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-8a52df02761a65197bc5",
+    "problem": "I have these dice: 1d20, 1d4, 1d3. What are the odds of rolling 15 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "21/40",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 14,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d4, 1d3. What are the odds of rolling 15 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 14,
+      "puzzle": {
+        "dice_str": "1d20, 1d4, 1d3",
+        "target": 15,
+        "num": 21,
+        "den": 40,
+        "probability": 0.525
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-417fc970045aa5faebba",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 57, 20, 44",
+    "answer": "12540",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 1,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 57, 20, 44",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 1,
+      "numbers": [
+        57,
+        20,
+        44
+      ],
+      "result": 12540,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-ca5d1416c872806f305a",
+    "problem": "Calculate the following: 30*x**2 - 10\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "30*x**2 - 10",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 7,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: 30*x**2 - 10\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 7,
+      "polynomial_expr": "30*x**2 - 10",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-a41b09bcf087181f08d3",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 24, 2, 88",
+    "answer": "264",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 4,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 24, 2, 88",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 4,
+      "numbers": [
+        24,
+        2,
+        88
+      ],
+      "result": 264,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-74ad1b6c27f1d3c5cccb",
+    "problem": "Calculate the following: (-8*x**2 - 6*x)*(x**2 - 6)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-8*x**4 - 6*x**3 + 48*x**2 + 36*x",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 9,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: (-8*x**2 - 6*x)*(x**2 - 6)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 9,
+      "polynomial_expr": "(-8*x**2 - 6*x)*(x**2 - 6)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-ce57f231ff51c0a2117c",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 238, 96, 39. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 14,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 238, 96, 39. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 14,
+      "numbers": [
+        238,
+        96,
+        39
+      ],
+      "result": 1,
+      "num_terms": 3,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-f82936ee49038abda7fc",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 85, 13, 87",
+    "answer": "96135",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 7,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 85, 13, 87",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 7,
+      "numbers": [
+        85,
+        13,
+        87
+      ],
+      "result": 96135,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-ecc7db79f4f47af2911e",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 492, 255. Give only the GCD as your final answer.",
+    "answer": "3",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 8,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 492, 255. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 8,
+      "numbers": [
+        492,
+        255
+      ],
+      "result": 3,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-9deff9fe0bd46f358c13",
+    "problem": "I have these dice: 1d20, 1d17, 1d16. What are the odds of rolling 29 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "521/1088",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 7,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d17, 1d16. What are the odds of rolling 29 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 7,
+      "puzzle": {
+        "dice_str": "1d20, 1d17, 1d16",
+        "target": 29,
+        "num": 521,
+        "den": 1088,
+        "probability": 0.4788602941176471
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-0a421c1688be03944f13",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 74, 58, 70",
+    "answer": "75110",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 5,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 74, 58, 70",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 5,
+      "numbers": [
+        74,
+        58,
+        70
+      ],
+      "result": 75110,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-2dcb81efb2fb4c1a2cf8",
+    "problem": "Simplify this expression: -8*x - 24\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-8*x - 24",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 0,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: -8*x - 24\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 0,
+      "polynomial_expr": "-8*x - 24",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-dd9ebff255acaa80d713",
+    "problem": "I have these dice: 1d20, 1d10, 1d8. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "41/160",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 6,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d10, 1d8. What are the odds of rolling 26 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 6,
+      "puzzle": {
+        "dice_str": "1d20, 1d10, 1d8",
+        "target": 26,
+        "num": 41,
+        "den": 160,
+        "probability": 0.25625
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-6b4bce31ebf94193f838",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 13, 92, 19",
+    "answer": "22724",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 15,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 13, 92, 19",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 15,
+      "numbers": [
+        13,
+        92,
+        19
+      ],
+      "result": 22724,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-8987429f1cfc1840e69b",
+    "problem": "Calculate the following: 54*x**2 - 90*x\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "54*x**2 - 90*x",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 2,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: 54*x**2 - 90*x\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 2,
+      "polynomial_expr": "54*x**2 - 90*x",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-b04ce69eef9557bcc79a",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 386, 105. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 5,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 386, 105. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 5,
+      "numbers": [
+        386,
+        105
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-4cd2c56069e871bdf63b",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 105, 774. Give only the GCD as your final answer.",
+    "answer": "3",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 9,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 105, 774. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 9,
+      "numbers": [
+        105,
+        774
+      ],
+      "result": 3,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-58a55457104a3cf73dcb",
+    "problem": "I have these dice: 1d20, 1d19, 1d10. What are the odds of rolling 28 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "823/1900",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 4,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d19, 1d10. What are the odds of rolling 28 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 4,
+      "puzzle": {
+        "dice_str": "1d20, 1d19, 1d10",
+        "target": 28,
+        "num": 823,
+        "den": 1900,
+        "probability": 0.43315789473684213
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-8ee1d0dfd08d459f6064",
+    "problem": "Calculate the following: 10*x*(-12*x**2 - 5*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-120*x**3 - 50*x**2",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 1,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: 10*x*(-12*x**2 - 5*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 1,
+      "polynomial_expr": "10*x*(-12*x**2 - 5*x)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-1a9d07877e82c3eb6a88",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 658, 878, 562. Give only the GCD as your final answer.",
+    "answer": "2",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 15,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 658, 878, 562. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 15,
+      "numbers": [
+        658,
+        878,
+        562
+      ],
+      "result": 2,
+      "num_terms": 3,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-457a48274d07498ff89e",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 275, 565, 732. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 2,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 275, 565, 732. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 2,
+      "numbers": [
+        275,
+        565,
+        732
+      ],
+      "result": 1,
+      "num_terms": 3,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-25bb786c3040a7cfdc8f",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 83, 265. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 6,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 83, 265. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 6,
+      "numbers": [
+        83,
+        265
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-ce0d9486b54274107d37",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 831, 470. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 12,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 831, 470. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 12,
+      "numbers": [
+        831,
+        470
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-27ac538afec73b3097de",
+    "problem": "Simplify this expression: (4 - 9*x)*(9*x**2 - 8)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-81*x**3 + 36*x**2 + 72*x - 32",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 8,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: (4 - 9*x)*(9*x**2 - 8)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 8,
+      "polynomial_expr": "(4 - 9*x)*(9*x**2 - 8)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-df4e156212fe2e091829",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 68, 86, 47",
+    "answer": "137428",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 12,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 68, 86, 47",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 12,
+      "numbers": [
+        68,
+        86,
+        47
+      ],
+      "result": 137428,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-a3818b6fa1222026a577",
+    "problem": "I have these dice: 1d20, 1d4, 1d2. What are the odds of rolling 11 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "7/10",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 11,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d4, 1d2. What are the odds of rolling 11 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 11,
+      "puzzle": {
+        "dice_str": "1d20, 1d4, 1d2",
+        "target": 11,
+        "num": 7,
+        "den": 10,
+        "probability": 0.7
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-d2233f0c911282f04c9b",
+    "problem": "I have these dice: 1d20, 1d15, 1d13. What are the odds of rolling 22 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "441/650",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 3,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d15, 1d13. What are the odds of rolling 22 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 3,
+      "puzzle": {
+        "dice_str": "1d20, 1d15, 1d13",
+        "target": 22,
+        "num": 441,
+        "den": 650,
+        "probability": 0.6784615384615384
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-66e440b97ae358d72000",
+    "problem": "I have these dice: 1d20, 1d14, 1d2. What are the odds of rolling 18 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "3/5",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 12,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d14, 1d2. What are the odds of rolling 18 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 12,
+      "puzzle": {
+        "dice_str": "1d20, 1d14, 1d2",
+        "target": 18,
+        "num": 3,
+        "den": 5,
+        "probability": 0.6
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-89c69ae4043a3b2e721e",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 677, 470. Give only the GCD as your final answer.",
+    "answer": "1",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 11,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 677, 470. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 11,
+      "numbers": [
+        677,
+        470
+      ],
+      "result": 1,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-870557ef13248514d9a7",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 10, 51, 66",
+    "answer": "5610",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 6,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 10, 51, 66",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 6,
+      "numbers": [
+        10,
+        51,
+        66
+      ],
+      "result": 5610,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-c0258648e7f6c59fcdd1",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 316, 878. Give only the GCD as your final answer.",
+    "answer": "2",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 10,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 316, 878. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 10,
+      "numbers": [
+        316,
+        878
+      ],
+      "result": 2,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-f2a3908c43133f220c0f",
+    "problem": "I have these dice: 1d20, 1d19, 1d16. What are the odds of rolling 32 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "485/1216",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 15,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d19, 1d16. What are the odds of rolling 32 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 15,
+      "puzzle": {
+        "dice_str": "1d20, 1d19, 1d16",
+        "target": 32,
+        "num": 485,
+        "den": 1216,
+        "probability": 0.3988486842105263
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-1de8d4e4c96ede10a4b4",
+    "problem": "I have these dice: 1d20, 1d10, 1d9. What are the odds of rolling 16 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "55/72",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 5,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d10, 1d9. What are the odds of rolling 16 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 5,
+      "puzzle": {
+        "dice_str": "1d20, 1d10, 1d9",
+        "target": 16,
+        "num": 55,
+        "den": 72,
+        "probability": 0.7638888888888888
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-425de855296bedcb347f",
+    "problem": "Simplify this expression: 10*x**2*(x**2 - 5*x + 4)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "10*x**4 - 50*x**3 + 40*x**2",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 10,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: 10*x**2*(x**2 - 5*x + 4)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 10,
+      "polynomial_expr": "10*x**2*(x**2 - 5*x + 4)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-fefab74fc926c92409bb",
+    "problem": "Calculate the following: 3*x**2 + 18*x\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "3*x**2 + 18*x",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 13,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: 3*x**2 + 18*x\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 13,
+      "polynomial_expr": "3*x**2 + 18*x",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-952b71f2cabf391bab18",
+    "problem": "I have these dice: 1d20, 1d11, 1d10. What are the odds of rolling 16 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+    "answer": "1759/2200",
+    "family": "dice",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40561115,
+      "index": 1,
+      "parameters": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      },
+      "original_question": "I have these dice: 1d20, 1d11, 1d10. What are the odds of rolling 16 or higher? (Assume that all dice are rolled at once, and that '1d6' represents one roll of a 6-sided dice.) Please respond with a reduced fraction representing the probability [ex., 1/60].",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "dice",
+      "source_index": 1,
+      "puzzle": {
+        "dice_str": "1d20, 1d11, 1d10",
+        "target": 16,
+        "num": 1759,
+        "den": 2200,
+        "probability": 0.7995454545454546
+      },
+      "difficulty": {
+        "num_dice": 3,
+        "max_dice_size": 20
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-3f12303106e14c45102b",
+    "problem": "Calculate the following: (-7*x**2 - 7*x)*(3*x**2 - 5*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "-21*x**4 + 14*x**3 + 35*x**2",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 12,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Calculate the following: (-7*x**2 - 7*x)*(3*x**2 - 5*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 12,
+      "polynomial_expr": "(-7*x**2 - 7*x)*(3*x**2 - 5*x)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-898f2b49f631f5cf50b2",
+    "problem": "Find the Least Common Multiple (LCM) of these numbers: 74, 48",
+    "answer": "1776",
+    "family": "lcm",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40361115,
+      "index": 14,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 100
+      },
+      "original_question": "Find the Least Common Multiple (LCM) of these numbers: 74, 48",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "lcm",
+      "source_index": 14,
+      "numbers": [
+        74,
+        48
+      ],
+      "result": 1776,
+      "difficulty": {
+        "numbers": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          100
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-afe91484ac097ed04763",
+    "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 296, 274. Give only the GCD as your final answer.",
+    "answer": "2",
+    "family": "gcd",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40261115,
+      "index": 1,
+      "parameters": {
+        "min_numbers": 2,
+        "max_numbers": 3,
+        "min_value": 2,
+        "max_value": 1000
+      },
+      "original_question": "Find the Greatest Common Divisor (GCD) of these numbers: 296, 274. Give only the GCD as your final answer.",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "gcd",
+      "source_index": 1,
+      "numbers": [
+        296,
+        274
+      ],
+      "result": 2,
+      "num_terms": 2,
+      "difficulty": {
+        "num_terms": [
+          2,
+          3
+        ],
+        "value": [
+          2,
+          1000
+        ]
+      }
+    },
+    "source_id": null
+  },
+  {
+    "id": "dev-7715bc0e9ee8ea161754",
+    "problem": "Simplify this expression: -10*x*(5 - 7*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+    "answer": "70*x**2 - 50*x",
+    "family": "polynomial_multiplication",
+    "split": "dev",
+    "provenance": {
+      "generator": "reasoning-gym",
+      "version": "0.1.25",
+      "seed": 40461115,
+      "index": 6,
+      "parameters": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_value": 1,
+        "max_value": 8,
+        "min_polynomials": 2,
+        "max_polynomials": 2,
+        "variables": [
+          "x"
+        ]
+      },
+      "original_question": "Simplify this expression: -10*x*(5 - 7*x)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+      "pythonhashseed": "0"
+    },
+    "metadata": {
+      "source_dataset": "polynomial_multiplication",
+      "source_index": 6,
+      "polynomial_expr": "-10*x*(5 - 7*x)",
+      "variables": [
+        "x"
+      ],
+      "difficulty": {
+        "min_terms": 2,
+        "max_terms": 3,
+        "min_value": 1,
+        "max_value": 8,
+        "min_degree": 0,
+        "max_degree": 2,
+        "min_polynomials": 2,
+        "max_polynomials": 2
+      }
+    },
+    "source_id": null
+  }
+]
