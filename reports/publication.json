@@ -80,5 +80,8 @@
   "explicit_reference_protocol_pages_workflow": 43722627999,
   "judgment_explorer_merge": "aa0c9cbcf11498574b939e27d6146559047a3f6a",
   "judgment_explorer_huggingface_commit": "9e7b0cc3236c0a5802d20be367d517061b8f2138",
-  "judgment_explorer_pages_workflow": 43723292574
+  "judgment_explorer_pages_workflow": 43723292574,
+  "reference_contract_failure_merge": "1d4bbb22c8eb8437083a0a2fa30365dab3f87cfd",
+  "reference_contract_failure_huggingface_commit": "7acde613b4dbff502bc4ee03d6573565fba1e0df",
+  "reference_contract_failure_pages_workflow": 43725798451
 }

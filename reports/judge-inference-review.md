@@ -50,7 +50,9 @@ were examined; no implementation or prompt text is copied.
 
 Our current exact-excerpt checks establish attribution, not whether the excerpt
 supports a criterion. The observed disagreement between a novelty rationale and
-its numerical score is a separate semantic failure. A deterministic consistency
-check could reject incompatible declared decisions, but could not independently
-certify their mathematical truth. Any such protocol change requires a dated
-amendment, new cache identity and fresh development calibration before audit.
+its numerical score is a separate semantic failure. V5 rejected incompatible
+decisions but exhausted retries on a conventional probability argument. The
+[v6 gate](amendments/2026-11-15-declared-novelty-eligibility.md) instead computes
+eligibility from the declarations and retains raw scores for inspection. It
+cannot independently certify mathematical truth. Fresh development calibration
+under the new identity is required before audit; historical outcomes remain fixed.

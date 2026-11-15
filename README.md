@@ -56,8 +56,9 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v4.txt) scores
-each criterion from 0 to 4, then takes a weighted mean divided by four:
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v6.txt) scores
+each criterion from 0 to 4. Code applies validity and novelty-eligibility gates,
+then combines the normalized scores with these weights:
 
 | Criterion | Weight | What earns credit |
 |---|---:|---|
@@ -85,15 +86,17 @@ implemented but not validated. The [development history](reports/plan.md) and
 negative findings. The [bounded-reasoning attempt](reports/experiments/qwen-reasoning-v4-learnings.md)
 also failed under the same v4 rubric, cases and thresholds. It did not establish
 a repair of novelty discrimination.
-The [v5 protocol](reports/amendments/2026-11-15-explicit-reference-decisions.md)
-requires an explicit reference comparison before scoring novelty. The judge
-quotes the baseline and supplies candidate evidence for an added construction
-and its use. Code rejects a positive novelty score paired with a declaration
-that the response stays within the reference. These checks establish internal
-consistency and attribution; calibration must still test mathematical judgment.
 The [first v5 attempt](reports/experiments/qwen-v5-contract-learnings.md)
 terminated after repeated disagreement between a within-reference declaration
 and a positive novelty score. Its completed contrasts do not constitute a pass.
+The [v6 protocol](reports/amendments/2026-11-15-declared-novelty-eligibility.md)
+preserves that raw opinion and computes novelty eligibility in code. Credit
+requires supported theory, an explicit `beyond_reference` declaration, and
+candidate excerpts demonstrating both an added construction and its use.
+Otherwise the novelty contribution is zero, while supported conventional theory
+keeps its other scores. Raw and effective scores, plus reasons for withholding
+credit, are logged and shown in the explorer. This enforces declared prerequisites;
+calibration must still test whether those declarations are mathematically sound.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
@@ -102,7 +105,7 @@ not a claim of historical discovery or absence from pretraining. For example,
 a justified lattice interpretation of GCD that also characterizes reachable
 integer displacements can earn additional credit beyond a conventional Euclidean
 solution. This is established mathematics used as a nonstandard connection.
-Holding the other scores fixed, greater supported novelty increases reward.
+Holding eligibility and the other scores fixed, greater supported novelty increases reward.
 A strong conventional explanation still earns the other rubric components.
 False novelty-bearing claims set the whole theory bonus to zero.
 
