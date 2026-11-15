@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-15T11:39:24.747529+00:00.
+Generated from saved artifacts at 2026-11-15T11:49:20.309429+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 

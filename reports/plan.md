@@ -68,9 +68,10 @@ development judgments still assign novelty to some conventional arguments;
 the clarification has not established a successful repair. Week-budget decisions
 use measured pilot throughput and are documented before comparison runs.
 The initial v4 novelty contrasts passed, while full calibration remains incomplete.
-The next [registered runtime diagnostic](amendments/2026-11-15-evaluation-offload-diagnostic.md)
-compares additional GPU offload at the full judge context before freezing the
-evaluation runtime. Existing partial opinions remain development evidence.
+The [registered runtime diagnostic](amendments/2026-11-15-evaluation-offload-diagnostic.md)
+compared additional GPU offload at full context without improving measured
+speed. Retain the existing evaluation runtime and resume its cached development
+calibration. Existing partial opinions remain development evidence.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

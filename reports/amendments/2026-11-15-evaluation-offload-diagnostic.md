@@ -31,3 +31,15 @@ test answers. It does not establish a stable end-to-end throughput guarantee.
 Command: `bash scripts/run.sh benchmark-judge --sweep offload`.
 Publish the chosen serving configuration and evidence before recalibration.
 Retain the previous partial judgments and their runtime identity.
+
+## Recorded outcome
+
+The sweep completed without timeout or allocation failure. The registered
+setting had the highest observed mean decoding rate, so it is retained.
+Greater offload did not improve this short measurement; the cause is not
+isolated. This is not evidence of mathematical quality. Full raw timings and
+command provenance are preserved in
+[`feasibility-gemma-offload-benchmark.json`](../development/feasibility-gemma-offload-benchmark.json),
+with rates regenerated in the [development report](../experiments/development-runtime.md).
+No judge identity changes; resume the interrupted development calibration from
+its existing cache. No locked audit has been used.
