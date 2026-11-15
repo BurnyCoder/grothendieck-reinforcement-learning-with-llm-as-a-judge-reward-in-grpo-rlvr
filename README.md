@@ -9,8 +9,9 @@ judge, held-out mathematical families and recipient-transfer tests assess behavi
 New definitions, invariants, frameworks and connections to distant mathematics
 earn additional credit when they are justified and do mathematical work.
 
-**Status: preregistered design; pipeline implemented and undergoing local validation. No
-empirical improvement or latent-space steering has been demonstrated.**
+**Status: pipeline implemented; Gemma's development novelty calibration failed.
+Long training remains blocked by the registered calibration gate. No empirical
+improvement or latent-space steering has been demonstrated.**
 
 ![Pipeline architecture](site/figures/architecture.png)
 
@@ -88,7 +89,10 @@ Sustained Gemma serving later stalled despite successful short benchmarks.
 The [runtime/deadline amendment](reports/amendments/2026-11-15-judge-stream-deadline.md)
 tests passive OpenMP waiting and enforces a total request deadline. Interrupted
 judgments remain development evidence; changed runtime identities require
-fresh calibration.
+fresh calibration. The passive-waiting attempt completed its observed requests
+but stopped when the novelty threshold became unreachable. See the
+[failure analysis](reports/experiments/gemma-v4-learnings.md) and generated
+calibration results below.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,
@@ -212,5 +216,7 @@ transfer, reports and dashboard viewing.
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
+
+evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
 
 <!-- RESULTS:END -->

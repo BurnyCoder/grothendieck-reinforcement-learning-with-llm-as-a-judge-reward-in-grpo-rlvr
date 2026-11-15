@@ -1,0 +1,77 @@
+{
+  "identity": {
+    "judge": "ef8a300c6c16a420a871b67912839cd6b822b71a82949bc26ec8bebdccecd8c6",
+    "cases": "f538b36b6fd316e553df77b7d8d0f07b34f5703c12487f9b7040f664e67fe73f",
+    "protocol": "novelty-first-development-futility-v1"
+  },
+  "split": "dev",
+  "role": "evaluation_judge",
+  "variant": "quoted",
+  "ordering": [
+    {
+      "id": "novelty-dev-0",
+      "stratum": "novelty",
+      "preferred": 0.8625,
+      "dispreferred": 0.5875,
+      "preferred_novelty": 0.5,
+      "dispreferred_novelty": 0.0,
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-1",
+      "stratum": "novelty",
+      "preferred": 0.9125000000000001,
+      "dispreferred": 0.5625,
+      "preferred_novelty": 0.75,
+      "dispreferred_novelty": 0.0,
+      "passed": true
+    },
+    {
+      "id": "novelty-dev-2",
+      "stratum": "novelty",
+      "preferred": 1.0,
+      "dispreferred": 0.7250000000000001,
+      "preferred_novelty": 1.0,
+      "dispreferred_novelty": 0.5,
+      "passed": false
+    },
+    {
+      "id": "novelty-dev-3",
+      "stratum": "novelty",
+      "preferred": 0.9125000000000001,
+      "dispreferred": 0.5375000000000001,
+      "preferred_novelty": 0.75,
+      "dispreferred_novelty": 0.25,
+      "passed": false
+    }
+  ],
+  "suppression": [],
+  "strata": {
+    "theory": {
+      "preference_accuracy": null,
+      "false_theory_suppression": null,
+      "pairs_observed": 0,
+      "pairs_expected": 20,
+      "false_observed": 0,
+      "false_expected": 20,
+      "preference_upper_bound": 1.0,
+      "suppression_upper_bound": 1.0
+    },
+    "novelty": {
+      "preference_accuracy": 0.5,
+      "false_theory_suppression": null,
+      "pairs_observed": 4,
+      "pairs_expected": 8,
+      "false_observed": 0,
+      "false_expected": 8,
+      "preference_upper_bound": 0.75,
+      "suppression_upper_bound": 1.0
+    }
+  },
+  "preference_accuracy": 0.5,
+  "false_theory_suppression": null,
+  "complete": false,
+  "threshold_unreachable": true,
+  "passed": false,
+  "stopping_reason": "development_threshold_unreachable"
+}

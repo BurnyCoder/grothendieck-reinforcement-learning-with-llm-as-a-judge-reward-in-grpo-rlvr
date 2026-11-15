@@ -74,8 +74,13 @@ compared additional GPU offload at full context without improving measured
 speed. The resumed calibration subsequently stalled again. The
 [stream-deadline amendment](amendments/2026-11-15-judge-stream-deadline.md)
 registers passive OpenMP waiting for evaluation and a total streaming deadline.
-Recalibrate under its new identity, preserving all interrupted evidence.
-Existing partial opinions remain development evidence.
+The new development run stopped under the fixed futility rule after nonzero
+novelty was assigned to conventional polynomial and probability controls.
+See the [failure analysis](experiments/gemma-v4-learnings.md) and generated
+case table. False-theory cases were not reached. Long training and locked audit
+remain blocked; the behavioral hypothesis is untested. Test Qwen's existing v4
+protocol next, before deciding whether a general protocol revision is justified.
+Preserve all failed and interrupted opinions as development evidence.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

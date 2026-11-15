@@ -29,13 +29,43 @@ def development_records() -> list[dict]:
     return records
 
 
+def calibration_records() -> list[dict]:
+    """Retain failed development results after archival and when cloning without local runs."""
+    paths = sorted((PROJECT / "reports/development").glob("calibration-*.json"))
+    paths += sorted((root() / "calibration").rglob("*.json"))
+    records = [read_json(p) for p in paths if ".lock." not in p.name and ".progress." not in p.name]
+    return list({digest(record): record for record in records}.values())
+
+
+def calibration_text(snapshot) -> str:
+    """Separate early failure, full-suite outcomes and unmeasured false-theory suppression."""
+    if not snapshot["calibration"]:
+        return "No completed or early-stopped calibration result is recorded."
+    descriptions = []
+    for result in snapshot["calibration"]:
+        name = f"{result['role']}/{result['variant']} ({result['split']}, {result['identity']['judge'][:8]})"
+        status = "passed" if result["passed"] else "failed"
+        observed = len(result["ordering"])
+        passed = sum(row["passed"] for row in result["ordering"])
+        detail = (f"{name} {status}, with {passed}/{observed} observed preference checks passing "
+                  f"and {len(result['suppression'])} false-theory cases assessed.")
+        if not result["complete"]:
+            preference = min(stratum["preference_upper_bound"] for stratum in result["strata"].values())
+            suppression = min(stratum["suppression_upper_bound"] for stratum in result["strata"].values())
+            detail += (f" The fixed futility rule stopped this incomplete development suite; "
+                       f"the lowest stratum-wise best-possible final rates were {preference:.1%} for "
+                       f"preference and {suppression:.1%} for false-theory suppression. "
+                       "Unobserved cases are not counted as errors or successes.")
+        descriptions.append(detail)
+    return " ".join(descriptions)
+
+
 def collect() -> dict:
     """Missing artifacts remain missing; they never become fabricated zero results."""
     evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
     cfg = read_json(PROJECT / "configs/study.json")
     training = {p.parent.name: read_jsonl(p) for p in (root() / "runs").glob("*/metrics.jsonl")}
-    calibration = [read_json(p) for p in (root() / "calibration").glob("*.json")
-                   if ".lock." not in p.name and ".progress." not in p.name]
+    calibration = calibration_records()
     examples = {name: sorted(rows, key=lambda r: r["task_id"])[:12] for name, rows in evaluations.items()}
     feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json")) + list(
         (root() / "feasibility").glob("*.json"))
@@ -253,9 +283,10 @@ def paper_sections(snapshot):
          "establish calibration reliability. Conventional arguments received nonzero novelty credit, including "
          "after the v3 clarification. The clean standalone Gemma retry completed judgments, including a "
          "rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies "
-         "bounded validation feedback. Initial v4 Gemma contrasts favored valid bridges and gave their "
-         "conventional counterparts zero novelty credit; full calibration remains incomplete. "
-         "No comparative conclusion follows. "
+         "bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty "
+         "to some conventional controls. Passive OpenMP waiting completed the observed requests without "
+         "a transport failure; that short run does not establish sustained reliability. "
+         + calibration_text(snapshot) + " No comparative conclusion follows. "
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
@@ -380,6 +411,7 @@ def report() -> dict:
                ".\n\nCorrectness is verified final-answer accuracy. Theory is a frozen judge's rubric "
                "assessment, not a proof certificate. C × theory weights that assessment by answer correctness. "
                "Pending means no result, not zero performance.\n\n" + table +
+               "\n\n## Judge calibration\n\n" + calibration_text(snapshot) +
                "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
                "\n## Secondary OOD analysis\n\nDescriptive paired intervals; not a replacement success criterion.\n\n```json\n" +
                json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n" +
@@ -392,9 +424,22 @@ def report() -> dict:
         "# Development execution records\n\nGenerated from preserved timestamped logs. "
         "These are incomplete development attempts, not calibrated judges or comparative results. "
         "See the dated runtime amendment for rationale, interruptions and next checks.\n\n" +
-        feasibility_text(snapshot) + "\n\n```json\n" +
-        json.dumps({"judging": snapshot["development"], "feasibility": snapshot["feasibility"]},
+        calibration_text(snapshot) + "\n\n" + feasibility_text(snapshot) + "\n\n```json\n" +
+        json.dumps({"judging": snapshot["development"], "calibration": snapshot["calibration"],
+                    "feasibility": snapshot["feasibility"]},
                    indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
+    for result in snapshot["calibration"]:
+        name = f"calibration-{result['role']}-{result['variant']}-{result['split']}-{result['identity']['judge'][:8]}"
+        case_rows = [["Case", "Preferred T", "Control T", "Preferred novelty", "Control novelty", "Passed"]]
+        case_rows.extend([row["id"], display(row["preferred"]), display(row["dispreferred"]),
+                     display(row["preferred_novelty"]), display(row["dispreferred_novelty"]),
+                     str(row["passed"])] for row in result["ordering"])
+        (folder / f"{name}.md").write_text(
+            f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" + markdown_table(case_rows) +
+            "\n\nThese are fixed constructed expectations, not human preference labels or verified novelty. "
+            "Source: the matching identity in `reports/results.json`; full judgments are preserved in "
+            "`reports/development/`. Case-level disagreements require interpretation, not silent score repair.\n",
+            encoding="utf-8")
     for run, metrics in snapshot["summaries"].items():
         folder = PROJECT / "reports/experiments"
         folder.mkdir(exist_ok=True)
@@ -408,7 +453,7 @@ def report() -> dict:
     content = readme.read_text(encoding="utf-8")
     start, end = "<!-- RESULTS:START -->", "<!-- RESULTS:END -->"
     if start in content:
-        content = content.split(start)[0] + start + "\n\n" + table + "\n\n" + end + content.split(end)[1]
+        content = content.split(start)[0] + start + "\n\n" + table + "\n\n" + calibration_text(snapshot) + "\n\n" + end + content.split(end)[1]
     else:
         content += "\n## Recorded evaluation results\n\n" + start + "\n\n" + table + "\n\n" + end + "\n"
     readme.write_text(content, encoding="utf-8")
