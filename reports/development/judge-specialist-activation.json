@@ -1,0 +1,28 @@
+{
+  "time": "2026-11-15T20:52:05.201940+00:00",
+  "kind": "specialist_activation_integrity",
+  "inference_performed": false,
+  "selected_protocol": "specialists-v1",
+  "selection_reason": "registered fallback after required two-call development threshold failure",
+  "trigger_artifact": "reports/development/calibration-qwen-v8-two-stage-dev.json",
+  "trigger_digest": "d07d481616cd6fecb0a4080b298f7218e8545852304c4d70c142fbbf2abbd84c",
+  "trigger_identity": {
+    "judge": "66721e0efa62096394ff0295a24a530f059743cb7e67d64eace897fd6640ca92",
+    "cases": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+    "protocol": "graded-connections-development-futility-v2"
+  },
+  "published_protocol_record": "reports/development/judge-decomposed-protocol-integrity.json",
+  "identities": {
+    "training_judge/quoted": "b33cb353c2aa2c5e6b68d9ddc5eda51443157474676b09cb849f38303124c56d",
+    "training_judge/rubric": "c07b8d14cafb12cf69dec7095ecf08aa5c10c66dbb01301f83224ce218fd557f",
+    "evaluation_judge/quoted": "12e11355d130008f32dc2937ba6d39d7e1f5a2ea3aab6b610c9238c56c8beb1a"
+  },
+  "checks": {
+    "training_judge/quoted": true,
+    "training_judge/rubric": true,
+    "evaluation_judge/quoted": true,
+    "dev_cases": true,
+    "audit_cases": true,
+    "references": true
+  }
+}

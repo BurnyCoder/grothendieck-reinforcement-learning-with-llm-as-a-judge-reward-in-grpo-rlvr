@@ -224,7 +224,7 @@ def stage_latency_rows(records):
 
 def withheld_novelty_rows(result):
     """Publish stored gate applications without reinterpreting historical assessments."""
-    rows = [["Case", "Response", "Raw novelty (0–4)", "Credited novelty (0–4)", "Gate reasons"]]
+    rows = [["Case", "Response", "Pre-gate novelty (0–4)", "Credited novelty (0–4)", "Gate reasons"]]
     records = [(row["id"], side, row.get(f"{side}_novelty_credit"))
                for row in result["ordering"] for side in ("preferred", "dispreferred")]
     records += [(row["id"], "false theory", row.get("novelty_credit")) for row in result["suppression"]]
@@ -339,8 +339,8 @@ def paper_sections(snapshot):
          "20% weight, judged relative to published conventional approaches. New objects, definitions, invariants, "
          "frameworks and distant mathematical connections earn that credit only when justified and useful. "
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
-         "The current decomposed protocol separates conceptual analysis from overall validity and quality. "
-         "Its registered fallback has eight specialist roles. Code derives novelty from explicit addition, "
+         "The two-call protocol separated conceptual analysis from overall validity and quality. "
+         "Its selected fallback has eight specialist roles. Code derives novelty from explicit addition, "
          "application and consequence findings, and withholds novelty unless supported theory is declared "
          "beyond-reference with an excerpt identifying a concrete addition. Brief valid connections can "
          "earn one novelty point without a further worked use; developed mathematics can earn up to four. "
@@ -399,7 +399,11 @@ def paper_sections(snapshot):
          "remained uncredited and a brief subgroup connection tied a developed framework on novelty "
          "while scoring higher overall. A conventional invariant was cited as a use of the added "
          "connection; exact-excerpt validation cannot establish that semantic attribution. "
-         "Historical results are retained, and the remaining model runs stay gated."
+         "Historical results are retained, and the remaining model runs stay gated. "
+         "The two-call decomposition subsequently failed development: it credited a brief "
+         "commutator connection but overcredited conventional GCD/LCM mathematics and missed "
+         "developed uses. The preserved stage findings and case report document these errors. "
+         "The preregistered specialist fallback is selected without changing the acceptance gates."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
@@ -570,7 +574,9 @@ def report() -> dict:
         credit_rows = withheld_novelty_rows(result)
         credit_text = ("\n\n## Withheld novelty credit\n\n" + markdown_table(credit_rows) +
                        "\n\nThese are recorded gate applications, not independently verified mathematical "
-                       "errors. Raw opinions remain unchanged; the acceptance checks use credited scores.") \
+                       "errors. Pre-gate novelty is a model score in legacy protocols and a code-derived "
+                       "level in decomposed protocols. Stored opinions remain unchanged; acceptance "
+                       "checks use credited scores.") \
             if len(credit_rows) > 1 else ""
         (folder / f"{name}.md").write_text(
             f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" +

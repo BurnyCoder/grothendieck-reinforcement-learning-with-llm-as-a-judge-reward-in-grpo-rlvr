@@ -25,11 +25,11 @@ The component checks are descriptive. Correct score rankings alone do not satisf
 
 ## Withheld novelty credit
 
-| Case | Response | Raw novelty (0–4) | Credited novelty (0–4) | Gate reasons |
+| Case | Response | Pre-gate novelty (0–4) | Credited novelty (0–4) | Gate reasons |
 |---|---|---|---|---|
 | novelty-dev-0 | dispreferred | 1 | 0 | within_reference |
 | novelty-dev-2 | dispreferred | 1 | 0 | within_reference, missing_use_evidence |
 
-These are recorded gate applications, not independently verified mathematical errors. Raw opinions remain unchanged; the acceptance checks use credited scores.
+These are recorded gate applications, not independently verified mathematical errors. Pre-gate novelty is a model score in legacy protocols and a code-derived level in decomposed protocols. Stored opinions remain unchanged; acceptance checks use credited scores.
 
 These are fixed constructed expectations, not human preference labels or verified novelty. Source: the matching identity in `reports/results.json`; full judgments are preserved in `reports/development/`. Case-level disagreements require interpretation, not silent score repair.

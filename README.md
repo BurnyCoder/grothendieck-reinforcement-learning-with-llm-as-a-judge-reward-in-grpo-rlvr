@@ -15,15 +15,14 @@ frameworks can earn more, even when they use established mathematics.
 Long training remains blocked by the registered calibration gate. No empirical
 improvement or latent-space steering has been demonstrated.**
 
-The [latest reference-scope trial](reports/experiments/qwen-v7-reference-scope-learnings.md)
-withheld novelty from the routine probability controls, but still misgraded
-brief connections and a developed-framework comparison. The evidence log also
-shows why exact quotations alone cannot validate a claimed use of a concept.
-The modest-credit rule remains implemented; judge reliability is unresolved.
-The next [registered repair](reports/amendments/2026-11-15-decomposed-judges.md)
-separates conceptual analysis from theory scoring. If any required development
-configuration fails, an eight-specialist protocol repeats all development checks.
-Neither protocol has yet qualified. Thresholds, cases, labels and weights stay fixed.
+The [two-call trial](reports/experiments/qwen-v8-two-stage-learnings.md) credited
+a brief valid commutator connection, but still overcredited routine GCD/LCM
+mathematics and missed developed uses. It failed the fixed development gate.
+The [registered specialist fallback](reports/amendments/2026-11-15-specialist-activation.md)
+is now selected: validity, reference comparison, development and five quality
+criteria are assessed separately. It must repeat all development checks before
+any locked audit. Neither protocol has qualified. Thresholds, cases, labels,
+weights and modest credit for valid connections stay fixed.
 
 ![Pipeline architecture](site/figures/architecture.png)
 
@@ -91,41 +90,16 @@ More distant connections are welcome when the bridge is established explicitly.
 Cosmetic renaming, exotic terminology and unsupported originality claims score zero.
 Standard correctness proofs, routine parameter substitutions and equivalent
 descriptions of a listed method also receive zero novelty credit. They can
-still score highly for justified theory. Development judgments overcredited
-conventional proofs as novel, while some Qwen judgments incorrectly withheld
-all theory credit from conventional generalizations. The novelty reward is
-implemented but not validated. The [development history](reports/plan.md) and
-[Gemma failure analysis](reports/experiments/gemma-v4-learnings.md) retain these
-negative findings. The [bounded-reasoning attempt](reports/experiments/qwen-reasoning-v4-learnings.md)
-also failed under the same v4 rubric, cases and thresholds. It did not establish
-a repair of novelty discrimination.
-The [first v5 attempt](reports/experiments/qwen-v5-contract-learnings.md)
-terminated after repeated disagreement between a within-reference declaration
-and a positive novelty score. Its completed contrasts do not constitute a pass.
-The [v6 attempt](reports/experiments/qwen-v6-interruption-learnings.md) demonstrated
-that a code gate could withhold ineligible novelty without changing the raw
-opinion. It was interrupted after the user clarified that valid brief connections
-should earn modest credit. The historical
-[v7 protocol](reports/amendments/2026-11-15-modest-valid-connections.md) requires
-supported theory, an explicit `beyond_reference` declaration and an excerpt
-identifying an added construction or concrete relationship. Without a worked
-further use, code caps novelty at **1 out of 4**, rather than forcing it to zero.
-Demonstrated development permits higher credit. Raw scores, credited scores,
-caps and reasons are logged and shown in the explorer. Conventional theory
-keeps its other scores. Calibration must still test mathematical soundness and
-the ordering of developed frameworks, brief connections and routine solutions.
-The [fresh v7 attempt](reports/experiments/qwen-v7-learnings.md) failed the
-registered stopping rule. Developed frameworks ranked higher in the observed
-contrasts, but the judge mishandled credit for brief connections and routine
-generalizations. Generated case reports separate ranking from the full contract;
-no failed control is relabeled and no false-theory suppression result is inferred.
-The [reference-scope amendment](reports/amendments/2026-11-15-explicit-reference-scope.md)
-keeps rubric v7 and its cases while stating that conventional polynomial methods
-concern commuting variables and ordinary probability methods include biased
-dice. That reference change creates a new judge identity requiring fresh checks;
-it has not established a repair.
-The active two-call protocol separately assesses conceptual additions/development
-and overall validity/quality. Its registered fallback separates validity, reference
+still score highly for justified theory. The [development history](reports/plan.md)
+retains failed and interrupted Qwen and Gemma attempts, including overcredited
+routine mathematics, missed valid connections and incorrectly attributed uses.
+The [reference-scope findings](reports/experiments/qwen-v7-reference-scope-learnings.md)
+explain why exact quotations and score caps do not establish semantic reliability.
+All historical opinions remain unchanged. Generated case reports distinguish
+score ranking from the full calibration contract; unobserved cases are not successes.
+
+The failed two-call protocol separately assessed conceptual additions/development
+and overall validity/quality. The selected fallback separates validity, reference
 comparison, development, and each of the five quality criteria into eight calls.
 Calls reuse the frozen local model. Code combines them without voting or selecting
 favorable opinions; any substantive mathematical objection vetoes the theory bonus.
@@ -268,6 +242,6 @@ transfer, reports and dashboard viewing.
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
 
-evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 08145e59) failed, with 1/3 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, ebe93e9d) failed, with 6/9 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, a3fa911e) failed, with 4/7 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
+evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 08145e59) failed, with 1/3 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, ebe93e9d) failed, with 6/9 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, a3fa911e) failed, with 4/7 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 66721e0e) failed, with 2/5 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
 
 <!-- RESULTS:END -->

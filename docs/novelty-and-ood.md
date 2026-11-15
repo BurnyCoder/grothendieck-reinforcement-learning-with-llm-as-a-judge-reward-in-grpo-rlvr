@@ -15,7 +15,9 @@ absent from a pretrained model's corpus.
 `prompts/rubric-v8.txt` and the versioned stage prompts supply scoring anchors; `novelty-anchors.json`
 defines the comparison references. Both judges use these same frozen rules.
 The [decomposed protocol](decomposed-judges.md) first uses two calls, then eight
-specialists if development fails. `judge_stages.py` derives constructive novelty
+specialists if development fails. That fallback is now selected after the
+[two-call failure](../reports/experiments/qwen-v8-two-stage-learnings.md).
+`judge_stages.py` derives constructive novelty
 from declared additions, demonstrated uses and consequences. It preserves raw
 findings and gates the entire bonus on supported validity without substantive
 objections. Its combined score is derived; older raw numerical opinions are not

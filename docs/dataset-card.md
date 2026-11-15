@@ -41,8 +41,12 @@ cannot certify that semantic relationship. The negative result is preserved in
 `reports/experiments/qwen-v7-reference-scope-learnings.md`; remaining calibration,
 audits and comparative training stay blocked.
 
-The registered v8 repair separates conceptual analysis from validity/quality
-scoring, with an eight-specialist fallback if development qualification fails.
+The registered v8 two-call repair failed its fixed development gate. It credited
+a brief valid commutator connection, but overcredited routine GCD/LCM mathematics
+and missed developed uses. Full findings are preserved in
+`reports/experiments/qwen-v8-two-stage-learnings.md`. The already-published
+eight-specialist fallback is now selected by
+`reports/amendments/2026-11-15-specialist-activation.md`.
 It retains modest credit, all thresholds, cases, labels and weights. Each role's
 raw findings and latency are preserved; code derives novelty and aggregates the
 reward. Complete matching development passes precede the full locked audits.

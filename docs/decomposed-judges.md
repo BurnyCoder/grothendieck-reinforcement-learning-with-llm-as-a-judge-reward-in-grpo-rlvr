@@ -5,6 +5,9 @@ defines the scientific contract. `configs/study.json` selects `judge_protocol`:
 `two-stage-v1` first, `specialists-v1` only after a documented development failure.
 Both use `prompts/rubric-v8.txt` plus the versioned stage instructions. Historical
 v7 is retained as `Judge(..., protocol="legacy")`; it is not the active instrument.
+The [two-call trial failed](../reports/experiments/qwen-v8-two-stage-learnings.md);
+the [dated activation](../reports/amendments/2026-11-15-specialist-activation.md)
+now selects the unchanged, previously published specialist protocol.
 
 ```mermaid
 flowchart TD
@@ -53,3 +56,6 @@ One valid brief connection earns the modest level without an extra consequence;
 code requires additional declared evidence for higher levels. An issue must identify
 an essential unsupported claim or a contradiction, not lack of novelty or elegance.
 Both raw findings and the derived combined scores remain available for inspection.
+Reports label the value before validity/eligibility gates as pre-gate novelty.
+It is a direct model score in legacy records and a code-derived level in the
+decomposed records; this terminology does not rescore historical data.

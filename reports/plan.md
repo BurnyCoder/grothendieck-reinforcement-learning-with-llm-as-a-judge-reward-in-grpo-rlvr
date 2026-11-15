@@ -148,10 +148,12 @@ registers two isolated calls and an eight-specialist fallback. Both preserve the
 user's modest-credit preference, cases, labels, references, weights and thresholds.
 Stage contracts, deterministic aggregation, partial-stage caching and recovery,
 runtime context checks, dashboard status and a development-before-audit gate are
-implemented. No new mathematical inference has run yet. Publish the tested code
-and amendment, run Qwen quoted development first, and continue to the other
-configurations only on complete passes. If development fails, archive the outcome
-and publish specialist activation before restarting all development. Failed audits
+implemented and published before the fresh two-call Qwen quoted trial. That trial
+failed the fixed futility rule; its [findings](experiments/qwen-v8-two-stage-learnings.md)
+are preserved without rescoring. The [specialist activation](amendments/2026-11-15-specialist-activation.md)
+selects the already-published fallback. Publish the archived outcome and activation
+before specialist inference, then restart all development in the registered order.
+The remaining two-call configurations are not run. Failed audits
 cannot be reset. After qualification, refresh the pilot timings, then execute the
 registered baseline/training/evaluation sequence. Failed runs remain negative evidence.
 
