@@ -1,4 +1,5 @@
 /* Render only saved evidence. textContent prevents candidate responses becoming executable HTML. */
+import {latestStepMetrics, stepThroughput} from './training-metrics.mjs';
 const $ = id => document.getElementById(id);
 const number = value => value == null ? 'Pending' : typeof value === 'number' ? Number(value.toFixed(4)).toString() : value;
 let snapshot;
@@ -17,10 +18,10 @@ function chart(title, points, bounded) {
 }
 function renderTraining() {
   const events=snapshot.training[$('run').value]||[], last=(kind)=>events.filter(e=>e.kind===kind).at(-1);
-  const batch=last('reward_batch'), metrics=last('training_metrics'), checkpoint=last('checkpoint');
+  const batch=last('reward_batch'), metrics=latestStepMetrics(events), checkpoint=last('checkpoint');
   const development=Object.entries(snapshot.summaries).filter(([name])=>name.includes('dev')).at(-1)?.[1];
-  const elapsed=metrics?.elapsed_seconds, tokens=metrics?.metrics?.num_tokens;
-  const fields=[['Training correctness',batch?.accuracy],['Theory quality',batch?.theory],['Supported novelty',batch?.novelty],['Latest development accuracy',development?.accuracy],['Optimizer step',metrics?.step],['Latest checkpoint',checkpoint?.step],['Loss',metrics?.metrics?.loss],['KL',metrics?.metrics?.kl],['Mean completion tokens',metrics?.metrics?.['completions/mean_length']],['Tokens per second',tokens&&elapsed?tokens/elapsed:null],['Judge failures',events.filter(e=>e.kind==='judge_failure').length],['Elapsed seconds',elapsed]];
+  const elapsed=metrics?.elapsed_seconds;
+  const fields=[['Training correctness',batch?.accuracy],['Theory quality',batch?.theory],['Supported novelty',batch?.novelty],['Latest development accuracy',development?.accuracy],['Optimizer step',metrics?.step],['Latest checkpoint',checkpoint?.step],['Loss',metrics?.metrics?.loss],['KL',metrics?.metrics?.kl],['Mean completion tokens',metrics?.metrics?.['completions/mean_length']],['Tokens/s: latest step including judging',stepThroughput(events)],['Judge failures',events.filter(e=>e.kind==='judge_failure').length],['Elapsed seconds since process start',elapsed]];
   $('metrics').replaceChildren(...fields.map(([label,value])=>{const card=element('div',null,'metric');card.append(element('small',label),element('strong',number(value)));return card;}));
   $('charts').replaceChildren(...[['Correctness','accuracy',true],['Theory quality','theory',true],['Supported novelty','novelty',true],['Loss','loss',false],['KL','kl',false]].map(([title,key,bounded])=>chart(title,events.map(e=>[e.step??e.reward_call,e[key]??e.metrics?.[key]]).filter(p=>p.every(Number.isFinite)),bounded)));
 }

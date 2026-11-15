@@ -1,0 +1,19 @@
+{
+  "selected_at": "2026-11-15",
+  "policy": {
+    "repo": "Qwen/Qwen3.5-2B",
+    "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+    "dtype": "bfloat16",
+    "license": "apache-2.0"
+  },
+  "artifact_hash_manifest": "configs/artifacts.lock.json",
+  "initialization": "unmodified pinned base checkpoint for every comparative arm and transfer recipient",
+  "pilot_adapters_excluded": true,
+  "evidence": [
+    "reports/development/feasibility-bf16-first.json",
+    "reports/development/feasibility-grpo-first-boundary.json",
+    "reports/development/feasibility-grpo-resumed-complete.json"
+  ],
+  "decision": "Preferred BF16 LoRA policy passed maximum-length backward and four-completion GRPO saving/resumption with a nonzero parameter change. No memory/runtime failure justifies the fallback.",
+  "remaining_gates": "Frozen judge calibration and training-budget decision before comparative runs. The pilot is not a stable throughput or learning estimate."
+}
