@@ -31,6 +31,10 @@ from zero-novelty reference controls. The fresh v7 attempt failed its fixed
 futility gate: developed frameworks ranked higher, but the control-credit
 conditions failed. False-theory suppression was not reached. The generated
 reports separate those checks and preserve every raw opinion.
+Reference version v3 subsequently clarifies the commutative-polynomial and
+ordinary biased-probability baselines. The rubric, case hashes and thresholds
+remain fixed; this new identity needs fresh development checks and untouched
+audits before comparative training.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

@@ -129,6 +129,11 @@ failed. No false-theory case was reached. Preserve this distinction in reporting
 and retain the failed run unchanged. Clarify the mathematical scope of the
 conventional references in a separate published amendment before new inference;
 do not change the user preference, cases, labels or acceptance thresholds.
+The [reference-scope amendment](amendments/2026-11-15-explicit-reference-scope.md)
+now specifies that isolated intervention. Reference version v3 clarifies
+commutative polynomial methods and ordinary biased-probability calculations;
+rubric v7 and all cases remain unchanged. Publish before one fresh Qwen quoted
+development trial. Its result determines whether the remaining checks proceed.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

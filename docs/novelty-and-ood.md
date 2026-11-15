@@ -39,6 +39,13 @@ connections and zero-novelty reference controls; the cases explicitly declare
 which expectation applies. All numerical thresholds remain fixed, but the
 changed construct and case set require a new complete calibration and audit.
 
+The [reference-scope refinement](../reports/amendments/2026-11-15-explicit-reference-scope.md)
+keeps that construct and case set. Its polynomial baseline explicitly concerns
+commutative polynomials, while its probability baseline includes ordinary
+symbolic and biased event probabilities. The finite baseline is part of the
+measurement specification and judge identity. These clarifications do not
+certify novelty or change any earlier result.
+
 `ood.py` reuses [Reasoning Gym](https://github.com/open-thought/reasoning-gym)
 and [SymPy](https://docs.sympy.org/latest/modules/matrices/matrices.html).
 Its secondary manifest has a separate lock and does not alter the original

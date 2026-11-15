@@ -108,6 +108,11 @@ registered stopping rule. Developed frameworks ranked higher in the observed
 contrasts, but the judge mishandled credit for brief connections and routine
 generalizations. Generated case reports separate ranking from the full contract;
 no failed control is relabeled and no false-theory suppression result is inferred.
+The [reference-scope amendment](reports/amendments/2026-11-15-explicit-reference-scope.md)
+keeps rubric v7 and its cases while stating that conventional polynomial methods
+concern commuting variables and ordinary probability methods include biased
+dice. That reference change creates a new judge identity requiring fresh checks;
+it has not established a repair.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
