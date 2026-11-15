@@ -34,7 +34,8 @@ unreachable. Untouched full locked audits remain required. No comparative run ha
 - [x] Publish initial implementation, manifests, paper and site to GitHub/Hugging Face.
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
-- [ ] Run development feasibility pilot; freeze policy and training configuration.
+- [x] Complete development execution pilot and freeze the unmodified policy checkpoint.
+- [ ] Freeze the comparative training budget after judge calibration.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.
 - [ ] Train/evaluate matched seeds 43 and 44, plus seed-42 controls.
@@ -47,6 +48,9 @@ backward probe passed; the repaired four-completion GRPO pilot completed
 checkpoint resumption and a nonzero parameter update. Its first boundary had
 a zero warmup learning rate. These are execution checks, not learning evidence;
 pilot updates are excluded from comparative initialization.
+The [policy selection](../configs/policy-selection.json) freezes the preferred
+Qwen3.5-2B base revision for every arm and the transfer recipient. No fallback
+is selected. Judge calibration and the final budget decision remain separate gates.
 Development judging by both models has started but is incomplete;
 the initial GRPO attempt failed during generation on a CRLF configuration-path
 bug, now repaired and regression-tested, before its first optimizer update;
@@ -63,6 +67,10 @@ calibration gates must be satisfied before long training. The observed v3
 development judgments still assign novelty to some conventional arguments;
 the clarification has not established a successful repair. Week-budget decisions
 use measured pilot throughput and are documented before comparison runs.
+The initial v4 novelty contrasts passed, while full calibration remains incomplete.
+The next [registered runtime diagnostic](amendments/2026-11-15-evaluation-offload-diagnostic.md)
+compares additional GPU offload at the full judge context before freezing the
+evaluation runtime. Existing partial opinions remain development evidence.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

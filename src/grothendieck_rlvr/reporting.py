@@ -96,14 +96,17 @@ def feasibility_text(snapshot) -> str:
     benchmarks = [r for r in snapshot["feasibility"] if r.get("kind") == "synthetic_judge_runtime_benchmark"]
     for benchmark in benchmarks:
         if benchmark["timings"]:
-            rates = "; ".join(f"{t['n_threads']} thread{'s' if t['n_threads'] != 1 else ''}: {t['avg_ts']:.2f} tokens/s"
+            offload = benchmark.get("sweep") == "offload"
+            key, unit = ("n_gpu_layers", "GPU layers") if offload else ("n_threads", "threads")
+            rates = "; ".join(f"{t[key]} {unit}: {t['avg_ts']:.2f} tokens/s"
                               for t in benchmark["timings"])
             best = max(benchmark["timings"], key=lambda t: t["avg_ts"])
             text += (f" A synthetic Gemma decoding diagnostic recorded {rates}. "
-                     f"The fastest measured setting used {best['n_threads']} threads. "
-                     "These short upstream llama-bench measurements omit structured-output sampling "
-                     "and use a smaller allocated context than the server. They do not establish "
-                     "end-to-end judgment latency or calibration quality.")
+                     f"The fastest measured setting used {best[key]} {unit}. "
+                     "These short upstream llama-bench measurements omit structured-output sampling. "
+                     + ("The offload sweep allocates the registered maximum context. " if offload else
+                        "The thread sweep uses a smaller allocated context than the server. ") +
+                     "They do not establish end-to-end judgment latency or calibration quality.")
     return text
 
 
@@ -246,7 +249,8 @@ def paper_sections(snapshot):
          "establish calibration reliability. Conventional arguments received nonzero novelty credit, including "
          "after the v3 clarification. The clean standalone Gemma retry completed judgments, including a "
          "rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies "
-         "bounded validation feedback; dedicated contrasts must test whether novelty is measured consistently. "
+         "bounded validation feedback. Initial v4 Gemma contrasts favored valid bridges and gave their "
+         "conventional counterparts zero novelty credit; full calibration remains incomplete. "
          "No comparative conclusion follows. "
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "

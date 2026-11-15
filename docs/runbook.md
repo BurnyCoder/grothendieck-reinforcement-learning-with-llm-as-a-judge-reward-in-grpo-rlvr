@@ -126,6 +126,9 @@ The separately preregistered execution diagnostic is
 It records synthetic Gemma decoding timings for the fixed thread-count sweep
 under the artifact root's `benchmarks/` directory; it never supplies reward scores.
 See the [diagnostic protocol](../reports/amendments/2026-11-15-judge-thread-diagnostic.md).
+The separate [offload sweep](../reports/amendments/2026-11-15-evaluation-offload-diagnostic.md)
+uses `bash scripts/run.sh benchmark-judge --sweep offload` and the full registered
+context. A selected offload change requires publication and recalibration.
 
 The synthetic maximum-length backward probe measures memory and does not retain
 updates. The two-step GRPO pilot checks four completions, real verifier/judge
@@ -140,6 +143,12 @@ Resumption ignores a newer incomplete checkpoint. Ctrl-C or SIGTERM requests
 an optimizer-boundary save; a power loss resumes from the last complete boundary.
 No bitwise GPU determinism claim is made. The fallback needs measured failure
 evidence and an explicit dated implementation/configuration amendment.
+
+The dashboard computes throughput from the change in TRL's cumulative token
+count over the latest optimizer interval, including judging. It does not divide
+the cumulative count by the restarted process's elapsed time. Missing intervals
+remain unavailable. Its metric contracts can be checked with
+`node --test tests/dashboard.test.mjs` (Node is optional for this check).
 
 ## Comparative runs and independent evaluation
 

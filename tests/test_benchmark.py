@@ -8,7 +8,8 @@ from grothendieck_rlvr.io import read_json, read_jsonl
 
 
 @pytest.mark.parametrize("timeout", [False, True])
-def test_benchmark_records_completion_or_timeout(tmp_path, monkeypatch, timeout):
+@pytest.mark.parametrize("sweep", ["threads", "offload"])
+def test_benchmark_records_completion_or_timeout(tmp_path, monkeypatch, timeout, sweep):
     """Exercise launch/logging end to end with a fake binary, never a real model."""
     monkeypatch.setenv("GROTH_ROOT", str(tmp_path))
     executable = tmp_path / "tools/llama-b12359-cuda12/bin/llama-bench"
@@ -21,12 +22,16 @@ def test_benchmark_records_completion_or_timeout(tmp_path, monkeypatch, timeout)
     def run(command, **kwargs):
         if "--version" in command:
             return subprocess.CompletedProcess(command, 0, stdout=revision, stderr="")
+        if sweep == "offload":
+            assert command[command.index("-ngl") + 1] == "24,32,40"
+            assert command[command.index("-d") + 1] == "8176"
+            assert command[command.index("-t") + 1] == "8"
         if timeout:
             raise subprocess.TimeoutExpired(command, kwargs["timeout"])
         kwargs["stdout"].write(b'{"n_threads":1,"avg_ts":1.0}\n')
         return subprocess.CompletedProcess(command, 0)
     monkeypatch.setattr(benchmark.subprocess, "run", run)
-    result = benchmark.benchmark_judge()
+    result = benchmark.benchmark_judge(sweep=sweep)
     assert result["timed_out"] is timeout
     assert result["timings"] == ([] if timeout else [{"n_threads": 1, "avg_ts": 1.0}])
     folder = next((tmp_path / "benchmarks").iterdir())

@@ -109,6 +109,9 @@ Training judge: [Qwen3.5-9B Q4_K_M](https://huggingface.co/unsloth/Qwen3.5-9B-GG
 CPU. Evaluation judge: [Gemma 4 12B UD-Q4_K_XL](https://huggingface.co/unsloth/gemma-4-12b-it-GGUF),
 loaded separately. Qwen3-1.7B FP8 is a documented-feasibility-failure fallback
 only. Fine-tuning memory advertisements do not guarantee GRPO feasibility.
+The completed execution pilot supports the
+[frozen Qwen3.5-2B policy selection](configs/policy-selection.json); every
+comparative arm starts from its unmodified base weights. Pilot adapters are excluded.
 
 Judge backend, GPU offload, KV-cache precision and batching are pinned in
 [the serving configuration](configs/judge-runtime.json) and included in cache
@@ -120,6 +123,10 @@ Gemma's initial CUDA attempt decoded too slowly to complete usefully. A
 favored the existing thread count, which is retained. A clean standalone retry
 completed judgments, including an invalid-excerpt failure followed by an accepted
 retry. The slowdown's cause remains unisolated; all attempts are preserved.
+The initial v4 novelty contrasts passed, but full calibration remains unfinished.
+A [registered offload diagnostic](reports/amendments/2026-11-15-evaluation-offload-diagnostic.md)
+will compare greater GPU use with the policy unloaded before selecting the final
+evaluation runtime. A changed setting requires recalibration.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving

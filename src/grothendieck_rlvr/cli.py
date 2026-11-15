@@ -12,8 +12,10 @@ def parser():
     """Keep phase selection explicit so generation never implicitly starts training."""
     p = argparse.ArgumentParser(description="Local Grothendieck-inspired RLVR research environment")
     sub = p.add_subparsers(dest="command", required=True)
-    for name in ("prepare", "prepare-ood", "doctor", "hash-models", "report", "memory-probe", "benchmark-judge"):
+    for name in ("prepare", "prepare-ood", "doctor", "hash-models", "report", "memory-probe"):
         sub.add_parser(name)
+    benchmark = sub.add_parser("benchmark-judge")
+    benchmark.add_argument("--sweep", choices=["threads", "offload"], default="threads")
     download = sub.add_parser("download")
     download.add_argument("--role", default="all", choices=["all", "policy", "training_judge", "evaluation_judge"])
     serve = sub.add_parser("serve")
@@ -72,7 +74,7 @@ def main():
             result = train(**args) if command == "train" else memory_probe()
         elif command == "benchmark-judge":
             from .benchmark import benchmark_judge
-            result = benchmark_judge()
+            result = benchmark_judge(**args)
         elif command == "generate":
             from .evaluation import generate
             result = generate(**args)

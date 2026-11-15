@@ -12,8 +12,10 @@ from datetime import datetime, timezone
 from .io import PROJECT, EventLog, atomic_json, read_json, read_jsonl, root
 
 
-def benchmark_judge() -> dict:
-    """Vary only CPU thread count; preserve partial output and a bounded failure record."""
+def benchmark_judge(sweep="threads") -> dict:
+    """Vary one registered runtime factor; preserve partial output and bounded failures."""
+    if sweep not in ("threads", "offload"):
+        raise ValueError("Unknown registered benchmark sweep")
     for port in (8081, 8082):
         try:
             connection = socket.create_connection(("127.0.0.1", port), timeout=1)
@@ -34,15 +36,21 @@ def benchmark_judge() -> dict:
         raise RuntimeError("Benchmark binary differs from the pinned source revision")
     with executable.open("rb") as handle:
         executable_hash = hashlib.file_digest(handle, "sha256").hexdigest()
+    threads = [1, 4, 8] if sweep == "threads" else [8]
+    gpu_layers = [runtime["gpu_layers"]] if sweep == "threads" else [24, 32, 40]
+    depth = 2048 if sweep == "threads" else 8176
     command = ["stdbuf", "-oL", "-eL", str(executable), "-m", str(root() / "models/evaluation_judge" / model["file"]),
-               "-p", "0", "-n", "16", "-d", "2048", "-r", "2", "-t", "1,4,8", "-o", "jsonl", "--progress"]
-    for flag, key in (("-ngl", "gpu_layers"), ("-b", "batch_size"), ("-ub", "ubatch_size"),
+               "-p", "0", "-n", "16", "-d", str(depth), "-r", "2",
+               "-t", ",".join(map(str, threads)), "-ngl", ",".join(map(str, gpu_layers)),
+               "-o", "jsonl", "--progress"]
+    for flag, key in (("-b", "batch_size"), ("-ub", "ubatch_size"),
                       ("-fa", "flash_attention"), ("-ctk", "cache_type_k"), ("-ctv", "cache_type_v")):
         command += [flag, str(runtime[key])]
     log = EventLog(directory / "events.jsonl")
-    config = {"kind": "synthetic_judge_runtime_benchmark", "model": model, "runtime": runtime,
+    config = {"kind": "synthetic_judge_runtime_benchmark", "sweep": sweep, "model": model, "runtime": runtime,
               "source_revision": revision, "executable_sha256": executable_hash,
-              "command": command, "timeout_seconds": 900, "threads": [1, 4, 8],
+              "command": command, "timeout_seconds": 900, "threads": threads,
+              "gpu_layers": gpu_layers, "depth": depth,
               "environment": {k: os.environ.get(k) for k in ("OMP_NUM_THREADS", "OMP_WAIT_POLICY", "GOMP_SPINCOUNT")}}
     atomic_json(directory / "config.json", config)
     log.emit("benchmark_started", configuration=config)

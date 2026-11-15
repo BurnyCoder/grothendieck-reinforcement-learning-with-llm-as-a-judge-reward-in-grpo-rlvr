@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T11:27:24.707770+00:00",
+  "generated_at": "2026-11-15T11:39:24.747529+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v4",
@@ -528,6 +528,255 @@
       "incomplete_requests": 1,
       "response_seconds": [],
       "assessments": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/gemma-cuda24-v4-interrupted.jsonl",
+      "requests": 5,
+      "completed_responses": 4,
+      "incomplete_requests": 1,
+      "response_seconds": [
+        247.4664538149991,
+        107.26705054500053,
+        88.10981724299927,
+        58.445962629999485
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T11:33:20.562084+00:00",
+          "kind": "judge_assessment",
+          "key": "184b74434ffa547864b03da7930944890061a8a0f5bb6788125bfd5ae9cb577c",
+          "task_id": "novelty-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The candidate identifies the GCD as the generator of a subgroup of integers, providing a structural basis for the calculation.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ.",
+                  "ua+vb=t has an integer solution exactly when d divides t"
+                ],
+                "rationale": "The argument generalizes to any pair of integers (a,b) by characterizing the set of linear combinations as a cyclic group dZ.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ."
+                ],
+                "rationale": "The specific result gcd(8,12) follows naturally from the lattice construction where n=4.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The construction requires integer signed moves; nonnegative moves do not form a subgroup."
+                ],
+                "rationale": "The candidate connects the problem to group theory (subgroups of Z) and distinguishes it from monoid structures.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line."
+                ],
+                "rationale": "The definition of the lattice I(a,b) is sufficient and directly motivates the subsequent logic.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The conventional reference lists Euclid's algorithm and prime exponents. The candidate adds a group-theoretic 'reachable lattice' framework. This construction identifies the GCD as the generator of the subgroup formed by all linear combinations, enabling a proof via the division algorithm on the lattice elements rather than just iterative subtraction.",
+                "score": 2
+              }
+            },
+            "problems": [
+              "The connection to group theory is stated but not formally developed as a group structure (e.g., mentioning the group operation explicitly)."
+            ]
+          },
+          "theory": 0.8625,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T11:35:17.313937+00:00",
+          "kind": "judge_assessment",
+          "key": "69a5e2f60cab3e57cfbe7b8419df7c3bb06ef67fa65c7a0877e3c32e962ee90b",
+          "task_id": "novelty-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The candidate identifies the relationship between divisors of multiples and the common difference.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Thus gcd(2n,3n)=n for positive n."
+                ],
+                "rationale": "The argument generalizes the specific case to a parameterized family of multiples.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm."
+                ],
+                "rationale": "The specific result is presented as a consequence of the general divisor property.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "the invariant of Euclid's algorithm"
+                ],
+                "rationale": "The candidate connects the specific divisor logic to the fundamental invariant of Euclid's algorithm.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The explanation is concise and directly motivates the result through divisor properties.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The conventional reference includes the invariant gcd(a,b)=gcd(a,b-a). The candidate's addition is the specific derivation of gcd(2n,3n)=n via divisor containment, which explains the specific case as a consequence of the general invariant.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The response provides a general theory but does not explicitly show the step-by-step calculation for 8 and 12, though it is implied by the 2n, 3n structure."
+            ]
+          },
+          "theory": 0.5875,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T11:36:56.248199+00:00",
+          "kind": "judge_assessment",
+          "key": "06cc0a40bc9f74b764c1fab66264f72c716afa6a20db9e7687a9c9769217b1cb",
+          "task_id": "novelty-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time.",
+                  "Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l."
+                ],
+                "rationale": "The candidate uses the group-theoretic structure of integers to define LCM as the generator of the intersection of cyclic subgroups.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ.",
+                  "If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The framework generalizes from simple multiples to cosets of subgroups, covering periodic events with arbitrary phases.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k.",
+                  "For phases r=s=n with periods 2n,3n, common times are n+6nZ."
+                ],
+                "rationale": "The specific LCM calculation follows naturally from the subgroup intersection and coset arithmetic established in the theory.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide."
+                ],
+                "rationale": "The candidate connects the LCM problem to the theory of coset intersections and the conditions for non-empty intersections.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time."
+                ],
+                "rationale": "The use of subgroups and cosets is a compact and efficient way to generalize the LCM and periodicity.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The conventional reference uses prime factorization or GCD. The candidate adds a group-theoretic framework of cosets (r+aZ) to model periodic events with phases, enabling the analysis of coincidence conditions (non-empty intersections) which the reference lacks.",
+                "score": 3
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T11:38:01.401325+00:00",
+          "kind": "judge_assessment",
+          "key": "503aa4ad83b25a8b7b45be7a38baaf8fab71786b6d17ce76df909357cd3063c0",
+          "task_id": "novelty-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k."
+                ],
+                "rationale": "The candidate identifies the divisibility requirements for a common multiple, establishing a structural relationship between the factors.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "The response generalizes the specific case to the prime exponent framework and the product identity.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Thus lcm(2n,3n)=6n."
+                ],
+                "rationale": "The specific result for the given numbers (where n=6) follows naturally from the established divisibility logic.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "proving gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "The candidate connects the LCM calculation to the fundamental identity involving the GCD and the product of integers.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k."
+                ],
+                "rationale": "The explanation is direct and avoids unnecessary overhead while still providing a logical derivation.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The candidate uses the conventional reference methods (prime exponents and the product identity) without introducing a new mathematical framework or bridge.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The response does not provide a novel conceptual departure from the conventional reference methods."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0
+        }
+      ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
