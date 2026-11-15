@@ -76,7 +76,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6625000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T11:16:16.262499+00:00",
@@ -122,7 +125,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 4.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T11:18:23.247468+00:00",
@@ -178,7 +184,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6625000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6. Conversely 6n is a multiple of each. Hence lcm(2n,3n)=6n for positive integer n, giving 42. More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b.\n<final>42</final>"
         },
         {
           "time": "2026-11-15T11:19:50.914366+00:00",
@@ -224,7 +233,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -294,7 +306,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.7125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -379,7 +394,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.8625,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T11:35:17.313937+00:00",
@@ -437,7 +455,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.5875,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T11:36:56.248199+00:00",
@@ -496,7 +517,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Represent exact recurring events by subgroups aZ,bZ of integer time. Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l. Hence aZ intersect bZ=lZ and l=lcm(a,b). For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k. For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ. Thus a single coincidence determines all future coincidences. For phases r=s=n with periods 2n,3n, common times are n+6nZ. Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T11:38:01.401325+00:00",
@@ -552,7 +576,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b.\n<final>36</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -635,7 +662,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 1.0,
-          "novelty": 1.0
+          "novelty": 1.0,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x]. Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative. Indeed N(uv)=uv*conj(u)*conj(v)=N(u)*N(v) by commutativity. Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1. This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs. The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T11:54:40.614873+00:00",
@@ -691,7 +721,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7250000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T11:56:03.056920+00:00",
@@ -749,7 +782,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication. The even indicator is (1+chi(k))/2. Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2. Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2. For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices. Independence matters: for Y=X with X uniform on {1,2}, each expectation is zero but X+Y is always even. This character transform is a reusable bridge from probability convolution to multiplicative statistics.\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T11:57:20.109668+00:00",
@@ -805,7 +841,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.5125000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For an even-sided fair die, half the faces are even and half odd. Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2. More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q).\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T11:58:38.774732+00:00",
@@ -863,7 +902,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.8625,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(24, 36).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>12</final>"
         },
         {
           "time": "2026-11-15T11:59:45.282696+00:00",
@@ -921,7 +963,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(24, 36).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm. I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>12</final>"
         },
         {
           "time": "2026-11-15T12:01:38.608167+00:00",
@@ -979,7 +1024,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Find lcm(28, 42).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Represent exact recurring events by subgroups aZ,bZ of integer time. Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l. Hence aZ intersect bZ=lZ and l=lcm(a,b). For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k. For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ. Thus a single coincidence determines all future coincidences. For phases r=s=n with periods 2n,3n, common times are n+6nZ. Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide.\n<final>84</final>"
         },
         {
           "time": "2026-11-15T12:03:16.946251+00:00",
@@ -1037,7 +1085,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(28, 42).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b. I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>84</final>"
         },
         {
           "time": "2026-11-15T12:04:53.978640+00:00",
@@ -1095,7 +1146,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 1.0,
-          "novelty": 1.0
+          "novelty": 1.0,
+          "problem": "Expand (x+16)*(x-16).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x]. Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative. Indeed N(uv)=uv*conj(u)*conj(v)=N(u)*N(v) by commutativity. Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1. This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs. The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field.\n<final>x**2-256</final>"
         },
         {
           "time": "2026-11-15T12:06:07.812080+00:00",
@@ -1153,7 +1207,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Expand (x+16)*(x-16).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator. I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>x**2-256</final>"
         },
         {
           "time": "2026-11-15T12:07:27.563371+00:00",
@@ -1212,7 +1269,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Roll two independent fair 18-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication. The even indicator is (1+chi(k))/2. Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2. Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2. For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices. Independence matters: for Y=X with X uniform on {1,2}, each expectation is zero but X+Y is always even. This character transform is a reusable bridge from probability convolution to multiplicative statistics.\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T12:08:33.305437+00:00",
@@ -1268,7 +1328,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.48750000000000004,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 18-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For an even-sided fair die, half the faces are even and half odd. Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2. More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q). I rename this the Universal Conceptual Ocean, a completely new mathematical paradigm.\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T12:09:35.644164+00:00",
@@ -1322,7 +1385,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.6625000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T12:10:15.932637+00:00",
@@ -1368,7 +1434,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 4.\n<final>4</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -1446,7 +1515,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.8625,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T12:42:33.875189+00:00",
@@ -1502,7 +1574,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.5875,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T12:46:03.594541+00:00",
@@ -1563,7 +1638,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Represent exact recurring events by subgroups aZ,bZ of integer time. Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l. Hence aZ intersect bZ=lZ and l=lcm(a,b). For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k. For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ. Thus a single coincidence determines all future coincidences. For phases r=s=n with periods 2n,3n, common times are n+6nZ. Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T12:48:28.398351+00:00",
@@ -1619,7 +1697,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.5625,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T12:51:42.597825+00:00",
@@ -1677,7 +1758,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 1.0,
-          "novelty": 1.0
+          "novelty": 1.0,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x]. Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative. Indeed N(uv)=uv*conj(u)*conj(v)=N(u)*N(v) by commutativity. Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1. This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs. The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T12:54:49.261615+00:00",
@@ -1735,7 +1819,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.7250000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T12:58:22.542975+00:00",
@@ -1794,7 +1881,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication. The even indicator is (1+chi(k))/2. Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2. Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2. For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices. Independence matters: for Y=X with X uniform on {1,2}, each expectation is zero but X+Y is always even. This character transform is a reusable bridge from probability convolution to multiplicative statistics.\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T13:01:12.687209+00:00",
@@ -1850,7 +1940,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.5375000000000001,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For an even-sided fair die, half the faces are even and half odd. Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2. More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q).\n<final>1/2</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -1925,7 +2018,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Calculate the following: (-11*x**2 - 1)*(6*x**2 + 2)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To calculate the expression $(-11x^2 - 1)(6x^2 + 2)$, we will use the distributive property (also known as the FOIL method for binomials), which states that $(a + b)(c + d) = ac + ad + bc + bd$.\n\nHere, let:\n$a = -11x^2$\n$b = -1$\n$c = 6x^2$\n$d = 2$\n\n**Step 1: Multiply the First and Outer terms ($ac$)**\n$(-11x^2)(6x^2) = -11 \\cdot 6 \\cdot x^{2} \\cdot x^{2}$\nMultiply the coefficients: $11 \\cdot 6 = 66$\nAdd the $x$ terms using the exponent rule $x^m \\cdot x^n = x^{m+n}$: $x^{2} \\cdot x^{2} = x^4$\nResult: $-66x^4$\n\n**Step 2: Multiply the First and Inner terms ($ad$)**\n$(-11x^2)(2) = -11 \\cdot 2 \\cdot x^{2}$\nMultiply the coefficients: $11 \\cdot 2 = 22$\nMultiply the variables: $x^{2}$\nResult: $-22x^2$\n\n**Step 3: Multiply the Inner and Outer terms ($bc$)**\n$(-1)(6x^2) = -1 \\cdot 6 \\cdot x^{2}$\nMultiply the coefficients: $1 \\cdot 6 = 6$\nMultiply the variables: $x^{2}$\nResult: $-6x^2$\n\n**Step 4: Multiply the Inner and Inner terms ($bd$)**\n$(-1)(2) = -2$\nMultiply the variables: No variables involved.\nResult: $-2$\n\n**Step 5: Combine all results**\nAdd the results from Steps 1 through 4 together:\n$-66x^4 + (-22x^2) + (-6x^2) + (-2)$\nGroup like terms (though here, the terms $-22x^2$ and $-6x^2$ combine):\n$-66x^4 - 22x^2 - 6x^2 - 2$\n$-66x^4 - 28x^2 - 2$\n\nFollowing the required formatting conventions:\n- Multiplication is written with an explicit * symbol.\n- Exponents are written using ** (e.g., $x^4$ becomes $x**4$).\n\nThe calculation steps with these constraints:\n1. $(-11*x^2) * (6*x^2) = -11*X**2 * 6*X**2 = -66*X**4$\n2. $(-11*x^2) * (2) = -11*X**2 * 2 = -22*X**2$\n3. $(-1)* (6*x^2) = -1 * 6*X**2 = -6*X**2$\n4. $(-1) * (2) = -1 * 2 = -2$\n\nSumming them up: $-66X**4 - 22X**2 - 6X**2 - 2 = -66X**4 - 28X**2 - 2$.\n\n$-66*x^4 - 28*x^2 - 2$\n<final>\n-66*x**4 - 28*x**2 - 2\n</final>"
         },
         {
           "time": "2026-11-15T10:10:17.724559+00:00",
@@ -1973,7 +2069,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Calculate the following: (-11*x**2 - 1)*(6*x**2 + 2)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To solve the expression $(-11x^2 - 1)(6x^2 + 2)$, I will follow the distributive property (also known as the FOIL method for binomials) to expand the product. Every multiplication operation must explicitly use the `*` symbol as requested.\n\nThe expression is:\n$$ (-11x^2 - 1) \\cdot (6x^2 + 2) $$\n\n**Step 1: Distribute each term in the first binomial to each term in the second binomial.**\n\nThe first term of the first binomial is $-11x^2$.\nThe second term of the first binomial is $-1$.\n\nThe first term of the second binomial is $6x^2$.\nThe second term of the second binomial is $2$.\n\nWe calculate the four products:\n\n1.  Multiplying the first term of the first group by the first term of the second group:\n    $$ (-11x^2) \\cdot (6x^2) = -11 \\cdot 6 \\cdot x^2 \\cdot x^2 $$\n    Grouping the coefficients and the variables: $-66 \\cdot x^{2+2} = -66x^4$.\n\n2.  Multiplying the first term of the first group by the second term of the second group:\n    $$ (-11x^2) \\cdot (2) = -11 \\cdot 2 \\cdot x^2 \\cdot x^0 = -22x^2$.\n\n3.  Multiplying the second term of the first group by the first term of the second group:\n    $$ (-1) \\cdot (6x^2) = -1 \\cdot 6 \\cdot x^2 \\cdot x^0 = -6x^2$.\n\n4.  Multiplying the second term of the first group by the second term of the second group:\n    $$ (-1) \\cdot (2) = -1 \\cdot 2 \\cdot x^0 \\cdot x^0 = -2x^0 = -2 $$ (Since $x^0 = 1$).\n\n**Step 2: Combine all the resulting terms into a single polynomial.**\n\nThe expanded form is the sum of the four results calculated above:\n$$ -66x^4 - 22x^2 - 6x^2 - 2 $$\n\n**Step 3: Combine like terms.**\n\nLook for terms with the same power of $x$.\n*   The term $-22x^2$ and the term $-6x^2$ have the same power ($x^2$).\n*   Combine them: $-22x^2 - 6x^2 = (-22 - 6)x^2 = -28x^2$.\n*   The other terms are $-66x^4$ and $-2$.\n\nPutting it all together:\n$$ -66x^4 - 28x^2 - 2 $$\n\n**Step 4: Format the output according to the guidelines.**\n*   Use ** for exponents: $x^2$ becomes $x**2$, $x^4$ becomes $x**4$.\n*   Include the * symbol for multiplication: $x^2 \\cdot x^2$ was used in the reasoning (or written as x^2 squared), though strictly speaking, in the final expression there are no multiplication signs needed for just x's unless grouping was explicit. In the line $(-11x^2 * -2 *x^2)$, the multiplication is clear.\n*   Ensure the final string adheres to these conventions.\n\nFinal Expression: $-66x**4 * x**2 ** 2 - 28*x**2 - 2$ or simply moving the multiplication signs to the start of the terms. Let's write it clearly with steps.\n\nReasoning summary:\n1. Multiply $(-11x^2)(6x^2) = -66x^4$.\n2. Multiply $(-11x^2)(2) = -22x^2$.\n3. Multiply $(-1)(6x^2) = -6x^2$.\n4. Multiply $(-1)(2) = -2$.\n5. Sum terms: $-66x^4 - 28x^2 - 2$.\n\nFinal check of formatting:\n- Exponents: **\n- Multiplication: *\n\nThe instruction example says \"write -3*X**3*sin(X)...\". This implies the format should be a continuous string or clearly broken down steps that match this regex-like style if interpreted strictly, but usually, it means \"use these symbols in your math\".\nLet's draft the final answer string ensuring multiplication is visible where applicable in the summation or intermediate steps logic. The standard polynomial form is: $-66x^4 - 22x^2 * x^2 ... no wait, polynomials don't have multiplication signs between powers.\nThe instruction \"Always include the * symbol for all multiplication operations in your reasoning steps\" covers the logic.\n\"The final formula should be formatted with ** for exponents and * for multiplication.\"\nSo the final output should be:\n$-66*x**4 - 28*x**2 - 2$\nOr expanding the first term if the prompt wants to see the logic of $x^4$ derived from $x^2 * x^2$ shown explicitly as multiplication?\nUsually, \"Calculate... (-11*x**2 - 1)*(6*x**2 + 2)\" results in a polynomial.\nLet's re-read: \"For example, write -3*X**3*sin(X)...\" This implies a final string.\nI will provide the step-by-step calculation with the required symbols and then the final result.\n\nStep 1: $(-11*x**2) * (6*x**2) = -66*x**4$\nStep 2: $(-11*x**2) * 2 = -22*x**2$\nStep 3: $(-1) * (6*x**2) = -6*x**2$\nStep 4: $(-1) * 2 = -2$\n\nSum: $-66*x**4 - 22*x**2*x**2 + ...$ wait, the prompt says \"Use ** instead of ^\". In the final line, we write $x**2$. We do not write $x**2 * x**2$ in the final polynomial unless we are adding terms. The term $-66x^4$ is correct. The term $-22x^2$ and $-6x^2$ combine.\n\nLet's verify the prompt constraint again: \"Always include the * symbol for all multiplication operations in your reasoning steps.\"\nExample: `-3*X**3*sin(X) - 9*X**2*cos(X) ...`\nSo in my reasoning, I will explicitly show the multiplication of coefficients.\n\nReasoning Step-by-step:\n1. Multiply the first part of the first bracket by the first part of the second bracket: $-11*x**2 * 6*x**2 = -66*x**4$.\n2. Multiply the first part of the first bracket by the second part of the second bracket: $-11*x**2 * 2 = -22*x**2$.\n3. Multiply the second part of the first bracket by the first part of the second bracket: $-1 * 6*x**2 = -6*x**2$.\n4. Multiply the second part of the first bracket by the second part of the second bracket: $-1 * 2 = -2$.\n5. Combine the results: $-66*x**4 - 22*x**2 - 6*x**2 - 2$.\n6. Combine like terms $-22*x**2$ and $-6*x**2$: $-28*x**2$.\n7. Final result: $-66*x**4 - 28*x**2 - 2$.\n\nThe final section should contain the answer.\n\n<final>\n-66*x**4 - 28*x**2 - 2\n</final>"
         },
         {
           "time": "2026-11-15T10:11:35.198760+00:00",
@@ -2019,7 +2118,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Calculate the following: (-11*x**2 - 1)*(6*x**2 + 2)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To calculate the expression $(-11x^2 - 1)(6x^2 + 2)$, I will use the distributive property (also known as FOIL for binomials), which means multiplying each term in the first parenthesis by each term in the second parenthesis.\n\n**Step 1: Identify the terms.**\nThe first binomial is: $-11x^2$ and $-1$.\nThe second binomial is: $6x^2$ and $2$.\n\n**Step 2: Multiply each combination.**\n*   First term: Multiply $-11x^2$ by $6x^2$.\n    $$(-11x^2) \\cdot (6x^2) = (-11 \\cdot 6) \\cdot (x^2 \\cdot x^2) = -66x^4$$\n*   Second term: Multiply $-11x^2$ by $2$.\n    $$(-11x^2) \\cdot (2) = -22x^2$$\n*   Third term: Multiply $-1$ by $6x^2$.\n    $$(-1) \\cdot (6x^2) = -6x^2$$\n*   Fourth term: Multiply $-1$ by $2$.\n    $$(-1) \\cdot (2) = -2$$\n\n**Step 3: Combine the results.**\nNow, add the four products together:\n$$ -66x^4 - 22x^2 - 6x^2 - 2 $$\n\n**Step 4: Combine like terms.**\nThe like terms are the terms containing $x^2$.\nWe have $-22x^2$ and $-6x^2$.\nSum: $-22x^2 + (-6x^2) = -28x^2$.\n\nSo the simplified expression is:\n$$ -66x^4 - 28x^2 - 2 $$\n\n**Formatting the output:**\nFollowing the guidelines:\n- Use `*` for multiplication.\n- Use `**` for exponents.\n\nThe calculation steps show:\n$$ -11x^2 * 6x^2 - 11x^2 * 2 - 1 * 6x^2 - 1 * 2 $$\n$$ = -66x^4 - 22x^2 - 6x^2 - 2 $$\n$$ = -66x^4 - 28x^2 - 2 $$\n\n<final>-66*x**4 - 28*x**2 - 2</final>"
         },
         {
           "time": "2026-11-15T10:13:04.414151+00:00",
@@ -2065,7 +2167,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we need to determine the largest positive integer that divides all three numbers without leaving a remainder.\n\n**Step 1: Find the prime factorization of each number.**\n\n*   **Number 14:**\n    *   $14 = 2 \\times 7$\n    *   Prime factors: $2^1, 7^1$\n\n*   **Number 510:**\n    *   It is even, so divide by 2: $510 = 2 \\times 255$.\n    *   Sum of digits of 255 is $2+5+5=12$, so it is divisible by 3: $255 = 3 \\times 85$.\n    *   End in 5, so divisible by 5: $85 = 5 \\times 17$.\n    *   17 is a prime number.\n    *   Prime factors: $2^1, 3^1, 5^1, 17^1$.\n\n*   **Number 522:**\n    *   It is even, so divide by 2: $522 = 2 \\times 261$.\n    *   Sum of digits of 261 is $2+6+1=9$, so it is divisible by 3, which means it is divisible by $3^2$: $261 = 3 \\times 87, 87 = 3 \\times 29$.\n    *   29 is a prime number.\n    *   Prime factors: $2^1, 3^2, 29^1$.\n\n**Step 2: Identify common prime factors.**\n\n*   Between $14 = 2^1 \\times 7$ and $522 = 2^1 \\times 3^2 \\times 29$, the only common prime is 2 (with exponent 1).\n*   However, we must also check the third number, 510. The common factors between 14 and 510 are:\n    *   14: $2, 7$\n    *   510: $2, 3, 5, 17$\n    *   Common: 2.\n*   Now consider all three:\n    *   14: $2, 7$\n    *   510: $2, 3, 5, 17$\n    *   522: $2, 3, 29$\n\nLooking at the prime factorizations:\n*   Number 14 factors: 2, 7\n*   Number 510 factors: 2, 3, 5, 17\n*   Number 522 factors: 2, 3, 29\n\nThe only prime factor common to all three numbers is **2**. Since 14 contains only $2^1$, no integer greater than 1 can divide 14 other than 1 and 2. Therefore, the powers of 2 in the factorization of the GCD must be $2^1$.\n\n**Step 3: Determine the GCD.**\n\nSince 7, 3, 29, 5, and 17 are present in the factorizations of at most two of the numbers, and 2 is the only prime factor present in all three:\n*   The GCD consists of the product of the common prime factors raised to their lowest exponents.\n*   Lowest exponent for 2 is 1.\n*   GCD = $2^1 = 2$.\n\nDouble check:\n*   Does 2 divide 510? Yes ($510/2 = 255$).\n*   Does 2 divide 522? Yes ($522/2 = 261$).\n*   Does 2 divide 14? Yes ($14/2 = 7$).\n*   No other number greater than 1 divides 14. Thus, 2 is the greatest.\n\nThe Greatest Common Divisor is 2.\n\n<final>2</final>"
         },
         {
           "time": "2026-11-15T10:14:09.685952+00:00",
@@ -2111,7 +2216,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n\n1.  **Factorize 14**:\n    $14 = 2 \\times 7$\n    The prime factors are 2 and 7.\n\n2.  **Factorize 510**:\n    - It is even, so divisible by 2: $510 \\div 2 = 255$.\n    - The sum of digits of 255 is $2+5+5=12$, so it is divisible by 3: $255 \\div 3 = 85$.\n    - 85 ends in 5, so it is divisible by 5: $85 \\div 5 = 17$.\n    - 17 is a prime number.\n    So, $510 = 2 \\times 3 \\times 5 \\times 17$.\n\n3.  **Factorize 522**:\n    - It is even, so divisible by 2: $522 \\div 2 = 261$.\n    - The sum of digits of 261 is $2+6+1=9$, so it is divisible by 3: $261 \\div 3 = 87$.\n    - 87 is divisible by 9 or 3. Let's check $3 \\times 29 = 87$.\n    - 29 is a prime number.\n    So, $522 = 2 \\times 3 \\times 3 \\times 29 = 2 \\times 3^2 \\times 29$.\n\nNow, let's compare the prime factors to find the GCD:\n- Prime factors of 14: $\\{2, 7\\}$\n- Prime factors of 510: $\\{2, 3, 5, 17\\}$\n- Prime factors of 522: $\\{2, 3, 29\\}$\n\nThe only common prime factor among all three numbers is 2. The exponent of the prime factor 2 in the factorization of each number is 1.\nTherefore, the Greatest Common Divisor is:\n$$ \\text{GCD} = 2^1 = 2 $$\n\n<final>2</final>"
         },
         {
           "time": "2026-11-15T10:24:31.055772+00:00",
@@ -2157,7 +2265,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of the numbers 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we need to determine the prime factors of each number.\n\n1.  **For 89**:\n    *   $\\sqrt{89} \\approx 9.4$.\n    *   We test prime numbers up to 9: 2, 3, 5, 7.\n    *   89 is not divisible by 2 (it's odd).\n    *   The sum of digits is $8+9=17$, so it's not divisible by 3.\n    *   It doesn't end in 0 or 5, so not divisible by 5.\n    *   $89 \\div 7 = 12$ remainder 7.\n    *   Since 89 is a prime number, its factors are **89**.\n\n2.  **For 98**:\n    *   It is an even number, so divide by 2: $98 = 2 \\times 49$.\n    *   Check 49: $49 = 7 \\times 7$.\n    *   So, the factors are $2 \\times 7 \\times 7$.\n\n3.  **For 42**:\n    *   It is an even number, so divide by 2: $42 = 2 \\times 21$.\n    *   21 is divisible by 3 ($2+1=3$) and by 7.\n    *   $42 = 2 \\times 3 \\times 7$.\n\n### Step 2: Construct the LCM Formula\nThe LCM of a set of numbers is found by taking the highest power of every prime factor present in the factorization of any of the numbers.\n\n*   **Prime factors involved:** 2, 3, 7, 89.\n*   **Highest powers:**\n    *   For **2**: The highest power is $2^1$ (found in 98 and 42).\n    *   For **3**: The highest power is $3^1$ (found in 42).\n    *   For **7**: The highest power is $7^2$ (found in 98). Note that 42 only has $7^1$.\n    *   For **89**: The highest power is $89^1$ (found in 89).\n\n### Step 3: Calculate the Product\n$$LCM(89, 98, 42) = 2^1 \\times 3^1 \\times 7^2 \\times 89^1$$\n\nLet's compute the values:\n*   $7^2 = 49$\n*   $2 \\times 3 = 6$\n*   $6 \\times 49 = 294$\n*   $294 \\times 89$\n\nCalculation:\n$$294 \\times 89 = 294 \\times (90 - 1)$$\n$$294 \\times 90 = 26460$$\n$$26460 - 294 = 26166$$\n\nAlternatively:\n$$294 \\times 89 = 26166$$\n\n### Verification\n*   **Divisibility by 89**: $26166 \\div 89 = 294$. (Correct)\n*   **Divisibility by 98**: $26166 \\div 98 = 267$. (Correct, since $267 \\times 2 = 534$ and $267 \\times 4 = 1068$, wait... let's recheck $26166 / 98$).\n    *   $26166 / 2 = 13083$\n    *   $13083 / 49 = 267$. (Correct, since $267 \\times 49 = 267 \\times (50-1) = 13350 - 267 = 13083$).\n*   **Divisibility by 42**: $26166 \\div 42 = 623$. (Correct, since $623 \\times 42 = 26166$).\n\nThe calculation holds.\n\n<final>26166</final>"
         },
         {
           "time": "2026-11-15T10:25:46.346484+00:00",
@@ -2203,7 +2314,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of the numbers 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we determine the prime factorization of each number:\n\n1.  **89**:\n    *   Check divisibility by primes up to $\\sqrt{89} \\approx 9.4$.\n    *   It is not divisible by 2 (odd), 3 (sum of digits $8+9=17$), or 5 (doesn't end in 0 or 5).\n    *   $89 \\div 7 \\approx 12.7$ (not divisible).\n    *   $89 \\div 11 \\approx 8.09$ (not divisible).\n    *   Since 89 is not divisible by any prime number less than its square root, **89 is a prime number**.\n    *   Factorization: $89 = 89^1$\n\n2.  **98**:\n    *   It is even, so divide by 2: $98 \\div 2 = 49$.\n    *   Now factor 49. $7 \\times 7 = 49$.\n    *   Factorization: $98 = 2^1 \\times 7^2$\n\n3.  **42**:\n    *   It is even, so divide by 2: $42 \\div 2 = 21$.\n    *   21 is divisible by 3 ($2+1=3$): $21 \\div 3 = 7$.\n    *   7 is a prime number.\n    *   Factorization: $42 = 2^1 \\times 3^1 \\times 7^1$\n\n### Step 2: Identify Highest Powers of Prime Factors\nWe list all distinct prime factors found and select the highest power of each present in the factorizations:\n\n*   **Prime factor 2**:\n    *   From 89: (not present)\n    *   From 98: $2^1$\n    *   From 42: $2^1$\n    *   Highest power: $2^1$\n\n*   **Prime factor 3**:\n    *   From 89: (not present)\n    *   From 98: (not present)\n    *   From 42: $3^1$\n    *   Highest power: $3^1$\n\n*   **Prime factor 7**:\n    *   From 89: (not present)\n    *   From 98: $7^2$\n    *   From 42: $7^1$\n    *   Highest power: $7^2$\n\n*   **Prime factor 89**:\n    *   From 89: $89^1$\n    *   From 98: (not present)\n    *   From 42: (not present)\n    *   Highest power: $89^1$\n\nSo, the set of prime factors with their highest powers is: $\\{2, 3, 7^2, 89\\}$.\n\n### Step 3: Calculate the LCM\nMultiply these highest powers together:\n$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n\nCalculation:\n1.  $7^2 = 49$\n2.  $2 \\times 3 = 6$\n3.  $6 \\times 49 = 294$\n4.  $294 \\times 89$\n\nLet's compute $294 \\times 89$:\n$$ 294 \\times 89 = 294 \\times (90 - 1) $$\n$$ = (294 \\times 90) - (294 \\times 1) $$\n$$ = 26460 - 294 $$\n$$ = 26166 $$\n\nAlternatively, direct multiplication:\n$$ \\begin{array}{r@{\\quad}l} 294 & \\\\ \\times 89 & \\elleq \\\\ \\hline 2646 & (294 \\times 9) \\\\ 23520 & (294 \\times 80) \\\\ \\hline 26166 & \\end{array} $$\n\n### Conclusion\nThe Least Common Multiple of 89, 98, and 42 is 26,166.\n\n<final>26166</final>"
         },
         {
           "time": "2026-11-15T10:27:26.975681+00:00",
@@ -2249,7 +2363,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we determine the prime factorization of each number.\n\n1.  **89**:\n    *   89 is a prime number. It is not divisible by 2, 3 (sum of digits $8+9=17$), 5, or 7.\n    *   Factorization: $89^1$\n\n2.  **98**:\n    *   This is an even number, so divisible by 2.\n    *   $98 \\div 2 = 49$.\n    *   49 is $7 \\times 7$.\n    *   Factorization: $2^1 \\times 7^2$\n\n3.  **42**:\n    *   Divisible by 2.\n    *   $42 \\div 2 = 21$.\n    *   21 is divisible by 3 ($2+1=3$).\n    *   $21 \\div 3 = 7$.\n    *   Factorization: $2^1 \\times 3^1 \\times 7^1$\n\n### Step 2: Identify the LCM Formula\nThe LCM of a set of numbers is found by taking the highest power of each prime factor present in the factorizations of the numbers.\n\n*   **Prime factors involved**: 2, 3, 7, 89\n*   **Highest powers**:\n    *   For **2**: The highest power is $2^1$ (present in 98 and 42).\n    *   For **3**: The highest power is $3^1$ (present in 42).\n    *   For **7**: The highest power is $7^2$ (specifically in 98). Note that 42 only contains $7^1$, so $7^2$ is required to include 98.\n    *   For **89**: The highest power is $89^1$ (present in 89).\n\n### Step 3: Calculate the Product\nMultiply these highest powers together to get the LCM:\n\n$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n\nCalculate the values:\n1.  $2 \\times 3 = 6$\n2.  $7^2 = 49$\n3.  $49 \\times 89$\n\nLet's do $49 \\times 89$:\n$$ 49 \\times 89 = 49 \\times (90 - 1) = 4410 - 49 = 4361 $$\nAlternatively:\n$$ 49 \\times 89 = (50 - 1) \\times 89 = 4450 - 89 = 4361 $$\n\nNow multiply by 6:\n$$ 4361 \\times 6 $$\n$$ 4000 \\times 6 = 24000 $$\n$$ 300 \\times 6 = 1800 $$\n$$ 60 \\times 6 = 360 $$\n$$ 1 \\times 6 = 6 $$\n\nSum:\n$$ 24000 + 1800 + 360 + 6 = 26166 $$\n\n### Verification\nLet's check if the product of original numbers meets the condition (LCM must be a multiple of all inputs):\n$$ 89 \\times 98 \\times 42 $$\n$$ 89 \\times (98 \\times 42) $$\n$$ 98 \\times 42 = (100 - 2) \\times 42 = 4200 - 84 = 4116 $$\n$$ 89 \\times 4116 $$\nCalculation:\n$89 \\times 4116 = 366324$\n\nDivide the resulting product by each original number:\n*   $366324 \\div 89 = 4116$ (Integer)\n*   $366324 \\div 98 = 3738$ (Integer)\n*   $366324 \\div 42 = 8722$ (Integer)\n\nSince the result is an integer for all numbers, it confirms our LCM is correct.\n\n**Answer:** 26166\n\n<final>26166</final>"
         },
         {
           "time": "2026-11-15T10:28:39.905410+00:00",
@@ -2296,7 +2413,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Simplify this expression: (1 - 14*x)*(6*x - 5)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To simplify the expression $(1 - 14x)(6x - 5)$, we will distribute each term in the first parenthesis across the terms in the second parenthesis. This is commonly known as the FOIL method (First, Outer, Inner, Last).\n\n**Step 1: Multiply the \"First\" terms**\nThe first terms are $1$ and $6x$.\n$1 \\cdot 6x = 6x$\n\n**Step 2: Multiply the \"Outer\" terms**\nThe outer terms are $1$ and $-5$.\n$1 \\cdot (-5) = -5$\n\n**Step 3: Multiply the \"Inner\" terms**\nThe inner terms are $-14x$ and $6x$.\n$-14x \\cdot 6x = -84x^2$ (Note: $x$ multiplied by $x$ becomes $x^2$).\n\n**Step 4: Multiply the \"Last\" terms**\nThe last terms are $-14x$ and $-5$.\n$-14x \\cdot (-5) = +70x$\n\n**Step 5: Combine all the terms**\nNow, we sum the results from Steps 1 through 4:\n$6x - 5 - 84x^2 + 70x$\n\n**Step 6: Arrange the terms in standard polynomial order**\nStandard order is usually from highest degree to lowest degree. Here, the highest degree term is $-84x^2$.\nWe also combine the $x$ terms: $6x + 70x = 76x$.\n\nSo the expression becomes:\n$-84x^2 + 76x - 5$\n\nThe guidelines require using $**$ for exponents (though not strictly necessary here since there are no negative numbers or complex fractions, it adheres to the format) and ensuring the $*$ symbol is used for all multiplications in the reasoning steps.\n\n*   $1 \\cdot 6x = 6x$\n*   $1 \\cdot (-5) = -5$\n*   $-14x \\cdot 6x = -84x^2$\n*   $-14x \\cdot (-5) = 70x$\n\nSumming these up: $-84x^2 + 6x + 70x - 5 = -84x^2 + 76x - 5$.\n\n<final>-84*x**2 + 76*x - 5</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -2367,7 +2487,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7375,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T09:24:51.723331+00:00",
@@ -2413,7 +2536,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 4.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T09:31:00.942871+00:00",
@@ -2470,7 +2596,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.6125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6. Conversely 6n is a multiple of each. Hence lcm(2n,3n)=6n for positive integer n, giving 42. More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b.\n<final>42</final>"
         },
         {
           "time": "2026-11-15T09:33:16.666450+00:00",
@@ -2516,7 +2645,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -2600,7 +2732,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7000000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T09:45:05.800217+00:00",
@@ -2646,7 +2781,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 4.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T09:47:03.192320+00:00",
@@ -2703,7 +2841,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.6125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6. Conversely 6n is a multiple of each. Hence lcm(2n,3n)=6n for positive integer n, giving 42. More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b.\n<final>42</final>"
         },
         {
           "time": "2026-11-15T09:47:56.897299+00:00",
@@ -2749,7 +2890,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(14, 21).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
         },
         {
           "time": "2026-11-15T09:49:53.480690+00:00",
@@ -2805,7 +2949,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.65,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Expand (x+10)*(x-10).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2. Taking a=x and b=10 yields x**2-100. The same identity computes (m+1)*(m-1)=m**2-1 for every integer m. Commutativity is the boundary: for noncommuting matrices the middle terms need not cancel.\n<final>x**2-100</final>"
         },
         {
           "time": "2026-11-15T09:50:51.497116+00:00",
@@ -2851,7 +2998,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Expand (x+10)*(x-10).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained x**2-100.\n<final>x**2-100</final>"
         },
         {
           "time": "2026-11-15T09:52:52.563759+00:00",
@@ -2907,7 +3057,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 13-sided dice. What is the probability both show 13?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For independent fair dice the ordered sample space is the Cartesian product of their face sets, and each ordered pair is equally likely. With s and t faces there are s*t pairs and one pair of maximal faces, giving 1/(s*t). Here s=t=13, giving 1/169. For three independent dice with s,t,u faces, the same product construction has s*t*u equally likely triples, so all maxima occur with probability 1/(s*t*u). Fairness and independence are essential.\n<final>1/169</final>"
         },
         {
           "time": "2026-11-15T09:53:46.343257+00:00",
@@ -2953,7 +3106,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 13-sided dice. What is the probability both show 13?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 1/169.\n<final>1/169</final>"
         },
         {
           "time": "2026-11-15T09:55:17.756140+00:00",
@@ -3009,7 +3165,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.65,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find gcd(32, 48).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=16, the answer is 16. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>16</final>"
         },
         {
           "time": "2026-11-15T09:56:15.828868+00:00",
@@ -3057,7 +3216,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(32, 48).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 16.\nThis is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. \n<final>16</final>"
         },
         {
           "time": "2026-11-15T09:57:56.018604+00:00",
@@ -3114,7 +3276,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.6125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find lcm(38, 57).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common multiple of 2n and 3n is n*k with k divisible by both 2 and 3; since 2 and 3 are coprime, k is divisible by 6. Conversely 6n is a multiple of each. Hence lcm(2n,3n)=6n for positive integer n, giving 114. More generally, for positive integers a,b the exponent of each prime in a common multiple must be at least both original exponents. Choosing their maximum gives the least common multiple. Choosing their minimum gives the gcd; max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b.\n<final>114</final>"
         },
         {
           "time": "2026-11-15T09:58:55.840950+00:00",
@@ -3161,7 +3326,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(38, 57).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 114.\nThis is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. \n<final>114</final>"
         },
         {
           "time": "2026-11-15T10:00:47.564227+00:00",
@@ -3217,7 +3385,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Expand (x+22)*(x-22).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "In a commutative ring, distributivity gives (a+b)*(a-b)=a*a-a*b+b*a-b*b. Commutativity cancels the middle terms, yielding a**2-b**2. Taking a=x and b=22 yields x**2-484. The same identity computes (m+1)*(m-1)=m**2-1 for every integer m. Commutativity is the boundary: for noncommuting matrices the middle terms need not cancel.\n<final>x**2-484</final>"
         },
         {
           "time": "2026-11-15T10:01:54.553296+00:00",
@@ -3264,7 +3435,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Expand (x+22)*(x-22).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained x**2-484.\nThis is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. \n<final>x**2-484</final>"
         },
         {
           "time": "2026-11-15T10:03:22.956024+00:00",
@@ -3320,7 +3494,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6000000000000001,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 25-sided dice. What is the probability both show 25?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For independent fair dice the ordered sample space is the Cartesian product of their face sets, and each ordered pair is equally likely. With s and t faces there are s*t pairs and one pair of maximal faces, giving 1/(s*t). Here s=t=25, giving 1/625. For three independent dice with s,t,u faces, the same product construction has s*t*u equally likely triples, so all maxima occur with probability 1/(s*t*u). Fairness and independence are essential.\n<final>1/625</final>"
         },
         {
           "time": "2026-11-15T10:04:38.286996+00:00",
@@ -3367,7 +3544,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 25-sided dice. What is the probability both show 25?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "I computed this instance directly and obtained 1/625.\nThis is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. This is profound mathematical understanding. \n<final>1/625</final>"
         },
         {
           "time": "2026-11-15T10:06:20.832142+00:00",
@@ -3423,7 +3603,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7000000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(56, 84).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=28, the answer is 28. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm.\n<final>28</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -3501,7 +3684,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.525,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T13:41:05.512551+00:00",
@@ -3559,7 +3745,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T13:46:57.883759+00:00",
@@ -3617,7 +3806,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6625000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Represent exact recurring events by subgroups aZ,bZ of integer time. Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l. Hence aZ intersect bZ=lZ and l=lcm(a,b). For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k. For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ. Thus a single coincidence determines all future coincidences. For phases r=s=n with periods 2n,3n, common times are n+6nZ. Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T13:49:18.363185+00:00",
@@ -3675,7 +3867,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.525,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T13:52:02.983537+00:00",
@@ -3736,7 +3931,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6375000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x]. Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative. Indeed N(uv)=uv*conj(u)*conj(v)=N(u)*N(v) by commutativity. Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1. This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs. The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T13:54:27.159388+00:00",
@@ -3794,7 +3992,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.6125,
-          "novelty": 0.25
+          "novelty": 0.25,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator.\n<final>x**2-64</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -3877,7 +4078,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7625000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T13:16:07.817279+00:00",
@@ -3931,7 +4135,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.48750000000000004,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find gcd(8, 12).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both. Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.\n<final>4</final>"
         },
         {
           "time": "2026-11-15T13:17:42.471060+00:00",
@@ -3994,7 +4201,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Represent exact recurring events by subgroups aZ,bZ of integer time. Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l. Hence aZ intersect bZ=lZ and l=lcm(a,b). For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k. For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ. Thus a single coincidence determines all future coincidences. For phases r=s=n with periods 2n,3n, common times are n+6nZ. Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T13:19:26.060704+00:00",
@@ -4052,7 +4262,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.48750000000000004,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Find lcm(12, 18).",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k. Conversely 6n is common. Thus lcm(2n,3n)=6n. More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b.\n<final>36</final>"
         },
         {
           "time": "2026-11-15T13:21:54.574826+00:00",
@@ -4113,7 +4326,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.7000000000000001,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x]. Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative. Indeed N(uv)=uv*conj(u)*conj(v)=N(u)*N(v) by commutativity. Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1. This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs. The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T13:22:49.623600+00:00",
@@ -4160,7 +4376,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Expand (x+8)*(x-8).",
+          "conventional_reference": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2. The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1. Noncommuting products retain a cross-term commutator.\n<final>x**2-64</final>"
         },
         {
           "time": "2026-11-15T13:24:39.348634+00:00",
@@ -4223,7 +4442,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.9125000000000001,
-          "novelty": 0.75
+          "novelty": 0.75,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication. The even indicator is (1+chi(k))/2. Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2. Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2. For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices. Independence matters: for Y=X with X uniform on {1,2}, each expectation is zero but X+Y is always even. This character transform is a reusable bridge from probability convolution to multiplicative statistics.\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T13:25:39.154847+00:00",
@@ -4269,7 +4491,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             ]
           },
           "theory": 0.0,
-          "novelty": 0.0
+          "novelty": 0.0,
+          "problem": "Roll two independent fair 10-sided dice. What is the probability their sum is even?",
+          "conventional_reference": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "For an even-sided fair die, half the faces are even and half odd. Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2. More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q).\n<final>1/2</final>"
         },
         {
           "time": "2026-11-15T13:27:34.838369+00:00",
@@ -4334,7 +4559,10 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
             "problems": []
           },
           "theory": 0.8625,
-          "novelty": 0.5
+          "novelty": 0.5,
+          "problem": "Find gcd(24, 36).",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line. It is closed under addition and negation. Let d be its least positive element for nonzero positive a,b. Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ. Both a,b are multiples of d; every common divisor divides every ua+vb, so d is their gcd. This turns gcd into the spacing of a reachable lattice. For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ. Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1. The construction requires integer signed moves; nonnegative moves do not form a subgroup.\n<final>12</final>"
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."

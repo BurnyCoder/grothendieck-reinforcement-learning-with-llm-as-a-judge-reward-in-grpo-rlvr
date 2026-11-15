@@ -6,7 +6,7 @@
 <h1>Theory must do<br>mathematical work.</h1>
 <p class="lede">Testing whether useful structures, valid conceptual novelty and justified connections to distant mathematics improve explanations and transfer, with correctness first.</p>
 <div class="status"><span id="status">Loading saved evidence…</span><span id="updated"></span></div>
-<nav aria-label="Research views"><a href="#results">Results</a><a href="#live">Live training</a><a href="#examples">Outputs</a><a href="#method">Method</a><a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr">Repository ↗</a></nav></header>
+<nav aria-label="Research views"><a href="#results">Results</a><a href="#judging">Judge calibration</a><a href="#live">Live training</a><a href="#examples">Outputs</a><a href="#method">Method</a><a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr">Repository ↗</a></nav></header>
 <section id="results"><div class="section-title"><h2>Evidence, with its limits</h2><span class="tag">Independent Gemma assessment</span></div>
 <p>Missing results are pending. The main score is answer correctness multiplied by supported theory quality. Judge assessments are opinions, not proof certificates.</p>
 <div class="table-wrap"><table><thead><tr><th>Arm</th><th>Problems</th><th>Accuracy</th><th>Correctness × theory</th><th>Correctness × novelty</th><th>Tokens / answer</th></tr></thead><tbody id="result-rows"></tbody></table></div>
@@ -15,6 +15,12 @@
 <details><summary>Recipient transfer and matched-note comparisons</summary><pre id="transfer-analysis"></pre></details>
 <details><summary>Development execution and incomplete attempts</summary><pre id="development"></pre></details>
 <div id="calibration"></div></section>
+<section id="judging"><h2>Inspect the judge's decisions</h2>
+<p>Saved development attempts include constructed calibration explanations and policy feasibility outputs. They are not comparative results or human preference labels. Every accepted assessment in the published logs is available in recorded order, including failed attempts. Compare the candidate's mathematical construction with the judge's reference interpretation, evidence and scores.</p>
+<label>Saved attempt <select id="judge-attempt" aria-label="Saved judge attempt"></select></label>
+<label>Assessment <select id="judge-case" aria-label="Accepted judge assessment"></select></label>
+<p id="judge-metrics" class="caption"></p>
+<div class="output-grid"><article><h3>Problem, reference and candidate</h3><pre id="judge-candidate">No published judgments yet.</pre></article><article><h3>Judge assessment</h3><pre id="judge-assessment">Pending.</pre></article></div></section>
 <section id="live"><div class="section-title"><h2>Training observatory</h2><label>Run <select id="run" aria-label="Training run"></select></label></div>
 <p id="live-status">Published checkpoint snapshot. A local dashboard refreshes automatically.</p>
 <div class="metrics" id="metrics"></div><div class="charts" id="charts"></div>
@@ -26,6 +32,7 @@
 <section id="method"><h2>A correctness gate, then a theory bonus</h2><div class="formula">R = C × (1 + 0.5T)</div>
 <p>Wrong or malformed answer: zero. Correct answer: one. Supported, useful theory can add up to one half. Constructive novelty has 20% of rubric weight: new objects, definitions, invariants, frameworks and distant connections must be justified and useful relative to documented conventional approaches. The other criteria assess structure, generality, derivation, reuse and conceptual economy. False theory, cosmetic renaming and unsupported originality claims earn no theory bonus.</p>
 <p>Novelty is reference-relative. The additional OOD suite tests graph connectivity, polygon geometry, matrix rank and modular inverses held out from project training. Neither measure establishes historical discovery or absence from model pretraining.</p>
+<p>The judge records an added construction and its demonstrated use before scoring novelty. Code checks exact excerpts and rejects positive novelty paired with a within-reference declaration. A consistent declaration can still be mathematically wrong; calibration tests that remaining uncertainty.</p>
 <img src="figures/architecture.svg" alt="Locked tasks feed the policy, verifier and judge; a composite reward updates the policy; independent evaluation checks the result.">
 <p>The rising-sea philosophy motivates building definitions and general principles until the original problem becomes a consequence. This rubric is a research interpretation of Grothendieck, not a claim to reproduce his personal judgments.</p>
 <p><a href="https://ncatlab.org/nlab/files/McLartyRisingSea.pdf">Historical source: Colin McLarty</a> · <a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/preregistration.md">Preregistered protocol</a> · <a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/paper.pdf">Research paper</a></p></section>

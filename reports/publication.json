@@ -74,5 +74,8 @@
   "bounded_reasoning_protocol_pages_workflow": 43719772427,
   "bounded_reasoning_failure_merge": "e9a152e7429b605d84c1e597456d359cbeb02077",
   "bounded_reasoning_failure_huggingface_commit": "17456e36ab367f160f3e3eb569887df410a30a41",
-  "bounded_reasoning_failure_pages_workflow": 43721721463
+  "bounded_reasoning_failure_pages_workflow": 43721721463,
+  "explicit_reference_protocol_merge": "1020a42534a2f55aaeca540be16d8fc89055bbf5",
+  "explicit_reference_protocol_huggingface_commit": "3f8f37e8b1c37d747c1948fed5b2ce1b4db4ef77",
+  "explicit_reference_protocol_pages_workflow": 43722627999
 }
