@@ -66,12 +66,10 @@ def feasibility_text(snapshot) -> str:
             f"{first['peak_gpu_allocated_bytes']/2**30:.2f} GiB and reserved memory "
             f"{first['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
             f"{first['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
-            "input checks execution and memory, not mathematical ability or steady-state throughput. "
-            "That probe alone does not establish GRPO or checkpoint-resumption feasibility.")
+            "input checks execution and memory, not mathematical ability or steady-state throughput.")
     if any(r.get("kind") == "grpo_initial_generation_failure" for r in snapshot["feasibility"]):
         text += (" The initial GRPO attempt failed during generation prefill when a carriage return "
-                 "entered the compiler-cache path. No optimizer update completed in that attempt; "
-                 "its failure record is preserved separately from the successful backward probe.")
+                 "entered the compiler-cache path, before any optimizer update. Its failure log is preserved.")
     boundaries = [r for r in snapshot["feasibility"] if r.get("kind") == "grpo_first_saved_boundary"]
     if boundaries:
         saved = boundaries[0]
@@ -81,8 +79,7 @@ def feasibility_text(snapshot) -> str:
                  f"Its recorded learning rate was {saved['step_metrics']['learning_rate']:g}; "
                  f"the sampled batch had verified accuracy {saved['reward_batch']['accuracy']:.1%} and "
                  f"mean supported theory {saved['reward_batch']['theory']:g}. "
-                 "A warmup boundary does not demonstrate learning. "
-                 "Successful resumption must be established by a separate completion record.")
+                 "A warmup boundary does not demonstrate learning.")
     resumed = [r for r in snapshot["feasibility"] if r.get("kind") == "grpo_resumed_completion"]
     if resumed:
         saved = resumed[0]
@@ -247,7 +244,9 @@ def paper_sections(snapshot):
          "and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding "
          "motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not "
          "establish calibration reliability. Conventional arguments received nonzero novelty credit, including "
-         "after the v3 clarification. Dedicated contrasts must test whether novelty is measured consistently. "
+         "after the v3 clarification. The clean standalone Gemma retry completed judgments, including a "
+         "rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies "
+         "bounded validation feedback; dedicated contrasts must test whether novelty is measured consistently. "
          "No comparative conclusion follows. "
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "

@@ -2,11 +2,231 @@
 
 Generated from preserved timestamped logs. These are incomplete development attempts, not calibrated judges or comparative results. See the dated runtime amendment for rationale, interruptions and next checks.
 
-A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. That probe alone does not establish GRPO or checkpoint-resumption feasibility. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path. No optimizer update completed in that attempt; its failure record is preserved separately from the successful backward probe. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. Successful resumption must be established by a separate completion record. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 1 thread: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling and use a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality.
+A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 1 thread: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling and use a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality.
 
 ```json
 {
   "judging": [
+    {
+      "artifact": "reports/development/calibration-gemma-v3-standalone.jsonl",
+      "requests": 6,
+      "completed_responses": 5,
+      "incomplete_requests": 1,
+      "response_seconds": [
+        129.4818138720002,
+        92.21272923200013,
+        48.70730575000016,
+        116.14176116700037,
+        76.8682275029987
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T11:15:20.506273+00:00",
+          "kind": "judge_assessment",
+          "key": "fae257866e7c36183cc4d7ffc71f7fbf9233b09752d1fea01649dd6f2d06f487",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The candidate identifies the relationship between the common divisors of a pair and the difference of those elements."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The argument generalizes the specific case to a parameterized family of integers (2n, 3n)."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "With n=4, the answer is 4."
+                ],
+                "rationale": "The specific result follows naturally as a direct evaluation of the established general principle."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b"
+                ],
+                "rationale": "The candidate connects the specific 2n, 3n case to the general Euclidean algorithm invariant."
+              },
+              "conceptual_economy": {
+                "score": 4,
+                "evidence": [
+                  "Thus their sets of common divisors agree with the divisors of n"
+                ],
+                "rationale": "The explanation is concise, using the set of divisors as a functional bridge between the specific and general."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The candidate uses the standard Euclidean algorithm logic and the property of common divisors of linear combinations, which is the conventional reference."
+              }
+            },
+            "problems": [
+              "No substantive problems identified; the response is mathematically sound."
+            ]
+          },
+          "theory": 0.6625000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T11:16:16.262499+00:00",
+          "kind": "judge_assessment",
+          "key": "0a76e5ef46da207b0fe835d70b100b9e2dc9a6ddda8c9bc64992fe2410b47b7c",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theory or structural framework was provided; the response is a direct computation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response does not generalize the problem to a family of inputs."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is not derived from a broader framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings were established."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or lemmas were introduced."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response provides a direct answer without any conceptual departure from the conventional reference."
+              }
+            },
+            "problems": [
+              "The candidate provided a direct calculation without any theoretical framework, definitions, or generalizations as required by the rising-sea philosophy."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T11:18:23.247468+00:00",
+          "kind": "judge_assessment",
+          "key": "1fe07ca53fc887ec0eb9e3e72e17690b9d6ed81dea2ed05ae5ab98904fca79da",
+          "task_id": "calibration-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "the exponent of each prime in a common multiple must be at least both original exponents."
+                ],
+                "rationale": "The candidate identifies the prime exponent relationship as the underlying structure for LCM."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "lcm(2n,3n)=6n for positive integer n"
+                ],
+                "rationale": "The solution generalizes the specific numbers to a parameterized family (2n, 3n)."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "lcm(2n,3n)=6n for positive integer n, giving 42."
+                ],
+                "rationale": "The specific result (42) follows naturally from the derived general formula for n=7."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "max(u,v)+min(u,v)=u+v proves gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "Connects the LCM definition to the GCD and the fundamental product identity."
+              },
+              "conceptual_economy": {
+                "score": 4,
+                "evidence": [
+                  "Choosing their maximum gives the least common multiple."
+                ],
+                "rationale": "The explanation is concise and directly motivates the LCM via prime exponents."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The candidate uses standard prime exponent logic and the product identity, which are included in the conventional reference."
+              }
+            },
+            "problems": [
+              "No substantive problems identified; the derivation is mathematically sound."
+            ]
+          },
+          "theory": 0.6625000000000001,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T11:19:50.914366+00:00",
+          "kind": "judge_assessment",
+          "key": "3f8eca62fefebcbc6d0826ce6f1a86a6885a9274b7031ecb935e9d6f950007d3",
+          "task_id": "calibration-dev-1",
+          "assessment": {
+            "theory_validity": "none",
+            "criteria": {
+              "structural_understanding": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No theory or structural framework was provided; the response is a direct computation."
+              },
+              "justified_generality": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response does not generalize to a family of problems."
+              },
+              "problem_as_consequence": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The result is not derived from a broader framework."
+              },
+              "reuse_and_connections": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings were demonstrated."
+              },
+              "conceptual_economy": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "No definitions or lemmas were introduced."
+              },
+              "constructive_novelty": {
+                "score": 0,
+                "evidence": [],
+                "rationale": "The response follows the conventional reference by providing a direct calculation without any conceptual departure or new construction."
+              }
+            },
+            "problems": [
+              "The candidate provided a direct answer without any theoretical framework, definitions, or generalizations as required by the rising-sea rubric."
+            ]
+          },
+          "theory": 0.0,
+          "novelty": 0.0
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
     {
       "artifact": "reports/development/gemma-cpu-v2.jsonl",
       "requests": 4,

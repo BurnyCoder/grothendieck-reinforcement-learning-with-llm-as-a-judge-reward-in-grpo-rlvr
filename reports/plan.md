@@ -7,8 +7,11 @@ This checklist is a status record, not
 evidence of model performance.
 
 Development judging motivated a [v3 novelty-boundary clarification](amendments/2026-11-15-novelty-reference-boundary.md).
-The v2 attempts are preserved; v3 calibration and untouched locked audits remain
-required. No comparative run has begun.
+The v2 and v3 attempts are preserved. The
+[v4 evidence protocol](amendments/2026-11-15-judge-evidence-protocol.md) now requires
+evidence before scoring and explicit validation feedback on retries. Development
+calibration checks novelty first and can stop when the fixed thresholds become
+unreachable. Untouched full locked audits remain required. No comparative run has begun.
 
 - [x] Inspect workspace, local hardware and publication accounts.
 - [x] Review relevant mathematics, rubric RL, theory formation and runtime sources.
@@ -48,10 +51,11 @@ Development judging by both models has started but is incomplete;
 the initial GRPO attempt failed during generation on a CRLF configuration-path
 bug, now repaired and regression-tested, before its first optimizer update;
 the interrupted CPU attempts are retained. Evaluation
-GPU offload loaded successfully, but slow decoding prevented a completed CUDA
-judgment. The [thread diagnostic](amendments/2026-11-15-judge-thread-diagnostic.md)
-completed without supporting a lower thread count. End-to-end judgment latency
-still needs a clean standalone check. Runtime provenance follows the
+GPU offload loaded successfully; an initial slow attempt was interrupted. The
+[thread diagnostic](amendments/2026-11-15-judge-thread-diagnostic.md) completed
+without supporting a lower thread count. The clean standalone retry completed
+judgments, including a rejected excerpt and accepted retry. The initial slowdown
+remains unexplained. Runtime provenance follows the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
 policy evaluation or comparative training result is claimed. Initial local constraints are
 environment observations rather than comparative experimental results. Publication and

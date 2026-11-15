@@ -55,7 +55,7 @@ earn no bonus. Infrastructure failures stop or retry explicitly.
 
 ## What the judge rewards
 
-The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v3.txt) scores
+The versioned [judge rubric](src/grothendieck_rlvr/prompts/rubric-v4.txt) scores
 each criterion from 0 to 4, then takes a weighted mean divided by four:
 
 | Criterion | Weight | What earns credit |
@@ -80,6 +80,10 @@ still score highly for justified theory. Development judgments overcredited
 conventional proofs. The [v3 clarification](reports/amendments/2026-11-15-novelty-reference-boundary.md)
 has not eliminated that error in the observed development cases. Calibration
 remains incomplete; the novelty reward is implemented but not yet validated.
+The [v4 evidence protocol](reports/amendments/2026-11-15-judge-evidence-protocol.md)
+asks for exact excerpts and rationales before scores, supplies validation feedback
+on bounded retries, and checks novelty contrasts first. Development runs stop as
+failed if the fixed thresholds become unreachable; passing requires the full suite.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,
@@ -111,11 +115,11 @@ Judge backend, GPU offload, KV-cache precision and batching are pinned in
 and calibration identities. Evaluation offload is tested separately from policy
 generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or comparative training result is claimed yet.
-Gemma's CUDA runtime loads, but its first development judgment decoded too slowly
-to complete usefully. A [bounded thread-count diagnostic](reports/amendments/2026-11-15-judge-thread-diagnostic.md)
-preceded further serving changes; the existing thread count was fastest in the
-synthetic test, so it is retained. End-to-end judgment latency remains unresolved,
-and the interrupted response is preserved.
+Gemma's initial CUDA attempt decoded too slowly to complete usefully. A
+[bounded thread-count diagnostic](reports/amendments/2026-11-15-judge-thread-diagnostic.md)
+favored the existing thread count, which is retained. A clean standalone retry
+completed judgments, including an invalid-excerpt failure followed by an accepted
+retry. The slowdown's cause remains unisolated; all attempts are preserved.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving
