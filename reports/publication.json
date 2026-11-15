@@ -6,7 +6,8 @@
   "huggingface_dataset_commit": "3bc464ae515bc6ad71581cbc51f7dca9791133aa",
   "huggingface_dataset": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr",
   "pages": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/",
-  "collection_status": "pending: API daily creation limit, retry after approximately 15 hours from first attempt",
+  "collection_status": "created after the daily creation limit cleared; project artifacts and external frozen model references are included, with trained adapters pending",
+  "huggingface_collection": "https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8",
   "model_results_at_publication": "none",
   "novelty_amendment_merge": "67fab26d84be591a6ddd562137e8637d93c56877",
   "novelty_huggingface_commit": "b5748d715d7da9f22137f6b91b4f13bf3e5d359e",
@@ -110,5 +111,8 @@
   "decomposed_protocol_pages_workflow": 43755453675,
   "specialist_activation_merge": "e3d94066eb8b44bd29638759640422004d4cc2e5",
   "specialist_activation_huggingface_commit": "f799892e7fbe5a217c88adecaf49c0be0fd686e7",
-  "specialist_activation_pages_workflow": 43760649928
+  "specialist_activation_pages_workflow": 43760649928,
+  "specialist_quoted_failure_merge": "ba3adbda1999c33ecd5ee2aecb15789ffcf0449f",
+  "specialist_quoted_failure_huggingface_commit": "662bc39e2941a9d76af2ef57ddb2e69559527f3d",
+  "specialist_quoted_failure_pages_workflow": 43768145801
 }

@@ -12,6 +12,10 @@ tags:
 
 # Grothendieck RLVR research artifacts
 
+The single [research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
+links these artifacts and the frozen upstream models. Project-trained adapters
+remain pending qualification and training.
+
 Preregistered local Qwen/Gemma research on correctness-gated theory-building
 rewards, including valid conceptual novelty relative to fixed reference approaches.
 This repository publishes deterministic Reasoning Gym and SymPy-backed manifests,
