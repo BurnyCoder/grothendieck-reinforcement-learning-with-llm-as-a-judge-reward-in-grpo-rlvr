@@ -62,20 +62,49 @@ def doctor() -> dict:
     return result
 
 
-def serve(role="training_judge", gpu_layers=0):
+def judge_runtime(role: str) -> dict:
+    """Freeze numerically relevant serving settings alongside the prompt and weights."""
+    runtime = read_json(PROJECT / "configs/judge-runtime.json")[role]
+    if role == "training_judge" and (runtime["backend"] != "cpu" or runtime["gpu_layers"] != 0):
+        raise ValueError("The registered training judge must remain on CPU")
+    return runtime
+
+
+def serve(role="training_judge", gpu_layers=None):
     """A foreground server is easy to supervise and stop; aliases identify the role."""
     if role not in ("training_judge", "evaluation_judge"):
         raise ValueError("Only the frozen judge models use GGUF serving")
     if role == "training_judge" and gpu_layers:
         raise ValueError("The registered training judge must remain on CPU")
+    runtime = judge_runtime(role)
+    if gpu_layers is not None and gpu_layers != runtime["gpu_layers"]:
+        raise ValueError("Offload differs from registered judge-runtime.json; amend and recalibrate first")
     spec = read_json(PROJECT / "configs/models.lock.json")[role]
-    executable = Path(os.environ.get("LLAMA_SERVER", root() / "tools/llama.cpp/build/bin/llama-server"))
+    default = root() / "tools" / ("llama.cpp/build/bin/llama-server" if runtime["backend"] == "cpu"
+                                   else "llama-b12359-cuda12/bin/llama-server")
+    variable = "LLAMA_SERVER_CPU" if runtime["backend"] == "cpu" else "LLAMA_SERVER_CUDA"
+    executable = Path(os.environ.get(variable, default))
     model = root() / "models" / role / spec["file"]
     if not executable.exists() or not model.exists():
         raise FileNotFoundError("Build the pinned llama-server and download the frozen judge first")
+    version = subprocess.run([str(executable), "--version"], capture_output=True, text=True, check=True)
+    revision = read_json(PROJECT / "configs/models.lock.json")["llama_cpp"]["revision"]
+    if revision[:7] not in version.stdout + version.stderr:
+        raise RuntimeError("llama-server source revision differs from the lock")
+    if runtime["backend"] != "cpu":
+        devices = subprocess.run([str(executable), "--list-devices"], capture_output=True, text=True, check=True)
+        if "CUDA0:" not in devices.stdout + devices.stderr:
+            raise RuntimeError("Registered CUDA backend unavailable; refusing silent CPU fallback")
     port = 8081 if role == "training_judge" else 8082
+    context = read_json(PROJECT / "configs/study.json")["judge_context_length"]
     args = [str(executable), "-m", str(model), "--alias", role, "--host", "127.0.0.1",
-            "--port", str(port), "--ctx-size", "8192", "--parallel", "1", "--threads", "8",
-            "--n-gpu-layers", str(gpu_layers), "--jinja"]
-    atomic_json(root() / "services" / f"{role}.json", {"model": spec, "command": args})
+            "--port", str(port), "--ctx-size", str(context), "--parallel", "1",
+            "--threads", str(runtime["threads"]), "--n-gpu-layers", str(runtime["gpu_layers"]),
+            "--batch-size", str(runtime["batch_size"]), "--ubatch-size", str(runtime["ubatch_size"]),
+            "--flash-attn", runtime["flash_attention"], "--cache-type-k", runtime["cache_type_k"],
+            "--cache-type-v", runtime["cache_type_v"], "--fit", runtime["fit"], "--jinja"]
+    # The receipt makes accidental use of a stale, differently configured server explicit.
+    atomic_json(root() / "services" / f"{role}.json", {"model": spec, "runtime": runtime,
+                "context_length": context, "command": args,
+                "executable_sha256": hashlib.sha256(executable.read_bytes()).hexdigest()})
     subprocess.run(args, check=True)

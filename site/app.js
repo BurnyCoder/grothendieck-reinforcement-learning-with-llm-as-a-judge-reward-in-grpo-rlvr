@@ -34,6 +34,7 @@ function render(){
   $('analysis').textContent=JSON.stringify(snapshot.primary,null,2);
   $('ood-analysis').textContent=JSON.stringify({secondary:snapshot.secondary_ood,families:snapshot.families},null,2);
   $('transfer-analysis').textContent=JSON.stringify(snapshot.transfer,null,2);
+  $('development').textContent=JSON.stringify(snapshot.development||[],null,2);
   $('calibration').replaceChildren(...snapshot.calibration.map(c=>element('p',`${c.role} / ${c.variant} / ${c.split}: ordering ${number(c.preference_accuracy)}, false-theory suppression ${number(c.false_theory_suppression)}, novelty ordering ${number(c.strata?.novelty?.preference_accuracy)} — ${c.passed?'passed':'failed'}`)));
   for(const progress of snapshot.calibration_progress||[]){$('calibration').append(element('p',`${progress.role} / ${progress.variant} / ${progress.split}: ${progress.pairs_completed}/${progress.pairs_total} preference pairs; ${progress.false_cases_completed}/${progress.false_cases_total} false-theory cases completed.`));}
   choices($('run'),Object.keys(snapshot.training));choices($('example-arm'),Object.keys(snapshot.examples));renderTraining();exampleOptions();

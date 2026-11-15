@@ -11,5 +11,10 @@
   "novelty_amendment_merge": "67fab26d84be591a6ddd562137e8637d93c56877",
   "novelty_huggingface_commit": "b5748d715d7da9f22137f6b91b4f13bf3e5d359e",
   "novelty_pages_workflow": 43692786523,
-  "novelty_publication_results": "No judge assessment or policy-generated output existed at this publication"
+  "novelty_publication_results": "No judge assessment or policy-generated output existed at this publication",
+  "transfer_analysis_merge": "6a7ee302eb96b42f0c9c7a342b2ccb5c9f5a714c",
+  "transfer_analysis_huggingface_commit": "e3a66e46e38a22102f012444963917b79c423805",
+  "verifier_repair_merge": "a7ed085",
+  "verifier_repair_huggingface_commit": "caaa3ed63bd3102250719ca06908451201a27081",
+  "development_status": "Gemma CPU development calibration interrupted after a completed assessment; policy feasibility in progress"
 }

@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 import httpx
 
 from .io import PROJECT, EventLog, digest, read_json, root
+from . import models
 from .prompts import judge_system
 from .schema import Assessment, Task
 
@@ -42,11 +43,20 @@ def assessment_schema() -> dict:
 
 class LocalChat:
     """Minimal streaming client; full prompts, chunks and responses are timestamped."""
-    def __init__(self, url: str, model: str, log: EventLog, timeout=900):
+    def __init__(self, url: str, model: str, log: EventLog, timeout=900, runtime=None,
+                 model_spec=None, context_length=None):
         self.url, self.model, self.log, self.timeout = local_url(url), model, log, timeout
+        self.runtime = runtime
+        self.model_spec, self.context_length = model_spec, context_length
 
     def generate(self, messages: list[dict], max_tokens=1024, schema=None, seed=42) -> str:
         """Preserve raw streamed text; malformed responses are handled by the caller."""
+        if self.runtime is not None:
+            receipt = root() / "services" / f"{self.model}.json"
+            actual = read_json(receipt) if receipt.exists() else {}
+            expected = {"runtime": self.runtime, "model": self.model_spec, "context_length": self.context_length}
+            if any(actual.get(k) != v for k, v in expected.items() if v is not None):
+                raise JudgeFailure("Server runtime differs from judge identity; restart with the registered CLI")
         request = {"model": self.model, "messages": messages, "temperature": 0,
                    "max_tokens": max_tokens, "seed": seed, "stream": True,
                    "chat_template_kwargs": {"enable_thinking": False}}
@@ -84,7 +94,9 @@ class Judge:
         self.system = judge_system(variant)
         self.role, self.variant = role, variant
         self.log = log or EventLog(root() / "logs" / f"{role}-{variant}.jsonl")
-        self.client = LocalChat(url, role, self.log, self.config["judge_timeout_seconds"])
+        runtime = models.judge_runtime(role)
+        self.client = LocalChat(url, role, self.log, self.config["judge_timeout_seconds"], runtime,
+                                self.spec, self.config["judge_context_length"])
         cache = cache or root() / "judge-cache.sqlite"
         cache.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(cache)
@@ -93,6 +105,9 @@ class Judge:
         self.db.execute("CREATE TABLE IF NOT EXISTS assessments (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
         self.identity = digest({"model": self.spec,
                                 "runtime": read_json(PROJECT / "configs/models.lock.json")["llama_cpp"],
+                                "serving_settings": runtime,
+                                "binary_release": read_json(PROJECT / "configs/llama-binaries.lock.json")
+                                    if runtime["backend"] != "cpu" else None,
                                 "novelty_anchors": self.anchors,
                                 "rubric_weights": Assessment.weights,
                                 "context_length": self.config["judge_context_length"], "system": self.system,

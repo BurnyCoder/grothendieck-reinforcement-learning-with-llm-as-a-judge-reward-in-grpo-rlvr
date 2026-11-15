@@ -66,3 +66,23 @@ weakening resource limits. A failing precision regression also showed that
 AST float conversion could accept an unequal decimal; exact literal parsing
 corrects it. The [verifier clarification](amendments/2026-11-15-verifier-runtime.md)
 records the grammar detail and sources. All original failure logs are preserved.
+
+## 2026-11-15: serving identity and execution checks
+
+Gemma's CPU development run produced a structured judgment, then was interrupted
+during the following request because throughput had deteriorated. The complete
+timestamped stream is preserved under `reports/development/`; one report command
+derives its counts and durations. This does not establish a calibration pass.
+The runtime amendment records the interpretation and planned evaluation offload.
+
+Serving settings now participate in cache and calibration identity, and changed
+development locks can be archived explicitly without resetting locked audits.
+The initial regression tests exposed the missing runtime identity and override
+guard. The old override test also started a server before failing; it was stopped
+without issuing an inference request, and the test now forbids subprocess launch.
+The passing runtime/workflow regression results are in `verification-runtime.xml`.
+
+Official CUDA archives use the already-pinned source commit and independently
+published SHA-256 values. The setup script verifies them before extraction.
+CUDA availability and BF16 support are confirmed; policy backward/GRPO feasibility
+remains to be measured. Full interpreter output is unbuffered through the CLI.

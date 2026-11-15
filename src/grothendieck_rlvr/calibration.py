@@ -82,14 +82,27 @@ def build_cases(split: str) -> dict:
     return {"split": split, "pairs": pairs, "false_cases": false_cases}
 
 
-def calibrate(judge, split: str) -> dict:
+def calibrate(judge, split: str, restart_development=False) -> dict:
     """A locked audit cannot be silently repeated after prompt changes or failure."""
     destination = root() / "calibration" / f"{judge.role}-{judge.variant}-{split}.json"
     cases = build_cases(split)
     identity = {"judge": judge.identity, "cases": digest(cases)}
     lock_path = destination.with_suffix(".lock.json")
+    if restart_development and split != "dev":
+        raise ValueError("Only development calibration may be restarted; locked audits remain immutable")
     if lock_path.exists() and read_json(lock_path) != identity:
-        raise RuntimeError("Calibration inputs changed: require a dated amendment and a fresh audit")
+        if not restart_development:
+            raise RuntimeError("Calibration inputs changed: require a dated amendment and a fresh audit")
+        previous = read_json(lock_path)
+        archive = destination.parent / "history" / digest(previous)
+        archive.mkdir(parents=True, exist_ok=True)
+        for path in (destination, lock_path, destination.with_suffix(".progress.json")):
+            if path.exists():
+                target = archive / path.name
+                if target.exists():
+                    raise FileExistsError(f"Refusing to overwrite archived development evidence: {target}")
+                path.replace(target)
+        judge.log.emit("calibration_development_archived", previous=previous, archive=str(archive))
     if destination.exists():
         result = read_json(destination)
         if result["identity"] != identity:

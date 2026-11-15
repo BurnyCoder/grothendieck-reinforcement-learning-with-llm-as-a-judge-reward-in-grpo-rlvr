@@ -1,0 +1,24 @@
+{
+  "training_judge": {
+    "backend": "cpu",
+    "fit": "off",
+    "gpu_layers": 0,
+    "threads": 8,
+    "batch_size": 512,
+    "ubatch_size": 512,
+    "flash_attention": "auto",
+    "cache_type_k": "f16",
+    "cache_type_v": "f16"
+  },
+  "evaluation_judge": {
+    "backend": "cuda12.8",
+    "fit": "off",
+    "gpu_layers": 24,
+    "threads": 8,
+    "batch_size": 512,
+    "ubatch_size": 512,
+    "flash_attention": "auto",
+    "cache_type_k": "f16",
+    "cache_type_v": "f16"
+  }
+}

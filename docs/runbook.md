@@ -38,10 +38,21 @@ cmake -S /mnt/d/AI/grothendieck-rlvr/tools/llama.cpp -B /mnt/d/AI/grothendieck-r
 cmake --build /mnt/d/AI/grothendieck-rlvr/tools/llama.cpp/build --target llama-server -j 8
 ```
 
-Optional evaluation GPU offload needs a CUDA-enabled llama.cpp build; the CPU
-build cannot offload even if a layer count is requested. Never place the training
-judge on GPU during policy training. Shut down one judge before loading the other
-if their combined memory use exceeds available RAM.
+Evaluation GPU offload uses the official CUDA 12.8 binaries at the same commit:
+
+```bash
+bash scripts/setup-judge-cuda.sh
+bash scripts/run.sh serve --role evaluation_judge
+```
+
+The archive checksums are pinned in `configs/llama-binaries.lock.json`. Serving
+parameters are frozen in `configs/judge-runtime.json` and included in judge/cache
+identities. The CLI rejects an inconsistent `--gpu-layers` override. A changed
+backend, offload count, or KV precision requires development recalibration and a
+matching audit; old results remain separate. The CPU build cannot offload even
+if a layer count is requested. Never place the training judge on GPU. Stop the
+evaluation judge before loading the policy, and generate policy outputs before
+loading the evaluation judge. Preserve interrupted development logs and locks.
 
 ## Publication gate
 
@@ -71,6 +82,10 @@ run each locked audit exactly once. Restart the server with `--role
 evaluation_judge` and calibrate its quoted variant. Run `--split audit` for all
 three required configurations. Failure blocks long training. Changed inputs
 cannot silently reuse an audit: preregister an amendment and reserve fresh cases.
+After a dated development amendment, `--split dev --restart-development` archives
+the previous development lock/results before starting the changed configuration.
+It cannot reset an audit. An interrupted run with unchanged inputs resumes from
+its content-addressed cache without this flag.
 
 ## Feasibility, saving and resumption
 
