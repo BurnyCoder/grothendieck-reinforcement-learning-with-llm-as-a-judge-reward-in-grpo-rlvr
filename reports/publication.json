@@ -68,5 +68,8 @@
   "training_exposure_pages_workflow": 43716544786,
   "gemma_negative_calibration_merge": "7a97306f17caeaf91f4b30b982643436e251e49d",
   "gemma_negative_calibration_huggingface_commit": "5433a1b8027536cb37b784df9f3075e36f352035",
-  "gemma_negative_calibration_pages_workflow": 43717566635
+  "gemma_negative_calibration_pages_workflow": 43717566635,
+  "bounded_reasoning_protocol_merge": "9c7c574989bb92184bd60774d7a7a7842f010be1",
+  "bounded_reasoning_protocol_huggingface_commit": "a040d614140943560ec9a239c614ca07fc11db00",
+  "bounded_reasoning_protocol_pages_workflow": 43719772427
 }

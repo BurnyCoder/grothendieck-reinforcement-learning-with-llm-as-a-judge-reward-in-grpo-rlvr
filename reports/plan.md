@@ -89,6 +89,11 @@ keeps the rubric, references, cases and thresholds while enabling a capped nativ
 reasoning phase for both judges. Run Qwen quoted development first, then the
 remaining required variants if it passes, followed by untouched locked audits.
 Preserve all failed and interrupted opinions as development evidence.
+That Qwen reasoning attempt has now failed the unchanged futility gate; see its
+[failure analysis](experiments/qwen-reasoning-v4-learnings.md). The remaining
+variants under that protocol will not run. Investigate explicit comparison with
+the fixed conventional reference before choosing a numerical novelty score;
+publish a further amendment before new inference. Acceptance gates remain fixed.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

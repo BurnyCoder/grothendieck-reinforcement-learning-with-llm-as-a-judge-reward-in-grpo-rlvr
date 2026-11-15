@@ -35,3 +35,22 @@ No code, datasets or model weights from these papers are imported. Primary
 paper text, methods, results and appendix prompts were examined; empirical
 claims above remain scoped to the studies' own designs. No model outside the
 user-authorized Qwen and Gemma families is selected.
+
+## Rubric execution and semantic limits
+
+[RULERS, sections 3–4 and appendix A](https://arxiv.org/html/2601.08654v1)
+combines locked checklists, extractive evidence checks and a fitted score mapping
+for essay and summarization evaluation. Its ablations attribute much of the
+reported agreement to distributional calibration using human scores. This
+project has no comparable human-scored sample, so those gains do not justify
+post-hoc remapping our constructed labels. The checklist design motivates
+making prerequisite decisions explicit; it does not establish that an LLM will
+classify mathematical concepts correctly. The full paper and appendix prompts
+were examined; no implementation or prompt text is copied.
+
+Our current exact-excerpt checks establish attribution, not whether the excerpt
+supports a criterion. The observed disagreement between a novelty rationale and
+its numerical score is a separate semantic failure. A deterministic consistency
+check could reject incompatible declared decisions, but could not independently
+certify their mathematical truth. Any such protocol change requires a dated
+amendment, new cache identity and fresh development calibration before audit.
