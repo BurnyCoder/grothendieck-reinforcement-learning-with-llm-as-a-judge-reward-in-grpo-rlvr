@@ -55,3 +55,14 @@ between-source contrasts. The shared source-clustered comparison now covers
 all of them and requires complete matched coverage. Evidence is retained in
 `verification-analysis.xml`. This completes the existing transfer analysis plan
 rather than adding an outcome selected from results.
+
+## 2026-11-15: verifier startup failure before first judgment
+
+The first development-calibration process stopped on two verification timeouts
+before contacting Gemma. Heavy concurrent dependency installation and model
+hashing were using the data drive; hashing was suspended to reduce contention.
+The parser's needless symbolic imports for scalar tasks were removed without
+weakening resource limits. A failing precision regression also showed that
+AST float conversion could accept an unequal decimal; exact literal parsing
+corrects it. The [verifier clarification](amendments/2026-11-15-verifier-runtime.md)
+records the grammar detail and sources. All original failure logs are preserved.

@@ -15,9 +15,12 @@ class InvalidExpression(ValueError):
     """Candidate falls outside the explicitly supported mathematical grammar."""
 
 
-def expression(text: str):
+def expression(text: str, scalar=False):
     """Interpret bounded rational polynomials with single-letter variables safely."""
-    import sympy as sp
+    # Scalar tasks need only exact standard-library fractions, avoiding symbolic-parser startup.
+    # https://docs.python.org/3/library/fractions.html
+    if not scalar:
+        import sympy as sp
     text = text.strip().replace("^", "**").replace("×", "*")
     if not text or len(text) > 1024 or not re.fullmatch(r"[0-9a-z+*/().\s-]+", text):
         raise InvalidExpression("Use numbers, single-letter variables and arithmetic operators")
@@ -32,10 +35,19 @@ def expression(text: str):
         if depth > 24:
             raise InvalidExpression("Arithmetic nesting exceeds limit")
         if isinstance(node, ast.Constant) and type(node.value) in (int, float):
-            if abs(node.value) > 10**12:
+            # Preserve the written decimal: AST float values have already been rounded.
+            literal = ast.get_source_segment(text, node)
+            if not re.fullmatch(r"(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?", literal):
+                raise InvalidExpression("Require decimal numerical literals")
+            if "e" in literal and abs(int(literal.split("e")[1])) > 1000:
+                raise InvalidExpression("Scientific exponent exceeds limit")
+            value = Fraction(literal)
+            if abs(value) > 10**12:
                 raise InvalidExpression("Numeric magnitude exceeds limit")
-            return sp.Rational(str(node.value))
+            return value if scalar else sp.Rational(value.numerator, value.denominator)
         if isinstance(node, ast.Name) and re.fullmatch("[a-z]", node.id):
+            if scalar:
+                raise InvalidExpression("Require numerical arithmetic without variables")
             return sp.Symbol(node.id)
         if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub)):
             value = visit(node.operand, depth + 1)
@@ -55,20 +67,18 @@ def expression(text: str):
                 return left - right
             if isinstance(node.op, ast.Mult):
                 return left * right
-            if isinstance(node.op, ast.Div) and right.is_number and right != 0:
+            if isinstance(node.op, ast.Div) and (scalar or right.is_number) and right != 0:
                 return left / right
         raise InvalidExpression("Unsupported expression node")
 
     result = visit(tree.body)
-    if result.has(sp.zoo, sp.oo, -sp.oo, sp.nan):
+    if not scalar and result.has(sp.zoo, sp.oo, -sp.oo, sp.nan):
         raise InvalidExpression("Nonfinite value")
     return result
 
 
 def check(family: str, answer: str, gold: str, metadata: dict) -> bool:
     """Task-specific complete-answer checks; gold is trusted, candidate grammar is bounded."""
-    import sympy as sp
-    from math_verify import verify
     if family == "polynomial_equations":
         def roots(text):
             if not text.strip():
@@ -83,6 +93,7 @@ def check(family: str, answer: str, gold: str, metadata: dict) -> bool:
         return len(predicted) == len(expected) and all(
             abs(a-b) <= Fraction(1, 20000) for a, b in zip(predicted, expected, strict=True))
     if family == "prime_factorization":
+        import sympy as sp
         factors = answer.replace("×", "*").replace("^", "**").replace(" ", "")
         if not re.fullmatch(r"\d+(?:\*\*\d+)?(?:\*\d+(?:\*\*\d+)?)*", factors):
             raise InvalidExpression("Require prime factors separated by * or ×")
@@ -94,18 +105,14 @@ def check(family: str, answer: str, gold: str, metadata: dict) -> bool:
             if not sp.isprime(base):
                 return False
             product *= base**exponent
-        return product == int(expression(gold))
-    expected = expression(gold)
-    predicted = expression(answer)
-    if family in ("gcd", "lcm", "largest_island", "simple_geometry", "matrix_rank", "modular_inverse"):
-        if predicted.free_symbols:
-            raise InvalidExpression("Require an integer")
-        return bool(predicted.is_Integer and predicted == expected)
-    if family == "dice":
-        if predicted.free_symbols:
-            raise InvalidExpression("Require a rational probability")
-        return bool(predicted == expected)
+        return product == int(expression(gold, scalar=True))
+    if family in ("gcd", "lcm", "dice", "largest_island", "simple_geometry", "matrix_rank", "modular_inverse"):
+        expected, predicted = expression(gold, scalar=True), expression(answer, scalar=True)
+        return predicted == expected and (family == "dice" or predicted.denominator == 1)
     if family == "polynomial_multiplication":
+        import sympy as sp
+        from math_verify import verify
+        expected, predicted = expression(gold), expression(answer)
         allowed = set(metadata.get("variables", [str(s) for s in expected.free_symbols]))
         if not {str(s) for s in predicted.free_symbols} <= allowed:
             raise InvalidExpression("Unexpected polynomial variable")
