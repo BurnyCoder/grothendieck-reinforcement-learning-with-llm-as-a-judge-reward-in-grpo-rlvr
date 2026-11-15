@@ -41,6 +41,14 @@ cannot certify that semantic relationship. The negative result is preserved in
 `reports/experiments/qwen-v7-reference-scope-learnings.md`; remaining calibration,
 audits and comparative training stay blocked.
 
+The registered v8 repair separates conceptual analysis from validity/quality
+scoring, with an eight-specialist fallback if development qualification fails.
+It retains modest credit, all thresholds, cases, labels and weights. Each role's
+raw findings and latency are preserved; code derives novelty and aggregates the
+reward. Complete matching development passes precede the full locked audits.
+See `reports/amendments/2026-11-15-decomposed-judges.md`; neither new instrument
+has yet qualified, and no comparative run has begun.
+
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
 

@@ -143,9 +143,17 @@ on novelty while scoring higher overall. Its cited use was a routine reference
 argument, exposing a semantic attribution error beyond exact-excerpt validation.
 The remaining variants, locked audits, long training and policy comparisons do
 not proceed under this failed sequence. No further model trial is registered.
-Any new intervention must address the observed decision failures, preserve the
-user's modest-credit preference and acceptance gates, and be published in a
-dated amendment before inference. Failed runs are retained as negative evidence.
+The new [decomposed-judge amendment](amendments/2026-11-15-decomposed-judges.md)
+registers two isolated calls and an eight-specialist fallback. Both preserve the
+user's modest-credit preference, cases, labels, references, weights and thresholds.
+Stage contracts, deterministic aggregation, partial-stage caching and recovery,
+runtime context checks, dashboard status and a development-before-audit gate are
+implemented. No new mathematical inference has run yet. Publish the tested code
+and amendment, run Qwen quoted development first, and continue to the other
+configurations only on complete passes. If development fails, archive the outcome
+and publish specialist activation before restarting all development. Failed audits
+cannot be reset. After qualification, refresh the pilot timings, then execute the
+registered baseline/training/evaluation sequence. Failed runs remain negative evidence.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

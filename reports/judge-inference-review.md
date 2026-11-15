@@ -78,3 +78,16 @@ or quantized local models. We infer that passing familiar constructed templates
 is insufficient evidence of reliable novelty scoring on policy outputs. The
 full paper, methods, results and appendix prompts were examined; no code or
 prompt text is imported, and the active v7 calibration remains unchanged.
+
+## Decomposing the judgment task
+
+[DnA-Eval, sections 3–5 and appendices](https://aclanthology.org/2025.coling-main.156.pdf)
+separates aspect ratings and external aggregation. Its benchmarks and ablations
+motivate testing decomposition; additional calls cost more, and gains vary across
+settings. It uses pairwise ratings and sometimes generated aspects and weights.
+Our proposed two-call/specialist instruments retain fixed criteria and weights
+with pointwise scoring, so this is an adaptation rather than a replication.
+Neither its results nor correlated opinions from repeated use of one model
+establish local mathematical validity. The full paper and appendices were reviewed;
+no code or prompts are copied. The [dated amendment](amendments/2026-11-15-decomposed-judges.md)
+specifies the unchanged qualification gates.

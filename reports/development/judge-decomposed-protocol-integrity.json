@@ -1,0 +1,120 @@
+{
+  "time": "2026-11-15T19:56:06.157717+00:00",
+  "kind": "decomposed_protocol_integrity",
+  "inference_performed": false,
+  "dev_cases_hash": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+  "audit_cases_hash": "f2f0abc95de0c60c0b5b6ff193b2926a3535092dc2912184a5af2a8d0366a07d",
+  "reference_hash": "7d4e36f1f841bb7dc333f8827448eb355bb98434435db1e564844e0ac4ecfe40",
+  "protocols": {
+    "two-stage-v1": {
+      "identities": {
+        "training_judge/quoted": "66721e0efa62096394ff0295a24a530f059743cb7e67d64eace897fd6640ca92",
+        "training_judge/rubric": "a6dbe4a41bd3fab93b9ba58ff3dafbea8fdbbd9ef55376c67ef3c4cd7b4dbcc9",
+        "evaluation_judge/quoted": "81b0590c9324870329853c3a03a35c626af40e8f60d4febc112f8b1b1f8d8593"
+      },
+      "stages": [
+        {
+          "name": "concepts",
+          "max_tokens": 1536,
+          "reasoning_tokens": 512,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "d21a7300157ec4d66def15b01e8f61fb99c656df416486cff486f5cc392b780f",
+          "schema_hash": "2a0233d0b11e7e10eb74f553c7b34a845748825f7a55ea4e5b5aeee3fba7850f"
+        },
+        {
+          "name": "quality",
+          "max_tokens": 1536,
+          "reasoning_tokens": 512,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "4369e715b5ae14a22f17f3d8772992a7331d131170a43c8061422a91fc42512c",
+          "schema_hash": "624a6f04c4b6403c500a75354c20b34da8ae996679d86781a95853c2e01b2657"
+        }
+      ]
+    },
+    "specialists-v1": {
+      "identities": {
+        "training_judge/quoted": "b33cb353c2aa2c5e6b68d9ddc5eda51443157474676b09cb849f38303124c56d",
+        "training_judge/rubric": "c07b8d14cafb12cf69dec7095ecf08aa5c10c66dbb01301f83224ce218fd557f",
+        "evaluation_judge/quoted": "12e11355d130008f32dc2937ba6d39d7e1f5a2ea3aab6b610c9238c56c8beb1a"
+      },
+      "stages": [
+        {
+          "name": "validity",
+          "max_tokens": 1024,
+          "reasoning_tokens": 512,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "de2477e190af12712d1690aeabea7d4b256226171925f745884c13a8a45a7be3",
+          "schema_hash": "69e8cdbc76012bb101804735a7bc76c72c52aebf87ca6323db2f5600b2472711"
+        },
+        {
+          "name": "reference",
+          "max_tokens": 1024,
+          "reasoning_tokens": 512,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "27cb94b28b5e6c4d0cefe05f74fa9e009415cd0d898e6c42ea5dc96802b5f753",
+          "schema_hash": "8a416ac61421dd1d5961a645972237e5847c228cc06e989946392351e36d90cd"
+        },
+        {
+          "name": "development",
+          "max_tokens": 1024,
+          "reasoning_tokens": 512,
+          "dependencies": [
+            "reference"
+          ],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "1e598999206295b64d9c0d5604c81a868df03e1300354d9463db2fdce4d19560",
+          "schema_hash": "3b48481aecdd6647fecff9cbaff556532b7dcfb766754956ca356de574ef1b01"
+        },
+        {
+          "name": "structural_understanding",
+          "max_tokens": 512,
+          "reasoning_tokens": 256,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "687523df66d09e79e4556d7f30d4c0f508c46225408158194444f53ac4a5fef1",
+          "schema_hash": "0b25b9a0e91e2bda8e27807667912cdfd859e06fa12a95a0b86fcb6a095ca912"
+        },
+        {
+          "name": "justified_generality",
+          "max_tokens": 512,
+          "reasoning_tokens": 256,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "0c73cc62f0f07ce54ef3516e3893bde03c40059b4a6954c10e3516c1b717cd8f",
+          "schema_hash": "0b25b9a0e91e2bda8e27807667912cdfd859e06fa12a95a0b86fcb6a095ca912"
+        },
+        {
+          "name": "problem_as_consequence",
+          "max_tokens": 512,
+          "reasoning_tokens": 256,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "31d8baec56c7d12e5513012006dff9936b604d2f10716b01511a85a0d0491514",
+          "schema_hash": "0b25b9a0e91e2bda8e27807667912cdfd859e06fa12a95a0b86fcb6a095ca912"
+        },
+        {
+          "name": "reuse_and_connections",
+          "max_tokens": 512,
+          "reasoning_tokens": 256,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "90e7b691078c4e63d8f5f809c5cfc184c1a46420d5ecc8cfdf0ed8472d3a4cc8",
+          "schema_hash": "0b25b9a0e91e2bda8e27807667912cdfd859e06fa12a95a0b86fcb6a095ca912"
+        },
+        {
+          "name": "conceptual_economy",
+          "max_tokens": 512,
+          "reasoning_tokens": 256,
+          "dependencies": [],
+          "implementation": "da975219658519e9ac24c806bd8f7a71d285c7d8a5ffa56ec4e93e7383a60303",
+          "prompt_hash": "dbb0cb4a6b57605307a89b265fb10773439a7f72dc35852ef11f55ef28f5f70c",
+          "schema_hash": "0b25b9a0e91e2bda8e27807667912cdfd859e06fa12a95a0b86fcb6a095ca912"
+        }
+      ]
+    }
+  }
+}
