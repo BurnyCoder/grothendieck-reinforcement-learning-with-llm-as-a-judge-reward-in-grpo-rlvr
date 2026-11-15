@@ -51,6 +51,9 @@ def evaluation_tasks(split="test"):
     """Test strata remain labelled and are never mixed with development records."""
     if split == "test":
         return sum((load_tasks(s) for s in ("test_fresh", "test_hard", "test_unseen")), [])
+    if split == "test_ood":
+        from .ood import load_ood
+        return load_ood()
     if split not in ("dev", "transfer_source", "transfer_target"):
         raise ValueError("Unsupported evaluation split")
     return load_tasks(split)
@@ -105,6 +108,7 @@ def evaluate(run_id: str, judge) -> dict:
         quality = assessment.quality if assessment else 0.0
         log.emit("evaluation", task_id=task.id, family=task.family, split=task.split,
                  correct=verdict.correct, verification=verdict.model_dump(), theory=quality,
+                 novelty=assessment.novelty if assessment else 0.0,
                  metric=float(verdict.correct)*quality, assessment=assessment.model_dump() if assessment else None,
                  response_tokens=row["response_tokens"], judge_identity=judge.identity,
                  response=row["response"], prompt=row["prompt"])

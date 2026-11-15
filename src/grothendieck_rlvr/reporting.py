@@ -26,6 +26,10 @@ def collect() -> dict:
                               for split in sorted({r["split"] for r in rows})}
                        for name, rows in evaluations.items()},
             "primary": primary_comparison(evaluations, cfg), "training": training,
+            "secondary_ood": primary_comparison(evaluations, cfg, suffix="-ood", secondary=True),
+            "families": {name: {family: summarize([r for r in rows if r["family"] == family])
+                                for family in sorted({r["family"] for r in rows})}
+                         for name, rows in evaluations.items()},
             "calibration": calibration, "examples": examples,
             "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"]),
             "feasibility": [read_json(p) for p in (root() / "feasibility").glob("*.json")]}
@@ -38,11 +42,11 @@ def display(value, digits=4) -> str:
 
 def table_rows(snapshot):
     """Include every planned arm, even before that arm has an evaluated model."""
-    rows = [["Arm", "Problems", "Accuracy", "C × theory", "Theory | correct"]]
+    rows = [["Arm", "Problems", "Accuracy", "C × theory", "C × novelty"]]
     for arm in dict.fromkeys(ARMS + sorted(snapshot["summaries"])):
         s = snapshot["summaries"].get(arm, {})
         rows.append([arm, display(s.get("n")), display(s.get("accuracy")),
-                     display(s.get("metric")), display(s.get("theory_given_correct"))])
+                     display(s.get("metric")), display(s.get("correctness_weighted_novelty"))])
     return rows
 
 
@@ -130,7 +134,10 @@ def paper_sections(snapshot):
          "polynomial multiplication and dice probabilities. Semantic deduplication separates train, development, "
          "fresh, harder and unseen-family evaluation. One terminal final-answer field is checked by restricted "
          "arithmetic and Math-Verify [7]. Correctness C multiplies the entire reward: R=C(1+0.5T). "
-         "Theory T is a weighted rubric score gated by supported validity. Supporting excerpts are required. "
+         "Theory T is a six-criterion rubric score gated by supported validity. Constructive novelty receives "
+         "20% weight, judged relative to published conventional approaches. New objects, definitions, invariants, "
+         "frameworks and distant mathematical connections earn that credit only when justified and useful. "
+         "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
          "Final-answer verification does not certify surrounding proofs."),
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
          "on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies "
@@ -142,7 +149,10 @@ def paper_sections(snapshot):
          "uses matched seeds. The primary measure is mean C*T from frozen Gemma, with paired stratified "
          "problem-level bootstrap intervals and an accuracy noninferiority condition. Transfer resamples source "
          "problems while retaining their related probes. Single-seed findings are exploratory. No adaptive "
-         "sample extension is allowed to obtain significance."),
+         "sample extension is allowed to obtain significance. A pre-judgment amendment adds a separate locked "
+         "secondary set for graph connectivity, polygon geometry, rational matrix rank and modular inverses; "
+         "it does not replace the primary split. Valid novelty is also reported separately. OOD means held "
+         "out from project training, not necessarily from model pretraining."),
         ("Results and claims", "All tables and figures in this paper are generated from saved records. "
          "Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary "
          f"analysis reports {status}. Implementation checks do not establish mathematical performance. "
@@ -250,7 +260,9 @@ def report() -> dict:
                ".\n\nCorrectness is verified final-answer accuracy. Theory is a frozen judge's rubric "
                "assessment, not a proof certificate. C × theory weights that assessment by answer correctness. "
                "Pending means no result, not zero performance.\n\n" + table +
-               "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n")
+               "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
+               "\n## Secondary OOD analysis\n\nDescriptive paired intervals; not a replacement success criterion.\n\n```json\n" +
+               json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n")
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     for run, metrics in snapshot["summaries"].items():
         folder = PROJECT / "reports/experiments"

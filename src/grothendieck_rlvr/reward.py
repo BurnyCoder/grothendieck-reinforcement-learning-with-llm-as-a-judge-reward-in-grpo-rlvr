@@ -51,6 +51,7 @@ class CompositeReward:
         assessments = [self.judge.assess(t, text) if v.correct and self.arm != "correctness" else None
                        for t, text, v in zip(tasks, texts, verdicts, strict=True)]
         quality = [a.quality if a else 0.0 for a in assessments]
+        novelty = [a.novelty if a else 0.0 for a in assessments]
         assigned = permute_correct(quality, [v.correct for v in verdicts], self.seed + self.calls) \
             if self.arm == "shuffled" else quality
         rewards = [float(v.correct) * (1 + .5*t) for v, t in zip(verdicts, assigned, strict=True)]
@@ -58,10 +59,12 @@ class CompositeReward:
             self.log.emit("rollout", task_id=task.id, family=task.family, prompt=prompts[index] if prompts else task.problem,
                           response=text, verification=verdict.model_dump(),
                           assessment=assessment.model_dump() if assessment else None,
-                          theory=quality[index], assigned_theory=assigned[index], reward=rewards[index],
+                          theory=quality[index], novelty=novelty[index],
+                          assigned_theory=assigned[index], reward=rewards[index],
                           response_characters=len(text), reward_call=self.calls)
         self.log.emit("reward_batch", reward_call=self.calls, accuracy=sum(v.correct for v in verdicts)/len(verdicts),
-                      theory=sum(quality)/len(quality), zero_variance=len(set(rewards)) == 1,
+                      theory=sum(quality)/len(quality), novelty=sum(novelty)/len(novelty),
+                      zero_variance=len(set(rewards)) == 1,
                       permutation_eligible=sum(v.correct for v in verdicts) >= 2)
         self.calls += 1
         return rewards

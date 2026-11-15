@@ -97,7 +97,7 @@ def check(family: str, answer: str, gold: str, metadata: dict) -> bool:
         return product == int(expression(gold))
     expected = expression(gold)
     predicted = expression(answer)
-    if family in ("gcd", "lcm"):
+    if family in ("gcd", "lcm", "largest_island", "simple_geometry", "matrix_rank", "modular_inverse"):
         if predicted.free_symbols:
             raise InvalidExpression("Require an integer")
         return bool(predicted.is_Integer and predicted == expected)

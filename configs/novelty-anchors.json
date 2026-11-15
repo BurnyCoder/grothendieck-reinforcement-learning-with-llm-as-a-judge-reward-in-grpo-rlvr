@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "interpretation": "Conventional reference approaches for task-relative novelty, not a map of model pretraining data or a historical novelty oracle.",
+  "gcd": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Merely restating or renaming these earns no novelty credit.",
+  "lcm": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+  "polynomial_multiplication": "Conventional reference: distribute factors, collect coefficients, use standard identities or coefficient convolution. Merely restating or renaming these earns no novelty credit.",
+  "dice": "Conventional reference: enumerate equiprobable outcomes, use independence and product sample spaces, count with dynamic programming or multiply probability-generating polynomials. Merely restating or renaming these earns no novelty credit.",
+  "prime_factorization": "Conventional reference: trial division, divisibility tests and uniqueness of prime decomposition. Merely restating or renaming these earns no novelty credit.",
+  "polynomial_equations": "Conventional reference: factorization, standard low-degree formulas, substitution and finding all real roots with the stated rounding convention. Merely restating or renaming these earns no novelty credit.",
+  "largest_island": "Conventional reference: identify connected components of the four-neighbor grid graph by flood fill, breadth/depth-first search or union-find and count their vertices. Renaming these algorithms earns no novelty credit.",
+  "simple_geometry": "Conventional reference: triangulate a convex polygon to obtain the interior-angle sum (n-2)*180 degrees, or sum exterior turning angles to 360 degrees, then subtract known angles. Renaming these earns no novelty credit.",
+  "matrix_rank": "Conventional reference: row reduction, pivot counting, linear independence, nonzero minors and the rank-nullity theorem. Renaming these earns no novelty credit.",
+  "modular_inverse": "Conventional reference: enumerate residues or use extended Euclid/Bezout with gcd(a,m)=1 to find a multiplicative inverse modulo m. Renaming these earns no novelty credit."
+}
