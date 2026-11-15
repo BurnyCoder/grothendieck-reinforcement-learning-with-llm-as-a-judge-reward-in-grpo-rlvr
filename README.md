@@ -152,6 +152,8 @@ The initial public preregistration precedes model inference. Implementation,
 tests and model/data locks must be published before calibration and feasibility.
 Both judge audits must pass before long training. Every run will preserve its
 configuration, prompts, complete outputs, checkpoints and failure records.
+Evaluation resumption checks checkpoint content, prompts, manifests and token
+budgets; transfer records also bind the exact source notes.
 See the checklist in [reports/plan.md](reports/plan.md) for outstanding work.
 
 New code will use Apache-2.0; upstream libraries and model artifacts retain their

@@ -149,6 +149,11 @@ the report generator pairs them. Generate the unmodified baselines with
 `generate --run-id ordinary` and `generate --run-id prompted --rising`.
 No adapter means the frozen unmodified selected policy. Development snapshots
 use `--split dev` and a distinct run ID, never the primary test run ID.
+Generation resumption checks adapter/tokenizer content hashes, the dependency
+lock, exact prompts, task manifest and generation budget. A path alone cannot
+identify a checkpoint. Transfer likewise binds recipient records to the source
+notes, source configurations, target tasks and token limits. Changed inputs
+require a separate run; existing records are retained rather than silently mixed.
 
 Run the separate broader-family suite with the same checkpoint and a `-ood`
 suffix. This leaves the original primary evaluation intact:
