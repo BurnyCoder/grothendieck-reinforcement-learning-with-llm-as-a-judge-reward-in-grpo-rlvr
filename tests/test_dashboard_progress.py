@@ -21,3 +21,11 @@ def test_progress_distinguishes_terminal_results_without_claiming_a_process_is_l
     assert [row["judge_identity"] for row in rows] == ["a-partial", "b-failed", "c-passed", "d-stale"]
     assert all(row["updated_at"].endswith("+00:00") for row in rows)
     assert all(row["pairs_completed"] == 2 for row in rows)
+
+
+def test_stage_progress_includes_only_compact_records(tmp_path, monkeypatch):
+    monkeypatch.setattr(dashboard, "root", lambda: tmp_path)
+    record = {"protocol": "two-stage-v1", "stage": "concepts", "status": "failed"}
+    atomic_json(tmp_path / "logs/training_judge-quoted.judge-progress.json", record)
+    atomic_json(tmp_path / "logs/other.json", {"do_not_serve": True})
+    assert dashboard.judge_progress() == [record]

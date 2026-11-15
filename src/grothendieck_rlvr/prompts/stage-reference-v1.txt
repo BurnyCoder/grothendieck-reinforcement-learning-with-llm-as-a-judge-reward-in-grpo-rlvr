@@ -1,0 +1,6 @@
+REFERENCE COMPARISON
+Identify the strongest coherent conceptual addition or connection actually expressed in the response. Assess that addition against the entire conventional_reference, separately from the method used to compute the requested answer. Return reference_excerpt, addition_evidence, rationale, relation, issues.
+
+reference_excerpt is an exact quotation identifying the relevant baseline. addition_evidence quotes the concrete extra relationship or construction, excluding unrelated conventional work where possible. relation is beyond_reference when a supported concrete addition lies beyond the listed methods and their routine variations; within_reference for routine methods and cosmetic relabeling; unresolved when the comparison cannot be established. A well-known mathematical connection can be beyond_reference. A different name alone cannot.
+
+Do not demand a further use to recognize a brief valid connection. Establishing the connection is enough for the lowest positive novelty level. Do not classify the whole response as within_reference merely because its final answer was obtained conventionally. Check the connection itself under stated or clear assumptions; report substantive errors in issues. Explain what relationship is added, without assigning a score or discussing the other stages' scores.

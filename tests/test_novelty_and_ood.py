@@ -76,7 +76,7 @@ def test_rubric_ablation_preserves_novelty_without_historical_framing():
     from grothendieck_rlvr.prompts import DIRECTORY, judge_system
     common, quoted = judge_system("rubric"), judge_system("quoted")
     assert quoted.endswith(common)
-    assert "constructive_novelty (weight 0.20)" in common
+    assert "constructive_novelty 0.20" in common
     assert "Grothendieck" not in common and "softening liquid" not in common
     assert "softening liquid" in quoted
     # The user-requested quotation is immutable even when the scoring interpretation changes.

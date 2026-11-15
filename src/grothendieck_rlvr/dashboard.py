@@ -22,6 +22,13 @@ def calibration_progress() -> list[dict]:
     return records
 
 
+def judge_progress() -> list[dict]:
+    """Expose only compact stage records; a last event is not a process heartbeat."""
+    paths = list((root() / "logs").glob("*.judge-progress.json"))
+    paths += list((root() / "runs").glob("*/*.judge-progress.json"))
+    return [read_json(path) for path in sorted(paths)]
+
+
 def serve_dashboard(port=8765):
     """Read compact training metrics without exposing logs, credentials or the rest of disk."""
     class Handler(SimpleHTTPRequestHandler):
@@ -34,6 +41,7 @@ def serve_dashboard(port=8765):
                 snapshot["training"] = {p.parent.name: read_jsonl(p)
                                         for p in (root() / "runs").glob("*/metrics.jsonl")}
                 snapshot["calibration_progress"] = calibration_progress()
+                snapshot["judge_progress"] = judge_progress()
                 payload = json.dumps(snapshot).encode()
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")

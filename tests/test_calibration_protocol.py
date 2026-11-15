@@ -36,6 +36,7 @@ def isolated(tmp_path, monkeypatch):
     """These tests cover scheduling, not the separately tested symbolic references."""
     monkeypatch.setenv("GROTH_ROOT", str(tmp_path))
     monkeypatch.setattr(calibration, "verify_answer", lambda *a: Verification(status="correct"))
+    monkeypatch.setattr(calibration, "require_passed_calibration", lambda split: None)
     return tmp_path
 
 
@@ -69,3 +70,12 @@ def test_futility_bound_counts_remaining_false_theory_cases():
     result = calibration.calibration_summary(cases, [], failed)
     assert result["strata"]["novelty"]["suppression_upper_bound"] == .875
     assert result["threshold_unreachable"] and not result["passed"]
+
+
+def test_audit_cannot_start_before_all_development_passes(tmp_path, monkeypatch):
+    monkeypatch.setenv("GROTH_ROOT", str(tmp_path))
+    judge = FixtureJudge(tmp_path, "audit")
+    with pytest.raises(RuntimeError, match="missing or failed.*dev"):
+        calibration.calibrate(judge, "audit")
+    assert judge.calls == 0
+    assert not (tmp_path / "calibration/fixture-quoted-audit.lock.json").exists()

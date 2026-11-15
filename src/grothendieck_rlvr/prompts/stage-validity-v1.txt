@@ -1,0 +1,6 @@
+MATHEMATICAL VALIDITY
+Evaluate all theory-bearing claims in the original response, including brief connections and conventional general arguments. Check well-definedness, assumptions, essential steps and boundaries. Do not infer truth from a correct final answer or from exact quotations.
+
+Return evidence, rationale, verdict and issues. verdict is none for case-specific computation with no general mathematical explanation; supported for mathematically justified theory at the appropriate scale; unsupported for an essential claim missing necessary justification; contradicted for a substantive mathematical error. A brief concrete valid connection can be supported. A conventional generalized argument can be supported. Neither needs novelty or a further application to be valid.
+
+Supported requires a supporting candidate excerpt. Unsupported or contradicted requires an issue identifying the offending candidate excerpt and explaining the mathematical deficiency or counterexample. Do not treat a cosmetic name or an explicit unproved conjecture as an established result; assess what is actually asserted as mathematics. Absence of a framework or consequence alone is not an unsupported claim.

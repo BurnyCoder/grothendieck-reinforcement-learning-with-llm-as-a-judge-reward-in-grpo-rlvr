@@ -20,7 +20,7 @@ def fixture_assessment():
 
 
 def make_judge(tmp_path):
-    return Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "events.jsonl"), cache=tmp_path / "cache.sqlite")
+    return Judge("http://127.0.0.1:8081", protocol="legacy", log=EventLog(tmp_path / "events.jsonl"), cache=tmp_path / "cache.sqlite")
 
 
 def test_judge_retries_and_cache_recovery(tmp_path, monkeypatch):
@@ -31,7 +31,7 @@ def test_judge_retries_and_cache_recovery(tmp_path, monkeypatch):
     response = "Divisors are preserved. <final>6</final>"
     assert judge.assess(task, response).quality == pytest.approx(.75)
     judge.checkpoint(tmp_path / "snapshot.sqlite")
-    restored = Judge("http://127.0.0.1:8081", log=EventLog(tmp_path / "restored.jsonl"), cache=tmp_path / "snapshot.sqlite")
+    restored = Judge("http://127.0.0.1:8081", protocol="legacy", log=EventLog(tmp_path / "restored.jsonl"), cache=tmp_path / "snapshot.sqlite")
     monkeypatch.setattr(restored.client, "generate", lambda *a, **k: pytest.fail("Cache must survive restart"))
     assert restored.assess(task, response).quality == pytest.approx(.75)
 

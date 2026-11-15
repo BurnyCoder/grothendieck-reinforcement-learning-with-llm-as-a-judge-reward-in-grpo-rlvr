@@ -123,6 +123,8 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
     lock_path = destination.with_suffix(".lock.json")
     if restart_development and split != "dev":
         raise ValueError("Only development calibration may be restarted; locked audits remain immutable")
+    if split == "audit":
+        require_passed_calibration("dev")
     if lock_path.exists() and read_json(lock_path) != identity:
         if not restart_development:
             raise RuntimeError("Calibration inputs changed: require a dated amendment and a fresh audit")
@@ -185,17 +187,24 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
     return result
 
 
-def require_calibration() -> None:
-    """Block long training unless every frozen judge/prompt configuration passes audit."""
+def require_passed_calibration(split: str) -> None:
+    """Require complete matching results from all three configurations, without inference."""
     from .judge import Judge
     for role, variant, url in [("training_judge", "quoted", "http://127.0.0.1:8081"),
                                ("training_judge", "rubric", "http://127.0.0.1:8081"),
                                ("evaluation_judge", "quoted", "http://127.0.0.1:8082")]:
-        path = root() / "calibration" / f"{role}-{variant}-audit.json"
+        path = root() / "calibration" / f"{role}-{variant}-{split}.json"
         if not path.exists() or not read_json(path)["passed"]:
-            raise RuntimeError(f"Training blocked: missing or failed {role}/{variant} locked audit")
+            raise RuntimeError(f"Qualification blocked: missing or failed {role}/{variant} {split}")
         judge = Judge(url, role, variant)
-        expected = {"judge": judge.identity, "cases": digest(build_cases("audit")),
+        expected = {"judge": judge.identity, "cases": digest(build_cases(split)),
                     "protocol": CALIBRATION_PROTOCOL}
+        judge.db.close()
         if read_json(path)["identity"] != expected or not read_json(path).get("complete", False):
-            raise RuntimeError("Training blocked: incomplete audit or judge/calibration protocol changed")
+            raise RuntimeError(f"Qualification blocked: incomplete {split} or judge/calibration protocol changed")
+
+
+def require_calibration() -> None:
+    """Block long training unless all matching development and locked audit suites pass."""
+    require_passed_calibration("dev")
+    require_passed_calibration("audit")
