@@ -18,7 +18,9 @@ function chart(title, points, bounded) {
 function renderTraining() {
   const events=snapshot.training[$('run').value]||[], last=(kind)=>events.filter(e=>e.kind===kind).at(-1);
   const batch=last('reward_batch'), metrics=last('training_metrics'), checkpoint=last('checkpoint');
-  const fields=[['Training correctness',batch?.accuracy],['Theory quality',batch?.theory],['Optimizer step',metrics?.step],['Latest checkpoint',checkpoint?.step],['Loss',metrics?.metrics?.loss],['KL',metrics?.metrics?.kl],['Judge failures',events.filter(e=>e.kind==='judge_failure').length],['Elapsed seconds',metrics?.elapsed_seconds]];
+  const development=Object.entries(snapshot.summaries).filter(([name])=>name.includes('dev')).at(-1)?.[1];
+  const elapsed=metrics?.elapsed_seconds, tokens=metrics?.metrics?.num_tokens;
+  const fields=[['Training correctness',batch?.accuracy],['Theory quality',batch?.theory],['Latest development accuracy',development?.accuracy],['Optimizer step',metrics?.step],['Latest checkpoint',checkpoint?.step],['Loss',metrics?.metrics?.loss],['KL',metrics?.metrics?.kl],['Mean completion tokens',metrics?.metrics?.['completions/mean_length']],['Tokens per second',tokens&&elapsed?tokens/elapsed:null],['Judge failures',events.filter(e=>e.kind==='judge_failure').length],['Elapsed seconds',elapsed]];
   $('metrics').replaceChildren(...fields.map(([label,value])=>{const card=element('div',null,'metric');card.append(element('small',label),element('strong',number(value)));return card;}));
   $('charts').replaceChildren(...[['Correctness','accuracy',true],['Theory quality','theory',true],['Loss','loss',false],['KL','kl',false]].map(([title,key,bounded])=>chart(title,events.map(e=>[e.step??e.reward_call,e[key]??e.metrics?.[key]]).filter(p=>p.every(Number.isFinite)),bounded)));
 }
@@ -31,6 +33,7 @@ function render(){
   $('result-rows').replaceChildren(...[...new Set([...arms,...Object.keys(snapshot.summaries)])].map(arm=>{const row=element('tr'),s=snapshot.summaries[arm]||{};[arm,s.n,s.accuracy,s.metric,s.mean_response_tokens].forEach(value=>row.append(element('td',number(value))));return row;}));
   $('analysis').textContent=JSON.stringify(snapshot.primary,null,2);
   $('calibration').replaceChildren(...snapshot.calibration.map(c=>element('p',`${c.role} / ${c.variant} / ${c.split}: ordering ${number(c.preference_accuracy)}, false-theory suppression ${number(c.false_theory_suppression)} — ${c.passed?'passed':'failed'}`)));
+  for(const progress of snapshot.calibration_progress||[]){$('calibration').append(element('p',`${progress.role} / ${progress.variant} / ${progress.split}: ${progress.pairs_completed}/${progress.pairs_total} preference pairs; ${progress.false_cases_completed}/${progress.false_cases_total} false-theory cases completed.`));}
   choices($('run'),Object.keys(snapshot.training));choices($('example-arm'),Object.keys(snapshot.examples));renderTraining();exampleOptions();
 }
 async function refresh(){try{let response=await fetch('api/live',{cache:'no-store'});if(response.ok&&response.headers.get('content-type')?.includes('application/json')){$('live-status').textContent='Local live view · refreshes every 10 seconds';snapshot=await response.json();}else{response=await fetch('snapshot.json',{cache:'no-store'});snapshot=await response.json();}render();}catch(error){$('status').textContent='Evidence unavailable: '+error.message;}}
