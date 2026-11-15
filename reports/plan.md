@@ -25,7 +25,7 @@ evidence of model performance.
 - [ ] Exercise model-backed training, resumption, evaluation and complete workflow.
 - [x] Publish initial implementation, manifests, paper and site to GitHub/Hugging Face.
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
-- [ ] Calibrate both frozen judges and rubric-only variant.
+- [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
 - [ ] Run development feasibility pilot; freeze policy and training configuration.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.
@@ -34,8 +34,12 @@ evidence of model performance.
 - [ ] Evaluate all frozen comparison checkpoints on the separate OOD suite.
 - [ ] Publish each milestone, including negative/unfinished outcomes.
 
-All model steps are pending. The initial local constraints are recorded as
-environment observations rather than experimental results. Publication and
+Model downloads and artifact hashes are complete. Development Gemma judging has
+started but is incomplete; the interrupted CPU attempt is retained. Evaluation
+GPU offload and the policy backward probe are being checked under the
+[runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
+policy evaluation or training result is claimed. Initial local constraints are
+environment observations rather than comparative experimental results. Publication and
 calibration gates must be satisfied before long training. Week-budget decisions
 use measured pilot throughput and are documented before comparison runs.
 

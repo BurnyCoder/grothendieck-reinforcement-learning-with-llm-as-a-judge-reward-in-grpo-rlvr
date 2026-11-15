@@ -12,6 +12,22 @@ ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
         "shuffled-seed42", "rubric-seed42"]
 
 
+def development_records() -> list[dict]:
+    """Summarize preserved development logs without treating partial runs as audits."""
+    records = []
+    for path in sorted((PROJECT / "reports/development").glob("*.jsonl")):
+        events = read_jsonl(path)
+        responses = [e for e in events if e["kind"] == "model_response"]
+        assessments = [e for e in events if e["kind"] == "judge_assessment"]
+        requests = sum(e["kind"] == "model_request" for e in events)
+        records.append({"artifact": str(path.relative_to(PROJECT)), "requests": requests,
+                        "completed_responses": len(responses), "incomplete_requests": requests-len(responses),
+                        "response_seconds": [e["seconds"] for e in responses],
+                        "assessments": assessments,
+                        "interpretation": "Development evidence only; not a completed calibration or evaluation."})
+    return records
+
+
 def collect() -> dict:
     """Missing artifacts remain missing; they never become fabricated zero results."""
     evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
@@ -30,7 +46,7 @@ def collect() -> dict:
             "families": {name: {family: summarize([r for r in rows if r["family"] == family])
                                 for family in sorted({r["family"] for r in rows})}
                          for name, rows in evaluations.items()},
-            "calibration": calibration, "examples": examples,
+            "calibration": calibration, "development": development_records(), "examples": examples,
             "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
                                           cfg["transfer_sources"]),
             "feasibility": [read_json(p) for p in (root() / "feasibility").glob("*.json")]}
@@ -166,6 +182,13 @@ def paper_sections(snapshot):
          "Pending cells indicate experiments without saved evaluation evidence. The machine-readable primary "
          f"analysis reports {status}. Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
+        ("Development execution", f"Preserved development logs contain "
+         f"{sum(r['completed_responses'] for r in snapshot['development'])} completed judge responses and "
+         f"{sum(r['incomplete_requests'] for r in snapshot['development'])} requests without a completed response. "
+         "These counts are generated from reports/development logs. An interrupted CPU judging attempt and "
+         "runtime changes are documented in the dated judge-runtime amendment. Partial judgments do not "
+         "establish calibration reliability. The first conventional proof received nonzero novelty credit; "
+         "dedicated contrasts must test whether novelty is measured consistently. No comparative conclusion follows."),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
          "length, and notes from other frozen source policies. Paired uncertainty resamples source problems "
          "with all four targets retained. Comparisons require complete matching source and target coverage. "
@@ -289,6 +312,13 @@ def report() -> dict:
                "\n## Frozen-recipient transfer\n\n" + markdown_table(transfer_rows(snapshot)) +
                "\n\n```json\n" + json.dumps(snapshot["transfer"], indent=2) + "\n```\n")
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
+    folder = PROJECT / "reports/experiments"
+    folder.mkdir(exist_ok=True)
+    (folder / "development-runtime.md").write_text(
+        "# Development execution records\n\nGenerated from preserved timestamped logs. "
+        "These are incomplete development attempts, not calibrated judges or comparative results. "
+        "See the dated runtime amendment for rationale, interruptions and next checks.\n\n```json\n" +
+        json.dumps(snapshot["development"], indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
     for run, metrics in snapshot["summaries"].items():
         folder = PROJECT / "reports/experiments"
         folder.mkdir(exist_ok=True)

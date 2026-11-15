@@ -100,6 +100,12 @@ CPU. Evaluation judge: [Gemma 4 12B UD-Q4_K_XL](https://huggingface.co/unsloth/g
 loaded separately. Qwen3-1.7B FP8 is a documented-feasibility-failure fallback
 only. Fine-tuning memory advertisements do not guarantee GRPO feasibility.
 
+Judge backend, GPU offload, KV-cache precision and batching are pinned in
+[the serving configuration](configs/judge-runtime.json) and included in cache
+and calibration identities. Evaluation offload is tested separately from policy
+generation. A runtime change requires recalibration; interrupted development
+evidence is retained. No calibration pass or training result is claimed yet.
+
 Target runtime is WSL Ubuntu, Python 3.12 and uv, with a project-local `.venv`.
 Large caches and run artifacts belong under `D:\AI\grothendieck-rlvr`
 (`/mnt/d/AI/grothendieck-rlvr`). See the [installation and experiment runbook](docs/runbook.md).

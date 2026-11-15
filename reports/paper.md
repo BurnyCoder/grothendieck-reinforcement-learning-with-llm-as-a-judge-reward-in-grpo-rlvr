@@ -46,6 +46,10 @@ All tables and figures in this paper are generated from saved records. Pending c
 }
 ```
 
+## Development execution
+
+Preserved development logs contain 1 completed judge responses and 3 requests without a completed response. These counts are generated from reports/development logs. An interrupted CPU judging attempt and runtime changes are documented in the dated judge-runtime amendment. Partial judgments do not establish calibration reliability. The first conventional proof received nonzero novelty credit; dedicated contrasts must test whether novelty is measured consistently. No comparative conclusion follows.
+
 ## Transfer evaluation
 
 Recipient accuracy is compared with no notes, unrelated notes of matched length, and notes from other frozen source policies. Paired uncertainty resamples source problems with all four targets retained. Comparisons require complete matching source and target coverage. The machine-readable report publishes each source policy's related-minus-unrelated contrast and all pairs of note-source policies, with unadjusted exploratory intervals.
