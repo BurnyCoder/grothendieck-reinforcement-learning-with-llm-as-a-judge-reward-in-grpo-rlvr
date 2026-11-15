@@ -70,6 +70,21 @@ def judge_runtime(role: str) -> dict:
     return runtime
 
 
+def judge_environment(runtime: dict) -> dict:
+    """Bind registered OpenMP controls before libgomp initializes; preserve other environment.
+
+    https://gcc.gnu.org/onlinedocs/libgomp/GOMP_005fSPINCOUNT.html
+    Null explicitly restores the library default instead of inheriting a shell override.
+    """
+    environment = os.environ.copy()
+    for name, value in runtime.get("environment", {}).items():
+        if value is None:
+            environment.pop(name, None)
+        else:
+            environment[name] = value
+    return environment
+
+
 def serve(role="training_judge", gpu_layers=None):
     """A foreground server is easy to supervise and stop; aliases identify the role."""
     if role not in ("training_judge", "evaluation_judge"):
@@ -107,4 +122,4 @@ def serve(role="training_judge", gpu_layers=None):
     atomic_json(root() / "services" / f"{role}.json", {"model": spec, "runtime": runtime,
                 "context_length": context, "command": args,
                 "executable_sha256": hashlib.sha256(executable.read_bytes()).hexdigest()})
-    subprocess.run(args, check=True)
+    subprocess.run(args, check=True, env=judge_environment(runtime))

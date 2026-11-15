@@ -84,6 +84,11 @@ The [v4 evidence protocol](reports/amendments/2026-11-15-judge-evidence-protocol
 asks for exact excerpts and rationales before scores, supplies validation feedback
 on bounded retries, and checks novelty contrasts first. Development runs stop as
 failed if the fixed thresholds become unreachable; passing requires the full suite.
+Sustained Gemma serving later stalled despite successful short benchmarks.
+The [runtime/deadline amendment](reports/amendments/2026-11-15-judge-stream-deadline.md)
+tests passive OpenMP waiting and enforces a total request deadline. Interrupted
+judgments remain development evidence; changed runtime identities require
+fresh calibration.
 
 Novelty is **relative to fixed [reference approaches](configs/novelty-anchors.json)**,
 not a claim of historical discovery or absence from pretraining. For example,

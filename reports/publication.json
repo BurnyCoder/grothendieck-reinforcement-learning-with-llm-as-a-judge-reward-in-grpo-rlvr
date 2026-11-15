@@ -53,5 +53,8 @@
   "policy_and_offload_protocol_pages_workflow": 43710039125,
   "offload_evidence_merge": "faea40fb2be30b7454a7dd88b28759f93bca36e0",
   "offload_evidence_huggingface_commit": "3543c003fb0d55f04aede584c59627ce61dc2980",
-  "offload_evidence_pages_workflow": 43710850634
+  "offload_evidence_pages_workflow": 43710850634,
+  "matched_training_budget_merge": "370878dfda5a21899ac5a8f38f36e8c7d059108b",
+  "matched_training_budget_huggingface_commit": "107970effe7415d1bfda1202aae144b6847f0f49",
+  "matched_training_budget_pages_workflow": 43711637902
 }

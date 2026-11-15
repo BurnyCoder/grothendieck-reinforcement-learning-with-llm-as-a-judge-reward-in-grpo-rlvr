@@ -71,8 +71,11 @@ use measured pilot throughput and are documented before comparison runs.
 The initial v4 novelty contrasts passed, while full calibration remains incomplete.
 The [registered runtime diagnostic](amendments/2026-11-15-evaluation-offload-diagnostic.md)
 compared additional GPU offload at full context without improving measured
-speed. Retain the existing evaluation runtime and resume its cached development
-calibration. Existing partial opinions remain development evidence.
+speed. The resumed calibration subsequently stalled again. The
+[stream-deadline amendment](amendments/2026-11-15-judge-stream-deadline.md)
+registers passive OpenMP waiting for evaluation and a total streaming deadline.
+Recalibrate under its new identity, preserving all interrupted evidence.
+Existing partial opinions remain development evidence.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
