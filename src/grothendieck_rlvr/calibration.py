@@ -98,6 +98,11 @@ def calibrate(judge, split: str) -> dict:
         dispreferred = judge.assess(task, case["dispreferred"])
         ordering.append({"id": task.id, "preferred": preferred.quality, "dispreferred": dispreferred.quality,
                          "passed": preferred.quality > dispreferred.quality})
+        atomic_json(destination.with_suffix(".progress.json"), {
+            "role": judge.role, "variant": judge.variant, "split": split,
+            "pairs_completed": len(ordering), "pairs_total": len(cases["pairs"]),
+            "false_cases_completed": 0, "false_cases_total": len(cases["false_cases"]),
+        })
     for case in cases["false_cases"]:
         task = Task.model_validate(case["task"])
         if not verify_answer(task, case["response"]).correct:
@@ -105,6 +110,11 @@ def calibrate(judge, split: str) -> dict:
         assessment = judge.assess(task, case["response"])
         suppression.append({"id": task.id, "theory": assessment.quality,
                             "validity": assessment.theory_validity, "passed": assessment.quality == 0})
+        atomic_json(destination.with_suffix(".progress.json"), {
+            "role": judge.role, "variant": judge.variant, "split": split,
+            "pairs_completed": len(ordering), "pairs_total": len(cases["pairs"]),
+            "false_cases_completed": len(suppression), "false_cases_total": len(cases["false_cases"]),
+        })
     order_rate = sum(c["passed"] for c in ordering) / len(ordering)
     false_rate = sum(c["passed"] for c in suppression) / len(suppression)
     result = {"identity": identity, "split": split, "role": judge.role, "variant": judge.variant,

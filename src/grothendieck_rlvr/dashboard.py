@@ -16,6 +16,8 @@ def serve_dashboard(port=8765):
                 snapshot = read_json(PROJECT / "site/snapshot.json")
                 snapshot["training"] = {p.parent.name: read_jsonl(p)
                                         for p in (root() / "runs").glob("*/metrics.jsonl")}
+                snapshot["calibration_progress"] = [read_json(p) for p in
+                                                    (root() / "calibration").glob("*.progress.json")]
                 payload = json.dumps(snapshot).encode()
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")

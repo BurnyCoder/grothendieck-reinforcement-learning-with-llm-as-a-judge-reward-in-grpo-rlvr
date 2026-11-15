@@ -17,7 +17,8 @@ def collect() -> dict:
     evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
     cfg = read_json(PROJECT / "configs/study.json")
     training = {p.parent.name: read_jsonl(p) for p in (root() / "runs").glob("*/metrics.jsonl")}
-    calibration = [read_json(p) for p in (root() / "calibration").glob("*.json") if ".lock." not in p.name]
+    calibration = [read_json(p) for p in (root() / "calibration").glob("*.json")
+                   if ".lock." not in p.name and ".progress." not in p.name]
     examples = {name: sorted(rows, key=lambda r: r["task_id"])[:12] for name, rows in evaluations.items()}
     return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg,
             "summaries": {name: summarize(rows) for name, rows in evaluations.items()},
