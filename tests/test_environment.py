@@ -40,7 +40,14 @@ def test_only_delimited_answer_is_scored():
     assert verify_answer(task(), "Explanation. <final>6</final>").correct
 
 
+def test_decimal_values_are_compared_exactly_without_binary_float_rounding():
+    assert verify_answer(task(), "<final>6.0000000000000000000001</final>").status == "incorrect"
+    assert verify_answer(task("dice", "1/2"), "<final>0.5000000000000000000001</final>").status == "incorrect"
+
+
 def test_mathematical_equivalence_and_factor_completeness():
+    for answer in ("12/2", "6.0", "(9-3)", "2**2+2"):
+        assert verify_answer(task(), f"<final>{answer}</final>").correct
     assert verify_answer(task("dice", "1/2"), "<final>2/4</final>").correct
     p = task("polynomial_multiplication", "x**2-1", variables=["x"])
     assert verify_answer(p, "<final>(x-1)*(x+1)</final>").correct
@@ -53,7 +60,7 @@ def test_mathematical_equivalence_and_factor_completeness():
 
 
 def test_expression_limits_and_code_rejection():
-    for expression in ("x.__class__", "x**1000000", "9**9**9", "f(x)", "[6][0]", "nan"):
+    for expression in ("x.__class__", "x**1000000", "9**9**9", "f(x)", "[6][0]", "nan", "0x6", "1e-1001"):
         assert verify_answer(task(), f"<final>{expression}</final>").status == "invalid_format"
 
 
