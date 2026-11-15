@@ -1,0 +1,30 @@
+{
+  "time": "2026-11-15T21:45:09.940086+00:00",
+  "kind": "posthoc_specialist_objection_math_check",
+  "inference_performed": false,
+  "scores_modified": false,
+  "instances": [
+    {
+      "task_id": "novelty-dev-0",
+      "problem": "Find gcd(8, 12).",
+      "scale": 4,
+      "matches_2n_3n": true,
+      "computed_answer": 4,
+      "matches_reference_answer": true
+    },
+    {
+      "task_id": "novelty-dev-1",
+      "problem": "Find lcm(12, 18).",
+      "scale": 6,
+      "matches_2n_3n": true,
+      "computed_answer": 36,
+      "matches_reference_answer": true
+    }
+  ],
+  "symbolic_residuals": {
+    "norm_product_modulo_e_squared_minus_one": "0",
+    "product_of_evaluations": "0",
+    "norm_composition": "0"
+  },
+  "scope": "Exact checks of elementary substitutions and polynomial identities under commutative arithmetic. Not a certificate of every claim in either the candidate or the judge output; not a calibration relabeling."
+}

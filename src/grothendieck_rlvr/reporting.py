@@ -68,17 +68,21 @@ def calibration_text(snapshot) -> str:
         status = "passed" if result["passed"] else "failed"
         observed = len(result["ordering"])
         passed = sum(row["passed"] for row in result["ordering"])
-        detail = (f"{name} {status}, with {passed}/{observed} observed preference checks passing "
-                  f"and {len(result['suppression'])} false-theory cases assessed.")
+        detail = f"{name} {status}: {passed}/{observed} observed preference contracts passed; "
+        false = result["suppression"]
+        detail += (f"{sum(row['passed'] for row in false)}/{len(false)} false-theory cases had their bonus suppressed."
+                   if false else "false-theory suppression was not measured.")
         if not result["complete"]:
             preference = min(stratum["preference_upper_bound"] for stratum in result["strata"].values())
             suppression = min(stratum["suppression_upper_bound"] for stratum in result["strata"].values())
-            detail += (f" The fixed futility rule stopped this incomplete development suite; "
-                       f"the lowest stratum-wise best-possible final rates were {preference:.1%} for "
-                       f"preference and {suppression:.1%} for false-theory suppression. "
-                       "Unobserved cases are not counted as errors or successes.")
+            detail += (f" Incomplete suite; lowest stratum-wise final upper bounds: "
+                       f"preference {preference:.1%}, false-theory suppression {suppression:.1%}.")
         descriptions.append(detail)
-    return " ".join(descriptions)
+    if any(not result["complete"] for result in snapshot["calibration"]):
+        descriptions.append("Incomplete development suites stopped under the fixed futility rule. "
+                            "Upper bounds assume every remaining case succeeds solely to test attainability. "
+                            "Unobserved cases are not counted as measured successes or errors; no early pass is allowed.")
+    return "\n\n".join(descriptions)
 
 
 def collect() -> dict:
@@ -414,7 +418,13 @@ def paper_sections(snapshot):
          "The two-call decomposition subsequently failed development: it credited a brief "
          "commutator connection but overcredited conventional GCD/LCM mathematics and missed "
          "developed uses. The preserved stage findings and case report document these errors. "
-         "The preregistered specialist fallback is selected without changing the acceptance gates."
+         "The preregistered specialist fallback also failed quoted-Qwen development. "
+         "Its roles emitted mathematical objections to omitted elementary steps, conventionality "
+         "and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. "
+         "Selected exact checks of the disputed steps are preserved without rescoring the trial. "
+         "The remaining specialist development configurations are diagnostic; they cannot bypass "
+         "this failed gate. Related proof-verification studies discuss false rejection [16,17], "
+         "but use different models and aggregation rules and do not qualify this instrument."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
@@ -456,6 +466,8 @@ REFERENCES = [
     ("SLMJury", "https://arxiv.org/abs/2606.07810"),
     ("RULERS: Locked Rubrics and Evidence-Anchored Scoring", "https://arxiv.org/abs/2601.08654"),
     ("DnA-Eval: Decomposition and Aggregation", "https://aclanthology.org/2025.coling-main.156/"),
+    ("Naik et al., Do We Need Frontier Models to Verify Mathematical Proofs?", "https://arxiv.org/abs/2604.02450v1"),
+    ("Huang et al., Pessimistic Verification for Open Ended Math Questions", "https://arxiv.org/abs/2511.21522v1"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")

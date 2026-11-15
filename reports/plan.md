@@ -157,6 +157,18 @@ The remaining two-call configurations are not run. Failed audits
 cannot be reset. After qualification, refresh the pilot timings, then execute the
 registered baseline/training/evaluation sequence. Failed runs remain negative evidence.
 
+Quoted-Qwen specialist development has now failed the fixed futility gate;
+the [case analysis](experiments/qwen-v8-specialist-learnings.md), full role
+findings and generated rates are retained. The roles confused omitted elementary
+steps, lack of novelty and perceived irrelevance with substantive mathematical
+deficiencies. Their vetoes removed all observed theory bonuses, including the
+brief valid connection. Exact post-hoc checks of selected disputed steps do not
+rescore the run. The [execution clarification](amendments/2026-11-15-specialist-development-matrix.md)
+corrects the runbook to complete all three specialist development configurations
+as requested. Rubric-only Qwen and quoted Gemma remain pending; no outcome from
+them can bypass the failed quoted-Qwen gate. Audits and comparative runs remain
+unstarted. Reporting now exposes role-level objections alongside latencies.
+
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository

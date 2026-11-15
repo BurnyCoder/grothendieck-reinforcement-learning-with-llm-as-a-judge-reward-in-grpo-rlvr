@@ -91,3 +91,44 @@ Neither its results nor correlated opinions from repeated use of one model
 establish local mathematical validity. The full paper and appendices were reviewed;
 no code or prompts are copied. The [dated amendment](amendments/2026-11-15-decomposed-judges.md)
 specifies the unchanged qualification gates.
+
+## False objections under additional verification
+
+This follow-up review was conducted after specialist activation on 2026-11-15.
+It informs interpretation, not a retrospective justification or alteration of the
+running protocol. Both papers' main text, methods, results and appendices were read;
+no prompts, code, datasets or weights were imported.
+
+[Naik et al., sections 3–4 and appendices](https://arxiv.org/pdf/2604.02450v1)
+distinguish finding errors from reliably accepting valid proofs. Prompts optimized
+for error detection also reject correct proofs. Their final instrument combines
+diverse prompts with threshold voting, selected using development/holdout data;
+it differs from this project's mandatory mathematical veto. Their Qwen models
+are larger than our frozen quantized judge, and the task is proof validity,
+not constructive novelty. The study supports investigating false objections
+alongside missed errors, but does not qualify our instrument or authorize
+averaging away its validity failures. Its reported gains cannot be assumed to
+transfer to the present model, token budgets or rubric.
+
+[Huang et al., sections 2–3 and appendix A](https://arxiv.org/pdf/2511.21522v1)
+study rejection whenever any verification call finds an error. They report
+better error detection but also unwarranted rejections from smaller models.
+Some evaluation labels are model-generated; author case reviews should not be
+treated as independent certificates. We checked a specific appendix assertion:
+Case 6 calls its proof correct despite that proof identifying a union-based
+set map with a linear map over the two-element field and treating a fixed full
+set as implying singleton neighborhoods.
+
+Our counterexample sets every student's neighborhood to the full student set
+S. Then f(X)=S for nonempty X and f(empty)=empty. For distinct singleton sets
+A and B, f(A symmetric-difference B)=S, whereas
+f(A) symmetric-difference f(B)=empty. Also f(S)=S, yet neighborhoods are not
+singletons. These refute those proof steps, not the problem's conclusion.
+The [exact finite-set check](development/literature-pessimistic-case6-check.json)
+records the construction without model inference. This narrow discrepancy is
+not a reanalysis of the paper's benchmark or a claim about every author label.
+
+The implication for this project is to preserve and inspect concrete alleged
+errors, including disagreements with constructed expectations. Neither source
+justifies silently relabeling a calibration case, rerunning a failed audit,
+or treating a model objection as established mathematical fact.
