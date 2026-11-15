@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T12:56:58.563721+00:00",
+  "generated_at": "2026-11-15T13:08:51.533582+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v4",
@@ -229,7 +229,85 @@
     "reason": "No matched trained arms have been evaluated"
   },
   "families": {},
-  "calibration": [],
+  "calibration": [
+    {
+      "identity": {
+        "judge": "ef8a300c6c16a420a871b67912839cd6b822b71a82949bc26ec8bebdccecd8c6",
+        "cases": "f538b36b6fd316e553df77b7d8d0f07b34f5703c12487f9b7040f664e67fe73f",
+        "protocol": "novelty-first-development-futility-v1"
+      },
+      "split": "dev",
+      "role": "evaluation_judge",
+      "variant": "quoted",
+      "ordering": [
+        {
+          "id": "novelty-dev-0",
+          "stratum": "novelty",
+          "preferred": 0.8625,
+          "dispreferred": 0.5875,
+          "preferred_novelty": 0.5,
+          "dispreferred_novelty": 0.0,
+          "passed": true
+        },
+        {
+          "id": "novelty-dev-1",
+          "stratum": "novelty",
+          "preferred": 0.9125000000000001,
+          "dispreferred": 0.5625,
+          "preferred_novelty": 0.75,
+          "dispreferred_novelty": 0.0,
+          "passed": true
+        },
+        {
+          "id": "novelty-dev-2",
+          "stratum": "novelty",
+          "preferred": 1.0,
+          "dispreferred": 0.7250000000000001,
+          "preferred_novelty": 1.0,
+          "dispreferred_novelty": 0.5,
+          "passed": false
+        },
+        {
+          "id": "novelty-dev-3",
+          "stratum": "novelty",
+          "preferred": 0.9125000000000001,
+          "dispreferred": 0.5375000000000001,
+          "preferred_novelty": 0.75,
+          "dispreferred_novelty": 0.25,
+          "passed": false
+        }
+      ],
+      "suppression": [],
+      "strata": {
+        "theory": {
+          "preference_accuracy": null,
+          "false_theory_suppression": null,
+          "pairs_observed": 0,
+          "pairs_expected": 20,
+          "false_observed": 0,
+          "false_expected": 20,
+          "preference_upper_bound": 1.0,
+          "suppression_upper_bound": 1.0
+        },
+        "novelty": {
+          "preference_accuracy": 0.5,
+          "false_theory_suppression": null,
+          "pairs_observed": 4,
+          "pairs_expected": 8,
+          "false_observed": 0,
+          "false_expected": 8,
+          "preference_upper_bound": 0.75,
+          "suppression_upper_bound": 1.0
+        }
+      },
+      "preference_accuracy": 0.5,
+      "false_theory_suppression": null,
+      "complete": false,
+      "threshold_unreachable": true,
+      "passed": false,
+      "stopping_reason": "development_threshold_unreachable"
+    }
+  ],
   "development": [
     {
       "artifact": "reports/development/calibration-gemma-v3-standalone.jsonl",
@@ -1591,6 +1669,488 @@
           },
           "theory": 0.0,
           "novelty": 0.0
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/gemma-passive-v4-dev.jsonl",
+      "requests": 8,
+      "completed_responses": 8,
+      "incomplete_requests": 0,
+      "response_seconds": [
+        159.0248411290013,
+        115.18542718299796,
+        187.86387874699722,
+        130.41138552900156,
+        174.28237070700197,
+        168.6768501689985,
+        191.4374278030009,
+        152.0641723410008
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T12:40:24.325633+00:00",
+          "kind": "judge_assessment",
+          "key": "d5ec9f4efcf708c52c06960d929ebad33d2a7f0e433d6c093cfe735b67d0d8fd",
+          "task_id": "novelty-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The candidate identifies the GCD as the generator of a subgroup (lattice) of integers, providing a structural basis for the calculation.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Dividing any t in I by d leaves a remainder in I smaller than d, hence zero. Therefore I=dZ.",
+                  "ua+vb=t has an integer solution exactly when d divides t"
+                ],
+                "rationale": "The argument generalizes to any pair of integers (a,b) by characterizing the set of linear combinations as a cyclic group dZ.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ."
+                ],
+                "rationale": "The specific result gcd(8, 12) follows naturally from the lattice construction where n=4.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The construction requires integer signed moves; nonnegative moves do not form a subgroup."
+                ],
+                "rationale": "The candidate connects the problem to group theory (subgroups/lattices) and distinguishes it from monoid structures.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line."
+                ],
+                "rationale": "The definition of the lattice I(a,b) is sufficient to derive the GCD and the proof of its properties.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "View I(a,b)={ua+vb: u,v integers} as the lattice of reachable displacements on an integer line.",
+                  "This turns gcd into the spacing of a reachable lattice."
+                ],
+                "rationale": "The conventional reference lists Euclid's algorithm and prime exponents. The candidate adds a group-theoretic framework (Bézout's Identity as a lattice generator), which enables viewing GCD as a 'spacing' invariant of a reachable set of displacements.",
+                "score": 2
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.8625,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T12:42:33.875189+00:00",
+          "kind": "judge_assessment",
+          "key": "10e51821c6239f775e31a78189f15efe9b63b88c78eb5e22affb4bbba34ab2ff",
+          "task_id": "novelty-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The candidate identifies the relationship between divisors of multiples and the common difference.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Thus gcd(2n,3n)=n for positive n."
+                ],
+                "rationale": "The argument generalizes the specific case to a parameterized family of integers.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm."
+                ],
+                "rationale": "The specific result is presented as a consequence of the general divisor property.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "the invariant of Euclid's algorithm"
+                ],
+                "rationale": "The candidate connects the specific divisor logic to the fundamental invariant of Euclid's algorithm.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Any divisor of 2n and 3n divides their difference n, and every divisor of n divides both."
+                ],
+                "rationale": "The explanation is concise and directly motivates the result without extraneous definitions.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The candidate uses the conventional reference method of identifying common divisors and the Euclid invariant. No new objects or frameworks are introduced.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The response provides a standard derivation of the GCD property rather than a new theoretical framework."
+            ]
+          },
+          "theory": 0.5875,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:46:03.594541+00:00",
+          "kind": "judge_assessment",
+          "key": "47194e0281ec8ad9c6525cb361c2a6a56fb9be65fdc7d25115297b1d31cba292",
+          "task_id": "novelty-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time.",
+                  "Their intersection is a subgroup; if l is its least positive element, division with remainder shows every member is a multiple of l."
+                ],
+                "rationale": "The candidate uses the group-theoretic structure of integers to define LCM as the generator of the intersection of cyclic subgroups.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ.",
+                  "If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The framework generalizes from simple multiples to cosets of subgroups, covering periodic events with arbitrary phases.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k.",
+                  "For phases r=s=n with periods 2n,3n, common times are n+6nZ."
+                ],
+                "rationale": "The specific LCM calculation follows naturally from the subgroup intersection and coset arithmetic established in the theory.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Arbitrary phases may give an empty intersection: even times and odd times with period 2 never coincide."
+                ],
+                "rationale": "The candidate connects the LCM problem to the theory of coset intersections and the conditions for non-empty intersections.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Represent exact recurring events by subgroups aZ,bZ of integer time."
+                ],
+                "rationale": "The use of subgroups and cosets is a compact and efficient way to generalize the LCM and periodicity.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "For events with phases r,s the schedules are cosets r+aZ and s+bZ. If a common time t0 exists, subtracting t0 shows their entire intersection is t0+lZ."
+                ],
+                "rationale": "The conventional reference uses prime factorization or GCD. The candidate adds a group-theoretic framework of cosets (r+aZ) to model periodic events with phases, demonstrating that a single coincidence determines all future coincidences via the generator l.",
+                "score": 3
+              }
+            },
+            "problems": [
+              "The transition from the general theory of cosets to the specific calculation of 36 for 12 and 18 is slightly compressed, though the logic holds."
+            ]
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T12:48:28.398351+00:00",
+          "kind": "judge_assessment",
+          "key": "e23e4c45bfba054d84e0dabc6947aa401cc33f42b2e2983d06143e1d3d92eb17",
+          "task_id": "novelty-dev-1",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k."
+                ],
+                "rationale": "The candidate identifies the divisibility requirements for a common multiple, establishing a structural basis for the LCM.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "The response generalizes the specific case to the prime exponent framework and the product identity.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Thus lcm(2n,3n)=6n."
+                ],
+                "rationale": "The specific result for the problem follows directly from the established divisibility logic.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "proving gcd(a,b)*lcm(a,b)=a*b."
+                ],
+                "rationale": "The candidate connects the LCM calculation to the fundamental identity involving the GCD.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "A multiple of 2n and 3n is n*k with both 2 and 3 dividing k, so 6 divides k."
+                ],
+                "rationale": "The explanation is concise and uses minimal necessary steps to reach the conclusion.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The candidate uses the conventional reference methods (prime exponents and the product identity) without introducing new mathematical objects or frameworks.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "The response does not provide a novel conceptual departure from the conventional reference methods."
+            ]
+          },
+          "theory": 0.5625,
+          "novelty": 0.0
+        },
+        {
+          "time": "2026-11-15T12:51:42.597825+00:00",
+          "kind": "judge_assessment",
+          "key": "824f4894b3a05813d77d8f122fa1a0e27abfea76f3717bcfaf4fc294794d7a22",
+          "task_id": "novelty-dev-2",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1): each element has unique form a+b*e, with a,b in R[x].",
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The candidate uses the structure of a quadratic algebra and the norm map to explain the difference of squares.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The method generalizes to any $x+ne$ and explains the identity via the norm of an element in a specific algebra.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+                ],
+                "rationale": "The specific result $x^2-64$ follows naturally from the norm of $x+8e$ in the constructed algebra.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2, by multiplying the two pairs."
+                ],
+                "rationale": "The candidate demonstrates a further consequence: the composition law for norms (Brahmagupta–Fibonacci identity).",
+                "score": 4
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Conjugation a+b*e -> a-b*e preserves products, so the scalar norm N(a+b*e)=a**2-b**2 is multiplicative."
+                ],
+                "rationale": "The definitions of conjugation and norm are standard and directly motivated by the goal of explaining the identity.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Use the quadratic algebra A=R[x][e]/(e**2-1)",
+                  "This yields the reusable composition law (a**2-b**2)(c**2-d**2) =(a*c+b*d)**2-(a*d+b*c)**2"
+                ],
+                "rationale": "The conventional reference is simple distribution. The candidate adds the construction of a quadratic algebra $R[x][e]/(e^2-1)$ and uses its norm map to derive the Brahmagupta–Fibonacci identity as a further consequence.",
+                "score": 4
+              }
+            },
+            "problems": []
+          },
+          "theory": 1.0,
+          "novelty": 1.0
+        },
+        {
+          "time": "2026-11-15T12:54:49.261615+00:00",
+          "kind": "judge_assessment",
+          "key": "1080832e1362a1cbc9dd3cdbf7a2ded4a7b946bf4abe1fde3d27a40eacb4f620",
+          "task_id": "novelty-dev-2",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2."
+                ],
+                "rationale": "The explanation identifies the underlying algebraic structure (commutative ring) and the distributive property as the source of the identity.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "The general identity (a+b)(a-b)=a**2-b**2 also computes (m+1)(m-1)=m**2-1."
+                ],
+                "rationale": "It generalizes the specific problem to a standard identity and shows its application to a different specific case.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "(x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2"
+                ],
+                "rationale": "The result x**2-64 follows directly from the expansion of the general identity provided.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Noncommuting products retain a cross-term commutator."
+                ],
+                "rationale": "The response connects the result to non-commutative algebra, noting where the identity would fail.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Distributivity in a commutative ring gives (x+n)(x-n)=x*x-x*n+n*x-n*n =x**2-n**2."
+                ],
+                "rationale": "The explanation is concise and uses standard algebraic definitions to justify the steps.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Noncommuting products retain a cross-term commutator."
+                ],
+                "rationale": "i) The reference only covers commutative distribution. ii) The candidate introduces the concept of non-commuting products and commutators. iii) This explains why the identity is specific to commutative rings by identifying the cross-term [x, n] as the obstruction.",
+                "score": 2
+              }
+            },
+            "problems": [
+              "The mention of 'commutator' is slightly imprecise as it doesn't explicitly show the commutator [x, n] in the expansion, but the conceptual direction is valid."
+            ]
+          },
+          "theory": 0.7250000000000001,
+          "novelty": 0.5
+        },
+        {
+          "time": "2026-11-15T12:58:22.542975+00:00",
+          "kind": "judge_assessment",
+          "key": "90a60b15880f5cca1d110a875673acfeac6df8ab0fd9c5ced4a4b0a45bf7f3df",
+          "task_id": "novelty-dev-3",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}.",
+                  "Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication."
+                ],
+                "rationale": "The candidate uses a character-theoretic approach to map the additive structure of parity to a multiplicative group.",
+                "score": 4
+              },
+              "justified_generality": {
+                "evidence": [
+                  "For any number of independent integer-valued variables, the same argument gives even-sum probability (1+product_i E[chi(X_i)])/2; one parity-balanced summand suffices."
+                ],
+                "rationale": "The method generalizes to an arbitrary number of independent variables and provides a clear condition for the result.",
+                "score": 4
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Independence therefore gives P(X+Y even)=(1+E[chi(X)]*E[chi(Y)])/2.",
+                  "Each even-sided fair die has equally many signs, so each expectation is zero and the answer is 1/2."
+                ],
+                "rationale": "The specific result follows naturally from the expectation of the character over the uniform distribution.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "This character transform is a reusable bridge from probability convolution to multiplicative statistics."
+                ],
+                "rationale": "The candidate identifies a connection between probability convolution and multiplicative statistics via characters.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "The even indicator is (1+chi(k))/2."
+                ],
+                "rationale": "The indicator function and character are defined minimally and used directly to solve the problem.",
+                "score": 4
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "Encode parity by the character chi(k)=(-1)**k of the additive integers into {1,-1}. Its law chi(a+b)=chi(a)*chi(b) changes addition into multiplication.",
+                  "This character transform is a reusable bridge from probability convolution to multiplicative statistics."
+                ],
+                "rationale": "(i) The conventional reference uses counting or generating functions. (ii) The candidate introduces a character-theoretic transform $\\chi$ mapping $(\\mathbb{Z}, +)$ to $(\\{1, -1\\}, \\times)$. (iii) This allows the probability of an even sum to be computed as an expectation of a product of independent characters, effectively linearizing the convolution of parity distributions.",
+                "score": 3
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.9125000000000001,
+          "novelty": 0.75
+        },
+        {
+          "time": "2026-11-15T13:01:12.687209+00:00",
+          "kind": "judge_assessment",
+          "key": "7e29b852cd1354249ee598a18f6f5db9ced86be64e1bf637db908bcdb264138e",
+          "task_id": "novelty-dev-3",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The explanation correctly identifies the partition of the sample space into even/odd outcomes and uses the property of independence.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q)."
+                ],
+                "rationale": "The candidate generalizes the specific 10-sided case to any two independent dice with arbitrary even-face probabilities.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "For an even-sided fair die, half the faces are even and half odd."
+                ],
+                "rationale": "The specific result (1/2) follows naturally from the established parity distribution of the faces.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No additional consequences or bridges to distant mathematical settings are demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "Independence gives P(even sum)=P(even,even)+P(odd,odd)=1/4+1/4=1/2."
+                ],
+                "rationale": "The derivation is direct and avoids unnecessary complexity while maintaining sufficient rigor.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "More generally, independent dice with even-face probabilities p,q give p*q+(1-p)*(1-q)."
+                ],
+                "rationale": "i) The reference allows for enumeration or polynomials. ii) The candidate introduces a general algebraic form for parity probability. iii) This allows calculating the sum's parity for any non-fair dice without re-enumerating the sample space.",
+                "score": 1
+              }
+            },
+            "problems": [
+              "The generalization is limited to two dice; it does not extend to an arbitrary number of dice (which would involve a parity-based recurrence or generating functions)."
+            ]
+          },
+          "theory": 0.5375000000000001,
+          "novelty": 0.25
         }
       ],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."

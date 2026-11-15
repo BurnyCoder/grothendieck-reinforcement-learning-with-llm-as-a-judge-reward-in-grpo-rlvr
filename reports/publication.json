@@ -62,5 +62,8 @@
   "judge_deadline_pages_workflow": 43714169055,
   "calibration_status_docs_merge": "189194418a8b699dfcbf38d64ebe27d95bc5cb24",
   "calibration_status_docs_huggingface_commit": "109b016b020e26b1d5791857a56a20f45f8de7a8",
-  "calibration_status_docs_pages_workflow": 43714520647
+  "calibration_status_docs_pages_workflow": 43714520647,
+  "training_exposure_merge": "dddb81b58dfabca08d7cd65671fb90fb82df14bc",
+  "training_exposure_huggingface_commit": "8e34f598e8ec00426bc703e1b4cc689875a4d478",
+  "training_exposure_pages_workflow": 43716544786
 }
