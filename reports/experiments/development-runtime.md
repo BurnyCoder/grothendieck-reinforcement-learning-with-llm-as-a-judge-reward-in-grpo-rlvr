@@ -2,7 +2,7 @@
 
 Generated from preserved timestamped logs. These are incomplete development attempts, not calibrated judges or comparative results. See the dated runtime amendment for rationale, interruptions and next checks.
 
-A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. It does not establish four-completion GRPO or checkpoint-resumption feasibility.
+A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. It does not establish four-completion GRPO or checkpoint-resumption feasibility. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path. No optimizer update completed in that attempt; its failure record is preserved separately from the successful backward probe.
 
 ```json
 {
@@ -75,6 +75,15 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
           "novelty": 0.25
         }
       ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/pilot-first-failure.jsonl",
+      "requests": 0,
+      "completed_responses": 0,
+      "incomplete_requests": 0,
+      "response_seconds": [],
+      "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
@@ -308,6 +317,15 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "peak_gpu_allocated_bytes": 5107058688,
       "peak_gpu_reserved_bytes": 5194645504,
       "pilot_updates_discarded": true
+    },
+    {
+      "kind": "grpo_initial_generation_failure",
+      "time": "2026-11-15T10:52:12.16698+01:00",
+      "run_id": "pilot-theory-seed42",
+      "optimizer_update_completed": false,
+      "error": "SyntaxError during PyTorch guard evaluation; compiler-cache path contained a trailing carriage return",
+      "source": "reports/development/pilot-first-failure.jsonl",
+      "interpretation": "Implementation failure before scoring or backward, not a policy memory failure or a comparative result"
     }
   ]
 }

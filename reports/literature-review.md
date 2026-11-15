@@ -40,6 +40,20 @@ judge behavior rather than assuming it is correct. The protocol separates
 training reward, independent-family judgment, and verified recipient accuracy.
 These measures can disagree, which is scientifically informative.
 
+The observed development confusion between conventional generality and novelty
+also motivates examining judgment order. [MT-Bench's published mathematical
+judge prompts](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/judge_prompts.jsonl)
+request a comparison and explanation before the final rating.
+[G-Eval](https://arxiv.org/pdf/2303.16634) instead supplies generated evaluation
+steps and combines score probabilities; our implementation does not reproduce
+that method. Neither source establishes that changing JSON field order will
+repair this project's novelty judgments.
+[Yamauchi et al.](https://arxiv.org/html/2506.13639v1) find little additional
+benefit from explicit reasoning when detailed criteria and references are
+present in their evaluated settings. Their tasks and evaluators differ from
+ours. Any reasoning-order or decoding change here therefore needs its own
+development experiment and fresh audit, not an assumed reliability improvement.
+
 The evaluation structure follows the separation of development and testing
 discussed by [Lones](https://arxiv.org/html/2108.02497v4). Claims about a latent
 mechanism would require additional evidence of the kind of distinction between

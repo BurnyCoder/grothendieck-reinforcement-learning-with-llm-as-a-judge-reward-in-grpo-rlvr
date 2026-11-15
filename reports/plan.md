@@ -41,6 +41,8 @@ required. No comparative run has begun.
 Model downloads and artifact hashes are complete. The maximum-length BF16 LoRA
 backward probe passed; four-completion GRPO and checkpoint resumption remain
 pending. Development judging by both models has started but is incomplete;
+the initial GRPO attempt failed during generation on a CRLF configuration-path
+bug, now repaired and regression-tested, with no optimizer update completed;
 the interrupted CPU attempts are retained. Evaluation
 GPU offload and the remaining policy feasibility checks follow the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,

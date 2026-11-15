@@ -23,5 +23,8 @@
   "compiler_cache_merge": "38fcec39838b6a9d81d84585d54b797eab59c1e2",
   "compiler_cache_huggingface_commit": "bfec7b1da9e74f4bcef446a8c77414bdf8b2afa9",
   "native_environment_merge": "e61c4c34c50981e59105b7f0d54ba52d5cc9bbfd",
-  "native_environment_huggingface_commit": "221ffba928cc19f863f50a5491cb06ec13c6f314"
+  "native_environment_huggingface_commit": "221ffba928cc19f863f50a5491cb06ec13c6f314",
+  "novelty_boundary_v3_merge": "f6af57ed2aa4d9720ddf0debebfbe60109880c7e",
+  "novelty_boundary_v3_huggingface_commit": "dae97e22ffcc8a364238b10b98b01f333ba91656",
+  "novelty_boundary_v3_pages_workflow": 43700432131
 }

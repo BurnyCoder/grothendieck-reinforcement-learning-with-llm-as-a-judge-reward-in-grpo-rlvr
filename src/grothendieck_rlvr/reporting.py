@@ -61,13 +61,18 @@ def feasibility_text(snapshot) -> str:
     if not probes:
         return "No completed maximum-length backward probe is recorded."
     first = probes[0]
-    return (f"A recorded BF16 LoRA backward probe completed at {first['length']} tokens and microbatch "
+    text = (f"A recorded BF16 LoRA backward probe completed at {first['length']} tokens and microbatch "
             f"{first['microbatch']}, with peak allocated GPU memory "
             f"{first['peak_gpu_allocated_bytes']/2**30:.2f} GiB and reserved memory "
             f"{first['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
             f"{first['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
             "input checks execution and memory, not mathematical ability or steady-state throughput. "
             "It does not establish four-completion GRPO or checkpoint-resumption feasibility.")
+    if any(r.get("kind") == "grpo_initial_generation_failure" for r in snapshot["feasibility"]):
+        text += (" The initial GRPO attempt failed during generation prefill when a carriage return "
+                 "entered the compiler-cache path. No optimizer update completed in that attempt; "
+                 "its failure record is preserved separately from the successful backward probe.")
+    return text
 
 
 def display(value, digits=4) -> str:
