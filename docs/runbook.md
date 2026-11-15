@@ -103,6 +103,14 @@ the previous development lock/results before starting the changed configuration.
 It cannot reset an audit. An interrupted run with unchanged inputs resumes from
 its content-addressed cache without this flag.
 
+The [v4 protocol](../reports/amendments/2026-11-15-judge-evidence-protocol.md)
+checks novelty cases first and may stop development as failed when the remaining
+cases cannot reach the unchanged thresholds. Partial observed rates and their
+denominators are reported explicitly. Audit runs always complete the fixed suite;
+only a full pass with matching judge and protocol identities authorizes training.
+Evidence-format retries include validation feedback, with at most three total
+attempts. An infrastructure failure still terminates, rather than reducing reward.
+
 ## Feasibility, saving and resumption
 
 After publication, use development-only pilots:

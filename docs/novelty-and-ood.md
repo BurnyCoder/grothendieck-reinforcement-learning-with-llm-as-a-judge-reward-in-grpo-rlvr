@@ -12,7 +12,7 @@ help the first without establishing the second. Neither identifies what was
 absent from a pretrained model's corpus.
 
 `schema.Assessment` implements the weighted score and validity gates;
-`prompts/rubric-v3.txt` supplies ordinal scoring anchors; `novelty-anchors.json`
+`prompts/rubric-v4.txt` supplies ordinal scoring anchors; `novelty-anchors.json`
 defines the comparison references. Both judges use these same frozen rules.
 `novelty_cases.py` constructs valid and deliberately false mathematical bridges.
 The judge must distinguish actual mathematical utility from ornamental theory.

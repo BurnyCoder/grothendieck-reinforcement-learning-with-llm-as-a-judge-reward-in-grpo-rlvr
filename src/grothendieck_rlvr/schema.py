@@ -35,9 +35,11 @@ class Verification(Record):
 
 class Criterion(Record):
     """An ordinal rubric score supported by verbatim candidate excerpts."""
-    score: int = Field(ge=0, le=4, strict=True)
+    # Pydantic preserves declaration order in JSON schema: evidence precedes the rating.
+    # https://docs.pydantic.dev/latest/concepts/models/#field-ordering
     evidence: list[str]
     rationale: str
+    score: int = Field(ge=0, le=4, strict=True)
 
 
 class Assessment(Record):
@@ -62,8 +64,11 @@ class Assessment(Record):
 
     def validate_evidence(self, response: str) -> None:
         """Reject fabricated spans; this checks attribution, not mathematical truth."""
-        if any(not e.strip() or e not in response for c in self.criteria.values() for e in c.evidence):
-            raise ValueError("Judge evidence must be a nonempty exact response excerpt")
+        for key, criterion in self.criteria.items():
+            for index, excerpt in enumerate(criterion.evidence):
+                if not excerpt.strip() or excerpt not in response:
+                    raise ValueError(f"criteria.{key}.evidence[{index}] must be a nonempty exact "
+                                     "candidate excerpt; do not insert ellipses or paraphrase")
 
     @property
     def novelty(self) -> float:

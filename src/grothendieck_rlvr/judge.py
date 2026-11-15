@@ -14,7 +14,11 @@ import httpx
 from .io import PROJECT, EventLog, digest, read_json, root
 from . import models
 from .prompts import judge_system
-from .schema import Assessment, Task
+from .schema import Assessment, Criterion, Task
+
+
+RETRY_PROTOCOL = {"version": "validation-feedback-v1", "max_attempts": 3,
+                  "error_character_limit": 2000, "feedback_history": "latest_invalid_assessment_only"}
 
 
 class JudgeFailure(RuntimeError):
@@ -112,6 +116,8 @@ class Judge:
                                 "rubric_weights": Assessment.weights,
                                 "context_length": self.config["judge_context_length"], "system": self.system,
                                 "schema": assessment_schema(), "max_tokens": self.config["judge_max_tokens"],
+                                "criterion_field_order": list(Criterion.model_fields),
+                                "retry_protocol": RETRY_PROTOCOL,
                                 "temperature": 0, "seed": 42, "thinking": False})
 
     def assess(self, task: Task, response: str) -> Assessment:
@@ -123,12 +129,13 @@ class Judge:
             assessment.validate_evidence(response)
             self.log.emit("judge_cache_hit", key=key, task_id=task.id)
             return assessment
-        payload = json.dumps({"problem": task.problem, "reference_answer": task.answer,
-                              "conventional_reference": self.anchors[task.family],
-                              "external_final_answer_verdict": "correct", "candidate_response": response},
-                             ensure_ascii=False)
-        messages = [{"role": "system", "content": self.system}, {"role": "user", "content": payload}]
-        for attempt in range(3):
+        payload = {"problem": task.problem, "reference_answer": task.answer,
+                   "conventional_reference": self.anchors[task.family],
+                   "external_final_answer_verdict": "correct", "candidate_response": response}
+        for attempt in range(RETRY_PROTOCOL["max_attempts"]):
+            messages = [{"role": "system", "content": self.system},
+                        {"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]
+            output = None
             try:
                 output = self.client.generate(messages, self.config["judge_max_tokens"], assessment_schema())
                 assessment = Assessment.model_validate_json(output)
@@ -141,8 +148,15 @@ class Judge:
                 return assessment
             except (httpx.HTTPError, ValueError, JudgeFailure) as exc:
                 self.log.emit("judge_failure", attempt=attempt + 1, task_id=task.id, error=str(exc))
-                if attempt == 2:
+                if attempt + 1 == RETRY_PROTOCOL["max_attempts"]:
                     raise JudgeFailure(f"Judge failed after three attempts: {exc}") from exc
+                if output is not None:
+                    # Keep the task immutable and replace feedback instead of growing a transcript.
+                    # The preceding assessment is untrusted; only exact candidate spans may pass.
+                    payload["validation_feedback"] = {
+                        "error": str(exc)[:RETRY_PROTOCOL["error_character_limit"]],
+                        "previous_assessment": output,
+                    }
         raise AssertionError("Unreachable retry state")
 
     def checkpoint(self, destination: Path) -> None:

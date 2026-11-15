@@ -79,14 +79,44 @@ def build_cases(split: str) -> dict:
     for i in range(cfg["calibration_novelty_false_cases"]):
         task, _, _, false = novelty_example(i + 40, split)
         false_cases.append({"task": task.model_dump(), "response": false, "stratum": "novelty"})
+    # Check the difficult novelty contrasts first without changing any case or label.
+    pairs.sort(key=lambda case: case["stratum"] != "novelty")
+    false_cases.sort(key=lambda case: case["stratum"] != "novelty")
     return {"split": split, "pairs": pairs, "false_cases": false_cases}
+
+
+def calibration_summary(cases: dict, ordering: list, suppression: list) -> dict:
+    """An exact remaining-case bound permits early failure, never early acceptance."""
+    def rate(rows):
+        return sum(row["passed"] for row in rows) / len(rows) if rows else None
+
+    strata = {}
+    for name in ("theory", "novelty"):
+        pairs = [row for row in ordering if row["stratum"] == name]
+        false = [row for row in suppression if row["stratum"] == name]
+        expected_pairs = sum(row["stratum"] == name for row in cases["pairs"])
+        expected_false = sum(row["stratum"] == name for row in cases["false_cases"])
+        strata[name] = {
+            "preference_accuracy": rate(pairs), "false_theory_suppression": rate(false),
+            "pairs_observed": len(pairs), "pairs_expected": expected_pairs,
+            "false_observed": len(false), "false_expected": expected_false,
+            "preference_upper_bound": (sum(row["passed"] for row in pairs) + expected_pairs - len(pairs)) / expected_pairs,
+            "suppression_upper_bound": (sum(row["passed"] for row in false) + expected_false - len(false)) / expected_false,
+        }
+    unreachable = any(s["preference_upper_bound"] < .8 or s["suppression_upper_bound"] < .9
+                      for s in strata.values())
+    complete = len(ordering) == len(cases["pairs"]) and len(suppression) == len(cases["false_cases"])
+    return {"strata": strata, "preference_accuracy": rate(ordering),
+            "false_theory_suppression": rate(suppression), "complete": complete,
+            "threshold_unreachable": unreachable, "passed": complete and not unreachable}
 
 
 def calibrate(judge, split: str, restart_development=False) -> dict:
     """A locked audit cannot be silently repeated after prompt changes or failure."""
     destination = root() / "calibration" / f"{judge.role}-{judge.variant}-{split}.json"
     cases = build_cases(split)
-    identity = {"judge": judge.identity, "cases": digest(cases)}
+    identity = {"judge": judge.identity, "cases": digest(cases),
+                "protocol": "novelty-first-development-futility-v1"}
     lock_path = destination.with_suffix(".lock.json")
     if restart_development and split != "dev":
         raise ValueError("Only development calibration may be restarted; locked audits remain immutable")
@@ -110,47 +140,37 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
         return result
     atomic_json(lock_path, identity)
     ordering, suppression = [], []
-    for case in cases["pairs"]:
+    for kind, case in [("pair", c) for c in cases["pairs"]] + [("false", c) for c in cases["false_cases"]]:
         task = Task.model_validate(case["task"])
-        for response in (case["preferred"], case["dispreferred"]):
+        responses = (case["preferred"], case["dispreferred"]) if kind == "pair" else (case["response"],)
+        for response in responses:
             if not verify_answer(task, response).correct:
                 raise RuntimeError("Invalid constructed calibration reference")
-        preferred = judge.assess(task, case["preferred"])
-        dispreferred = judge.assess(task, case["dispreferred"])
-        novelty_order = preferred.novelty > dispreferred.novelty and dispreferred.novelty == 0
-        ordering.append({"id": task.id, "stratum": case["stratum"],
-                         "preferred": preferred.quality, "dispreferred": dispreferred.quality,
-                         "preferred_novelty": preferred.novelty, "dispreferred_novelty": dispreferred.novelty,
-                         "passed": preferred.quality > dispreferred.quality and
-                         (case["stratum"] != "novelty" or novelty_order)})
-        atomic_json(destination.with_suffix(".progress.json"), {
-            "role": judge.role, "variant": judge.variant, "split": split,
-            "pairs_completed": len(ordering), "pairs_total": len(cases["pairs"]),
-            "false_cases_completed": 0, "false_cases_total": len(cases["false_cases"]),
-        })
-    for case in cases["false_cases"]:
-        task = Task.model_validate(case["task"])
-        if not verify_answer(task, case["response"]).correct:
-            raise RuntimeError("Invalid false-theory calibration reference")
-        assessment = judge.assess(task, case["response"])
-        suppression.append({"id": task.id, "stratum": case["stratum"], "theory": assessment.quality,
-                            "validity": assessment.theory_validity, "passed": assessment.quality == 0})
+        if kind == "pair":
+            preferred = judge.assess(task, case["preferred"])
+            dispreferred = judge.assess(task, case["dispreferred"])
+            novelty_order = preferred.novelty > dispreferred.novelty and dispreferred.novelty == 0
+            ordering.append({"id": task.id, "stratum": case["stratum"],
+                             "preferred": preferred.quality, "dispreferred": dispreferred.quality,
+                             "preferred_novelty": preferred.novelty, "dispreferred_novelty": dispreferred.novelty,
+                             "passed": preferred.quality > dispreferred.quality and
+                             (case["stratum"] != "novelty" or novelty_order)})
+        else:
+            assessment = judge.assess(task, case["response"])
+            suppression.append({"id": task.id, "stratum": case["stratum"], "theory": assessment.quality,
+                                "validity": assessment.theory_validity, "passed": assessment.quality == 0})
+        summary = calibration_summary(cases, ordering, suppression)
         atomic_json(destination.with_suffix(".progress.json"), {
             "role": judge.role, "variant": judge.variant, "split": split,
             "pairs_completed": len(ordering), "pairs_total": len(cases["pairs"]),
             "false_cases_completed": len(suppression), "false_cases_total": len(cases["false_cases"]),
+            "strata": summary["strata"],
         })
-    order_rate = sum(c["passed"] for c in ordering) / len(ordering)
-    false_rate = sum(c["passed"] for c in suppression) / len(suppression)
-    strata = {name: {"preference_accuracy": sum(c["passed"] for c in ordering if c["stratum"] == name) /
-                    sum(c["stratum"] == name for c in ordering),
-                    "false_theory_suppression": sum(c["passed"] for c in suppression if c["stratum"] == name) /
-                    sum(c["stratum"] == name for c in suppression)} for name in ("theory", "novelty")}
+        if split == "dev" and summary["threshold_unreachable"]:
+            break
     result = {"identity": identity, "split": split, "role": judge.role, "variant": judge.variant,
-              "ordering": ordering, "suppression": suppression,
-              "preference_accuracy": order_rate, "false_theory_suppression": false_rate,
-              "strata": strata, "passed": all(s["preference_accuracy"] >= .8 and
-                                               s["false_theory_suppression"] >= .9 for s in strata.values())}
+              "ordering": ordering, "suppression": suppression, **summary,
+              "stopping_reason": "complete" if summary["complete"] else "development_threshold_unreachable"}
     atomic_json(destination, result)
     judge.log.emit("calibration_complete", **result)
     return result
@@ -166,5 +186,7 @@ def require_calibration() -> None:
         if not path.exists() or not read_json(path)["passed"]:
             raise RuntimeError(f"Training blocked: missing or failed {role}/{variant} locked audit")
         judge = Judge(url, role, variant)
-        if read_json(path)["identity"]["judge"] != judge.identity:
-            raise RuntimeError("Training blocked: judge changed since calibration")
+        expected = {"judge": judge.identity, "cases": digest(build_cases("audit")),
+                    "protocol": "novelty-first-development-futility-v1"}
+        if read_json(path)["identity"] != expected or not read_json(path).get("complete", False):
+            raise RuntimeError("Training blocked: incomplete audit or judge/calibration protocol changed")
