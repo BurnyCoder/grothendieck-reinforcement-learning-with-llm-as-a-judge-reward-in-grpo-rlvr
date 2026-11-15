@@ -313,7 +313,9 @@ def paper_sections(snapshot):
          "a transport failure; that short run does not establish sustained reliability. "
          "Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional "
          "generalized explanations. It was interrupted for a documented reasoning-mode development "
-         "revision, without being declared a calibration pass or threshold failure."
+         "revision, without being declared a calibration pass or threshold failure. "
+         "The later v5 attempt stopped after bounded retries repeated a contradiction between "
+         "the declared reference relation and numerical novelty score; that calibration remained incomplete."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
