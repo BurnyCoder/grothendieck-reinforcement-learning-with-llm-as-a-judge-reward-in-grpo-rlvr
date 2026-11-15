@@ -114,5 +114,8 @@
   "specialist_activation_pages_workflow": 43760649928,
   "specialist_quoted_failure_merge": "ba3adbda1999c33ecd5ee2aecb15789ffcf0449f",
   "specialist_quoted_failure_huggingface_commit": "662bc39e2941a9d76af2ef57ddb2e69559527f3d",
-  "specialist_quoted_failure_pages_workflow": 43768145801
+  "specialist_quoted_failure_pages_workflow": 43768145801,
+  "research_collection_merge": "274a086022bbd32636f77fba1d1145204f35c229",
+  "research_collection_huggingface_commit": "bcbefd78568f429b41917a956cbe1262a9d4bda5",
+  "research_collection_pages_workflow": 43768467094
 }
