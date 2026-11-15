@@ -135,6 +135,18 @@ commutative polynomial methods and ordinary biased-probability calculations;
 rubric v7 and all cases remain unchanged. Publish before one fresh Qwen quoted
 development trial. Its result determines whether the remaining checks proceed.
 
+That trial has now failed its fixed futility gate; see the
+[reference-scope findings](experiments/qwen-v7-reference-scope-learnings.md).
+Probability-control novelty improved, but the brief commutator connections
+remained uncredited and a later brief GCD connection tied the developed framework
+on novelty while scoring higher overall. Its cited use was a routine reference
+argument, exposing a semantic attribution error beyond exact-excerpt validation.
+The remaining variants, locked audits, long training and policy comparisons do
+not proceed under this failed sequence. No further model trial is registered.
+Any new intervention must address the observed decision failures, preserve the
+user's modest-credit preference and acceptance gates, and be published in a
+dated amendment before inference. Failed runs are retained as negative evidence.
+
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository

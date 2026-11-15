@@ -15,6 +15,12 @@ frameworks can earn more, even when they use established mathematics.
 Long training remains blocked by the registered calibration gate. No empirical
 improvement or latent-space steering has been demonstrated.**
 
+The [latest reference-scope trial](reports/experiments/qwen-v7-reference-scope-learnings.md)
+withheld novelty from the routine probability controls, but still misgraded
+brief connections and a developed-framework comparison. The evidence log also
+shows why exact quotations alone cannot validate a claimed use of a concept.
+The modest-credit rule remains implemented; judge reliability is unresolved.
+
 ![Pipeline architecture](site/figures/architecture.png)
 
 The motivation is [Grothendieck's rising-sea philosophy, discussed by Colin
@@ -245,6 +251,6 @@ transfer, reports and dashboard viewing.
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
 
-evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 08145e59) failed, with 1/3 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, a3fa911e) failed, with 4/7 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
+evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, 08145e59) failed, with 1/3 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, ebe93e9d) failed, with 6/9 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes. training_judge/quoted (dev, a3fa911e) failed, with 4/7 observed preference checks passing and 0 false-theory cases assessed. The fixed futility rule stopped this incomplete development suite; the lowest stratum-wise best-possible final rates were 75.0% for preference and 100.0% for false-theory suppression. Unobserved cases are not counted as errors or successes.
 
 <!-- RESULTS:END -->
