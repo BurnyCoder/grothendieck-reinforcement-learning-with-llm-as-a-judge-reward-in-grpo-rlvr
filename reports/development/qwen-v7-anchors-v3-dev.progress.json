@@ -1,0 +1,31 @@
+{
+  "role": "training_judge",
+  "variant": "quoted",
+  "split": "dev",
+  "pairs_completed": 9,
+  "pairs_total": 32,
+  "false_cases_completed": 0,
+  "false_cases_total": 28,
+  "strata": {
+    "theory": {
+      "preference_accuracy": null,
+      "false_theory_suppression": null,
+      "pairs_observed": 0,
+      "pairs_expected": 20,
+      "false_observed": 0,
+      "false_expected": 20,
+      "preference_upper_bound": 1.0,
+      "suppression_upper_bound": 1.0
+    },
+    "novelty": {
+      "preference_accuracy": 0.6666666666666666,
+      "false_theory_suppression": null,
+      "pairs_observed": 9,
+      "pairs_expected": 12,
+      "false_observed": 0,
+      "false_expected": 8,
+      "preference_upper_bound": 0.75,
+      "suppression_upper_bound": 1.0
+    }
+  }
+}

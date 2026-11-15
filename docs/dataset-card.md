@@ -33,8 +33,13 @@ conditions failed. False-theory suppression was not reached. The generated
 reports separate those checks and preserve every raw opinion.
 Reference version v3 subsequently clarifies the commutative-polynomial and
 ordinary biased-probability baselines. The rubric, case hashes and thresholds
-remain fixed; this new identity needs fresh development checks and untouched
-audits before comparative training.
+remained fixed. The fresh trial also failed: probability control credit improved,
+but brief-connection credit and a framework/control ranking still disagreed with
+the constructed expectations. A routine reference excerpt was incorrectly used
+as evidence of an additional connection's application. Exact substring checks
+cannot certify that semantic relationship. The negative result is preserved in
+`reports/experiments/qwen-v7-reference-scope-learnings.md`; remaining calibration,
+audits and comparative training stay blocked.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
