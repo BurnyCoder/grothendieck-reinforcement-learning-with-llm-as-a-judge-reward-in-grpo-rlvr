@@ -9,7 +9,7 @@ mkdir -p "$destination/bin"
 base=https://github.com/ggml-org/llama.cpp/releases/download/b12359
 curl -fL --retry 3 -C - -o "$destination/llama.tar.gz" "$base/llama-b12359-bin-ubuntu-cuda-12.8-x64.tar.gz"
 curl -fL --retry 3 -C - -o "$destination/cudart.tar.gz" "$base/cudart-llama-b12359-bin-ubuntu-cuda-12.8-x64.tar.gz"
-.venv/bin/python - "$destination" <<'PY'
+"${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" - "$destination" <<'PY'
 import hashlib
 import json
 import sys

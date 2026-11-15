@@ -9,4 +9,4 @@ if test -f .env; then
 fi
 export PYTHONHASHSEED=0
 export PYTHONUNBUFFERED=1
-exec .venv/bin/python -m grothendieck_rlvr.cli "$@"
+exec "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" -m grothendieck_rlvr.cli "$@"
