@@ -4,6 +4,9 @@ Use WSL Ubuntu and Python 3.12. Commands below run from the repository root.
 `scripts/run.sh` loads `.env` before Python starts, including `PYTHONHASHSEED=0`.
 The local `.venv` is managed by uv; large files live in the configured data-drive
 directory. Copy `.env.example` to `.env` when cloning on another machine.
+`UNSLOTH_COMPILE_LOCATION` also directs Unsloth's generated modules to the project
+artifact directory; the default local generated-cache folder is ignored by Git.
+This follows the installed, pinned `unsloth_zoo/compiler.py` environment option.
 
 ## Install and prepare
 
