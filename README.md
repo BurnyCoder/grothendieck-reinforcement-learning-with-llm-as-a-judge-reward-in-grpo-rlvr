@@ -113,7 +113,9 @@ generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or comparative training result is claimed yet.
 Gemma's CUDA runtime loads, but its first development judgment decoded too slowly
 to complete usefully. A [bounded thread-count diagnostic](reports/amendments/2026-11-15-judge-thread-diagnostic.md)
-precedes any further serving change; the interrupted response is preserved.
+preceded further serving changes; the existing thread count was fastest in the
+synthetic test, so it is retained. End-to-end judgment latency remains unresolved,
+and the interrupted response is preserved.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving

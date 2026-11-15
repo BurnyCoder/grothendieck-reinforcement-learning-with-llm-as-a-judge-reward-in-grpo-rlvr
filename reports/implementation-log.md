@@ -170,3 +170,12 @@ is retained as `development/benchmark-initial-failure.log`. Fake-binary regressi
 checks reproduce the failure and exercise both successful and timed-out runs.
 Nesting the configuration in its event fixes the collision without changing the
 registered benchmark. The passing evidence is `verification-benchmark.xml`.
+
+The published retry completed every planned thread setting. The generated
+development report reads the rates and repetitions from the upstream JSONL
+records. The existing thread count was fastest in this short diagnostic, so
+the serving configuration is unchanged. This result does not support reducing
+threads as a remedy. The benchmark excludes structured-output sampling and uses
+a smaller allocated context than the server; it cannot locate the remaining
+bottleneck by itself. A clean standalone retry of the unchanged development
+request is the next check. Neither judge has passed calibration.

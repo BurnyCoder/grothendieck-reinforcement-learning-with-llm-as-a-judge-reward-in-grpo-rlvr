@@ -50,7 +50,8 @@ bug, now repaired and regression-tested, before its first optimizer update;
 the interrupted CPU attempts are retained. Evaluation
 GPU offload loaded successfully, but slow decoding prevented a completed CUDA
 judgment. The [thread diagnostic](amendments/2026-11-15-judge-thread-diagnostic.md)
-will test execution settings before recalibration. Runtime provenance follows the
+completed without supporting a lower thread count. End-to-end judgment latency
+still needs a clean standalone check. Runtime provenance follows the
 [runtime amendment](amendments/2026-11-15-judge-runtime.md). No calibration pass,
 policy evaluation or comparative training result is claimed. Initial local constraints are
 environment observations rather than comparative experimental results. Publication and

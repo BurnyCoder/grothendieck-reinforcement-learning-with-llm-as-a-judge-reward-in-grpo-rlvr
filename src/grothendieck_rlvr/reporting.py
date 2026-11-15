@@ -96,6 +96,17 @@ def feasibility_text(snapshot) -> str:
                  "Checkpoint recovery and a parameter change are feasibility evidence, not an "
                  "improvement estimate. A single resumed interval is not a stable throughput benchmark. "
                  "Pilot adapters are excluded from comparative initialization.")
+    benchmarks = [r for r in snapshot["feasibility"] if r.get("kind") == "synthetic_judge_runtime_benchmark"]
+    for benchmark in benchmarks:
+        if benchmark["timings"]:
+            rates = "; ".join(f"{t['n_threads']} thread{'s' if t['n_threads'] != 1 else ''}: {t['avg_ts']:.2f} tokens/s"
+                              for t in benchmark["timings"])
+            best = max(benchmark["timings"], key=lambda t: t["avg_ts"])
+            text += (f" A synthetic Gemma decoding diagnostic recorded {rates}. "
+                     f"The fastest measured setting used {best['n_threads']} threads. "
+                     "These short upstream llama-bench measurements omit structured-output sampling "
+                     "and use a smaller allocated context than the server. They do not establish "
+                     "end-to-end judgment latency or calibration quality.")
     return text
 
 
@@ -282,7 +293,7 @@ AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exac
 def write_paper(snapshot, rows, destination: Path):
     """Render one source of numerical truth into a paginated, linked ReportLab paper."""
     from reportlab.lib import colors
-    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
     from reportlab.lib.units import inch
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
@@ -293,6 +304,8 @@ def write_paper(snapshot, rows, destination: Path):
         pdfmetrics.registerFont(TTFont("DejaVu", str(font)))
         font_name = "DejaVu"
     styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle("Reference", parent=styles["BodyText"], fontSize=9,
+                              leading=11, spaceBefore=0, spaceAfter=1))
     for style in styles.byName.values():
         style.fontName = font_name
     styles["BodyText"].fontSize = 9
@@ -332,7 +345,7 @@ def write_paper(snapshot, rows, destination: Path):
     story.append(Paragraph("References", styles["Heading2"]))
     markdown.append("## References")
     for i, (title, url) in enumerate(REFERENCES, 1):
-        story.append(Paragraph(f'[{i}] <link href="{html.escape(url)}" color="#225d69">{html.escape(title)}</link>', styles["BodyText"]))
+        story.append(Paragraph(f'[{i}] <link href="{html.escape(url)}" color="#225d69">{html.escape(title)}</link>', styles["Reference"]))
         markdown.append(f"[{i}] [{title}]({url})")
     story.extend([Spacer(1, 12), Paragraph(html.escape(AI_STATEMENT), styles["BodyText"])])
     markdown.append(AI_STATEMENT)
