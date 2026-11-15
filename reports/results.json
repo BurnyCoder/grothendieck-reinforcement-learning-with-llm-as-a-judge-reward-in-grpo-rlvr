@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T14:50:05.599781+00:00",
+  "generated_at": "2026-11-15T15:09:02.555919+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v6",
@@ -386,6 +386,7 @@
       "requests": 6,
       "completed_responses": 5,
       "incomplete_requests": 1,
+      "judge_failures": 1,
       "response_seconds": [
         129.4818138720002,
         92.21272923200013,
@@ -618,6 +619,7 @@
       "requests": 4,
       "completed_responses": 1,
       "incomplete_requests": 3,
+      "judge_failures": 3,
       "response_seconds": [
         407.71901011599994
       ],
@@ -691,6 +693,7 @@
       "requests": 1,
       "completed_responses": 0,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -700,6 +703,7 @@
       "requests": 5,
       "completed_responses": 4,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         247.4664538149991,
         107.26705054500053,
@@ -961,6 +965,7 @@
       "requests": 15,
       "completed_responses": 14,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         112.32233614600045,
         76.08942682500128,
@@ -1819,6 +1824,7 @@
       "requests": 8,
       "completed_responses": 8,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         159.0248411290013,
         115.18542718299796,
@@ -2325,6 +2331,7 @@
       "requests": 0,
       "completed_responses": 0,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -2334,6 +2341,7 @@
       "requests": 9,
       "completed_responses": 9,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         67.61513415000081,
         96.94919308700082,
@@ -2798,6 +2806,7 @@
       "requests": 4,
       "completed_responses": 4,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         359.8025256410001,
         138.98848979099967,
@@ -3030,6 +3039,7 @@
       "requests": 18,
       "completed_responses": 17,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         125.11962845000016,
         46.77010226099992,
@@ -3988,6 +3998,7 @@
       "requests": 7,
       "completed_responses": 7,
       "incomplete_requests": 0,
+      "judge_failures": 1,
       "response_seconds": [
         137.35703205099708,
         128.90522617600072,
@@ -4377,6 +4388,7 @@
       "requests": 10,
       "completed_responses": 9,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         128.83960913800183,
         63.976309170000604,
@@ -4944,6 +4956,7 @@
       "requests": 10,
       "completed_responses": 10,
       "incomplete_requests": 0,
+      "judge_failures": 3,
       "response_seconds": [
         215.13923658099884,
         141.0864877749991,

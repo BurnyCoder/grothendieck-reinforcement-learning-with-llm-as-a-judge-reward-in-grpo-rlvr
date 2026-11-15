@@ -41,3 +41,16 @@ def test_development_examples_keep_the_candidate_bound_to_its_accepted_judgment(
     assert [row.get("candidate_response") for row in rows] == ["First candidate", "Second candidate", None]
     assert rows[0]["problem"] == "Fixture problem"
     assert rows[0]["conventional_reference"] == "Fixture reference"
+
+
+def test_request_latency_keeps_unfinished_calls_separate_from_observed_times():
+    """An interrupted request has no measured completion time; do not impute zero."""
+    records = [{"artifact": "reports/development/fixture.jsonl", "requests": 3,
+                "completed_responses": 2, "incomplete_requests": 1,
+                "response_seconds": [10.0, 30.0], "assessments": [{}], "judge_failures": 1},
+               {"artifact": "reports/development/no-response.jsonl", "requests": 1,
+                "completed_responses": 0, "incomplete_requests": 1,
+                "response_seconds": [], "assessments": [], "judge_failures": 0}]
+    rows = reporting.request_latency_rows(records)
+    assert rows[1][1:] == ["2", "1", "1", "1", "20.00", "10.00–30.00"]
+    assert rows[2][1:] == ["0", "0", "0", "1", "Pending", "Pending"]

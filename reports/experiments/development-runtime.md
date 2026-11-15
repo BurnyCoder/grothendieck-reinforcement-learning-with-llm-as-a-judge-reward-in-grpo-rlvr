@@ -6,6 +6,26 @@ evaluation_judge/quoted (dev, ef8a300c) failed, with 2/4 observed preference che
 
 A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality.
 
+## Observed request latency
+
+| Development artifact | Completed calls | Accepted opinions | Judge failures | Unfinished calls | Median seconds/call | Observed seconds/call range |
+|---|---|---|---|---|---|---|
+| calibration-gemma-v3-standalone | 5 | 4 | 1 | 1 | 92.21 | 48.71–129.48 |
+| gemma-cpu-v2 | 1 | 1 | 3 | 3 | 407.72 | 407.72–407.72 |
+| gemma-cuda-v3-interrupted | 0 | 0 | 0 | 1 | Pending | Pending |
+| gemma-cuda24-v4-interrupted | 4 | 4 | 0 | 1 | 97.69 | 58.45–247.47 |
+| gemma-cuda24-v4-resumed-interrupted | 14 | 14 | 0 | 1 | 71.98 | 36.65–112.32 |
+| gemma-passive-v4-dev | 8 | 8 | 0 | 0 | 163.85 | 115.19–191.44 |
+| pilot-first-failure | 0 | 0 | 0 | 0 | Pending | Pending |
+| pilot-theory-seed42 | 9 | 9 | 0 | 0 | 71.30 | 58.73–96.95 |
+| qwen-cpu-v2 | 4 | 4 | 0 | 0 | 237.15 | 121.98–359.80 |
+| qwen-cpu-v3-interrupted | 17 | 17 | 0 | 1 | 77.90 | 46.45–125.12 |
+| qwen-reasoning512-v4-dev | 7 | 6 | 1 | 0 | 137.36 | 126.43–166.13 |
+| qwen-v4-interrupted | 9 | 9 | 0 | 1 | 92.95 | 51.41–132.07 |
+| qwen-v5-contract-failure | 10 | 7 | 3 | 0 | 148.12 | 136.70–215.14 |
+
+Timings include prefill and decoding for completed calls, including invalid assessments. Unfinished calls have no completed latency and are counted separately, not assigned zero. Accepted opinions exclude failed validations and cache hits. Rows use different prompts and runtime settings; their medians are not controlled speed comparisons, confidence intervals, or forecasts for training, evaluation, transfer or a complete calibration suite.
+
 ```json
 {
   "judging": [
@@ -14,6 +34,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 6,
       "completed_responses": 5,
       "incomplete_requests": 1,
+      "judge_failures": 1,
       "response_seconds": [
         129.4818138720002,
         92.21272923200013,
@@ -246,6 +267,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 4,
       "completed_responses": 1,
       "incomplete_requests": 3,
+      "judge_failures": 3,
       "response_seconds": [
         407.71901011599994
       ],
@@ -319,6 +341,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 1,
       "completed_responses": 0,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -328,6 +351,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 5,
       "completed_responses": 4,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         247.4664538149991,
         107.26705054500053,
@@ -589,6 +613,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 15,
       "completed_responses": 14,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         112.32233614600045,
         76.08942682500128,
@@ -1447,6 +1472,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 8,
       "completed_responses": 8,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         159.0248411290013,
         115.18542718299796,
@@ -1953,6 +1979,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 0,
       "completed_responses": 0,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [],
       "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -1962,6 +1989,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 9,
       "completed_responses": 9,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         67.61513415000081,
         96.94919308700082,
@@ -2426,6 +2454,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 4,
       "completed_responses": 4,
       "incomplete_requests": 0,
+      "judge_failures": 0,
       "response_seconds": [
         359.8025256410001,
         138.98848979099967,
@@ -2658,6 +2687,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 18,
       "completed_responses": 17,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         125.11962845000016,
         46.77010226099992,
@@ -3616,6 +3646,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 7,
       "completed_responses": 7,
       "incomplete_requests": 0,
+      "judge_failures": 1,
       "response_seconds": [
         137.35703205099708,
         128.90522617600072,
@@ -4005,6 +4036,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 10,
       "completed_responses": 9,
       "incomplete_requests": 1,
+      "judge_failures": 0,
       "response_seconds": [
         128.83960913800183,
         63.976309170000604,
@@ -4572,6 +4604,7 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "requests": 10,
       "completed_responses": 10,
       "incomplete_requests": 0,
+      "judge_failures": 3,
       "response_seconds": [
         215.13923658099884,
         141.0864877749991,

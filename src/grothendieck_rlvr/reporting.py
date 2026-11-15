@@ -3,6 +3,7 @@ import html
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from statistics import median
 
 from .analysis import primary_comparison, summarize, transfer_analysis
 from .budget import training_budget, budget_markdown
@@ -39,6 +40,7 @@ def development_records() -> list[dict]:
         requests = sum(e["kind"] == "model_request" for e in events)
         records.append({"artifact": str(path.relative_to(PROJECT)), "requests": requests,
                         "completed_responses": len(responses), "incomplete_requests": requests-len(responses),
+                        "judge_failures": sum(e["kind"] == "judge_failure" for e in events),
                         "response_seconds": [e["seconds"] for e in responses],
                         "assessments": assessments,
                         "interpretation": "Development evidence only; not a completed calibration or evaluation."})
@@ -185,6 +187,23 @@ def transfer_rows(snapshot):
     rows.extend([condition, display(metrics["n"]), display(metrics["accuracy"])]
                 for condition, metrics in snapshot["transfer"]["summaries"].items())
     return rows if len(rows) > 1 else rows + [["Registered transfer conditions", "Pending", "Pending"]]
+
+
+def request_latency_rows(records):
+    """Describe completed calls separately from retries and censored requests.
+
+    Full-request seconds include prefill and decoding. Do not pool different
+    protocols or infer an unfinished call's latency from its missing response.
+    """
+    rows = [["Development artifact", "Completed calls", "Accepted opinions", "Judge failures",
+             "Unfinished calls", "Median seconds/call", "Observed seconds/call range"]]
+    for record in records:
+        seconds = record["response_seconds"]
+        rows.append([Path(record["artifact"]).stem, str(record["completed_responses"]),
+                     str(len(record["assessments"])), str(record["judge_failures"]),
+                     str(record["incomplete_requests"]), display(median(seconds) if seconds else None, 2),
+                     f"{min(seconds):.2f}–{max(seconds):.2f}" if seconds else "Pending"])
+    return rows
 
 
 def figures(snapshot, destination: Path) -> None:
@@ -461,7 +480,13 @@ def report() -> dict:
         "# Development execution records\n\nGenerated from preserved timestamped logs. "
         "These are incomplete development attempts, not calibrated judges or comparative results. "
         "See the dated runtime amendment for rationale, interruptions and next checks.\n\n" +
-        calibration_text(snapshot) + "\n\n" + feasibility_text(snapshot) + "\n\n```json\n" +
+        calibration_text(snapshot) + "\n\n" + feasibility_text(snapshot) +
+        "\n\n## Observed request latency\n\n" + markdown_table(request_latency_rows(snapshot["development"])) +
+        "\n\nTimings include prefill and decoding for completed calls, including invalid assessments. "
+        "Unfinished calls have no completed latency and are counted separately, not assigned zero. "
+        "Accepted opinions exclude failed validations and cache hits. Rows use different prompts and "
+        "runtime settings; their medians are not controlled speed comparisons, confidence intervals, "
+        "or forecasts for training, evaluation, transfer or a complete calibration suite.\n\n```json\n" +
         json.dumps({"judging": snapshot["development"], "calibration": snapshot["calibration"],
                     "feasibility": snapshot["feasibility"]},
                    indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
