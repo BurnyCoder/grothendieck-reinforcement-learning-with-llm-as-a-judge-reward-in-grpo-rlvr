@@ -44,7 +44,7 @@ def development_records() -> list[dict]:
                         "response_seconds": [e["seconds"] for e in responses],
                         "assessments": assessments,
                         "stages": [{key: event[key] for key in
-                                    ("time", "protocol", "stage", "seconds", "task_id") if key in event}
+                                    ("time", "protocol", "stage", "seconds", "task_id", "finding") if key in event}
                                    for event in events if event["kind"] == "judge_stage_assessment"],
                         "interpretation": "Development evidence only; not a completed calibration or evaluation."})
     return records
@@ -210,15 +210,26 @@ def request_latency_rows(records):
 
 
 def stage_latency_rows(records):
-    """Keep protocol/role stage timings separate, including validated-stage overhead."""
-    rows = [["Development artifact", "Protocol", "Stage", "Accepted calls", "Median seconds"]]
+    """Expose every objection while keeping protocol/role latency measurements separate."""
+    rows = [["Development artifact", "Protocol", "Stage", "Accepted calls", "Calls with issues",
+             "Issue declarations", "Supported validity with issues", "Median seconds"]]
     for record in records:
         groups = {}
         for stage in record.get("stages", []):
-            groups.setdefault((stage["protocol"], stage["stage"]), []).append(stage["seconds"])
-        for (protocol, stage), seconds in groups.items():
-            rows.append([Path(record["artifact"]).stem, protocol, stage, str(len(seconds)),
-                         display(median(seconds), 2)])
+            finding = stage["finding"]
+            # The two-call records nest the same specialist contracts under these keys.
+            parts = [finding] + [finding[key] for key in ("reference", "development", "validity")
+                                 if key in finding]
+            issues = sum(len(part.get("issues", [])) for part in parts)
+            conflict = any(part.get("verdict") == "supported" and part.get("issues") for part in parts)
+            groups.setdefault((stage["protocol"], stage["stage"]), []).append(
+                (stage["seconds"], issues, conflict))
+        for (protocol, stage), findings in groups.items():
+            rows.append([Path(record["artifact"]).stem, protocol, stage, str(len(findings)),
+                         str(sum(issues > 0 for _, issues, _ in findings)),
+                         str(sum(issues for _, issues, _ in findings)),
+                         str(sum(conflict for _, _, conflict in findings)),
+                         display(median(seconds for seconds, _, _ in findings), 2)])
     return rows
 
 
@@ -557,8 +568,11 @@ def report() -> dict:
         "Decomposed protocols require multiple accepted stage calls per combined assessment. Rows use different prompts and "
         "runtime settings; their medians are not controlled speed comparisons, confidence intervals, "
         "or forecasts for training, evaluation, transfer or a complete calibration suite.\n\n" +
-        "## Accepted stage latency\n\n" + markdown_table(stage_latency_rows(snapshot["development"])) +
-        "\n\nStage timings additionally include template/token checks and validation. Cache hits are excluded.\n\n```json\n" +
+        "## Accepted stage findings and latency\n\n" + markdown_table(stage_latency_rows(snapshot["development"])) +
+        "\n\nStage timings additionally include template/token checks and validation. Cache hits are excluded. "
+        "Issue counts describe stored declarations, not independently verified errors. A supported validity "
+        "verdict can coexist with an objection in a model output; the registered veto still applies. "
+        "Repeated objections are retained, not treated as independent evidence or averaged away.\n\n```json\n" +
         json.dumps({"judging": snapshot["development"], "calibration": snapshot["calibration"],
                     "feasibility": snapshot["feasibility"]},
                    indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
