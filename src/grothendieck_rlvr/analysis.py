@@ -43,7 +43,7 @@ def summarize(rows: list[dict]) -> dict:
             "valid_format_rate": sum(r["verification"]["status"] != "invalid_format" for r in rows)/len(rows)}
 
 
-def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False) -> dict:
+def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False, exploratory=False) -> dict:
     """Do not turn a first-seed or partial result into a confirmatory success claim."""
     seeds = [s for s in cfg["training_seeds"]
              if f"theory-seed{s}{suffix}" in evaluations and f"correctness-seed{s}{suffix}" in evaluations]
@@ -84,8 +84,9 @@ def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False)
         and all(observed.count(k) == n for k, n in expected.items())
     passed = results["metric"]["difference"] >= .05 and results["metric"]["ci95"][0] > 0 \
         and results["correct"]["ci95"][0] > -.03
-    return {"status": ("secondary" if secondary else "confirmatory") if complete else "exploratory", "seeds": seeds,
-            "criteria_met": bool(passed) if complete and not secondary else None, **results}
+    status = ("secondary" if secondary else "confirmatory") if complete else "exploratory"
+    return {"status": "exploratory_uncalibrated" if exploratory else status, "seeds": seeds,
+            "criteria_met": bool(passed) if complete and not secondary and not exploratory else None, **results}
 
 
 def transfer_analysis(rows: list[dict], samples=10000, expected_sources=100) -> dict:

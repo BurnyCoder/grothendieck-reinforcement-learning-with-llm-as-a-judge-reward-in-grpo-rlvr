@@ -43,6 +43,9 @@ def parser():
     evaluate.add_argument("--run-id", required=True)
     transfer = sub.add_parser("transfer")
     transfer.add_argument("--source-runs", nargs="+", required=True)
+    for phase in (train, generate, evaluate, transfer):
+        phase.add_argument("--exploratory", action="store_true",
+                           help="Explicitly select the amended single-call experiment with unqualified judges")
     dashboard = sub.add_parser("dashboard")
     dashboard.add_argument("--port", type=int, default=8765)
     return p
@@ -80,12 +83,15 @@ def main():
             result = generate(**args)
         elif command == "evaluate":
             from .evaluation import evaluate
+            from .experiments import experiment_profile
             from .judge import Judge
+            profile = experiment_profile(args["exploratory"], args["run_id"])
             result = evaluate(judge=Judge(os.environ.get("GROTH_EVAL_URL", "http://127.0.0.1:8082"),
-                                          "evaluation_judge"), **args)
+                                          "evaluation_judge", protocol=profile["judge_protocol"] if profile else None),
+                              **args)
         elif command == "transfer":
             from .evaluation import transfer
-            result = transfer(args["source_runs"])
+            result = transfer(args["source_runs"], exploratory=args["exploratory"])
         elif command == "report":
             from .reporting import report
             result = report()

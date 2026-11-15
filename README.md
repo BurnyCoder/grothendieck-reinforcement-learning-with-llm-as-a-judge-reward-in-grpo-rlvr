@@ -11,9 +11,15 @@ earn additional credit when they are justified and do mathematical work.
 Brief valid connections can earn modest novelty credit; developed, reusable
 frameworks can earn more, even when they use established mathematics.
 
-**Status: pipeline implemented; Gemma and Qwen development novelty calibrations failed.
-Long training remains blocked by the registered calibration gate. No empirical
+**Status: pipeline implemented; judge calibration attempts failed. A user-authorized
+single-call experiment now tests learning with unqualified judges. No empirical
 improvement or latent-space steering has been demonstrated.**
+
+The [exploratory amendment](reports/amendments/2026-11-16-exploratory-single-judge.md)
+permits training despite those failures. It reuses the latest single-call rubric,
+with the same reward, modest connection credit and training budgets. Run names,
+checkpoints and analyses identify this experiment separately. The original
+calibration thresholds remain fixed; exploratory scores do not establish qualification.
 
 The [two-call trial](reports/experiments/qwen-v8-two-stage-learnings.md) credited
 a brief valid commutator connection, but still overcredited routine GCD/LCM
@@ -22,14 +28,15 @@ The [registered specialist fallback](reports/amendments/2026-11-15-specialist-ac
 separates validity, reference comparison, development and five quality criteria.
 Its [quoted-Qwen trial also failed](reports/experiments/qwen-v8-specialist-learnings.md):
 false mathematical objections vetoed valid frameworks and a brief connection.
-Rubric-only Qwen and quoted Gemma specialist development remain to be completed;
-the existing failure already blocks every audit and comparative training run.
+The [rubric-only Qwen trial also failed](reports/experiments/qwen-v8-specialist-rubric-learnings.md).
+Quoted Gemma specialist development is deferred following the new instruction.
+The existing failures still block every audit and the original qualified study.
 Neither protocol has qualified. Thresholds, cases, labels, weights and the
 modest-credit rule for valid connections stay fixed.
 
 The [Hugging Face research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
 links the artifact repository and frozen upstream models. Project-trained
-adapters remain pending qualification and training.
+adapters remain pending training.
 
 ![Pipeline architecture](site/figures/architecture.png)
 
@@ -42,7 +49,7 @@ research interpretation, not a simulation of his personal judgments.
 flowchart LR
   G[Reasoning Gym + locked manifests] --> P[Qwen3.5 policy: four answers]
   P --> V[Bounded final-answer verifier]
-  V -->|correct| J[Frozen Qwen: isolated judge stages]
+  V -->|correct| J[Frozen Qwen: one structured assessment]
   V --> R[Composite reward C times 1 + 0.5T]
   J --> R
   R --> T[TRL Dr. GRPO + LoRA]
@@ -58,6 +65,7 @@ flowchart LR
 Read the [literature review](reports/literature-review.md),
 [preregistration](reports/preregistration.md),
 [novelty and OOD amendment](reports/amendments/2026-11-15-valid-novelty-and-ood.md),
+the [exploratory continuation](reports/amendments/2026-11-16-exploratory-single-judge.md),
 and [implementation status](reports/plan.md).
 We reuse [Reasoning Gym](https://github.com/open-thought/reasoning-gym),
 [Math-Verify](https://github.com/huggingface/Math-Verify),
@@ -248,6 +256,10 @@ transfer, reports and dashboard viewing.
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-prompted | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-single-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 evaluation_judge/quoted (dev, ef8a300c) failed: 2/4 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
@@ -258,6 +270,8 @@ training_judge/quoted (dev, ebe93e9d) failed: 6/9 observed preference contracts 
 training_judge/quoted (dev, a3fa911e) failed: 4/7 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
 training_judge/quoted (dev, b33cb353) failed: 0/3 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
+
+training_judge/rubric (dev, c07b8d14) failed: 0/3 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
 training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 

@@ -13,6 +13,7 @@ from pathlib import Path
 
 from .calibration import require_calibration
 from .data import load_tasks, validate_manifests
+from .experiments import EXPLORATORY_PREFIX, experiment_profile, validate_judge
 from .io import PROJECT, EventLog, atomic_json, digest, read_json, root
 from .judge import Judge
 from .prompts import policy_messages
@@ -69,29 +70,38 @@ def latest_complete_checkpoint(directory: Path) -> Path:
     return max(candidates, key=lambda p: int(p.name.split("-")[-1]))
 
 
-def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None) -> dict:
+def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exploratory=False) -> dict:
     """Every experiment starts from the same base; only reward treatment and seed differ."""
     if arm not in ("theory", "correctness", "shuffled", "rubric"):
         raise ValueError("Unknown training arm")
-    if not pilot:
+    profile = experiment_profile(exploratory)
+    if not pilot and not exploratory:
         require_calibration()
+    if not pilot:
         selection = read_json(PROJECT / "configs/policy-selection.json")
         if selection["policy"] != read_json(PROJECT / "configs/models.lock.json")["policy"]:
             raise RuntimeError("Selected checkpoint differs from the model lock")
     cfg = read_json(PROJECT / "configs/study.json")
+    if profile:
+        cfg = {**cfg, "judge_protocol": profile["judge_protocol"], "judge_prompt_version": "v7"}
     if pilot:
         cfg = {**cfg, "max_steps": 2, "save_steps": 1}
     manifest = validate_manifests()
-    run_id = f"{'pilot-' if pilot else ''}{arm}-seed{seed}"
+    run_id = f"{EXPLORATORY_PREFIX if exploratory else ''}{'pilot-' if pilot else ''}{arm}-seed{seed}"
     directory = root() / "runs" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     log = EventLog(directory / "events.jsonl")
     judge = None if arm == "correctness" else Judge(
         os.environ.get("GROTH_JUDGE_URL", "http://127.0.0.1:8081"),
-        variant="rubric" if arm == "rubric" else "quoted", log=log)
+        variant="rubric" if arm == "rubric" else "quoted", log=log,
+        protocol=profile["judge_protocol"] if profile else None)
+    if judge:
+        validate_judge(judge, profile)
     identity = {"arm": arm, "seed": seed, "config": cfg, "manifest": digest(manifest),
                 "model": read_json(PROJECT / "configs/models.lock.json")["policy"],
                 "judge": judge.identity if judge else None}
+    if profile:
+        identity["experiment"] = profile
     config_path = directory / "run.json"
     if config_path.exists() and read_json(config_path) != identity:
         raise RuntimeError("Run configuration changed; use an amended experiment identifier")
@@ -185,7 +195,8 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None) -> 
                "elapsed_seconds": time.monotonic()-started,
                "peak_gpu_allocated_bytes": torch.cuda.max_memory_allocated(),
                "peak_gpu_reserved_bytes": torch.cuda.max_memory_reserved(),
-               "completed": trainer.state.global_step == cfg["max_steps"], "pilot": pilot}
+               "completed": trainer.state.global_step == cfg["max_steps"], "pilot": pilot,
+               "experiment": profile["id"] if profile else "qualified-study"}
     atomic_json(directory / "summary.json", summary)
     log.emit("training_finished", **summary)
     return summary

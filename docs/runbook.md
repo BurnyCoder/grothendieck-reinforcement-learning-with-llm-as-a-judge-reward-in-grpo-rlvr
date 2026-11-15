@@ -80,6 +80,11 @@ tokens, venvs or caches. Do not replace missing results with synthetic metrics.
 
 ## Calibrate the frozen judges
 
+These are the qualification-study commands. The user-authorized exploratory
+continuation below has a separate explicit entry point; it does not claim a pass.
+Quoted-Gemma specialist development is currently deferred by the
+[new amendment](../reports/amendments/2026-11-16-exploratory-single-judge.md).
+
 In a dedicated terminal, start a judge (foreground process; stop with Ctrl-C):
 
 ```bash
@@ -93,10 +98,14 @@ bash scripts/run.sh calibrate --role training_judge --variant quoted --split dev
 bash scripts/run.sh calibrate --role training_judge --variant rubric --split dev
 ```
 
-Development calibration can motivate a documented prompt change. Once fixed,
-run each locked audit exactly once. Restart the server with `--role
-evaluation_judge` and calibrate its quoted variant. Run `--split audit` for all
-three required configurations. Failure blocks long training. Changed inputs
+Development calibration can motivate a documented prompt change. Restart the
+server with `--role evaluation_judge` and run its quoted development calibration
+after the two Qwen variants. All three matching development configurations must
+pass before any locked audit. Then freeze the instrument and run each required
+`--split audit` exactly once. Under the specialist fallback, finish all three
+development configurations even if an earlier one fails, as specified in the
+[execution clarification](../reports/amendments/2026-11-15-specialist-development-matrix.md).
+Any failed configuration blocks audits and qualification-study training. Changed inputs
 cannot silently reuse an audit: preregister an amendment and reserve fresh cases.
 After a dated development amendment, `--split dev --restart-development` archives
 the previous development lock/results before starting the changed configuration.
@@ -107,7 +116,7 @@ The [v4 protocol](../reports/amendments/2026-11-15-judge-evidence-protocol.md)
 checks novelty cases first and may stop development as failed when the remaining
 cases cannot reach the unchanged thresholds. Partial observed rates and their
 denominators are reported explicitly. Audit runs always complete the fixed suite;
-only a full pass with matching judge and protocol identities authorizes training.
+only a full pass with matching judge and protocol identities authorizes qualification-study training.
 Evidence-format retries include validation feedback, with at most three total
 attempts. An infrastructure failure still terminates, rather than reducing reward.
 
@@ -141,7 +150,42 @@ the prior completed failure before the newly registered trial; subsequent
 resumption of that unchanged trial does not need the flag. No old result
 qualifies the current identity.
 
-## Feasibility, saving and resumption
+## Exploratory single-call continuation
+
+The [dated amendment](../reports/amendments/2026-11-16-exploratory-single-judge.md)
+explicitly permits this experiment with unqualified judges. Publish its tested
+code, profile and documentation before inference. Keep the Qwen CPU server running;
+do not load Gemma at the same time as policy generation or training.
+
+```bash
+source scripts/environment.sh
+bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --stop-after 1
+bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --resume
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-prompted --rising
+bash scripts/run.sh train --exploratory --arm theory --seed 42
+bash scripts/run.sh train --exploratory --arm correctness --seed 42
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v1-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v1-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v1-correctness-seed42/adapter"
+```
+
+Publish the pilot and each training/evaluation milestone. `--resume` restores
+the matching exploratory run; it cannot resume a qualified-study or pilot run
+under another name. Pilot updates are discarded. The single-call protocol uses
+the v7 prompt and context preflight; only contract/transport failures receive
+bounded retries. Failed or unqualified calibration is explicitly recorded.
+
+After policy generation finishes, stop the CPU judge, load the evaluation server,
+then score each run with `evaluate --exploratory --run-id NAME`. All evaluation
+run names must start with `exploratory-single-v1-`. Use `--split test_ood` and
+`-ood` run-name suffixes for the separate secondary suite. Generate source notes
+with `--split transfer_source`, then use
+`transfer --exploratory --source-runs NAME ...`; its files live in
+`$GROTH_ROOT/transfer/exploratory-single-v1/`. The same fixed manifests and paired
+analyses apply, but all conclusions remain exploratory. Regenerate publications
+with `bash scripts/run.sh report` and view `bash scripts/run.sh dashboard`.
+
+## Qualification-study feasibility and recovery
 
 After publication, use development-only pilots:
 

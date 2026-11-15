@@ -8,6 +8,10 @@ v7 is retained as `Judge(..., protocol="legacy")`; it is not the active instrume
 The [two-call trial failed](../reports/experiments/qwen-v8-two-stage-learnings.md);
 the [dated activation](../reports/amendments/2026-11-15-specialist-activation.md)
 now selects the unchanged, previously published specialist protocol.
+Both Qwen specialist configurations subsequently failed development. The user
+then authorized a [separate single-call exploratory experiment](../reports/amendments/2026-11-16-exploratory-single-judge.md).
+Quoted-Gemma specialist development is deferred. The qualification workflow below
+remains available and gated; it is not the active exploratory training workflow.
 
 ```mermaid
 flowchart TD

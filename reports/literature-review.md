@@ -65,6 +65,17 @@ explanation and speculation emphasized by
 
 ## Search scope and remaining uncertainty
 
+The [exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
+tests whether learning remains useful with an unqualified judge. A follow-up
+review read [Gao, Schulman and Hilton's full paper](https://proceedings.mlr.press/v202/gao23h/gao23h.pdf),
+including its appendices. In their synthetic reward-model setting, stronger
+optimization can raise proxy reward while reducing a separate model's reward.
+This motivates independent behavioral checks here, not an assumption that our
+errors are independent noise or that larger judges will solve them. Their model,
+task and optimizer differ; no source code is imported. The current single-call
+rubric remains the already-published instrument rather than a new prompt selected
+from this paper.
+
 Sources examined include primary research articles, official model cards,
 training documentation and generator/verifier source files. The exact pipeline
 was not identified in those sources. This search does not establish exhaustive

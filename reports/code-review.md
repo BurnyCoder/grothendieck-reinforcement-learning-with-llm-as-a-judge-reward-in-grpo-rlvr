@@ -30,3 +30,22 @@ URL-policy enforcement. HTTP endpoints can still be checked without browser use.
 No claim of a fully validated training run is made at this stage. Any integration
 fix will be published before the next model stage; substantive protocol changes
 need dated amendments.
+
+## Exploratory single-call continuation
+
+2026-11-16. One additional pass reviewed the explicitly authorized qualification
+exception, single-call identity, recovery, evaluation isolation and reporting.
+The original training/audit gates remain present. The new flag requires a distinct
+run prefix; input hashes freeze models, selection, manifests and settings across
+arms. The prompt and reward semantics reuse the latest single-call instrument.
+Context preflight has a separate identity, with no extra semantic judgment.
+
+Regression checks cover the unchanged standard gate, explicit exploratory
+selection, frozen identities/settings, one accepted call and cache isolation,
+generation recovery, transfer separation, and preventing a complete exploratory
+comparison from becoming confirmatory. Full results are in
+[`verification-exploratory-single.xml`](verification-exploratory-single.xml).
+Python lint, JavaScript syntax and dashboard metric tests also passed. The new
+model-backed pilot remains required before long training; offline tests are not
+evidence that noisy reward improves behavior. UI browser inspection remains
+unverified for the previously documented environmental restriction.
