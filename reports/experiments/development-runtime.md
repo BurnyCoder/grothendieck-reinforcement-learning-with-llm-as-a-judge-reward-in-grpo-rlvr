@@ -2,77 +2,161 @@
 
 Generated from preserved timestamped logs. These are incomplete development attempts, not calibrated judges or comparative results. See the dated runtime amendment for rationale, interruptions and next checks.
 
+A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. It does not establish four-completion GRPO or checkpoint-resumption feasibility.
+
 ```json
-[
-  {
-    "artifact": "reports/development/gemma-cpu-v2.jsonl",
-    "requests": 4,
-    "completed_responses": 1,
-    "incomplete_requests": 3,
-    "response_seconds": [
-      407.71901011599994
-    ],
-    "assessments": [
-      {
-        "time": "2026-11-15T08:31:37.266355+00:00",
-        "kind": "judge_assessment",
-        "key": "27ba313555fd88346379325e8321c93ed326d9a75e9dbd257d2ac263c77d558f",
-        "task_id": "calibration-dev-0",
-        "assessment": {
-          "theory_validity": "supported",
-          "criteria": {
-            "structural_understanding": {
-              "score": 3,
-              "evidence": [
-                "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n"
-              ],
-              "rationale": "The candidate identifies the set of common divisors as the primary object of study and establishes a structural equivalence between the divisors of (2n, 3n) and the divisors of n."
+{
+  "judging": [
+    {
+      "artifact": "reports/development/gemma-cpu-v2.jsonl",
+      "requests": 4,
+      "completed_responses": 1,
+      "incomplete_requests": 3,
+      "response_seconds": [
+        407.71901011599994
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T08:31:37.266355+00:00",
+          "kind": "judge_assessment",
+          "key": "27ba313555fd88346379325e8321c93ed326d9a75e9dbd257d2ac263c77d558f",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n"
+                ],
+                "rationale": "The candidate identifies the set of common divisors as the primary object of study and establishes a structural equivalence between the divisors of (2n, 3n) and the divisors of n."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate generalizes the specific case of (8, 12) to a family of pairs (2n, 3n), providing a general rule for any positive integer n."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "With n=4, the answer is 4."
+                ],
+                "rationale": "The specific answer is recovered naturally as a trivial instantiation of the derived general rule."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm."
+                ],
+                "rationale": "The candidate connects the specific derivation of gcd(2n, 3n) back to the fundamental Euclidean invariant, showing how the local logic supports the global algorithm."
+              },
+              "conceptual_economy": {
+                "score": 4,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The explanation is extremely lean, using the property of divisibility to bridge the specific numbers to the general result without unnecessary overhead."
+              },
+              "constructive_novelty": {
+                "score": 1,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "(i) The conventional reference mentions Euclid's algorithm and prime exponents. (ii) The candidate reframes the problem as a set-theoretic equivalence of divisor sets. (iii) This reframing allows for a direct proof of the gcd(2n, 3n) identity by showing the two sets are identical, which then justifies the subtraction step of Euclid's algorithm."
+              }
             },
-            "justified_generality": {
-              "score": 3,
-              "evidence": [
-                "gcd(2n,3n)=n for every positive integer n."
-              ],
-              "rationale": "The candidate generalizes the specific case of (8, 12) to a family of pairs (2n, 3n), providing a general rule for any positive integer n."
-            },
-            "problem_as_consequence": {
-              "score": 4,
-              "evidence": [
-                "With n=4, the answer is 4."
-              ],
-              "rationale": "The specific answer is recovered naturally as a trivial instantiation of the derived general rule."
-            },
-            "reuse_and_connections": {
-              "score": 3,
-              "evidence": [
-                "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm."
-              ],
-              "rationale": "The candidate connects the specific derivation of gcd(2n, 3n) back to the fundamental Euclidean invariant, showing how the local logic supports the global algorithm."
-            },
-            "conceptual_economy": {
-              "score": 4,
-              "evidence": [
-                "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
-              ],
-              "rationale": "The explanation is extremely lean, using the property of divisibility to bridge the specific numbers to the general result without unnecessary overhead."
-            },
-            "constructive_novelty": {
-              "score": 1,
-              "evidence": [
-                "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
-              ],
-              "rationale": "(i) The conventional reference mentions Euclid's algorithm and prime exponents. (ii) The candidate reframes the problem as a set-theoretic equivalence of divisor sets. (iii) This reframing allows for a direct proof of the gcd(2n, 3n) identity by showing the two sets are identical, which then justifies the subtraction step of Euclid's algorithm."
-            }
+            "problems": [
+              "The derivation of the general case gcd(2n, 3n)=n is a specific instance of the Euclidean algorithm rather than a broad theory of linear combinations, though it is presented with sufficient clarity."
+            ]
           },
-          "problems": [
-            "The derivation of the general case gcd(2n, 3n)=n is a specific instance of the Euclidean algorithm rather than a broad theory of linear combinations, though it is presented with sufficient clarity."
-          ]
-        },
-        "theory": 0.7125,
-        "novelty": 0.25
-      }
-    ],
-    "interpretation": "Development evidence only; not a completed calibration or evaluation."
-  }
-]
+          "theory": 0.7125,
+          "novelty": 0.25
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/qwen-cpu-v2.jsonl",
+      "requests": 2,
+      "completed_responses": 1,
+      "incomplete_requests": 1,
+      "response_seconds": [
+        359.8025256410001
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-15T09:22:19.931266+00:00",
+          "kind": "judge_assessment",
+          "key": "5343b038f541bca7417283a39694fc39f3c23403149b2e518373646d99582ee4",
+          "task_id": "calibration-dev-0",
+          "assessment": {
+            "theory_validity": "supported",
+            "criteria": {
+              "structural_understanding": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate constructs a general invariant (gcd(2n, 3n) = n) that explains the specific instance. The structural link between the linear combination property and the set of common divisors is clearly defined and justified."
+              },
+              "justified_generality": {
+                "score": 3,
+                "evidence": [
+                  "With n=4, the answer is 4. The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility."
+                ],
+                "rationale": "The candidate explicitly generalizes the result to gcd(2n, 3n) = n and then extends the logic to the fundamental Euclidean step gcd(a,b)=gcd(a,b-a). The assumptions (positive integers) and the boundary of the generalization are clear."
+              },
+              "problem_as_consequence": {
+                "score": 4,
+                "evidence": [
+                  "Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n. With n=4, the answer is 4."
+                ],
+                "rationale": "The specific problem gcd(8, 12) is derived as a direct, trivial consequence of the established general principle gcd(2n, 3n) = n. The difficult step (proving the general principle) is handled, making the specific answer a natural corollary."
+              },
+              "reuse_and_connections": {
+                "score": 3,
+                "evidence": [
+                  "The same invariant shows gcd(a,b)=gcd(a,b-a) for positive a<b, by applying both implications to divisibility. Repeating subtraction gives Euclid's algorithm."
+                ],
+                "rationale": "The candidate demonstrates a substantive connection by using the same divisibility logic to derive the fundamental step of Euclid's algorithm. This bridges the specific linear combination case to the general algorithmic framework."
+              },
+              "conceptual_economy": {
+                "score": 3,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both."
+                ],
+                "rationale": "The definitions are minimal and functional. The candidate avoids unnecessary abstraction by focusing directly on the divisibility relationship required to solve the problem, using the simplest possible generalization (2n, 3n) to reach the solution."
+              },
+              "constructive_novelty": {
+                "score": 2,
+                "evidence": [
+                  "A common divisor of 2n and 3n divides 3n-2n=n; conversely every divisor of n divides both. Thus their sets of common divisors agree with the divisors of n, so gcd(2n,3n)=n for every positive integer n."
+                ],
+                "rationale": "The candidate offers a valid, nontrivial organizing definition (the invariant gcd(2n, 3n) = n) that reframes the problem. While the method is standard number theory, the explicit construction of this specific invariant to solve the instance and then generalize to the Euclidean step constitutes a useful conceptual addition beyond merely listing common divisors. It demonstrates the operation of the invariant clearly."
+              }
+            },
+            "problems": []
+          },
+          "theory": 0.7375,
+          "novelty": 0.5
+        }
+      ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    }
+  ],
+  "feasibility": [
+    {
+      "kind": "maximum_length_backward",
+      "length": 2560,
+      "microbatch": 1,
+      "seconds": 941.7167526960002,
+      "loss": 0.000297099380986765,
+      "peak_gpu_allocated_bytes": 5107058688,
+      "peak_gpu_reserved_bytes": 5194645504,
+      "pilot_updates_discarded": true
+    }
+  ]
+}
 ```
