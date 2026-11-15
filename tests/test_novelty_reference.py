@@ -38,19 +38,32 @@ def test_positive_novelty_requires_explicit_departure(relation):
     assert assessment.quality == pytest.approx(.6)
     assert assessment.novelty_credit == {
         "raw_score": 2, "effective_score": 0, "eligible": False,
-        "withheld": True, "gate_reasons": [relation],
+        "score_cap": 0, "withheld": True, "gate_reasons": [relation],
     }
 
 
-@pytest.mark.parametrize("field", ["addition_evidence", "use_evidence"])
-def test_positive_novelty_requires_construction_and_function_evidence(field):
+@pytest.mark.parametrize("field,credited", [("addition_evidence", 0), ("use_evidence", 1)])
+def test_a_valid_connection_without_further_use_has_a_modest_credit_cap(field, credited):
     data = opinion()
     data["novelty_comparison"][field] = []
     assessment = Assessment.model_validate(data)
-    assert assessment.novelty == 0
-    assert assessment.quality == pytest.approx(.6)
+    assert assessment.novelty == credited / 4
+    assert assessment.quality == pytest.approx(.6 + .05*credited)
+    assert assessment.novelty_credit["score_cap"] == credited
     assert assessment.novelty_credit["gate_reasons"] == [f"missing_{field}"]
     assert assessment.model_dump() == data
+
+
+def test_brief_connection_credit_is_positive_but_cannot_match_a_developed_framework():
+    data = opinion(score=4)
+    developed = Assessment.model_validate(data)
+    data["novelty_comparison"]["use_evidence"] = []
+    brief = Assessment.model_validate(data)
+    assert brief.novelty == .25 < developed.novelty
+    assert brief.quality < developed.quality
+    assert brief.novelty_credit["eligible"] is True
+    assert brief.novelty_credit["withheld"] is True
+    assert brief.criteria["constructive_novelty"].score == 4
 
 
 def test_reference_and_candidate_excerpts_are_checked_against_separate_sources():

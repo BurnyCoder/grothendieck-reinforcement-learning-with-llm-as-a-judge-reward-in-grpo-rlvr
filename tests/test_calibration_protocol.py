@@ -17,16 +17,18 @@ class FixtureJudge:
         self.calls = 0
         self.fail = fail
         self.preferred = {c["preferred"] for c in calibration.build_cases(split)["pairs"]}
+        self.modest = {c["dispreferred"] for c in calibration.build_cases(split)["pairs"]
+                       if c.get("control_novelty") == "modest"}
 
     def assess(self, task, response):
         self.calls += 1
         positive = response in self.preferred and not self.fail
-        return SimpleNamespace(quality=float(positive), novelty=float(positive),
-                               novelty_credit={"raw_score": 4 if positive else 0,
-                                               "effective_score": 4 if positive else 0,
-                                               "eligible": positive, "withheld": False,
-                                               "gate_reasons": [] if positive else ["theory_not_supported"]},
-                               theory_validity="supported" if positive else "none")
+        score = 4 if positive else (1 if response in self.modest and not self.fail else 0)
+        return SimpleNamespace(quality=score/4, novelty=score/4,
+                               novelty_credit={"raw_score": score, "effective_score": score,
+                                               "score_cap": 4, "eligible": bool(score), "withheld": False,
+                                               "gate_reasons": [] if score else ["theory_not_supported"]},
+                               theory_validity="supported" if score else "none")
 
 
 @pytest.fixture
@@ -42,12 +44,12 @@ def test_development_stops_when_fixed_novelty_threshold_is_unreachable(isolated)
     result = calibration.calibrate(judge, "dev")
     assert not result["passed"] and not result["complete"]
     assert result["stopping_reason"] == "development_threshold_unreachable"
-    assert judge.calls == 4
+    assert judge.calls == 6
     assert result["strata"]["novelty"]["preference_upper_bound"] == .75
     assert result["false_theory_suppression"] is None
-    assert len(result["ordering"]) == 2 and not result["suppression"]
+    assert len(result["ordering"]) == 3 and not result["suppression"]
     assert calibration.calibrate(judge, "dev") == result
-    assert judge.calls == 4
+    assert judge.calls == 6
     assert not read_json(isolated / "calibration/fixture-quoted-dev.json")["passed"]
 
 
@@ -56,8 +58,8 @@ def test_success_needs_complete_suite_and_audit_never_stops_early(isolated, spli
     judge = FixtureJudge(isolated, split, fail=fail)
     result = calibration.calibrate(judge, split)
     assert result["complete"] and result["passed"] is (not fail)
-    assert judge.calls == 84
-    assert len(result["ordering"]) == len(result["suppression"]) == 28
+    assert judge.calls == 92
+    assert len(result["ordering"]) == 32 and len(result["suppression"]) == 28
     assert result["stopping_reason"] == "complete"
 
 

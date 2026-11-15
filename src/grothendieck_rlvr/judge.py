@@ -21,7 +21,7 @@ from .schema import Assessment, Criterion, NoveltyComparison, Task
 RETRY_PROTOCOL = {"version": "validation-feedback-v1", "max_attempts": 3,
                   "error_character_limit": 2000, "feedback_history": "latest_invalid_assessment_only"}
 TRANSPORT_PROTOCOL = "stream-total-deadline-v1"
-ASSESSMENT_PROTOCOL = "declared-novelty-eligibility-v1"
+ASSESSMENT_PROTOCOL = "tiered-novelty-eligibility-v2"
 
 
 class JudgeFailure(RuntimeError):

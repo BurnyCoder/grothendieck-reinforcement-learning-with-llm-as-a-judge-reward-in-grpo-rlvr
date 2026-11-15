@@ -206,6 +206,19 @@ def request_latency_rows(records):
     return rows
 
 
+def withheld_novelty_rows(result):
+    """Publish stored gate applications without reinterpreting historical assessments."""
+    rows = [["Case", "Response", "Raw novelty (0–4)", "Credited novelty (0–4)", "Gate reasons"]]
+    records = [(row["id"], side, row.get(f"{side}_novelty_credit"))
+               for row in result["ordering"] for side in ("preferred", "dispreferred")]
+    records += [(row["id"], "false theory", row.get("novelty_credit")) for row in result["suppression"]]
+    for case, side, credit in records:
+        if credit and credit["withheld"]:
+            rows.append([case, side, str(credit["raw_score"]), str(credit["effective_score"]),
+                         ", ".join(credit["gate_reasons"])])
+    return rows
+
+
 def figures(snapshot, destination: Path) -> None:
     """Use zero-based bounded score axes; omit unavailable curves rather than inventing data."""
     import matplotlib
@@ -290,8 +303,10 @@ def paper_sections(snapshot):
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
          "The current reference-comparison protocol records an added construction and its use before scoring "
          "novelty. The current code gate withholds novelty credit unless supported theory is declared "
-         "beyond-reference with excerpts for both the construction and its use. Raw scores remain unchanged; "
-         "effective scores and gate reasons are logged. Checklist-based judging [14] motivates auditable "
+         "beyond-reference with an excerpt identifying a concrete addition. Brief valid connections can "
+         "earn one novelty point without a further worked use; developed mathematics can earn up to four. "
+         "Code caps credit at one point when use evidence is absent. Raw scores remain unchanged; "
+         "effective scores, caps and gate reasons are logged. Checklist-based judging [14] motivates auditable "
          "prerequisites; the checks do not certify mathematical entailment. "
          "Final-answer verification does not certify surrounding proofs."),
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
@@ -336,6 +351,9 @@ def paper_sections(snapshot):
          "revision, without being declared a calibration pass or threshold failure. "
          "The later v5 attempt stopped after bounded retries repeated a contradiction between "
          "the declared reference relation and numerical novelty score; that calibration remained incomplete."
+         " V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when "
+         "the user clarified that brief valid connections should receive modest novelty credit. "
+         "V7 implements that changed construct and requires fresh calibration; historical results are retained."
          + "\n\n" + calibration_text(snapshot) + " No comparative conclusion follows.\n\n"
          + feasibility_text(snapshot)),
         ("Transfer evaluation", "Recipient accuracy is compared with no notes, unrelated notes of matched "
@@ -492,12 +510,20 @@ def report() -> dict:
                    indent=2, ensure_ascii=False) + "\n```\n", encoding="utf-8")
     for result in snapshot["calibration"]:
         name = f"calibration-{result['role']}-{result['variant']}-{result['split']}-{result['identity']['judge'][:8]}"
-        case_rows = [["Case", "Preferred T", "Control T", "Preferred novelty", "Control novelty", "Passed"]]
+        case_rows = [["Case", "Preferred T", "Control T", "Preferred novelty", "Control novelty",
+                      "Control novelty expectation", "Passed"]]
         case_rows.extend([row["id"], display(row["preferred"]), display(row["dispreferred"]),
                      display(row["preferred_novelty"]), display(row["dispreferred_novelty"]),
+                     ("Positive, below preferred" if row.get("expected_control_novelty") == "modest" else "Zero")
+                     if row["stratum"] == "novelty" else "Not applied",
                      str(row["passed"])] for row in result["ordering"])
+        credit_rows = withheld_novelty_rows(result)
+        credit_text = ("\n\n## Withheld novelty credit\n\n" + markdown_table(credit_rows) +
+                       "\n\nThese are recorded gate applications, not independently verified mathematical "
+                       "errors. Raw opinions remain unchanged; the acceptance checks use credited scores.") \
+            if len(credit_rows) > 1 else ""
         (folder / f"{name}.md").write_text(
-            f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" + markdown_table(case_rows) +
+            f"# {name}\n\n" + calibration_text({"calibration": [result]}) + "\n\n" + markdown_table(case_rows) + credit_text +
             "\n\nThese are fixed constructed expectations, not human preference labels or verified novelty. "
             "Source: the matching identity in `reports/results.json`; full judgments are preserved in "
             "`reports/development/`. Case-level disagreements require interpretation, not silent score repair.\n",

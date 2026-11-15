@@ -54,3 +54,14 @@ def test_request_latency_keeps_unfinished_calls_separate_from_observed_times():
     rows = reporting.request_latency_rows(records)
     assert rows[1][1:] == ["2", "1", "1", "1", "20.00", "10.00–30.00"]
     assert rows[2][1:] == ["0", "0", "0", "1", "Pending", "Pending"]
+
+
+def test_withheld_novelty_report_uses_stored_credit_without_rescoring_history():
+    """Old records without credit metadata must not acquire a v6 gate retrospectively."""
+    result = {"ordering": [{"id": "old-case"}, {"id": "new-case",
+                "preferred_novelty_credit": {"raw_score": 3, "effective_score": 3, "withheld": False},
+                "dispreferred_novelty_credit": {"raw_score": 1, "effective_score": 0,
+                    "withheld": True, "gate_reasons": ["within_reference"]}}], "suppression": []}
+    rows = reporting.withheld_novelty_rows(result)
+    assert len(rows) == 2
+    assert rows[1] == ["new-case", "dispreferred", "1", "0", "within_reference"]

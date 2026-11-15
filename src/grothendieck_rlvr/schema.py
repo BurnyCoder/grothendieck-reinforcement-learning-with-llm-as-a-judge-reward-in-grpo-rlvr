@@ -43,7 +43,7 @@ class Criterion(Record):
 
 
 class NoveltyComparison(Record):
-    """Declare the reference, addition and use before awarding a novelty score.
+    """Describe the reference, conceptual addition and any demonstrated further use.
 
     Checklist motivation: https://arxiv.org/html/2601.08654v1, section 3.
     These are auditable judge decisions, not verified mathematical propositions.
@@ -106,12 +106,17 @@ class Assessment(Record):
             reasons.append("theory_not_supported")
         if comparison.relation != "beyond_reference":
             reasons.append(comparison.relation)
-        for field in ("addition_evidence", "use_evidence"):
-            if not getattr(comparison, field):
-                reasons.append(f"missing_{field}")
+        if not comparison.addition_evidence:
+            reasons.append("missing_addition_evidence")
+        cap = 0 if reasons else 4
+        # A concrete valid connection can earn one point without a further use.
+        # Higher credit still requires demonstrated mathematical development.
+        if not comparison.use_evidence:
+            reasons.append("missing_use_evidence")
+            cap = min(cap, 1)
         raw = self.criteria["constructive_novelty"].score
-        effective = 0 if reasons else raw
-        return {"raw_score": raw, "effective_score": effective, "eligible": not reasons,
+        effective = min(raw, cap)
+        return {"raw_score": raw, "effective_score": effective, "score_cap": cap, "eligible": cap > 0,
                 "withheld": effective < raw, "gate_reasons": reasons}
 
     @property

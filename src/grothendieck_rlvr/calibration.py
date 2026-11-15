@@ -4,7 +4,10 @@ from fractions import Fraction
 from .io import PROJECT, atomic_json, digest, read_json, root
 from .schema import Task
 from .verify import verify_answer
-from .novelty_cases import novelty_example
+from .novelty_cases import CONNECTION_CONTROLS, novelty_example
+
+
+CALIBRATION_PROTOCOL = "graded-connections-development-futility-v2"
 
 
 def example(index: int, split: str) -> tuple[Task, str, str, str]:
@@ -75,7 +78,7 @@ def build_cases(split: str) -> dict:
     for i in range(cfg["calibration_novelty_pairs"]):
         task, bridge, conventional, _ = novelty_example(i, split)
         pairs.append({"task": task.model_dump(), "preferred": bridge, "dispreferred": conventional,
-                      "stratum": "novelty"})
+                      "stratum": "novelty", "control_novelty": "modest" if i in CONNECTION_CONTROLS else "none"})
     for i in range(cfg["calibration_novelty_false_cases"]):
         task, _, _, false = novelty_example(i + 40, split)
         false_cases.append({"task": task.model_dump(), "response": false, "stratum": "novelty"})
@@ -116,7 +119,7 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
     destination = root() / "calibration" / f"{judge.role}-{judge.variant}-{split}.json"
     cases = build_cases(split)
     identity = {"judge": judge.identity, "cases": digest(cases),
-                "protocol": "novelty-first-development-futility-v1"}
+                "protocol": CALIBRATION_PROTOCOL}
     lock_path = destination.with_suffix(".lock.json")
     if restart_development and split != "dev":
         raise ValueError("Only development calibration may be restarted; locked audits remain immutable")
@@ -149,8 +152,11 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
         if kind == "pair":
             preferred = judge.assess(task, case["preferred"])
             dispreferred = judge.assess(task, case["dispreferred"])
-            novelty_order = preferred.novelty > dispreferred.novelty and dispreferred.novelty == 0
+            expected_control = case.get("control_novelty", "none")
+            control_credit = dispreferred.novelty > 0 if expected_control == "modest" else dispreferred.novelty == 0
+            novelty_order = preferred.novelty > dispreferred.novelty and control_credit
             ordering.append({"id": task.id, "stratum": case["stratum"],
+                             "expected_control_novelty": expected_control,
                              "preferred": preferred.quality, "dispreferred": dispreferred.quality,
                              "preferred_novelty": preferred.novelty, "dispreferred_novelty": dispreferred.novelty,
                              "preferred_novelty_credit": preferred.novelty_credit,
@@ -190,6 +196,6 @@ def require_calibration() -> None:
             raise RuntimeError(f"Training blocked: missing or failed {role}/{variant} locked audit")
         judge = Judge(url, role, variant)
         expected = {"judge": judge.identity, "cases": digest(build_cases("audit")),
-                    "protocol": "novelty-first-development-futility-v1"}
+                    "protocol": CALIBRATION_PROTOCOL}
         if read_json(path)["identity"] != expected or not read_json(path).get("complete", False):
             raise RuntimeError("Training blocked: incomplete audit or judge/calibration protocol changed")
