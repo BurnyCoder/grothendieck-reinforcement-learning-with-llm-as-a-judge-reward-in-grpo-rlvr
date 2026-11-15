@@ -3,7 +3,7 @@
   "judge_prompt_version": "v4",
   "data_seed": 20261115,
   "training_seeds": [42, 43, 44],
-  "max_steps": 256,
+  "max_steps": 64,
   "max_prompt_length": 512,
   "max_completion_length": 2048,
   "num_generations": 4,

@@ -35,7 +35,7 @@ unreachable. Untouched full locked audits remain required. No comparative run ha
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
 - [x] Complete development execution pilot and freeze the unmodified policy checkpoint.
-- [ ] Freeze the comparative training budget after judge calibration.
+- [x] Freeze the matched comparative update budget from development timing evidence.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.
 - [ ] Train/evaluate matched seeds 43 and 44, plus seed-42 controls.
@@ -50,7 +50,8 @@ a zero warmup learning rate. These are execution checks, not learning evidence;
 pilot updates are excluded from comparative initialization.
 The [policy selection](../configs/policy-selection.json) freezes the preferred
 Qwen3.5-2B base revision for every arm and the transfer recipient. No fallback
-is selected. Judge calibration and the final budget decision remain separate gates.
+is selected. The [budget amendment](amendments/2026-11-15-training-budget.md)
+selects 64 updates uniformly before any comparative run. Judge calibration remains a gate.
 Development judging by both models has started but is incomplete;
 the initial GRPO attempt failed during generation on a CRLF configuration-path
 bug, now repaired and regression-tested, before its first optimizer update;

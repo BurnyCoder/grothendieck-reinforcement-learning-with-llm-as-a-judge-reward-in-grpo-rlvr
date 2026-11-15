@@ -156,7 +156,8 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None) -> 
             log.emit("checkpoint", step=state.global_step, path=str(folder), status="complete")
 
     args = dict(output_dir=str(directory), run_name=run_id, max_steps=cfg["max_steps"],
-                per_device_train_batch_size=1, gradient_accumulation_steps=8, num_generations=4,
+                per_device_train_batch_size=cfg["per_device_train_batch_size"],
+                gradient_accumulation_steps=cfg["gradient_accumulation_steps"], num_generations=cfg["num_generations"],
                 learning_rate=cfg["learning_rate"], warmup_ratio=cfg["warmup_ratio"], lr_scheduler_type="linear",
                 loss_type="dr_grpo", scale_rewards=False, beta=cfg["beta"], epsilon=.2,
                 max_completion_length=cfg["max_completion_length"], temperature=1.0, top_p=1.0,

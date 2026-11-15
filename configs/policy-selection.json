@@ -15,5 +15,6 @@
     "reports/development/feasibility-grpo-resumed-complete.json"
   ],
   "decision": "Preferred BF16 LoRA policy passed maximum-length backward and four-completion GRPO saving/resumption with a nonzero parameter change. No memory/runtime failure justifies the fallback.",
-  "remaining_gates": "Frozen judge calibration and training-budget decision before comparative runs. The pilot is not a stable throughput or learning estimate."
+  "training_budget_amendment": "reports/amendments/2026-11-15-training-budget.md",
+  "remaining_gates": "Frozen judge calibration before comparative runs. The pilot is not a stable throughput or learning estimate."
 }
