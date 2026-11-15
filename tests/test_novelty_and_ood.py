@@ -7,7 +7,9 @@ from grothendieck_rlvr.reward import composite
 
 def opinion(novelty, validity="supported"):
     """Hold mathematical quality fixed to isolate the novelty intervention."""
-    return Assessment(theory_validity=validity, criteria={
+    return Assessment(theory_validity=validity, novelty_comparison={
+        "reference_excerpt": "Fixture reference", "addition_evidence": ["A justified construction."],
+        "use_evidence": ["A justified construction."], "relation": "beyond_reference"}, criteria={
         key: Criterion(score=novelty if key == "constructive_novelty" else 3,
                        evidence=["A justified construction."], rationale="Constructed test.")
         for key in Assessment.weights

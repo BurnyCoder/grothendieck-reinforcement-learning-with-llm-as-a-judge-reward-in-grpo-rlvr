@@ -15,12 +15,13 @@ import httpx
 from .io import PROJECT, EventLog, digest, read_json, root
 from . import models
 from .prompts import judge_system
-from .schema import Assessment, Criterion, Task
+from .schema import Assessment, Criterion, NoveltyComparison, Task
 
 
 RETRY_PROTOCOL = {"version": "validation-feedback-v1", "max_attempts": 3,
                   "error_character_limit": 2000, "feedback_history": "latest_invalid_assessment_only"}
 TRANSPORT_PROTOCOL = "stream-total-deadline-v1"
+ASSESSMENT_PROTOCOL = "reference-comparison-consistency-v1"
 
 
 class JudgeFailure(RuntimeError):
@@ -150,6 +151,9 @@ class Judge:
                                 "schema": assessment_schema(),
                                 "max_tokens": self.config["judge_max_tokens"] + reasoning_budget,
                                 "criterion_field_order": list(Criterion.model_fields),
+                                "assessment_field_order": list(Assessment.model_fields),
+                                "comparison_field_order": list(NoveltyComparison.model_fields),
+                                "assessment_protocol": ASSESSMENT_PROTOCOL,
                                 "retry_protocol": RETRY_PROTOCOL,
                                 "transport_protocol": TRANSPORT_PROTOCOL,
                                 "request_deadline_seconds": self.config["judge_timeout_seconds"],
@@ -163,6 +167,7 @@ class Judge:
         if cached:
             assessment = Assessment.model_validate_json(cached[0])
             assessment.validate_evidence(response)
+            assessment.validate_reference(self.anchors[task.family])
             self.log.emit("judge_cache_hit", key=key, task_id=task.id)
             return assessment
         payload = {"problem": task.problem, "reference_answer": task.answer,
@@ -176,6 +181,7 @@ class Judge:
                 output = self.client.generate(messages, self.config["judge_max_tokens"], assessment_schema())
                 assessment = Assessment.model_validate_json(output)
                 assessment.validate_evidence(response)
+                assessment.validate_reference(self.anchors[task.family])
                 self.db.execute("INSERT OR REPLACE INTO assessments VALUES (?, ?)",
                                 (key, assessment.model_dump_json()))
                 self.db.commit()

@@ -85,6 +85,12 @@ implemented but not validated. The [development history](reports/plan.md) and
 negative findings. The [bounded-reasoning attempt](reports/experiments/qwen-reasoning-v4-learnings.md)
 also failed under the same v4 rubric, cases and thresholds. It did not establish
 a repair of novelty discrimination.
+The [v5 protocol](reports/amendments/2026-11-15-explicit-reference-decisions.md)
+requires an explicit reference comparison before scoring novelty. The judge
+quotes the baseline and supplies candidate evidence for an added construction
+and its use. Code rejects a positive novelty score paired with a declaration
+that the response stays within the reference. These checks establish internal
+consistency and attribution; calibration must still test mathematical judgment.
 Exact supporting excerpts remain required; development may stop as failed when
 the fixed thresholds become unreachable. Only a complete pass satisfies a gate.
 
@@ -130,7 +136,7 @@ generation. A runtime change requires recalibration; interrupted development
 evidence is retained. No calibration pass or comparative training result is claimed yet.
 Judge requests now allow 512 native reasoning tokens within a 2,048-token total
 ceiling; thought tokens are logged separately from the JSON assessment. Greedy
-decoding, the rubric and score weights remain fixed. This is a development test,
+decoding and score weights remain fixed. This is a development test,
 not evidence that additional reasoning improves judging. Each inference setting
 is included in cache/calibration identity. See the
 [inference review](reports/judge-inference-review.md) for the mixed prior evidence.

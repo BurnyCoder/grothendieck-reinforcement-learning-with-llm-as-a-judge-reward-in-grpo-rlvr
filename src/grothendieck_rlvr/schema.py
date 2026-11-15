@@ -42,6 +42,18 @@ class Criterion(Record):
     score: int = Field(ge=0, le=4, strict=True)
 
 
+class NoveltyComparison(Record):
+    """Declare the reference, addition and use before awarding a novelty score.
+
+    Checklist motivation: https://arxiv.org/html/2601.08654v1, section 3.
+    These are auditable judge decisions, not verified mathematical propositions.
+    """
+    reference_excerpt: str
+    addition_evidence: list[str]
+    use_evidence: list[str]
+    relation: Literal["within_reference", "beyond_reference", "unresolved"]
+
+
 class Assessment(Record):
     """Evidence-bearing opinion from a frozen judge, not a proof certificate."""
     weights: ClassVar[dict[str, float]] = {
@@ -50,6 +62,7 @@ class Assessment(Record):
         "conceptual_economy": .10, "constructive_novelty": .20,
     }
     theory_validity: Literal["none", "supported", "unsupported", "contradicted"]
+    novelty_comparison: NoveltyComparison
     criteria: dict[str, Criterion]
     problems: list[str]
 
@@ -60,15 +73,31 @@ class Assessment(Record):
             raise ValueError("Judge must return exactly the declared rubric criteria")
         if any(c.score and not c.evidence for c in self.criteria.values()):
             raise ValueError("Positive scores require supporting excerpts")
+        comparison = self.novelty_comparison
+        if self.criteria["constructive_novelty"].score:
+            if comparison.relation != "beyond_reference":
+                raise ValueError("Positive constructive_novelty requires relation beyond_reference")
+            if not comparison.addition_evidence or not comparison.use_evidence:
+                raise ValueError("Positive constructive_novelty requires both addition and use evidence")
         return self
 
     def validate_evidence(self, response: str) -> None:
         """Reject fabricated spans; this checks attribution, not mathematical truth."""
-        for key, criterion in self.criteria.items():
-            for index, excerpt in enumerate(criterion.evidence):
+        groups = [(f"criteria.{key}.evidence", criterion.evidence) for key, criterion in self.criteria.items()]
+        groups += [(f"novelty_comparison.{name}", getattr(self.novelty_comparison, name))
+                   for name in ("addition_evidence", "use_evidence")]
+        for label, excerpts in groups:
+            for index, excerpt in enumerate(excerpts):
                 if not excerpt.strip() or excerpt not in response:
-                    raise ValueError(f"criteria.{key}.evidence[{index}] must be a nonempty exact "
+                    raise ValueError(f"{label}[{index}] must be a nonempty exact "
                                      "candidate excerpt; do not insert ellipses or paraphrase")
+
+    def validate_reference(self, reference: str) -> None:
+        """Prevent an invented baseline quotation; its interpretation still needs auditing."""
+        excerpt = self.novelty_comparison.reference_excerpt
+        if not excerpt.strip() or excerpt not in reference:
+            raise ValueError("novelty_comparison.reference_excerpt must be a nonempty exact "
+                             "conventional reference excerpt")
 
     @property
     def novelty(self) -> float:

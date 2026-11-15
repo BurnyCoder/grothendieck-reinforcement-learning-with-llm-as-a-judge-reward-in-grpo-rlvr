@@ -1,0 +1,13 @@
+{
+  "time": "2026-11-15T14:06:07.594218+00:00",
+  "kind": "synthetic_judge_template_capacity",
+  "model_role": "training_judge",
+  "prompt_version": "v5",
+  "candidate_tokens": 2048,
+  "formatted_prompt_tokens": 4174,
+  "completion_ceiling": 2048,
+  "context_length": 8192,
+  "remaining_tokens_after_ceiling": 1970,
+  "inference_performed": false,
+  "limitation": "Repeated-token candidate with a short GCD task. Not a guarantee for other task lengths, retries, tokenizer families or genuine explanations."
+}

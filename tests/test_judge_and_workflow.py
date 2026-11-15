@@ -12,7 +12,9 @@ from grothendieck_rlvr.verify import VerifierFailure
 
 
 def fixture_assessment():
-    return {"theory_validity": "supported", "criteria": {
+    return {"theory_validity": "supported", "novelty_comparison": {
+        "reference_excerpt": "use Euclid's algorithm", "addition_evidence": ["Divisors are preserved."],
+        "use_evidence": ["Divisors are preserved."], "relation": "beyond_reference"}, "criteria": {
         k: {"score": 3, "evidence": ["Divisors are preserved."], "rationale": "Fixture only"}
         for k in Assessment.weights}, "problems": []}
 
