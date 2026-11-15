@@ -16,7 +16,7 @@ Tasks come from pinned Reasoning Gym generators [6]. Training families are GCD, 
 
 ## Models and training
 
-Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration fixes group size, optimizer settings, sample budgets and fallback criteria. Failed feasibility or calibration is development evidence, not a negative test of the behavioral hypothesis.
+Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison runtime-budget amendment selects 64 optimizer updates for every training arm. Failed feasibility or calibration is development evidence, not a negative test of the behavioral hypothesis.
 
 ## Experimental design and analysis
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T11:49:20.309429+00:00",
+  "generated_at": "2026-11-15T11:59:05.502957+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v4",
@@ -9,7 +9,7 @@
       43,
       44
     ],
-    "max_steps": 256,
+    "max_steps": 64,
     "max_prompt_length": 512,
     "max_completion_length": 2048,
     "num_generations": 4,
@@ -2354,6 +2354,62 @@
     }
   ],
   "examples": {},
+  "budget": {
+    "observed_step_seconds": [
+      699.9325059050007,
+      480.664855666997
+    ],
+    "judged_training_arms": 5,
+    "selected_updates": 64,
+    "assumption": "Each future step repeats one observed development interval. These are scenarios, not confidence bounds.",
+    "limitations": "Two intervals, including first-use overhead; v3 judge protocol. Future lengths, accuracy, theory and v4 latency may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
+    "options": [
+      {
+        "updates": 32,
+        "one_judged_arm_hours": [
+          4.272576494817751,
+          6.221622274711117
+        ],
+        "all_judged_arms_hours": [
+          21.362882474088757,
+          31.108111373555584
+        ]
+      },
+      {
+        "updates": 64,
+        "one_judged_arm_hours": [
+          8.545152989635502,
+          12.443244549422234
+        ],
+        "all_judged_arms_hours": [
+          42.72576494817751,
+          62.21622274711117
+        ]
+      },
+      {
+        "updates": 128,
+        "one_judged_arm_hours": [
+          17.090305979271005,
+          24.886489098844468
+        ],
+        "all_judged_arms_hours": [
+          85.45152989635503,
+          124.43244549422234
+        ]
+      },
+      {
+        "updates": 256,
+        "one_judged_arm_hours": [
+          34.18061195854201,
+          49.772978197688936
+        ],
+        "all_judged_arms_hours": [
+          170.90305979271005,
+          248.86489098844467
+        ]
+      }
+    ]
+  },
   "transfer": {
     "summaries": {},
     "versus_no_notes": {},

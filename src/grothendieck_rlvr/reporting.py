@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .analysis import primary_comparison, summarize, transfer_analysis
+from .budget import training_budget, budget_markdown
 from .io import PROJECT, atomic_json, digest, read_json, read_jsonl, root
 
 ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
@@ -50,6 +51,7 @@ def collect() -> dict:
                                 for family in sorted({r["family"] for r in rows})}
                          for name, rows in evaluations.items()},
             "calibration": calibration, "development": development_records(), "examples": examples,
+            "budget": training_budget(list(feasibility.values()), cfg),
             "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
                                           cfg["transfer_sources"]),
             "feasibility": list(feasibility.values())}
@@ -225,7 +227,9 @@ def paper_sections(snapshot):
         ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
          "on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies "
          "are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration "
-         "fixes group size, optimizer settings, sample budgets and fallback criteria. Failed feasibility or "
+         "fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison "
+         f"runtime-budget amendment selects {snapshot['study']['max_steps']} optimizer updates for every training arm. "
+         "Failed feasibility or "
          "calibration is development evidence, not a negative test of the behavioral hypothesis."),
         ("Experimental design and analysis", "Compare ordinary and prompted unmodified models, correctness-only "
          "training, the proposed bonus, shuffled bonuses and a rubric-only ablation. The main trained comparison "
@@ -366,6 +370,7 @@ def write_paper(snapshot, rows, destination: Path):
 def report() -> dict:
     """The only command that regenerates numerical publications and the PDF paper."""
     snapshot = collect()
+    (PROJECT / "reports/training-budget.md").write_text(budget_markdown(snapshot["budget"]), encoding="utf-8")
     atomic_json(PROJECT / "site/snapshot.json", snapshot)
     atomic_json(PROJECT / "reports/results.json", snapshot)
     rows = table_rows(snapshot)

@@ -112,6 +112,10 @@ only. Fine-tuning memory advertisements do not guarantee GRPO feasibility.
 The completed execution pilot supports the
 [frozen Qwen3.5-2B policy selection](configs/policy-selection.json); every
 comparative arm starts from its unmodified base weights. Pilot adapters are excluded.
+The [pre-comparison budget amendment](reports/amendments/2026-11-15-training-budget.md)
+fixes 64 updates for every training arm. The
+[generated runtime scenarios](reports/training-budget.md) explain the reduction
+from the original maximum; they do not guarantee completion within a week.
 
 Judge backend, GPU offload, KV-cache precision and batching are pinned in
 [the serving configuration](configs/judge-runtime.json) and included in cache
