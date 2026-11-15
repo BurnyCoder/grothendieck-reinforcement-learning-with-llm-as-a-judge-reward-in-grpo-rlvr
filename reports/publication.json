@@ -95,5 +95,8 @@
   "modest_connections_protocol_pages_workflow": 43731912996,
   "modest_connections_failure_merge": "52bbc262ad69e68a9682c658d05e9f863b37bd6a",
   "modest_connections_failure_huggingface_commit": "c268faa1663837ba234f220c9e9d0c9ffcba7c4d",
-  "modest_connections_failure_pages_workflow": 43736440934
+  "modest_connections_failure_pages_workflow": 43736440934,
+  "explicit_reference_scope_merge": "77594ff60564c7ec3677b4b0c6d3c01c59b74097",
+  "explicit_reference_scope_huggingface_commit": "4ccb1e6ab13546c060eb9e11d83697b77d5dd7b1",
+  "explicit_reference_scope_pages_workflow": 43737029479
 }
