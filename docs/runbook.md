@@ -8,6 +8,16 @@ directory. Copy `.env.example` to `.env` when cloning on another machine.
 artifact directory; the default local generated-cache folder is ignored by Git.
 This follows the installed, pinned `unsloth_zoo/compiler.py` environment option.
 
+If the checkout is on a Windows mount and cold imports are slow, the same
+`uv.lock` can install a project-specific virtual environment under WSL's native
+filesystem. Set `UV_PROJECT_ENVIRONMENT=/home/your-user/projects/grothendieck-rlvr-runtime/.venv`
+in the ignored `.env`, then rerun `scripts/setup-wsl.sh`. `scripts/run.sh` uses
+that interpreter while keeping this checkout as the source. The default remains
+the local `.venv`; model caches, logs and checkpoints remain under `GROTH_ROOT`.
+For direct Python/pytest/Ruff commands below, substitute the configured venv path.
+See [uv's environment-path documentation](https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path)
+and [Microsoft's filesystem guidance](https://learn.microsoft.com/en-us/windows/wsl/filesystems).
+
 ## Install and prepare
 
 ```bash
