@@ -1,0 +1,134 @@
+{
+  "identity": {
+    "judge": "b33cb353c2aa2c5e6b68d9ddc5eda51443157474676b09cb849f38303124c56d",
+    "cases": "e523c41fa1ca1b47d9b1bc905dbcdf505ed5990bed6fce433e0e179c74a5d993",
+    "protocol": "graded-connections-development-futility-v2"
+  },
+  "split": "dev",
+  "role": "training_judge",
+  "variant": "quoted",
+  "ordering": [
+    {
+      "id": "novelty-dev-0",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.0,
+      "dispreferred": 0.0,
+      "preferred_novelty": 0.0,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 2,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported"
+        ]
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "novelty-dev-1",
+      "stratum": "novelty",
+      "expected_control_novelty": "none",
+      "preferred": 0.0,
+      "dispreferred": 0.0,
+      "preferred_novelty": 0.0,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 4,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported"
+        ]
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "novelty-dev-2",
+      "stratum": "novelty",
+      "expected_control_novelty": "modest",
+      "preferred": 0.0,
+      "dispreferred": 0.0,
+      "preferred_novelty": 0.0,
+      "dispreferred_novelty": 0.0,
+      "preferred_novelty_credit": {
+        "raw_score": 4,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported"
+        ]
+      },
+      "dispreferred_novelty_credit": {
+        "raw_score": 1,
+        "effective_score": 0,
+        "score_cap": 0,
+        "eligible": false,
+        "withheld": true,
+        "gate_reasons": [
+          "theory_not_supported",
+          "missing_use_evidence"
+        ]
+      },
+      "passed": false
+    }
+  ],
+  "suppression": [],
+  "strata": {
+    "theory": {
+      "preference_accuracy": null,
+      "false_theory_suppression": null,
+      "pairs_observed": 0,
+      "pairs_expected": 20,
+      "false_observed": 0,
+      "false_expected": 20,
+      "preference_upper_bound": 1.0,
+      "suppression_upper_bound": 1.0
+    },
+    "novelty": {
+      "preference_accuracy": 0.0,
+      "false_theory_suppression": null,
+      "pairs_observed": 3,
+      "pairs_expected": 12,
+      "false_observed": 0,
+      "false_expected": 8,
+      "preference_upper_bound": 0.75,
+      "suppression_upper_bound": 1.0
+    }
+  },
+  "preference_accuracy": 0.0,
+  "false_theory_suppression": null,
+  "complete": false,
+  "threshold_unreachable": true,
+  "passed": false,
+  "stopping_reason": "development_threshold_unreachable"
+}

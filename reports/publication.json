@@ -107,5 +107,8 @@
   "reference_scope_failure_pages_workflow": 43742942279,
   "decomposed_protocol_merge": "132e928f8e32054ce77dc632d08c7d25693ac63b",
   "decomposed_protocol_huggingface_commit": "ea1b2297d10d0b19b75b504f630e1d8cce3f6591",
-  "decomposed_protocol_pages_workflow": 43755453675
+  "decomposed_protocol_pages_workflow": 43755453675,
+  "specialist_activation_merge": "e3d94066eb8b44bd29638759640422004d4cc2e5",
+  "specialist_activation_huggingface_commit": "f799892e7fbe5a217c88adecaf49c0be0fd686e7",
+  "specialist_activation_pages_workflow": 43760649928
 }

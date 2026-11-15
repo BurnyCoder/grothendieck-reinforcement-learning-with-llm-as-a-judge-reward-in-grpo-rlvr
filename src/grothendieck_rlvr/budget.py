@@ -26,7 +26,7 @@ def training_budget(feasibility: list[dict], config: dict) -> dict:
                              "manifest_hash": digest(tasks),
                              "assumption": "One GPU, sequential pre-shuffled manifest, one GRPO iteration, completed fixed budget. Actual exposure must be checked against rollout logs."},
         "assumption": "Each future step repeats one observed development interval. These are scenarios, not confidence bounds.",
-        "limitations": "Two intervals, including first-use overhead, used the v3 non-thinking judge. The current bounded native-reasoning protocol is not timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
+        "limitations": "Two intervals, including first-use overhead, used the v3 non-thinking judge. Neither the later reasoning-enabled judge nor the decomposed protocols are timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
         "options": [{"updates": updates,
                      "one_judged_arm_hours": [updates * t / 3600 for t in (min(intervals), max(intervals))],
                      "all_judged_arms_hours": [updates * t * judged_arms / 3600 for t in (min(intervals), max(intervals))]}

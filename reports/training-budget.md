@@ -2,7 +2,7 @@
 
 Each future step repeats one observed development interval. These are scenarios, not confidence bounds.
 
-Two intervals, including first-use overhead, used the v3 non-thinking judge. The current bounded native-reasoning protocol is not timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.
+Two intervals, including first-use overhead, used the v3 non-thinking judge. Neither the later reasoning-enabled judge nor the decomposed protocols are timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.
 
 Selected matched budget: **64 optimizer updates per training arm**.
 

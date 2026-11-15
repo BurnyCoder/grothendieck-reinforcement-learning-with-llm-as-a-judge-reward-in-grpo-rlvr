@@ -17,6 +17,10 @@ defines the comparison references. Both judges use these same frozen rules.
 The [decomposed protocol](decomposed-judges.md) first uses two calls, then eight
 specialists if development fails. That fallback is now selected after the
 [two-call failure](../reports/experiments/qwen-v8-two-stage-learnings.md).
+Its [quoted-Qwen specialist trial also failed](../reports/experiments/qwen-v8-specialist-learnings.md):
+declared mathematical issues removed bonuses from valid developed mathematics
+and a brief connection. The scoring construct and thresholds remain unchanged;
+the remaining specialist development configurations cannot bypass that failure.
 `judge_stages.py` derives constructive novelty
 from declared additions, demonstrated uses and consequences. It preserves raw
 findings and gates the entire bonus on supported validity without substantive

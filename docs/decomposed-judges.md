@@ -43,8 +43,13 @@ bash scripts/run.sh calibrate --role training_judge --variant rubric --split dev
 bash scripts/run.sh calibrate --role evaluation_judge --variant quoted --split dev --restart-development
 ```
 
-Run the next configuration only after the previous one completely passes. The
-evaluation server must be loaded separately as described in the runbook. On an
+For the initial two-call trial, any required development failure activates the
+specialist fallback. Under that fallback, complete the development matrix in
+order even if an earlier configuration fails; the user-approved plan calls for
+restarting all three configurations. A failed configuration still blocks every
+locked audit and comparative training run. See the
+[execution clarification](../reports/amendments/2026-11-15-specialist-development-matrix.md).
+The evaluation server must be loaded separately as described in the runbook. On an
 unchanged interruption, rerun the same command without `--restart-development`.
 Changing the selected protocol requires publishing the activation and using
 `--restart-development` for each configuration; this archives previous evidence.

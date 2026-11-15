@@ -1,0 +1,15 @@
+{
+  "time": "2026-11-15T21:08:32.128682+00:00",
+  "kind": "independent_literature_counterexample",
+  "inference_performed": false,
+  "source": "https://arxiv.org/pdf/2511.21522v1",
+  "location": "Appendix A.3.1, Case 6, pages 29-31",
+  "construction": "Every student loves every student; f(X)=S for nonempty X and f(empty)=empty.",
+  "claims_checked": {
+    "disjoint_inputs_union_equals_symmetric_difference": true,
+    "function_is_F2_linear_on_this_pair": false,
+    "fixed_full_set": true,
+    "singleton_image_is_singleton": false
+  },
+  "interpretation": "The candidate proof claims F2 linearity and that f(S)=S forces singleton neighborhoods. The complete directed graph refutes both claims, although it does not refute the problem conclusion. The appendix comment that this proof is true therefore is not accepted as an independent certificate."
+}

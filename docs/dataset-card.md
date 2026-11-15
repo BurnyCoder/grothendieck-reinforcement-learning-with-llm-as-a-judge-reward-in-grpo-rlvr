@@ -53,6 +53,15 @@ reward. Complete matching development passes precede the full locked audits.
 See `reports/amendments/2026-11-15-decomposed-judges.md`; neither new instrument
 has yet qualified, and no comparative run has begun.
 
+Quoted-Qwen specialist development subsequently failed its unchanged futility
+gate. False mathematical objections vetoed valid frameworks and the brief
+commutator connection. Full evidence, selected exact mathematical checks and
+limitations are in `reports/experiments/qwen-v8-specialist-learnings.md`.
+Role-level issue counts and timings are generated from the stored findings.
+Rubric-only Qwen and quoted Gemma specialist development remain pending. The
+failed configuration blocks audits and comparative training regardless of their
+outcomes; the full development matrix is still completed as requested.
+
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
 

@@ -82,3 +82,26 @@ def test_ranking_success_is_not_reported_as_a_pass_of_the_novelty_contract():
     rows = reporting.calibration_component_rows(result)
     assert [row[1:3] for row in rows[1:]] == [["3", "3"], ["3", "3"], ["0", "2"], ["0", "3"]]
     assert result["ordering"][2].get("expected_control_novelty") is None
+
+
+def test_stage_report_preserves_objections_despite_a_supported_verdict(tmp_path, monkeypatch):
+    """Expose conflicting declarations without overruling or relabeling them as facts."""
+    monkeypatch.setattr(reporting, "PROJECT", tmp_path)
+    folder = tmp_path / "reports/development"
+    folder.mkdir(parents=True)
+    issue = {"evidence": ["Fixture excerpt"], "rationale": "Fixture objection", "severity": "unsupported"}
+    findings = [
+        {"protocol": "two-stage-v1", "stage": "quality", "seconds": 12.0,
+         "finding": {"validity": {"verdict": "supported", "issues": [issue]}, "criteria": {}}},
+        {"protocol": "specialists-v1", "stage": "validity", "seconds": 8.0,
+         "finding": {"verdict": "supported", "issues": []}},
+        {"protocol": "specialists-v1", "stage": "validity", "seconds": 10.0,
+         "finding": {"verdict": "contradicted", "issues": [issue, issue]}},
+    ]
+    events = [{"kind": "judge_stage_assessment", **finding} for finding in findings]
+    (folder / "fixture.jsonl").write_text(''.join(json.dumps(event)+'\n' for event in events))
+    records = reporting.development_records()
+    assert records[0]["stages"][0]["finding"] == findings[0]["finding"]
+    rows = reporting.stage_latency_rows(records)
+    assert rows[1][1:] == ["two-stage-v1", "quality", "1", "1", "1", "1", "12.00"]
+    assert rows[2][1:] == ["specialists-v1", "validity", "2", "1", "2", "0", "9.00"]
