@@ -13,7 +13,9 @@ def task(family="gcd", answer="6", **metadata):
 
 
 def assessment(validity="supported", score=4, excerpt="A reusable fact."):
-    return Assessment(theory_validity=validity, criteria={
+    return Assessment(theory_validity=validity, novelty_comparison={
+        "reference_excerpt": "Fixture reference", "addition_evidence": [excerpt],
+        "use_evidence": [excerpt], "relation": "beyond_reference"}, criteria={
         name: Criterion(score=score, evidence=[excerpt] if score else [], rationale="Test fixture")
         for name in Assessment.weights
     }, problems=[])
