@@ -110,7 +110,10 @@ Judge backend, GPU offload, KV-cache precision and batching are pinned in
 [the serving configuration](configs/judge-runtime.json) and included in cache
 and calibration identities. Evaluation offload is tested separately from policy
 generation. A runtime change requires recalibration; interrupted development
-evidence is retained. No calibration pass or training result is claimed yet.
+evidence is retained. No calibration pass or comparative training result is claimed yet.
+Gemma's CUDA runtime loads, but its first development judgment decoded too slowly
+to complete usefully. A [bounded thread-count diagnostic](reports/amendments/2026-11-15-judge-thread-diagnostic.md)
+precedes any further serving change; the interrupted response is preserved.
 The first maximum-length BF16 LoRA backward probe passed; its measured memory
 and timing are in the [generated development report](reports/experiments/development-runtime.md).
 The repaired four-completion GRPO pilot completed backward, checkpoint saving

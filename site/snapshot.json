@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T10:32:36.233367+00:00",
+  "generated_at": "2026-11-15T10:54:43.805950+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v3",
@@ -299,6 +299,15 @@
           "novelty": 0.25
         }
       ],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/gemma-cuda-v3-interrupted.jsonl",
+      "requests": 1,
+      "completed_responses": 0,
+      "incomplete_requests": 1,
+      "response_seconds": [],
+      "assessments": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {

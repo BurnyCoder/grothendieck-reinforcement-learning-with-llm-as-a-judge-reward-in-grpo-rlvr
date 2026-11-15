@@ -32,5 +32,7 @@
   "launcher_and_logging_pages_workflow": 43701707310,
   "grpo_recovery_merge": "46d64bcad43cc894d57d6951f1ee68dde71616ab",
   "grpo_recovery_huggingface_commit": "25e2f7512002d39ed5141d6d97164bf19b3ae862",
-  "grpo_recovery_pages_workflow": 43704715610
+  "grpo_recovery_pages_workflow": 43704715610,
+  "evaluation_identity_merge": "9d472bfdab8577755a8ddf74b2bc454f31315982",
+  "evaluation_identity_huggingface_commit": "ad0ffcd48121f7fdd3f132fd7315511506028651"
 }

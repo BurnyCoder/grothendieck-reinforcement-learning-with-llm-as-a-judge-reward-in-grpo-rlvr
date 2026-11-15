@@ -1,0 +1,21 @@
+0.07.339.618 I srv  llama_server: initializing ...
+0.07.339.789 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.07.448.920 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.07.474.544 I srv    load_model: loading model '/mnt/d/AI/grothendieck-rlvr/models/evaluation_judge/gemma-4-12b-it-UD-Q4_K_XL.gguf'
+0.16.480.429 W load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.16.480.785 W load: control-looking token:     50 '<|tool_response>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.16.480.928 W load: control-looking token:      1 '<eos>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.16.536.445 W load: '</s>' is a normal token here, removing it from EOG list
+5.53.035.873 I cmn          init: llama threadpool init, n_threads = 8
+6.44.808.104 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+6.45.645.696 I srv  server_run_i: model loaded
+6.45.645.741 I srv  server_on_li: listening on http://127.0.0.1:8082
+8.23.404.479 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+8.23.448.112 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+8.36.347.512 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    512, progress = 0.25, t =   9.61 s / 53.30 tokens per second
+8.38.278.126 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1024, progress = 0.51, t =  11.54 s / 88.76 tokens per second
+8.39.664.065 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1509, progress = 0.75, t =  12.92 s / 116.77 tokens per second
+8.41.307.621 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   1775, progress = 0.88, t =  14.57 s / 121.86 tokens per second
+8.43.286.755 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2017, progress = 1.00, t =  16.54 s / 121.91 tokens per second
+16.31.627.392 W srv          stop: cancel task, id_task = 0
+16.31.627.476 I srv    operator(): operator(): cleaning up before exit...
