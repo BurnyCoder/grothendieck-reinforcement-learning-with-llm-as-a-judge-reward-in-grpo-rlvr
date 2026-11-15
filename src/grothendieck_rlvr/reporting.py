@@ -19,7 +19,23 @@ def development_records() -> list[dict]:
     for path in sorted((PROJECT / "reports/development").glob("*.jsonl")):
         events = read_jsonl(path)
         responses = [e for e in events if e["kind"] == "model_response"]
-        assessments = [e for e in events if e["kind"] == "judge_assessment"]
+        assessments, candidate = [], {}
+        for event in events:
+            if event["kind"] == "model_request":
+                candidate = {}
+                messages = event["request"].get("messages", [])
+                try:
+                    payload = json.loads(messages[-1]["content"]) if messages else {}
+                except (json.JSONDecodeError, TypeError):
+                    payload = {}  # Some preserved runtime probes use plain-text input.
+                if isinstance(payload, dict):
+                    candidate = {key: payload[key] for key in
+                                 ("problem", "conventional_reference", "candidate_response") if key in payload}
+            elif event["kind"] == "judge_assessment":
+                assessments.append({**event, **candidate})
+                candidate = {}  # Never attach stale text to a later unpaired record.
+            elif event["kind"] == "judge_cache_hit":
+                candidate = {}
         requests = sum(e["kind"] == "model_request" for e in events)
         records.append({"artifact": str(path.relative_to(PROJECT)), "requests": requests,
                         "completed_responses": len(responses), "incomplete_requests": requests-len(responses),

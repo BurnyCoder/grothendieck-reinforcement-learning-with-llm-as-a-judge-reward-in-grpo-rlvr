@@ -27,8 +27,25 @@ function renderTraining() {
 }
 function renderExample(){const rows=snapshot.examples[$('example-arm').value]||[], row=rows.find(r=>r.task_id===$('example-task').value);$('response').textContent=row?JSON.stringify(row.prompt,null,2)+'\n\n'+row.response:'No evaluated outputs yet.';$('assessment').textContent=row?JSON.stringify({verification:row.verification,theory:row.theory,assessment:row.assessment},null,2):'Pending.';}
 function exampleOptions(){choices($('example-task'),(snapshot.examples[$('example-arm').value]||[]).map(r=>r.task_id));renderExample();}
+function judgeRows() {
+  return (snapshot.development||[]).find(attempt=>attempt.artifact===$('judge-attempt').value)?.assessments||[];
+}
+function renderJudge() {
+  const row=judgeRows()[$('judge-case').selectedIndex];
+  $('judge-candidate').textContent=row ? ['Problem: '+(row.problem??'Not paired in the source log.'),
+    'Conventional reference: '+(row.conventional_reference??'Not paired in the source log.'),
+    row.candidate_response??'Candidate text not paired in the source log.'].join('\n\n') : 'No published judgments yet.';
+  $('judge-assessment').textContent=row ? JSON.stringify(row.assessment,null,2) : 'Pending.';
+  $('judge-metrics').textContent=row ? `Recorded ${row.time} · Supported theory ${number(row.theory)} · Supported novelty ${number(row.novelty)} · These are judge opinions.` : '';
+}
+function judgeOptions() {
+  choices($('judge-case'),judgeRows().map((row,index)=>`${index+1}: ${row.task_id}`));
+  renderJudge();
+}
 function render(){
-  $('status').textContent=snapshot.primary.status==='pending'?'Preregistered · experiments pending':`Analysis: ${snapshot.primary.status}`;
+  $('status').textContent=snapshot.primary.status==='pending'?
+    (snapshot.calibration.some(c=>!c.passed)?'Development calibration failures recorded · comparative evidence pending':'Preregistered · experiments pending'):
+    `Analysis: ${snapshot.primary.status}`;
   $('updated').textContent='Snapshot '+new Date(snapshot.generated_at).toLocaleString();
   const arms=['ordinary','prompted','correctness-seed42','theory-seed42','correctness-seed43','theory-seed43','correctness-seed44','theory-seed44','shuffled-seed42','rubric-seed42'];
   $('result-rows').replaceChildren(...[...new Set([...arms,...Object.keys(snapshot.summaries)])].map(arm=>{const row=element('tr'),s=snapshot.summaries[arm]||{};[arm,s.n,s.accuracy,s.metric,s.correctness_weighted_novelty,s.mean_response_tokens].forEach(value=>row.append(element('td',number(value))));return row;}));
@@ -39,6 +56,9 @@ function render(){
   $('calibration').replaceChildren(...snapshot.calibration.map(c=>element('p',`${c.role} / ${c.variant} / ${c.split}: ${c.complete===false?'partial observed rates; ':''}ordering ${number(c.preference_accuracy)}, false-theory suppression ${number(c.false_theory_suppression)}, novelty ordering ${number(c.strata?.novelty?.preference_accuracy)} — ${c.passed?'passed':'failed'}${c.stopping_reason?' ('+c.stopping_reason+')':''}`)));
   for(const progress of snapshot.calibration_progress||[]){$('calibration').append(element('p',`${progress.role} / ${progress.variant} / ${progress.split}: ${progress.pairs_completed}/${progress.pairs_total} preference pairs; ${progress.false_cases_completed}/${progress.false_cases_total} false-theory cases completed.`));}
   choices($('run'),Object.keys(snapshot.training));choices($('example-arm'),Object.keys(snapshot.examples));renderTraining();exampleOptions();
+  choices($('judge-attempt'),(snapshot.development||[]).filter(attempt=>attempt.assessments.length).map(attempt=>attempt.artifact));
+  judgeOptions();
 }
 async function refresh(){try{let response=await fetch('api/live',{cache:'no-store'});if(response.ok&&response.headers.get('content-type')?.includes('application/json')){$('live-status').textContent='Local live view · refreshes every 10 seconds';snapshot=await response.json();}else{response=await fetch('snapshot.json',{cache:'no-store'});snapshot=await response.json();}render();}catch(error){$('status').textContent='Evidence unavailable: '+error.message;}}
 $('run').addEventListener('change',renderTraining);$('example-arm').addEventListener('change',exampleOptions);$('example-task').addEventListener('change',renderExample);refresh();setInterval(refresh,10000);
+$('judge-attempt').addEventListener('change',judgeOptions);$('judge-case').addEventListener('change',renderJudge);

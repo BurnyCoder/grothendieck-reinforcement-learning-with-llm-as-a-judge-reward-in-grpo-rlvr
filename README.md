@@ -178,6 +178,10 @@ All measured tables and plots will be generated from saved artifacts. The
 dashboard shows saved correctness, theory, novelty, losses, KL, lengths, throughput and
 checkpoint state. The GitHub Pages explorer will contain published snapshots,
 confidence intervals and output comparisons.
+Its judge inspector also exposes every accepted assessment from published
+development logs alongside the exact candidate and conventional reference,
+including failed calibration attempts. These are separated from comparative
+policy results and are not human preference measurements.
 
 ## Reproducibility and next steps
 
