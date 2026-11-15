@@ -113,6 +113,12 @@ bash scripts/run.sh train --pilot --arm theory --seed 42 --stop-after 1
 bash scripts/run.sh train --pilot --arm theory --seed 42 --resume
 ```
 
+The separately preregistered execution diagnostic is
+`bash scripts/run.sh benchmark-judge`. Stop policy and judge processes first.
+It records synthetic Gemma decoding timings for the fixed thread-count sweep
+under the artifact root's `benchmarks/` directory; it never supplies reward scores.
+See the [diagnostic protocol](../reports/amendments/2026-11-15-judge-thread-diagnostic.md).
+
 The synthetic maximum-length backward probe measures memory and does not retain
 updates. The two-step GRPO pilot checks four completions, real verifier/judge
 calls, optimizer state, saving and resumption. Record memory, validity, latency

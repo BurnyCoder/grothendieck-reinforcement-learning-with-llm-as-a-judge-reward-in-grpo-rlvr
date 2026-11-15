@@ -78,6 +78,15 @@ A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, w
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
     },
     {
+      "artifact": "reports/development/gemma-cuda-v3-interrupted.jsonl",
+      "requests": 1,
+      "completed_responses": 0,
+      "incomplete_requests": 1,
+      "response_seconds": [],
+      "assessments": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
       "artifact": "reports/development/pilot-first-failure.jsonl",
       "requests": 0,
       "completed_responses": 0,
