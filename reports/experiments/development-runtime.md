@@ -18,13 +18,15 @@ training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts 
 
 Incomplete development suites stopped under the fixed futility rule. Upper bounds assume every remaining case succeeds solely to test attainability. Unobserved cases are not counted as measured successes or errors; no early pass is allowed.
 
-A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result.
+A recorded BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result. The separate exploratory single-call pilot saved boundary 1 from the selected base, with a step interval of 864.57 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.1328, mean novelty 0.0000, and 1 contract/transport retries. Peak allocated/reserved GPU memory was 4.89/6.10 GiB. Completed judge requests took 141.05–272.42 seconds, including unsuccessful contracts. The separate exploratory single-call pilot saved boundary 2 after resumption, with a step interval of 805.43 seconds, learning rate 1e-05, batch accuracy 50.0%, mean theory 0.2078, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 4.97/6.25 GiB. Completed judge requests took 145.71–187.99 seconds, including unsuccessful contracts. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.
 
 ## Observed request latency
 
 | Development artifact | Completed calls | Accepted opinions | Judge failures | Unfinished calls | Median seconds/call | Observed seconds/call range |
 |---|---|---|---|---|---|---|
 | calibration-gemma-v3-standalone | 5 | 4 | 1 | 1 | 92.21 | 48.71–129.48 |
+| exploratory-single-pilot-step1 | 4 | 3 | 1 | 0 | 148.56 | 141.05–272.42 |
+| exploratory-single-pilot-step2 | 4 | 4 | 0 | 0 | 158.77 | 145.71–187.99 |
 | exploratory-single-v1-pilot-failure | 3 | 0 | 3 | 0 | 177.01 | 149.01–260.85 |
 | gemma-cpu-v2 | 1 | 1 | 3 | 3 | 407.72 | 407.72–407.72 |
 | gemma-cuda-v3-interrupted | 0 | 0 | 0 | 1 | Pending | Pending |
@@ -304,6 +306,620 @@ Stage timings additionally include template/token checks and validation. Cache h
           "problem": "Find lcm(14, 21).",
           "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
           "candidate_response": "I computed this instance directly and obtained 42.\n<final>42</final>"
+        }
+      ],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-single-pilot-step1.jsonl",
+      "requests": 4,
+      "completed_responses": 4,
+      "incomplete_requests": 0,
+      "judge_failures": 1,
+      "response_seconds": [
+        272.42028603200015,
+        148.8098519539999,
+        141.04606806299853,
+        148.30723751599726
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-16T00:09:00.618557+00:00",
+          "kind": "judge_assessment",
+          "key": "587afdd6dd1ada7a974db7fd6e177d46ed0f14ace0e0b658b88fe7089c8307d3",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n",
+                  "**Step 1: Prime factorization of 510**\n",
+                  "**Step 2: Prime factorization of 522**\n",
+                  "**Step 3: Prime factorization of 14**\n"
+                ],
+                "rationale": "Uses prime factorization to decompose numbers into prime components.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "We look for the greatest common divisor by comparing the factors present in all three numbers.\n",
+                  "The only prime number common to all three lists is **2**.\n"
+                ],
+                "rationale": "Applies standard factorization method to specific integers without generalizing.",
+                "score": 2
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Thus, $\\text{GCD}(510, 522, 14) = 2$.\n"
+                ],
+                "rationale": "Correctly derives the GCD from the intersection of prime factors.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No additional consequences or connections beyond the immediate calculation.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n",
+                  "Thus, $\\text{GCD}(510, 522, 14) = 2$.\n"
+                ],
+                "rationale": "Direct and efficient use of prime factorization for this specific problem.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Candidate uses standard prime factorization method listed in reference R0. No new framework, invariant, or construction beyond routine calculation is offered. Relation is within_reference.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "No novel theory or framework constructed beyond standard arithmetic methods.",
+              "Candidate response is a routine calculation matching conventional reference methods."
+            ]
+          },
+          "theory": 0.4375,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n\n**Step 1: Prime factorization of 510**\n$$510 \\div 2 = 255$$\n$$255 \\div 3 = 85$$\n$$85 \\div 5 = 17$$\n$$17$$ is a prime number.\nSo, the prime factorization of 510 is:\n$$510 = 2^1 \\times 3^1 \\times 5^1 \\times 17^1$$\n\n**Step 2: Prime factorization of 522**\n$$522 \\div 2 = 261$$\n$$261 \\div 3 = 87$$\n$$87 \\div 3 = 29$$\n$$29$$ is a prime number.\nSo, the prime factorization of 522 is:\n$$522 = 2^1 \\times 3^2 \\times 29^1$$\n\n**Step 3: Prime factorization of 14**\n$$14 = 2 \\times 7$$\n\n**Step 4: Find the common factors**\nWe look for the greatest common divisor by comparing the factors present in all three numbers.\n- Factors of 510: $\\{2, 3, 5, 17\\}$\n- Factors of 522: $\\{2, 3, 29\\}$\n- Factors of 14: $\\{2, 7\\}$\n\nThe only prime number common to all three lists is **2**.\n\n**Step 5: Identify the GCD**\nSince 2 is the only common factor and 2 is prime, it is the greatest common divisor.\n- Note: No other number up to 29 appears in all three factorizations. For instance, 3 divides 510 and 522 but not 14.\n\nThus, $\\text{GCD}(510, 522, 14) = 2$.\n\n<final>2</final>"
+        },
+        {
+          "time": "2026-11-16T00:11:35.997682+00:00",
+          "kind": "judge_assessment",
+          "key": "7ae2570eea5649bf2c245d25be8d7a3bfe3bd4331e05ec06ecbdb51dc6299da0",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we can use the method of prime factorization or by finding the greatest common divisor of pairs of numbers and then taking the GCD with the third. Here, we will use prime factorization as it is systematic.\n",
+                  "**Step 2: Identify common prime factors.**\n",
+                  "The GCD is the product of the lowest power of all common prime factors.\n"
+                ],
+                "rationale": "Candidate outlines a standard prime factorization framework for GCD.",
+                "score": 2
+              },
+              "justified_generality": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we can use the method of prime factorization or by finding the greatest common divisor of pairs of numbers and then taking the GCD with the third. Here, we will use prime factorization as it is systematic.\n"
+                ],
+                "rationale": "Mentions prime factorization as a systematic method applicable generally.",
+                "score": 2
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Therefore, $\\text{GCD}(510, 522, 14) = 2^1 = 2$.\n"
+                ],
+                "rationale": "Final result follows directly from the factorization steps.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No connections to other mathematical structures or consequences demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we can use the method of prime factorization or by finding the greatest common divisor of pairs of numbers and then taking the GCD with the third. Here, we will use prime factorization as it is systematic.\n",
+                  "**Step 2: Identify common prime factors.**\n",
+                  "The GCD is the product of the lowest power of all common prime factors.\n"
+                ],
+                "rationale": "Steps are clear but verbose; standard method without unnecessary abstraction.",
+                "score": 2
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Candidate uses standard prime factorization listed in reference R0. No new construction or framework beyond the reference is offered.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "Candidate response is a standard calculation without theoretical novelty.",
+              "No new mathematical structures or generalizations are introduced."
+            ]
+          },
+          "theory": 0.3625,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we can use the method of prime factorization or by finding the greatest common divisor of pairs of numbers and then taking the GCD with the third. Here, we will use prime factorization as it is systematic.\n\n**Step 1: Find the prime factorization of each number.**\n\n*   **Number 510:**\n    $510$ is divisible by 10 ($2 \\times 5 \\times 10$), so $2 \\times 5$.\n    The sum of digits is $5+1+0=6$, which is divisible by 3, so 510 is divisible by 3. $510 = 3 \\times 170$.\n    $170$ ends in 0, so it's divisible by 2 and 5. $170 = 2 \\times 85$.\n    $85$ ends in 5, so it's divisible by 5. $85 = 5 \\times 17$.\n    17 is a prime number.\n    So, $510 = 2^1 \\times 3^1 \\times 5^2 \\times 17^1$.\n\n*   **Number 522:**\n    The sum of digits is $5+2+2=9$, which is divisible by 3. $522 = 3 \\times 174$.\n    $174$ is even, so divisible by 2. $174 = 2 \\times 87$.\n    $87$ is divisible by 3 (sum $8+7=15$). $87 = 3 \\times 29$.\n    29 is a prime number.\n    So, $522 = 3^2 \\times 2^1 \\times 29^1$.\n\n*   **Number 14:**\n    $14 = 2 \\times 7$.\n    So, $14 = 2^1 \\times 7^1$.\n\n**Step 2: Identify common prime factors.**\n\nLet's list the prime factors with their exponents:\n*   $510 = 2^1 \\times 3^1 \\times 5^2 \\times 17^1$\n*   $522 = 2^1 \\times 3^2 \\times 29^1$\n*   $14 = 2^1 \\times 7^1$\n\nNow, let's compare the prime factors:\n*   **Factor 2:** All three numbers are divisible by 2. The lowest exponent is $1$ (for all of them). We have $2^1$.\n*   **Factor 3:** Only 510 and 522 are divisible by 3. The lowest exponent for 3 among the common set is not applicable here since 14 is not divisible by 3.\n*   **Factor 5:** Only 510 is divisible by 5.\n*   **Factor 17:** Only 510 is divisible by 17.\n*   **Factor 29:** Only 522 is divisible by 29.\n*   **Factor 7:** Only 14 is divisible by 7.\n\n**Step 3: Calculate the GCD.**\n\nThe GCD is the product of the lowest power of all common prime factors.\nThe only common prime factor among 510, 522, and 14 is the prime number **2**.\nThe exponent of 2 in the factorization of all three numbers is 1.\n\nTherefore, $\\text{GCD}(510, 522, 14) = 2^1 = 2$.\n\n<final>2</final>"
+        },
+        {
+          "time": "2026-11-16T00:16:40.165598+00:00",
+          "kind": "judge_assessment",
+          "key": "ed67129d642795165fa2b0c05255c1d183f669683210af308b69d1c0bb150cbb",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n",
+                  "Now, let's compare the prime factors to find the GCD:\n"
+                ],
+                "rationale": "Uses standard prime factorization to define the GCD structure.",
+                "score": 1
+              },
+              "justified_generality": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n"
+                ],
+                "rationale": "Applies a specific algorithm to specific numbers; no general family explored.",
+                "score": 1
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "Now, let's compare the prime factors to find the GCD:\n",
+                  "The only common prime factor among all three numbers is 2. The exponent of the prime factor 2 in the factorization of each number is 1.\n",
+                  "$$ \\text{GCD} = 2^1 = 2 $$\n"
+                ],
+                "rationale": "The result follows directly from the factorization steps without hiding the logic.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings or further consequences demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n",
+                  "1.  **Factorize 14**:\n",
+                  "2.  **Factorize 510**:\n",
+                  "3.  **Factorize 522**:\n"
+                ],
+                "rationale": "Clear and functional steps, though standard and not particularly economical in a theoretical sense.",
+                "score": 2
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Uses standard prime factorization method explicitly listed in the reference; no novel construction or framework beyond the baseline.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "Candidate relies entirely on standard prime factorization without introducing new theoretical structures.",
+              "No generalization or framework is developed; the solution is a direct computation.",
+              "No connections to other mathematical objects or settings are established."
+            ]
+          },
+          "theory": 0.2625,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we will first determine the prime factorization of each number.\n\n1.  **Factorize 14**:\n    $14 = 2 \\times 7$\n    The prime factors are 2 and 7.\n\n2.  **Factorize 510**:\n    - It is even, so divisible by 2: $510 \\div 2 = 255$.\n    - The sum of digits of 255 is $2+5+5=12$, so it is divisible by 3: $255 \\div 3 = 85$.\n    - 85 ends in 5, so it is divisible by 5: $85 \\div 5 = 17$.\n    - 17 is a prime number.\n    So, $510 = 2 \\times 3 \\times 5 \\times 17$.\n\n3.  **Factorize 522**:\n    - It is even, so divisible by 2: $522 \\div 2 = 261$.\n    - The sum of digits of 261 is $2+6+1=9$, so it is divisible by 3: $261 \\div 3 = 87$.\n    - 87 is divisible by 9 or 3. Let's check $3 \\times 29 = 87$.\n    - 29 is a prime number.\n    So, $522 = 2 \\times 3 \\times 3 \\times 29 = 2 \\times 3^2 \\times 29$.\n\nNow, let's compare the prime factors to find the GCD:\n- Prime factors of 14: $\\{2, 7\\}$\n- Prime factors of 510: $\\{2, 3, 5, 17\\}$\n- Prime factors of 522: $\\{2, 3, 29\\}$\n\nThe only common prime factor among all three numbers is 2. The exponent of the prime factor 2 in the factorization of each number is 1.\nTherefore, the Greatest Common Divisor is:\n$$ \\text{GCD} = 2^1 = 2 $$\n\n<final>2</final>"
+        }
+      ],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-single-pilot-step2.jsonl",
+      "requests": 4,
+      "completed_responses": 4,
+      "incomplete_requests": 0,
+      "judge_failures": 0,
+      "response_seconds": [
+        187.9949145149949,
+        159.36981052299961,
+        158.16088842399768,
+        145.7128707180018
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-16T00:26:22.805760+00:00",
+          "kind": "judge_assessment",
+          "key": "d99a5a2bae2c157980aaaf34ecb209046c2cd3a1cf35b45ecbfdaafd29e32cd2",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "The LCM of a set of numbers is found by taking the highest power of every prime factor present in the factorization of any of the numbers.\n",
+                  "*   **Prime factors involved:** 2, 3, 7, 89.\n",
+                  "*   **Highest powers:**\n",
+                  "    *   For **2**: The highest power is $2^1$ (found in 98 and 42).\n",
+                  "    *   For **3**: The highest power is $3^1$ (found in 42).\n",
+                  "    *   For **7**: The highest power is $7^2$ (found in 98). Note that 42 only has $7^1$.\n",
+                  "    *   For **89**: The highest power is $89^1$ (found in 89).\n",
+                  "$$LCM(89, 98, 42) = 2^1 \\times 3^1 \\times 7^2 \\times 89^1$$\n"
+                ],
+                "rationale": "Candidate correctly identifies prime factorization and highest power rule for LCM.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "The LCM of a set of numbers is found by taking the highest power of every prime factor present in the factorization of any of the numbers.\n",
+                  "*   **Prime factors involved:** 2, 3, 7, 89.\n",
+                  "*   **Highest powers:**\n"
+                ],
+                "rationale": "Method applies generally to sets of integers via prime factorization.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "$$LCM(89, 98, 42) = 2^1 \\times 3^1 \\times 7^2 \\times 89^1$$\n",
+                  "$$294 \\times 89 = 294 \\times (90 - 1)$$\n",
+                  "$$294 \\times 90 = 26460$$\n",
+                  "$$26460 - 294 = 26166$$\n",
+                  "*   **Divisibility by 89**: $26166 \\div 89 = 294$. (Correct)\n",
+                  "*   **Divisibility by 98**: $26166 \\div 98 = 267$. (Correct, since $267 \\times 2 = 534$ and $267 \\times 4 = 1068$, wait... let's recheck $26166 / 98$).\n",
+                  "    *   $26166 / 2 = 13083$\n",
+                  "    *   $13083 / 49 = 267$. (Correct, since $267 \\times 49 = 267 \\times (50-1) = 13350 - 267 = 13083$).\n",
+                  "*   **Divisibility by 42**: $26166 \\div 42 = 623$. (Correct, since $623 \\times 42 = 26166$).\n"
+                ],
+                "rationale": "Result follows directly from constructed formula and verified calculation.",
+                "score": 4
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No additional consequences or connections beyond the specific problem calculation.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "The LCM of a set of numbers is found by taking the highest power of every prime factor present in the factorization of any of the numbers.\n",
+                  "$$LCM(89, 98, 42) = 2^1 \\times 3^1 \\times 7^2 \\times 89^1$$\n"
+                ],
+                "rationale": "Standard procedure is clear and functional without unnecessary abstraction.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Candidate uses standard methods listed in reference (R0). No new framework or construction beyond routine arithmetic.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "No novel theory or framework constructed beyond standard arithmetic methods.",
+              "Candidate response is a standard calculation without conceptual departure."
+            ]
+          },
+          "theory": 0.525,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of the numbers 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we need to determine the prime factors of each number.\n\n1.  **For 89**:\n    *   $\\sqrt{89} \\approx 9.4$.\n    *   We test prime numbers up to 9: 2, 3, 5, 7.\n    *   89 is not divisible by 2 (it's odd).\n    *   The sum of digits is $8+9=17$, so it's not divisible by 3.\n    *   It doesn't end in 0 or 5, so not divisible by 5.\n    *   $89 \\div 7 = 12$ remainder 7.\n    *   Since 89 is a prime number, its factors are **89**.\n\n2.  **For 98**:\n    *   It is an even number, so divide by 2: $98 = 2 \\times 49$.\n    *   Check 49: $49 = 7 \\times 7$.\n    *   So, the factors are $2 \\times 7 \\times 7$.\n\n3.  **For 42**:\n    *   It is an even number, so divide by 2: $42 = 2 \\times 21$.\n    *   21 is divisible by 3 ($2+1=3$) and by 7.\n    *   $42 = 2 \\times 3 \\times 7$.\n\n### Step 2: Construct the LCM Formula\nThe LCM of a set of numbers is found by taking the highest power of every prime factor present in the factorization of any of the numbers.\n\n*   **Prime factors involved:** 2, 3, 7, 89.\n*   **Highest powers:**\n    *   For **2**: The highest power is $2^1$ (found in 98 and 42).\n    *   For **3**: The highest power is $3^1$ (found in 42).\n    *   For **7**: The highest power is $7^2$ (found in 98). Note that 42 only has $7^1$.\n    *   For **89**: The highest power is $89^1$ (found in 89).\n\n### Step 3: Calculate the Product\n$$LCM(89, 98, 42) = 2^1 \\times 3^1 \\times 7^2 \\times 89^1$$\n\nLet's compute the values:\n*   $7^2 = 49$\n*   $2 \\times 3 = 6$\n*   $6 \\times 49 = 294$\n*   $294 \\times 89$\n\nCalculation:\n$$294 \\times 89 = 294 \\times (90 - 1)$$\n$$294 \\times 90 = 26460$$\n$$26460 - 294 = 26166$$\n\nAlternatively:\n$$294 \\times 89 = 26166$$\n\n### Verification\n*   **Divisibility by 89**: $26166 \\div 89 = 294$. (Correct)\n*   **Divisibility by 98**: $26166 \\div 98 = 267$. (Correct, since $267 \\times 2 = 534$ and $267 \\times 4 = 1068$, wait... let's recheck $26166 / 98$).\n    *   $26166 / 2 = 13083$\n    *   $13083 / 49 = 267$. (Correct, since $267 \\times 49 = 267 \\times (50-1) = 13350 - 267 = 13083$).\n*   **Divisibility by 42**: $26166 \\div 42 = 623$. (Correct, since $623 \\times 42 = 26166$).\n\nThe calculation holds.\n\n<final>26166</final>"
+        },
+        {
+          "time": "2026-11-16T00:29:10.457381+00:00",
+          "kind": "judge_assessment",
+          "key": "5b9a298332f48742cdf26fd3cdeb79449107e5706313d2792e8299bf12af67ec",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "We list all distinct prime factors found and select the highest power of each present in the factorizations:\n",
+                  "So, the set of prime factors with their highest powers is: $\\{2, 3, 7^2, 89\\}$.\n"
+                ],
+                "rationale": "Candidate correctly identifies prime factorization and highest powers as the structural method for LCM.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "First, we determine the prime factorization of each number:\n",
+                  "We list all distinct prime factors found and select the highest power of each present in the factorizations:\n"
+                ],
+                "rationale": "Method applies generally to any set of integers via prime factorization.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n",
+                  "$$ = 26166 $$\n"
+                ],
+                "rationale": "LCM calculation follows directly from the identified prime powers.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No further consequences or connections to other structures demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "We list all distinct prime factors found and select the highest power of each present in the factorizations:\n",
+                  "$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n"
+                ],
+                "rationale": "Steps are clear and functional, though standard.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Candidate uses standard prime exponent method explicitly listed in reference R0. No new framework or construction beyond reference.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "Candidate response is a standard calculation following the conventional reference method.",
+              "No novel mathematical framework or conceptual departure is introduced."
+            ]
+          },
+          "theory": 0.48750000000000004,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of the numbers 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we determine the prime factorization of each number:\n\n1.  **89**:\n    *   Check divisibility by primes up to $\\sqrt{89} \\approx 9.4$.\n    *   It is not divisible by 2 (odd), 3 (sum of digits $8+9=17$), or 5 (doesn't end in 0 or 5).\n    *   $89 \\div 7 \\approx 12.7$ (not divisible).\n    *   $89 \\div 11 \\approx 8.09$ (not divisible).\n    *   Since 89 is not divisible by any prime number less than its square root, **89 is a prime number**.\n    *   Factorization: $89 = 89^1$\n\n2.  **98**:\n    *   It is even, so divide by 2: $98 \\div 2 = 49$.\n    *   Now factor 49. $7 \\times 7 = 49$.\n    *   Factorization: $98 = 2^1 \\times 7^2$\n\n3.  **42**:\n    *   It is even, so divide by 2: $42 \\div 2 = 21$.\n    *   21 is divisible by 3 ($2+1=3$): $21 \\div 3 = 7$.\n    *   7 is a prime number.\n    *   Factorization: $42 = 2^1 \\times 3^1 \\times 7^1$\n\n### Step 2: Identify Highest Powers of Prime Factors\nWe list all distinct prime factors found and select the highest power of each present in the factorizations:\n\n*   **Prime factor 2**:\n    *   From 89: (not present)\n    *   From 98: $2^1$\n    *   From 42: $2^1$\n    *   Highest power: $2^1$\n\n*   **Prime factor 3**:\n    *   From 89: (not present)\n    *   From 98: (not present)\n    *   From 42: $3^1$\n    *   Highest power: $3^1$\n\n*   **Prime factor 7**:\n    *   From 89: (not present)\n    *   From 98: $7^2$\n    *   From 42: $7^1$\n    *   Highest power: $7^2$\n\n*   **Prime factor 89**:\n    *   From 89: $89^1$\n    *   From 98: (not present)\n    *   From 42: (not present)\n    *   Highest power: $89^1$\n\nSo, the set of prime factors with their highest powers is: $\\{2, 3, 7^2, 89\\}$.\n\n### Step 3: Calculate the LCM\nMultiply these highest powers together:\n$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n\nCalculation:\n1.  $7^2 = 49$\n2.  $2 \\times 3 = 6$\n3.  $6 \\times 49 = 294$\n4.  $294 \\times 89$\n\nLet's compute $294 \\times 89$:\n$$ 294 \\times 89 = 294 \\times (90 - 1) $$\n$$ = (294 \\times 90) - (294 \\times 1) $$\n$$ = 26460 - 294 $$\n$$ = 26166 $$\n\nAlternatively, direct multiplication:\n$$ \\begin{array}{r@{\\quad}l} 294 & \\\\ \\times 89 & \\elleq \\\\ \\hline 2646 & (294 \\times 9) \\\\ 23520 & (294 \\times 80) \\\\ \\hline 26166 & \\end{array} $$\n\n### Conclusion\nThe Least Common Multiple of 89, 98, and 42 is 26,166.\n\n<final>26166</final>"
+        },
+        {
+          "time": "2026-11-16T00:31:57.213074+00:00",
+          "kind": "judge_assessment",
+          "key": "b4cf38355a86aa175a139e472bcfb2ce47939c63ef9b49c4c370c8c49c86bfe4",
+          "task_id": "dev-e35360a905d64b24d291",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "First, we determine the prime factorization of each number.\n",
+                  "The LCM of a set of numbers is found by taking the highest power of each prime factor present in the factorizations of the numbers.\n"
+                ],
+                "rationale": "Candidate defines prime factorization and LCM formula clearly.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "The LCM of a set of numbers is found by taking the highest power of each prime factor present in the factorizations of the numbers.\n",
+                  "*   **Prime factors involved**: 2, 3, 7, 89\n",
+                  "*   **Highest powers**:\n"
+                ],
+                "rationale": "Method applies generally to any set of integers via prime exponents.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n",
+                  "$$ 24000 + 1800 + 360 + 6 = 26166 $$\n"
+                ],
+                "rationale": "LCM result follows directly from the defined prime power selection.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "Let's check if the product of original numbers meets the condition (LCM must be a multiple of all inputs):\n",
+                  "*   $366324 \\div 89 = 4116$ (Integer)\n"
+                ],
+                "rationale": "Verification step connects LCM to product of numbers via divisibility.",
+                "score": 2
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "### Step 1: Prime Factorization\n",
+                  "First, we determine the prime factorization of each number.\n",
+                  "The LCM of a set of numbers is found by taking the highest power of each prime factor present in the factorizations of the numbers.\n"
+                ],
+                "rationale": "Standard algorithm is efficient and well-motivated for this problem.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "Candidate uses standard prime factorization method listed in reference. No novel framework or construction beyond the reference is offered.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "None identified."
+            ]
+          },
+          "theory": 0.5625,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Find the Least Common Multiple (LCM) of these numbers: 89, 98, 42",
+          "conventional_reference": "Conventional reference: search multiples, take maximum prime exponents, or use lcm(a,b)=a*b/gcd(a,b) for positive integers. Merely restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Least Common Multiple (LCM) of 89, 98, and 42, we can follow these steps:\n\n### Step 1: Prime Factorization\nFirst, we determine the prime factorization of each number.\n\n1.  **89**:\n    *   89 is a prime number. It is not divisible by 2, 3 (sum of digits $8+9=17$), 5, or 7.\n    *   Factorization: $89^1$\n\n2.  **98**:\n    *   This is an even number, so divisible by 2.\n    *   $98 \\div 2 = 49$.\n    *   49 is $7 \\times 7$.\n    *   Factorization: $2^1 \\times 7^2$\n\n3.  **42**:\n    *   Divisible by 2.\n    *   $42 \\div 2 = 21$.\n    *   21 is divisible by 3 ($2+1=3$).\n    *   $21 \\div 3 = 7$.\n    *   Factorization: $2^1 \\times 3^1 \\times 7^1$\n\n### Step 2: Identify the LCM Formula\nThe LCM of a set of numbers is found by taking the highest power of each prime factor present in the factorizations of the numbers.\n\n*   **Prime factors involved**: 2, 3, 7, 89\n*   **Highest powers**:\n    *   For **2**: The highest power is $2^1$ (present in 98 and 42).\n    *   For **3**: The highest power is $3^1$ (present in 42).\n    *   For **7**: The highest power is $7^2$ (specifically in 98). Note that 42 only contains $7^1$, so $7^2$ is required to include 98.\n    *   For **89**: The highest power is $89^1$ (present in 89).\n\n### Step 3: Calculate the Product\nMultiply these highest powers together to get the LCM:\n\n$$ \\text{LCM} = 2^1 \\times 3^1 \\times 7^2 \\times 89^1 $$\n\nCalculate the values:\n1.  $2 \\times 3 = 6$\n2.  $7^2 = 49$\n3.  $49 \\times 89$\n\nLet's do $49 \\times 89$:\n$$ 49 \\times 89 = 49 \\times (90 - 1) = 4410 - 49 = 4361 $$\nAlternatively:\n$$ 49 \\times 89 = (50 - 1) \\times 89 = 4450 - 89 = 4361 $$\n\nNow multiply by 6:\n$$ 4361 \\times 6 $$\n$$ 4000 \\times 6 = 24000 $$\n$$ 300 \\times 6 = 1800 $$\n$$ 60 \\times 6 = 360 $$\n$$ 1 \\times 6 = 6 $$\n\nSum:\n$$ 24000 + 1800 + 360 + 6 = 26166 $$\n\n### Verification\nLet's check if the product of original numbers meets the condition (LCM must be a multiple of all inputs):\n$$ 89 \\times 98 \\times 42 $$\n$$ 89 \\times (98 \\times 42) $$\n$$ 98 \\times 42 = (100 - 2) \\times 42 = 4200 - 84 = 4116 $$\n$$ 89 \\times 4116 $$\nCalculation:\n$89 \\times 4116 = 366324$\n\nDivide the resulting product by each original number:\n*   $366324 \\div 89 = 4116$ (Integer)\n*   $366324 \\div 98 = 3738$ (Integer)\n*   $366324 \\div 42 = 8722$ (Integer)\n\nSince the result is an integer for all numbers, it confirms our LCM is correct.\n\n**Answer:** 26166\n\n<final>26166</final>"
+        },
+        {
+          "time": "2026-11-16T00:34:31.297391+00:00",
+          "kind": "judge_assessment",
+          "key": "f79c3957e465443296954fa151df9babda5cd1119adf001c6b3f09688993a1d3",
+          "task_id": "dev-e57b1263bc87b1ad2844",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": "Conventional reference for polynomials in commuting variables over a commutative coefficient ring: expand by distributivity, collect coefficients, convolve coefficient lists, and use the binomial-square and difference-of-squares identities. Ordinary substitutions and the cancellations justified by commutativity are inc",
+              "addition_evidence": [],
+              "use_evidence": [],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [],
+                "rationale": "No structural framework beyond standard arithmetic steps is offered.",
+                "score": 0
+              },
+              "justified_generality": {
+                "evidence": [],
+                "rationale": "No general family of problems or assumptions is explicitly defined.",
+                "score": 0
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "$-84x^2 + 76x - 5$\n"
+                ],
+                "rationale": "The result follows from the calculation steps provided.",
+                "score": 1
+              },
+              "reuse_and_connections": {
+                "evidence": [],
+                "rationale": "No connections to other mathematical settings or consequences are demonstrated.",
+                "score": 0
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To simplify the expression $(1 - 14x)(6x - 5)$, we will distribute each term in the first parenthesis across the terms in the second parenthesis. This is commonly known as the FOIL method (First, Outer, Inner, Last).\n",
+                  "The guidelines require using $**$ for exponents (though not strictly necessary here since there are no negative numbers or complex fractions, it adheres to the format) and ensuring the $*$ symbol is used for all multiplications in the reasoning steps.\n"
+                ],
+                "rationale": "Steps are clear but verbose; definitions are standard.",
+                "score": 2
+              },
+              "constructive_novelty": {
+                "evidence": [],
+                "rationale": "The solution uses standard FOIL/distributivity found in the reference. No new theory or bridge is constructed beyond the baseline methods.",
+                "score": 0
+              }
+            },
+            "problems": [
+              "No theoretical framework beyond elementary arithmetic is constructed.",
+              "No generalization or structural insight is offered beyond the specific calculation."
+            ]
+          },
+          "theory": 0.0875,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 0,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": false,
+            "gate_reasons": [
+              "within_reference",
+              "missing_addition_evidence",
+              "missing_use_evidence"
+            ]
+          },
+          "problem": "Simplify this expression: (1 - 14*x)*(6*x - 5)\nWhen performing calculations, please follow these guidelines:\n1. Use ** instead of ^ to represent exponents. For example, write 7*X**2 instead of 7*X^2.\n2. Always include the * symbol for all multiplication operations in your reasoning steps. For example, write `-3*X**3*sin(X) - 9*X**2*cos(X) + 18*X*sin(X) + 18*cos(X) + C` instead of `-3x3sin(x) - 9x2cos(x) + 18xsin(x) + 18cos(x) + C`.\n",
+          "conventional_reference": "Conventional reference for polynomials in commuting variables over a commutative coefficient ring: expand by distributivity, collect coefficients, convolve coefficient lists, and use the binomial-square and difference-of-squares identities. Ordinary substitutions and the cancellations justified by commutativity are included. The setting and objects of this baseline are ordinary commutative polynomials; it is not a reference for every identity or every other algebraic setting. Merely restating or renaming these methods earns no novelty credit.",
+          "candidate_response": "To simplify the expression $(1 - 14x)(6x - 5)$, we will distribute each term in the first parenthesis across the terms in the second parenthesis. This is commonly known as the FOIL method (First, Outer, Inner, Last).\n\n**Step 1: Multiply the \"First\" terms**\nThe first terms are $1$ and $6x$.\n$1 \\cdot 6x = 6x$\n\n**Step 2: Multiply the \"Outer\" terms**\nThe outer terms are $1$ and $-5$.\n$1 \\cdot (-5) = -5$\n\n**Step 3: Multiply the \"Inner\" terms**\nThe inner terms are $-14x$ and $6x$.\n$-14x \\cdot 6x = -84x^2$ (Note: $x$ multiplied by $x$ becomes $x^2$).\n\n**Step 4: Multiply the \"Last\" terms**\nThe last terms are $-14x$ and $-5$.\n$-14x \\cdot (-5) = +70x$\n\n**Step 5: Combine all the terms**\nNow, we sum the results from Steps 1 through 4:\n$6x - 5 - 84x^2 + 70x$\n\n**Step 6: Arrange the terms in standard polynomial order**\nStandard order is usually from highest degree to lowest degree. Here, the highest degree term is $-84x^2$.\nWe also combine the $x$ terms: $6x + 70x = 76x$.\n\nSo the expression becomes:\n$-84x^2 + 76x - 5$\n\nThe guidelines require using $**$ for exponents (though not strictly necessary here since there are no negative numbers or complex fractions, it adheres to the format) and ensuring the $*$ symbol is used for all multiplications in the reasoning steps.\n\n*   $1 \\cdot 6x = 6x$\n*   $1 \\cdot (-5) = -5$\n*   $-14x \\cdot 6x = -84x^2$\n*   $-14x \\cdot (-5) = 70x$\n\nSumming these up: $-84x^2 + 6x + 70x - 5 = -84x^2 + 76x - 5$.\n\n<final>-84*x**2 + 76*x - 5</final>"
         }
       ],
       "stages": [],
@@ -15215,6 +15831,293 @@ Stage timings additionally include template/token checks and validation. Cache h
       "peak_gpu_allocated_bytes": 5107058688,
       "peak_gpu_reserved_bytes": 5194645504,
       "pilot_updates_discarded": true
+    },
+    {
+      "run_id": "exploratory-single-v2-pilot-theory-seed42",
+      "step": 1,
+      "metrics": {
+        "train_runtime": 914.6552,
+        "train_samples_per_second": 0.017,
+        "train_steps_per_second": 0.002,
+        "total_flos": 0.0,
+        "train_loss": 0.012452315539121628,
+        "epoch": 0.03125
+      },
+      "elapsed_seconds": 876.422599933001,
+      "peak_gpu_allocated_bytes": 5255273984,
+      "peak_gpu_reserved_bytes": 6545211392,
+      "completed": false,
+      "pilot": true,
+      "experiment": "exploratory-single-v2",
+      "kind": "exploratory_single_grpo_boundary",
+      "judge_identity": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+      "configuration": {
+        "version": 2,
+        "judge_prompt_version": "v7",
+        "judge_protocol": "single-indexed-v1",
+        "judge_framing_version": "v2",
+        "data_seed": 20261115,
+        "training_seeds": [
+          42,
+          43,
+          44
+        ],
+        "max_steps": 2,
+        "max_prompt_length": 512,
+        "max_completion_length": 2048,
+        "num_generations": 4,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "learning_rate": 1e-05,
+        "warmup_ratio": 0.1,
+        "beta": 0.04,
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0,
+        "save_steps": 1,
+        "train_size": 1024,
+        "dev_size": 64,
+        "test_fresh_size": 200,
+        "test_hard_size": 100,
+        "test_unseen_size": 100,
+        "transfer_sources": 100,
+        "transfer_targets_per_source": 4,
+        "bootstrap_samples": 10000,
+        "judge_max_tokens": 1536,
+        "judge_context_length": 8192,
+        "judge_timeout_seconds": 900,
+        "judge_reasoning_budget_tokens": {
+          "training_judge": 512,
+          "evaluation_judge": 512
+        },
+        "calibration_pairs": 20,
+        "calibration_false_cases": 20,
+        "calibration_novelty_pairs": 12,
+        "calibration_novelty_false_cases": 8,
+        "test_ood_per_family": 50,
+        "ood_seed": 20261116
+      },
+      "resumed_from": null,
+      "step_metrics": {
+        "loss": 0.012452315539121628,
+        "grad_norm": 0.04686513915657997,
+        "learning_rate": 0.0,
+        "num_tokens": 9315.0,
+        "completions/mean_length": 1009.875,
+        "completions/min_length": 495.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.125,
+        "completions/mean_terminated_length": 861.5714721679688,
+        "completions/min_terminated_length": 495.0,
+        "completions/max_terminated_length": 1668.0,
+        "rewards/correctness_gated_theory/mean": 0.44140625,
+        "rewards/correctness_gated_theory/std": 0.6096502542495728,
+        "reward": 0.44140625,
+        "reward_std": 0.6096502542495728,
+        "frac_reward_zero_std": 0.5,
+        "completion_length": 1009.875,
+        "kl": 0.0,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 864.5697381040009,
+        "epoch": 0.03125
+      },
+      "reward_batch": {
+        "time": "2026-11-16T00:16:40.547760+00:00",
+        "kind": "reward_batch",
+        "reward_call": 0,
+        "accuracy": 0.375,
+        "theory": 0.1328125,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      "checkpoint_state": {
+        "identity_hash": "290802d90f469031129ab518e07fd0d6a9c3774764680a4f3b77280491e0005e",
+        "reward_calls": 1,
+        "global_step": 1,
+        "epoch": 0.03125,
+        "data_seed": 20261115,
+        "complete": true
+      },
+      "checkpoint_files": [
+        "README.md",
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "chat_template.jinja",
+        "groth-state.json",
+        "judge-cache.sqlite",
+        "optimizer.pt",
+        "rng_state.pth",
+        "scheduler.pt",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "trainer_state.json",
+        "training_args.bin"
+      ],
+      "task_groups": {
+        "0": [
+          "dev-762a8cd54c022d27bb19",
+          "dev-9e2760c33e4413a0cbc7"
+        ]
+      },
+      "judge_seconds": [
+        272.42028603200015,
+        148.8098519539999,
+        141.04606806299853,
+        148.30723751599726
+      ],
+      "judge_failures": 1,
+      "pilot_updates_excluded_from_comparisons": true,
+      "adapter_sha256": "3019142d31657685cfd0d551e495df3fe26af4783e17a80cac6b535e63c30984"
+    },
+    {
+      "run_id": "exploratory-single-v2-pilot-theory-seed42",
+      "step": 2,
+      "metrics": {
+        "train_runtime": 851.9393,
+        "train_samples_per_second": 0.019,
+        "train_steps_per_second": 0.002,
+        "total_flos": 0.0,
+        "train_loss": 0.05149880796670914,
+        "epoch": 0.0625
+      },
+      "elapsed_seconds": 817.6733448599989,
+      "peak_gpu_allocated_bytes": 5338635264,
+      "peak_gpu_reserved_bytes": 6706692096,
+      "completed": true,
+      "pilot": true,
+      "experiment": "exploratory-single-v2",
+      "kind": "exploratory_single_grpo_boundary",
+      "judge_identity": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+      "configuration": {
+        "version": 2,
+        "judge_prompt_version": "v7",
+        "judge_protocol": "single-indexed-v1",
+        "judge_framing_version": "v2",
+        "data_seed": 20261115,
+        "training_seeds": [
+          42,
+          43,
+          44
+        ],
+        "max_steps": 2,
+        "max_prompt_length": 512,
+        "max_completion_length": 2048,
+        "num_generations": 4,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "learning_rate": 1e-05,
+        "warmup_ratio": 0.1,
+        "beta": 0.04,
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0,
+        "save_steps": 1,
+        "train_size": 1024,
+        "dev_size": 64,
+        "test_fresh_size": 200,
+        "test_hard_size": 100,
+        "test_unseen_size": 100,
+        "transfer_sources": 100,
+        "transfer_targets_per_source": 4,
+        "bootstrap_samples": 10000,
+        "judge_max_tokens": 1536,
+        "judge_context_length": 8192,
+        "judge_timeout_seconds": 900,
+        "judge_reasoning_budget_tokens": {
+          "training_judge": 512,
+          "evaluation_judge": 512
+        },
+        "calibration_pairs": 20,
+        "calibration_false_cases": 20,
+        "calibration_novelty_pairs": 12,
+        "calibration_novelty_false_cases": 8,
+        "test_ood_per_family": 50,
+        "ood_seed": 20261116
+      },
+      "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/exploratory-single-v2-pilot-theory-seed42/checkpoint-1",
+      "step_metrics": {
+        "loss": 0.10299761593341827,
+        "grad_norm": 0.0916888564825058,
+        "learning_rate": 1e-05,
+        "num_tokens": 20723.0,
+        "completions/mean_length": 1280.0,
+        "completions/min_length": 405.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.375,
+        "completions/mean_terminated_length": 819.2000122070312,
+        "completions/min_terminated_length": 405.0,
+        "completions/max_terminated_length": 1053.0,
+        "rewards/correctness_gated_theory/mean": 0.6039062738418579,
+        "rewards/correctness_gated_theory/std": 0.649638831615448,
+        "reward": 0.6039062738418579,
+        "reward_std": 0.649638831615448,
+        "frac_reward_zero_std": 0.0,
+        "completion_length": 1280.0,
+        "kl": 6.0343586028466234e-05,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 805.4298283790049,
+        "epoch": 0.0625
+      },
+      "reward_batch": {
+        "time": "2026-11-16T00:34:32.097836+00:00",
+        "kind": "reward_batch",
+        "reward_call": 1,
+        "accuracy": 0.5,
+        "theory": 0.2078125,
+        "novelty": 0.0,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      "checkpoint_state": {
+        "identity_hash": "290802d90f469031129ab518e07fd0d6a9c3774764680a4f3b77280491e0005e",
+        "reward_calls": 2,
+        "global_step": 2,
+        "epoch": 0.0625,
+        "data_seed": 20261115,
+        "complete": true
+      },
+      "checkpoint_files": [
+        "README.md",
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "chat_template.jinja",
+        "groth-state.json",
+        "judge-cache.sqlite",
+        "optimizer.pt",
+        "rng_state.pth",
+        "scheduler.pt",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "trainer_state.json",
+        "training_args.bin"
+      ],
+      "task_groups": {
+        "1": [
+          "dev-e35360a905d64b24d291",
+          "dev-e57b1263bc87b1ad2844"
+        ]
+      },
+      "judge_seconds": [
+        187.9949145149949,
+        159.36981052299961,
+        158.16088842399768,
+        145.7128707180018
+      ],
+      "judge_failures": 0,
+      "pilot_updates_excluded_from_comparisons": true,
+      "adapter_sha256": "8085268f92bdc83418b1e5ea4a76118687ab2bdfc60add629c07e4284906bd64",
+      "changed_tensors": 96,
+      "adapter_tensors": 192,
+      "maximum_parameter_change": 1.0013206519943196e-05
     },
     {
       "kind": "exploratory_single_grpo_contract_failure",

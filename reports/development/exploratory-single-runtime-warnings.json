@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "phase": "first",
+      "source": "/mnt/d/AI/grothendieck-rlvr/logs/exploratory-single-v2-pilot-first-console.log",
+      "sha256": "1b2e1aca4bfe51f81376053d5c914d7dbb9a769b955e29cf767f2518fcd32821",
+      "warnings": [
+        "`causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.",
+        "`causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel."
+      ]
+    },
+    {
+      "phase": "resume",
+      "source": "/mnt/d/AI/grothendieck-rlvr/logs/exploratory-single-v2-pilot-resume-console.log",
+      "sha256": "0d5ef43224c623d985dd78e88b907b7b0d88b70232b8e9730b62871b4959a28a",
+      "warnings": [
+        "`causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.",
+        "`causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel."
+      ]
+    }
+  ]
+}

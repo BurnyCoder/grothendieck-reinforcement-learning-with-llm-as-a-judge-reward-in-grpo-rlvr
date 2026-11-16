@@ -120,5 +120,8 @@
   "research_collection_pages_workflow": 43768467094,
   "exploratory_single_protocol_merge": "fb0d24e4f0dd1e9c77053ba914cb8a5645edd087",
   "exploratory_single_protocol_huggingface_commit": "3929b020d01c7118df09866b128740552a6621d3",
-  "exploratory_single_protocol_pages_workflow": 43775363802
+  "exploratory_single_protocol_pages_workflow": 43775363802,
+  "indexed_evidence_protocol_merge": "28cd4cd7734106f1842a903f6e52d51fd4a2d9f6",
+  "indexed_evidence_protocol_huggingface_commit": "58f25811a7fa147d5b8f820080a7a9a4100e3c45",
+  "indexed_evidence_protocol_pages_workflow": 43777646448
 }
