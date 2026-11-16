@@ -557,6 +557,9 @@ current manifests and results.
 - [ ] Test more advanced **agentic RL**, with multi-step mathematical investigation,
   tool use, feedback, revision and reusable mathematical memory.
 - [ ] Integrate **Lean** for checked definitions, lemmas, proofs and dependencies.
+- [ ] Investigate **scoring abstract structures in Lean by how fundamental they are**:
+  how much they use fundamental axioms to construct novel, deeper, more fundamental
+  structures versus how much they combine more high-level theorems.
 - [ ] Develop **explicit, reproducible quantitative rewards in place of LLM judging**
   wherever feasible: token/compute costs, checked consequences, reuse and measured
   transfer. Exact calculation does not by itself make a metric an exact measure
