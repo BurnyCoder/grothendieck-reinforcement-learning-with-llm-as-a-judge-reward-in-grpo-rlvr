@@ -336,18 +336,58 @@ snapshot is not a liveness check. CLI commands execute individual phases.
    notes. The note limit is 1,024 tokens. Verify recipient answers without an LLM
    judge or training updates. Freeze the source-run list before this phase;
    extending it later requires a separate amended transfer identity.
-8. **Remaining seeds and controls:** train theory then correctness at seed 43,
-   repeat at seed 44, then train shuffled-bonus and rubric-only seed-42 controls.
-   Each starts from the original base; generate and independently evaluate the
-   resulting checkpoints and publish each milestone. The shuffled control
+8. **Remaining seeds and controls:** continue through the training order below
+   after the initial seed-42 comparisons. Generate and independently evaluate
+   each resulting checkpoint, publishing each milestone. The shuffled control
    permutes bonuses among correct completions within a reward batch. The
    rubric-only control keeps the rubric while removing quotations and persona.
+
+These are **eight separate Qwen3.5-0.8B LoRA training runs**, executed one at a
+time. Each uses the shared settings above and starts from the unmodified base;
+the ordinary and prompted baselines have no trained adapter. All completed
+adapters use the same frozen Qwen3.5-4B evaluator after output generation.
+
+| Training order | Arm | Seed | Training judge and feedback |
+|---:|---|---:|---|
+| 1 | Theory bonus | 42 | Qwen3.5-2B Q4_K_M, quoted rubric; `C × (1 + 0.5T)` |
+| 2 | Correctness only | 42 | No LLM judge; verified correctness `C` |
+| 3 | Theory bonus | 43 | Qwen3.5-2B Q4_K_M, quoted rubric |
+| 4 | Correctness only | 43 | No LLM judge; verified correctness `C` |
+| 5 | Theory bonus | 44 | Qwen3.5-2B Q4_K_M, quoted rubric |
+| 6 | Correctness only | 44 | No LLM judge; verified correctness `C` |
+| 7 | Shuffled-bonus control | 42 | Qwen3.5-2B Q4_K_M, quoted rubric; permuted theory bonuses |
+| 8 | Rubric-only ablation | 42 | Qwen3.5-2B Q4_K_M, without quotations or persona |
 
 During judged training, the policy and training judge stay on the GPU. During
 4B evaluation scoring, policy generation/training is stopped. Tokenization,
 verification and logging still use CPU. Neither judge
 receives gradient updates. The current judges remain unqualified, so all of these
 results remain exploratory; the original audit gates and failed results are preserved.
+
+### Postponed model sequence
+
+After the current small-model comparisons, the intended progression is to revisit
+the saved larger setup, then investigate **10B+ → 100B+ → 1T+** model scales.
+These phases are deferred; exact checkpoints, quantization and hardware for the
+larger scales have not been selected. Vary policy and judge size separately where
+feasible, using Qwen/Gemma models and local inference.
+
+| Deferred stage | Policy to train or infer | Frozen judges and execution |
+|---|---|---|
+| Revisit the saved larger setup | Qwen3.5-2B, BF16 language LoRA; unmodified base for baselines and recipient transfer | Qwen3.5-9B Q4_K_M training judge; Gemma 4 12B UD-Q4_K_XL evaluator |
+| Larger-scale studies | Candidate Qwen/Gemma policies at 10B+, then 100B+, then 1T+; checkpoints and training configurations unselected | Candidate larger judges, chosen separately from policy size; quantization, hardware and feasibility to be specified |
+| Advanced research | Models to be selected under separate protocols | Agentic RL, Lean and more explicit programmatic rewards; details in the [deferred roadmap](docs/future-research.md) |
+
+The [saved larger-model configuration](configs/history/exploratory-single-v2/models.lock.json)
+used the 9B training judge on CPU and Gemma evaluation with partial GPU offload,
+loaded separately from the policy. Reassess placement and throughput before
+resuming that setup; these are not the current GPU judges. Its
+[runtime configuration](configs/history/exploratory-single-v2/judge-runtime.json)
+and prior outcomes remain archived.
+
+**Qwen3-1.7B FP8 is a legacy fallback only.** It remains in the model lock for
+reproducibility, is not selected or scheduled, and requires a dated feasibility
+amendment before use. The smaller Qwen3.5 experiment has no automatic model switch.
 
 ## Install and run
 

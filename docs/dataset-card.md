@@ -109,6 +109,10 @@ contains correct completions, so no difficulty change has been activated. See
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
 
+The repository README records the [current inference/training order](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order)
+and [postponed model sequence](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#postponed-model-sequence),
+including each policy/judge pairing, seed, quantization and hardware transition.
+
 The README's [model execution order](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order)
 details inference, LoRA training, CPU/GPU model transitions, independent scoring
 and frozen-recipient transfer, distinguishing queued work from planned work.
