@@ -1,6 +1,7 @@
 """One artifact-driven entry point for tables, figures, Markdown, PDF and website snapshots."""
 import html
 import json
+import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
@@ -228,6 +229,65 @@ def markdown_table(rows) -> str:
                      ["| " + " | ".join(row) + " |" for row in rows[1:]])
 
 
+def readme_results(snapshot) -> str:
+    """Show every active comparison while leaving qualification history in the full report."""
+    available = {row[0]: row for row in table_rows(snapshot)[1:]}
+    rows = [["Arm", "Problems scored", "Accuracy", "C × theory", "C × novelty"]]
+    for arm in ARMS:
+        saved = available.get(EXPLORATORY_PREFIX + arm, [arm, *["Pending"] * 4])
+        rows.append([arm, *saved[1:]])
+    return markdown_table(rows)
+
+
+def readme_example(snapshot):
+    """Select the first accepted repaired-pilot assessment, without ranking by score."""
+    artifact = "reports/development/exploratory-single-pilot-step1.jsonl"
+    for record in snapshot.get("development", []):
+        if record["artifact"] == artifact and record["assessments"]:
+            return record["assessments"][0]
+    return None
+
+
+def example_figure(snapshot, destination: Path) -> None:
+    """Illustrate a real development output; visibly label excerpts and unqualified opinions."""
+    import matplotlib.pyplot as plt
+    example = readme_example(snapshot)
+    fig, axes = plt.subplots(1, 2, figsize=(13, 7))
+    for axis in axes:
+        axis.axis("off")
+    if example is None:
+        axes[0].text(0, .9, "No archived development example available.", va="top")
+    else:
+        response = example["candidate_response"]
+        paragraphs = response.split("\n\n")
+        excerpt = response if len(paragraphs) <= 4 else (
+            paragraphs[0] + "\n\n[Middle omitted for display]\n\n" + "\n\n".join(paragraphs[-3:]))
+        wrapped = "\n".join(textwrap.fill(line, width=61) for line in excerpt.splitlines())
+        axes[0].text(0, 1, "POLICY RESPONSE · DISPLAY EXCERPT", weight="bold", va="top")
+        axes[0].text(0, .94, textwrap.fill(example["problem"], width=61) + "\n\n" + wrapped,
+                     va="top", fontsize=9, parse_math=False, linespacing=1.3)
+        assessment = example["assessment"]
+        axes[1].text(0, 1, "QWEN JUDGE · UNQUALIFIED OPINION", weight="bold", va="top")
+        axes[1].text(0, .93, f"Declared validity: {assessment['theory_validity']}\n"
+                     f"Gated theory: {example['theory']:.4f}   Novelty: {example['novelty']:.4f}", va="top")
+        rows = [[name.replace("_", " ").capitalize(), str(criterion["score"])]
+                for name, criterion in assessment["criteria"].items()]
+        table = axes[1].table(cellText=rows, colLabels=["Criterion", "Raw score / 4"],
+                              colWidths=[.75, .25], bbox=[0, .43, 1, .37], cellLoc="left")
+        table.auto_set_font_size(False)
+        table.set_fontsize(9)
+        rationale = assessment["criteria"]["constructive_novelty"]["rationale"]
+        axes[1].text(0, .36, "Saved novelty rationale:\n\n" + textwrap.fill(rationale, width=61),
+                     va="top", fontsize=9, parse_math=False)
+        fig.text(.04, .035, f"Source: exploratory-single-pilot-step1.jsonl · {example['task_id']} · {example['time']}",
+                 fontsize=8)
+    fig.suptitle("Development pilot: first accepted assessment in recorded order\n"
+                 "Discarded pilot updates; this is not a trained-versus-baseline comparison", fontsize=12)
+    fig.subplots_adjust(left=.04, right=.96, bottom=.11, top=.85, wspace=.14)
+    fig.savefig(destination / "judge-example.png", dpi=160)
+    plt.close(fig)
+
+
 def transfer_rows(snapshot):
     """Recipient results come from the same records as the clustered comparisons."""
     rows = [["Note condition", "Probes", "Recipient accuracy"]]
@@ -391,6 +451,7 @@ def figures(snapshot, destination: Path) -> None:
     fig.tight_layout()
     fig.savefig(destination / "training.png", dpi=160)
     plt.close(fig)
+    example_figure(snapshot, destination)
 
 
 def paper_sections(snapshot):
@@ -743,9 +804,9 @@ def report() -> dict:
     content = readme.read_text(encoding="utf-8")
     start, end = "<!-- RESULTS:START -->", "<!-- RESULTS:END -->"
     if start in content:
-        content = content.split(start)[0] + start + "\n\n" + table + "\n\n" + calibration_text(snapshot) + "\n\n" + end + content.split(end)[1]
+        content = content.split(start)[0] + start + "\n\n" + readme_results(snapshot) + "\n\n" + end + content.split(end)[1]
     else:
-        content += "\n## Recorded evaluation results\n\n" + start + "\n\n" + table + "\n\n" + end + "\n"
+        content += "\n## Recorded evaluation results\n\n" + start + "\n\n" + readme_results(snapshot) + "\n\n" + end + "\n"
     readme.write_text(content, encoding="utf-8")
     write_paper(snapshot, rows, PROJECT / "reports/paper.pdf")
     return {"snapshot": str(PROJECT / "site/snapshot.json"), "paper": str(PROJECT / "reports/paper.pdf")}

@@ -54,8 +54,8 @@ eight-specialist fallback is now selected by
 It retains modest credit, all thresholds, cases, labels and weights. Each role's
 raw findings and latency are preserved; code derives novelty and aggregates the
 reward. Complete matching development passes precede the full locked audits.
-See `reports/amendments/2026-11-15-decomposed-judges.md`; neither new instrument
-has yet qualified, and no comparative run has begun.
+See `reports/amendments/2026-11-15-decomposed-judges.md`. Neither new instrument
+had qualified at that stage, and comparative runs had not begun.
 
 Quoted-Qwen specialist development subsequently failed its unchanged futility
 gate. False mathematical objections vetoed valid frameworks and the brief
@@ -77,8 +77,9 @@ failed pilot and its original profile are archived.
 The repaired development pilot subsequently completed saving and resumption,
 advanced the task position and changed adapter parameters. Its discarded updates
 are execution evidence only. The generated pilot report and boundary records
-retain timings, reward components, retries and checkpoint state. Comparative
-training and held-out evaluation remain pending.
+retain timings, reward components, retries and checkpoint state. Ordinary baseline
+generation has now begun, with prompted generation queued afterward. Comparative
+training and scored held-out evaluation remain pending.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

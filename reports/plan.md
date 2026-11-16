@@ -13,8 +13,10 @@ evidence before scoring and explicit validation feedback on retries. Development
 calibration checks novelty first and can stop when the fixed thresholds become
 unreachable. Untouched full locked audits remain required for the qualified study.
 The [new user-authorized exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
-permits separate single-call judge training despite failed calibration. No
-comparative run has begun; these experiments will not qualify the original study.
+permits separate single-call judge training despite failed calibration. Ordinary
+baseline generation has begun, with prompted generation queued afterward. Full
+comparative training and scored evaluations remain pending; these experiments
+will not qualify the original study.
 
 - [x] Inspect workspace, local hardware and publication accounts.
 - [x] Review relevant mathematics, rubric RL, theory formation and runtime sources.
@@ -197,7 +199,8 @@ position and changed adapter parameters at nonzero learning rate. The
 its outputs, retries and limits. Publish this milestone before the ordinary and
 prompted baselines; all comparative arms still start from the selected base.
 
-Implementation is present but model-backed integration remains unverified.
+Training, saving and resumption have been exercised with the actual models.
+The complete model-backed evaluation and transfer workflow remains unverified.
 The initial review/preregistration commit is `bcf85b1` in
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr . The Hugging Face dataset repository
 exists at https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr . Collection
