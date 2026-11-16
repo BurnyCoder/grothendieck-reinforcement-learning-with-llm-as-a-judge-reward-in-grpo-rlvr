@@ -42,7 +42,11 @@ and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-groth
   from every comparative initialization.
 - **Baselines generated:** ordinary and rising-sea prompted outputs are saved for the complete primary set;
   [completion receipts and raw artifacts](reports/generation/README.md) retain coverage and timing.
-- **Learning remains untested:** comparative training and scored evaluations remain pending.
+- **Long-run runtime issue:** the [first comparative training attempt](reports/experiments/exploratory-small-gpu-v2-memory-growth.md)
+  accumulated reserved CUDA memory and slowed down. It stopped at a complete checkpoint.
+  A [separate cache-release development diagnostic](reports/amendments/2026-11-16-cuda-cache-diagnostic.md)
+  is registered before restarting matched comparisons under an amended identity.
+- **Learning remains untested:** full-budget comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -301,6 +305,9 @@ backward check and, after the published compact-output repair, its save/resume
 check with the 2B judge loaded. Ordinary and prompted primary generation are complete.** The saved
 pilot adapters are retained as execution evidence and excluded from comparisons.
 The feasibility evidence is published; follow this sequence from the unmodified base.
+The first theory-bonus attempt subsequently stopped on allocator-cache growth.
+Complete the registered runtime diagnostic before activating amended comparative
+training; preserve the interrupted run and start comparative adapters fresh.
 Live progress belongs in the dashboard and timestamped logs; this publication
 snapshot is not a liveness check. CLI commands execute individual phases.
 

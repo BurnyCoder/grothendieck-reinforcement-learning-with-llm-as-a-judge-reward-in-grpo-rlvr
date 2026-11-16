@@ -172,6 +172,21 @@ The [larger-model, agentic-RL, Lean and quantitative-reward roadmap](future-rese
 is postponed until after this sequence. It does not change these commands or the
 active LLM-judge reward.
 
+The first full-budget small-GPU attempt subsequently stopped at a safe checkpoint
+after allocator reservation grew. Follow the
+[registered runtime diagnostic](../reports/amendments/2026-11-16-cuda-cache-diagnostic.md)
+before starting another comparative arm. It is development-only and writes a
+separate identity; it cannot resume or overwrite the interrupted comparative run:
+
+```bash
+bash scripts/run.sh train --exploratory --pilot --runtime-diagnostic cache-release-v1 --arm theory --seed 42 --stop-after 8
+bash scripts/run.sh train --exploratory --pilot --runtime-diagnostic cache-release-v1 --arm theory --seed 42 --resume
+```
+
+A passing diagnostic precedes a separate published activation for matched
+comparisons. The commands below retain the previous execution sequence; do not
+silently add the diagnostic's cache setting to an existing comparison checkpoint.
+
 Start the judge in another terminal, then run the maximum-length check and pilot:
 
 ```bash
