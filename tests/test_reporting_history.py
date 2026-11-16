@@ -142,3 +142,31 @@ def test_exploratory_results_never_fill_the_qualified_comparison(tmp_path, monke
     rows = reporting.table_rows(snapshot)
     standard = next(row for row in rows if row[0] == "theory-seed42")
     assert standard[1:] == ["Pending"] * 4
+
+
+def test_readme_results_include_controls_without_borrowing_qualified_scores():
+    """The overview must show missing active arms, not another experiment's measurements."""
+    from grothendieck_rlvr.experiments import EXPLORATORY_PREFIX
+    snapshot = {"summaries": {
+        "theory-seed42": {"n": 400, "accuracy": .99, "metric": .9},
+        EXPLORATORY_PREFIX + "ordinary": {"n": 4, "accuracy": .5, "metric": .125,
+                                         "correctness_weighted_novelty": 0.0}},
+        "exploratory_single": {"profile": {"initial_arms": ["ordinary", "theory-seed42"]}}}
+    text = reporting.readme_results(snapshot)
+    assert "| ordinary | 4 | 0.5000 | 0.1250 | 0.0000 |" in text
+    for arm in ("theory-seed42", "correctness-seed43", "shuffled-seed42", "rubric-seed42"):
+        assert f"| {arm} | Pending | Pending | Pending | Pending |" in text
+    assert "0.9900" not in text
+    assert snapshot["summaries"]["theory-seed42"]["n"] == 400
+
+
+def test_readme_example_uses_recorded_order_not_the_highest_score():
+    """A development illustration must remain visibly separate from comparative output."""
+    first = {"task_id": "first", "candidate_response": "First saved explanation", "theory": .1}
+    best = {"task_id": "best", "candidate_response": "Higher score", "theory": .9}
+    snapshot = {"development": [
+        {"artifact": "reports/development/older-attempt.jsonl", "assessments": [best]},
+        {"artifact": "reports/development/exploratory-single-pilot-step1.jsonl",
+         "assessments": [first, best]}]}
+    assert reporting.readme_example(snapshot) == first
+    assert reporting.readme_example({"development": []}) is None
