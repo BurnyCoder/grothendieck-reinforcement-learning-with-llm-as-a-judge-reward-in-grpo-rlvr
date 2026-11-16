@@ -178,28 +178,49 @@ interpretation, not a claim to reproduce Grothendieck's personal judgments.
 
 ### Models and training configuration
 
-All inference is local, using only Qwen and Gemma. Exact revisions and artifact
-hashes are in the [model lock](configs/models.lock.json) and
-[artifact lock](configs/artifacts.lock.json).
+All inference is local, using only Qwen and Gemma. **Only the policy's language
+LoRA adapters are trained; both judges remain frozen.** Exact revisions and
+artifact hashes are in the [model lock](configs/models.lock.json) and
+[artifact lock](configs/artifacts.lock.json). CPU/GPU serving settings are frozen
+in the [judge runtime](configs/judge-runtime.json).
 
 | Role | Selected model | Execution |
 |---|---|---|
-| Policy | [Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B) | BF16 language LoRA; vision components frozen |
-| Training judge | [Qwen3.5-9B](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) | Frozen Q4_K_M GGUF on CPU |
-| Evaluation judge | [Gemma 4 12B](https://huggingface.co/unsloth/gemma-4-12b-it-GGUF) | Frozen UD-Q4_K_XL GGUF; GPU offload after policy generation |
-| Transfer recipient | Selected unmodified Qwen3.5-2B base | Frozen throughout recipient evaluation |
+| Policy | [Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B) | GPU through Unsloth/Transformers and TRL; BF16 base, language LoRA, vision components frozen |
+| Training judge | [Qwen3.5-9B](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) | Frozen Q4_K_M GGUF through llama.cpp; CPU, eight threads, no GPU layers |
+| Evaluation judge | [Gemma 4 12B](https://huggingface.co/unsloth/gemma-4-12b-it-GGUF) | Frozen UD-Q4_K_XL GGUF through llama.cpp; 24 GPU layers, eight CPU threads; policy unloaded first |
+| Transfer recipient | Selected unmodified Qwen3.5-2B base | GPU inference through Unsloth/Transformers; frozen, without a trained adapter |
 
-Every trained arm starts from the same [selected base](configs/policy-selection.json).
-Qwen3-1.7B remains a documented-feasibility-failure fallback; it is not selected.
-The [fixed settings](configs/study.json) use LoRA rank 16, alpha 32, dropout 0,
-four completions per prompt, microbatch 1, gradient accumulation 8, learning rate
-1e-5, 10% warmup, completion limit 2,048, `dr_grpo`, `scale_rewards=False` and
-KL coefficient 0.04. The [budget amendment](reports/amendments/2026-11-15-training-budget.md)
-sets **64 updates per arm**. Training follows
+Every trained arm starts with a fresh adapter on the same
+[selected base](configs/policy-selection.json); no arm continues another arm's
+training or retains pilot updates. Qwen3-1.7B remains a documented-feasibility-failure
+fallback; it is not selected. The [fixed configuration](configs/study.json),
+[training implementation](src/grothendieck_rlvr/training.py) and
+[budget amendment](reports/amendments/2026-11-15-training-budget.md) specify:
+
+| Training setting | Fixed value for every arm |
+|---|---|
+| Optimizer budget | 64 updates |
+| LoRA | Rank 16, alpha 32, dropout 0 |
+| Sampling | Four completions per prompt; temperature 1.0, top-p 1.0 |
+| Batching | Microbatch 1; gradient accumulation 8 |
+| Length limits | 512 prompt tokens; 2,048 completion tokens |
+| Optimizer and schedule | AdamW; learning rate 1e-5; 10% warmup; linear schedule; weight decay 0 |
+| Loss and regularization | `dr_grpo`; `scale_rewards=False`; KL coefficient 0.04; gradient clipping 1.0 |
+| Memory/runtime | BF16, gradient checkpointing, `fast_inference=False`, `use_vllm=False` |
+| Recovery | Save every eight updates and on orderly termination; keep three periodic checkpoints |
+
+Training follows
 [Unsloth's Qwen3.5 route](https://unsloth.ai/docs/models/qwen3.5/fine-tune)
-with `fast_inference=False`; fine-tuning memory advertisements are not treated as
-GRPO guarantees. Measured [runtime scenarios](reports/training-budget.md) are
-estimates, not completion promises.
+using [TRL's GRPO implementation](https://huggingface.co/docs/trl/grpo_trainer).
+Fine-tuning memory advertisements are not treated as GRPO guarantees. Measured
+[runtime scenarios](reports/training-budget.md) are estimates, not completion promises.
+
+For [held-out generation and transfer](src/grothendieck_rlvr/evaluation.py),
+weights are frozen: one greedy response per problem (`do_sample=False`), at most
+2,048 generated tokens, and an 8,192-token context. Policy training and inference
+both disable the model's separate thinking mode. The frozen judges use their own
+registered reasoning budgets; they are not trained by GRPO.
 
 ### Data, comparisons and uncertainty
 
@@ -237,6 +258,65 @@ if nominal targets are reached.** Higher training-judge scores alone can reflect
 proxy optimization. Do not tune on held-out outcomes or extend sampling to obtain
 significance. See the [research review](reports/state-of-the-art-review.md) for
 prior work and limitations.
+
+### Model execution order
+
+This is the current [exploratory execution plan](reports/plan.md), including the
+CPU/GPU transitions. **At this documentation milestone, ordinary baseline
+generation is running and prompted baseline generation is queued. Full training
+and the subsequent evaluations are planned, not already running or queued.**
+The queue is a local execution wrapper, not an automatic scheduler installed by
+the README commands. Live progress belongs in the dashboard and timestamped logs;
+this publication snapshot is not a liveness check.
+
+1. **Ordinary baseline:** load the unmodified Qwen policy on the GPU and generate
+   the 400 primary-test answers with the ordinary solve-and-explain prompt. No
+   weights change and neither judge is needed. Save each answer for later scoring.
+2. **Prompted baseline:** use the same base weights, problems and decoding settings,
+   adding the rising-sea instruction to develop justified frameworks, reusable
+   consequences and valid nonstandard connections. The comparison measures
+   prompting alone. The current queue starts this phase after confirming all
+   ordinary baseline answers were saved.
+3. **Theory-bonus training, seed 42:** load a fresh policy adapter on the GPU and
+   start frozen Qwen3.5-9B on the CPU. Sample four completions per training prompt,
+   verify final answers, judge only correct responses, aggregate the composite
+   reward in code and perform GRPO updates. The judge uses the quoted rubric and
+   fixed conventional references. Calls are sequential: one accepted assessment
+   per correct solution, with exact cache reuse and at most three attempts for
+   contract/transport failures. Valid unfavorable judgments are never rerolled.
+4. **Correctness-only training, seed 42:** restart from the original base with a
+   fresh adapter. Use the same training prompts, task order and budgets, but
+   reward only verified correctness; no LLM judge is called. Both training arms
+   use ordinary policy prompts, so the theory arm's additional incentive comes
+   from its reward. Save and publish each completed training milestone.
+5. **Frozen comparison generation:** load the ordinary base, prompted base,
+   theory-seed42 adapter and correctness-seed42 adapter separately. Reuse saved
+   baseline outputs and generate missing primary outputs, each configuration's
+   200 OOD answers, and reusable notes on the 100 isolated transfer sources.
+   Source-note prompts contain no target problems or target answers. No weights
+   change; Gemma stays unloaded during policy generation.
+6. **Independent scoring:** unload the policy, stop the Qwen judge and load frozen
+   Gemma with GPU offload. Verify each saved primary/OOD final answer before
+   judging correct responses with the frozen single-call rubric. Gemma does not
+   receive Qwen's scores. Compute accuracy, correctness-weighted theory/novelty,
+   response lengths and the registered uncertainty estimates; publish the results.
+7. **Frozen-recipient transfer:** unload Gemma and reload the original Qwen base
+   without an adapter. Solve four fresh targets per source with no notes, related
+   notes, or unrelated notes matched in token length, including baseline-generated
+   notes. The note limit is 1,024 tokens. Verify recipient answers without an LLM
+   judge or training updates. Freeze the source-run list before this phase;
+   extending it later requires a separate amended transfer identity.
+8. **Remaining seeds and controls:** train theory then correctness at seed 43,
+   repeat at seed 44, then train shuffled-bonus and rubric-only seed-42 controls.
+   Each starts from the original base; generate and independently evaluate the
+   resulting checkpoints and publish each milestone. The shuffled control
+   permutes bonuses among correct completions within a reward batch. The
+   rubric-only control keeps the rubric while removing quotations and persona.
+
+During judged training, the policy stays on the GPU and Qwen judging uses the
+CPU. During Gemma scoring, policy generation/training is stopped. Neither judge
+receives gradient updates. The current judges remain unqualified, so all of these
+results remain exploratory; the original audit gates and failed results are preserved.
 
 ## Install and run
 
@@ -313,6 +393,8 @@ Generate the trained policy's primary outputs **before** loading Gemma:
 source scripts/environment.sh
 bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-theory-seed42 \
   --adapter "$GROTH_ROOT/runs/exploratory-single-v2-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-correctness-seed42 \
+  --adapter "$GROTH_ROOT/runs/exploratory-single-v2-correctness-seed42/adapter"
 ```
 
 After generation exits, stop the Qwen server with Ctrl-C and start the separate
@@ -329,6 +411,7 @@ In another terminal:
 bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-ordinary
 bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-prompted
 bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-theory-seed42
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-correctness-seed42
 bash scripts/run.sh report
 bash scripts/run.sh dashboard --port 8765
 ```
