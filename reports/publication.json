@@ -147,5 +147,8 @@
   "agri_quotation_pages_workflow": 43793969677,
   "compact_gpu_pilot_merge": "b46b9584021551d1692852c6ad7784363ce33c6d",
   "compact_gpu_pilot_huggingface_commit": "129f2d826acc3daeb822fa55f710cb3602561915",
-  "compact_gpu_pilot_pages_workflow": 43795403463
+  "compact_gpu_pilot_pages_workflow": 43795403463,
+  "task_difficulty_fallback_merge": "31591d6b0e66a36324f5054e56130246b185ea01",
+  "task_difficulty_fallback_huggingface_commit": "ee0c42d9795db12bfb532ed86d4e4d6c82bee721",
+  "task_difficulty_fallback_pages_workflow": 43796190340
 }
