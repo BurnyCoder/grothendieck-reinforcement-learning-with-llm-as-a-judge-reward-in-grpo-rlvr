@@ -1,6 +1,14 @@
 # Implementation and experiment plan
 
-Updated 2026-11-16. Authority: user-approved Qwen3.5/Gemma plan and
+Updated 2026-11-16. Current priority: the user-requested
+[smaller Qwen3.5 GPU experiment](amendments/2026-11-16-small-qwen-gpu.md).
+Use a 0.8B BF16 LoRA policy, fully GPU-resident 2B Q4_K_M training judge, and
+separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and its
+baseline queue are postponed, with configuration, checkpoints and partial answers
+preserved. The new GPU memory/backward/save-resume pilot must precede comparative
+runs. No new-model feasibility or speedup claim exists at this registration.
+
+Earlier authority: user-approved Qwen3.5/Gemma plan and
 [preregistration](preregistration.md), amended before judgments by the
 [valid-novelty/OOD protocol](amendments/2026-11-15-valid-novelty-and-ood.md).
 This checklist is a status record, not
@@ -13,9 +21,10 @@ evidence before scoring and explicit validation feedback on retries. Development
 calibration checks novelty first and can stop when the fixed thresholds become
 unreachable. Untouched full locked audits remain required for the qualified study.
 The [new user-authorized exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
-permits separate single-call judge training despite failed calibration. Ordinary
-baseline generation has begun, with prompted generation queued afterward. Full
-comparative training and scored evaluations remain pending; these experiments
+permits separate single-call judge training despite failed calibration. The new
+`exploratory-small-gpu-v1` profile retains that exception and the unchanged rubric,
+thresholds and modest connection credit. Full comparative training and scored
+evaluations remain pending; these experiments
 will not qualify the original study.
 
 - [x] Inspect workspace, local hardware and publication accounts.
@@ -40,6 +49,7 @@ will not qualify the original study.
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
 - [x] Complete development execution pilot and freeze the unmodified policy checkpoint.
+- [ ] Complete GPU residency/backward/save-resume checks for the new 0.8B/2B combination; discard pilot updates.
 - [x] Freeze the matched comparative update budget from development timing evidence.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T01:05:20.764709+00:00",
+  "generated_at": "2026-11-16T02:04:12.735222+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v8",
@@ -45,6 +45,44 @@
     "calibration_novelty_false_cases": 8,
     "test_ood_per_family": 50,
     "ood_seed": 20261116
+  },
+  "models": {
+    "recorded_at": "2026-11-16",
+    "policy": {
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "dtype": "bfloat16",
+      "license": "apache-2.0",
+      "artifact_subdir": "small-qwen-gpu-v1/policy",
+      "require_full_gpu": true
+    },
+    "training_judge": {
+      "repo": "unsloth/Qwen3.5-2B-GGUF",
+      "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+      "file": "Qwen3.5-2B-Q4_K_M.gguf",
+      "license": "apache-2.0",
+      "artifact_subdir": "small-qwen-gpu-v1/training_judge"
+    },
+    "evaluation_judge": {
+      "repo": "unsloth/Qwen3.5-4B-GGUF",
+      "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+      "file": "Qwen3.5-4B-Q4_K_M.gguf",
+      "license": "apache-2.0",
+      "artifact_subdir": "small-qwen-gpu-v1/evaluation_judge"
+    },
+    "fallback": {
+      "repo": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "dtype": "fp8",
+      "license": "apache-2.0",
+      "requires_feasibility_amendment": true
+    },
+    "llama_cpp": {
+      "repo": "https://github.com/ggml-org/llama.cpp",
+      "release": "v1.0.0",
+      "revision": "b1b770d90d94cad9e9ea5b993bdbc383a522fb28",
+      "license": "MIT"
+    }
   },
   "summaries": {},
   "strata": {},
@@ -440,11 +478,11 @@
   },
   "exploratory_single": {
     "profile": {
-      "id": "exploratory-single-v2",
-      "amendment": "reports/amendments/2026-11-16-indexed-evidence.md",
-      "authorization": "User explicitly requested single-call judge training despite failed acceptance thresholds on 2026-11-16 Europe/Berlin.",
+      "id": "exploratory-small-gpu-v1",
+      "amendment": "reports/amendments/2026-11-16-small-qwen-gpu.md",
+      "authorization": "User requested prioritizing smaller/quantized Qwen3.5 models fully on GPU on 2026-11-16; earlier authorization for exploratory single-call judging despite failed qualification remains in effect.",
       "calibration_required": false,
-      "interpretation": "Exploratory learning with unqualified, potentially systematically biased judges; not the calibration-qualified study.",
+      "interpretation": "Exploratory small-model GPU study with unqualified same-family judges; prior larger-model runs are deferred and not pooled.",
       "judge_protocol": "single-indexed-v1",
       "rubric_version": "v7",
       "reference_version": "v3",
@@ -456,18 +494,20 @@
       ],
       "input_hashes": {
         "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
-        "configs/models.lock.json": "19665fe0a0e451deccaa0ea52662b21a2056bdd335b79cc5e9efc58a28fa8495",
-        "configs/policy-selection.json": "698f3ed0cbab3e3a0a307fb0a721d46b7bb0636fe2f633632b2ba69e4a0576bd",
+        "configs/models.lock.json": "29a7152a84fea4d2b86e5229c1140e80685c583c07a7c6a5a352faba3af223d9",
+        "configs/policy-selection.json": "0c841de481c145140df1c2b78bb820eb3174033994fea365294616e7105e44af",
+        "configs/judge-runtime.json": "24a881eb8dba6760208b3eb1f928429a054a710c68e344b786e5fbae51fcc434",
         "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
-        "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062"
+        "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062",
+        "configs/artifacts.lock.json": "7fce628b3e3786c6c39b3ecb82a281b3f6c197cd1c38a44762fed06a55957b21"
       },
       "judge_identities": {
         "training_judge": {
-          "quoted": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
-          "rubric": "369ecf0cbc00b592c5897ea33485091b9dd5fecbed4f622fa18676a93caebc89"
+          "quoted": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+          "rubric": "65581b55e3539247b0368ce36fb16873d5ff9e405d6fc1eb328f352bc86520f6"
         },
         "evaluation_judge": {
-          "quoted": "368baea56bdf984b0554899338734fcdb4eb48071bda3d5d4219ec3700c70464"
+          "quoted": "7f50c54ec6f08eb5ecf44b1ed5316199900681fb5bbf5eb66022901d0cb84ea5"
         }
       },
       "evidence_protocol": "indexed-evidence-v1"
@@ -16308,58 +16348,23 @@
         ]
       }
     ],
+    "historical_exploratory": [
+      {
+        "experiment": "exploratory-single-v2",
+        "judge_identity": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+        "step_seconds": 864.5697381040009
+      },
+      {
+        "experiment": "exploratory-single-v2",
+        "judge_identity": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
+        "step_seconds": 805.4298283790049
+      }
+    ],
     "exploratory_single": {
-      "observed_step_seconds": [
-        864.5697381040009,
-        805.4298283790049
-      ],
-      "judge_identity": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
-      "options": [
-        {
-          "updates": 32,
-          "one_judged_arm_hours": [
-            7.159376252257822,
-            7.6850643387022295
-          ],
-          "all_judged_arms_hours": [
-            35.79688126128911,
-            38.42532169351115
-          ]
-        },
-        {
-          "updates": 64,
-          "one_judged_arm_hours": [
-            14.318752504515643,
-            15.370128677404459
-          ],
-          "all_judged_arms_hours": [
-            71.59376252257822,
-            76.8506433870223
-          ]
-        },
-        {
-          "updates": 128,
-          "one_judged_arm_hours": [
-            28.637505009031287,
-            30.740257354808918
-          ],
-          "all_judged_arms_hours": [
-            143.18752504515643,
-            153.7012867740446
-          ]
-        },
-        {
-          "updates": 256,
-          "one_judged_arm_hours": [
-            57.275010018062574,
-            61.480514709617836
-          ],
-          "all_judged_arms_hours": [
-            286.37505009031287,
-            307.4025735480892
-          ]
-        }
-      ]
+      "experiment": "exploratory-small-gpu-v1",
+      "observed_step_seconds": [],
+      "judge_identity": null,
+      "options": []
     }
   },
   "transfer": {

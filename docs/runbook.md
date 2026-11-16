@@ -154,21 +154,33 @@ qualifies the current identity.
 
 The [dated amendment](../reports/amendments/2026-11-16-exploratory-single-judge.md)
 explicitly permits this experiment with unqualified judges. Publish its tested
-code, profile and documentation before inference. Keep the Qwen CPU server running;
-do not load Gemma at the same time as policy generation or training.
+code, profile and documentation before inference. The
+[smaller-model amendment](../reports/amendments/2026-11-16-small-qwen-gpu.md) now
+selects a 0.8B BF16 LoRA policy, a fully GPU-resident 2B Q4_K_M training judge and
+a separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and
+baseline queue are postponed. Keep the 2B judge running during memory/pilot checks
+and theory training; unload policy and training judge before loading the evaluator.
+See the [execution order](../README.md#model-execution-order) and frozen runtime.
+
+Start the judge in another terminal, then run the maximum-length check and pilot:
+
+```bash
+bash scripts/run.sh serve --role training_judge
+```
 
 ```bash
 source scripts/environment.sh
+bash scripts/run.sh memory-probe
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --stop-after 1
-PYTHONPATH=src .venv/bin/python reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-single-v2-pilot-theory-seed42"
+PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v1-pilot-theory-seed42"
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --resume
-PYTHONPATH=src .venv/bin/python reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-single-v2-pilot-theory-seed42"
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-ordinary
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-prompted --rising
+PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v1-pilot-theory-seed42"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-prompted --rising
 bash scripts/run.sh train --exploratory --arm theory --seed 42
 bash scripts/run.sh train --exploratory --arm correctness --seed 42
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v2-theory-seed42/adapter"
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-single-v2-correctness-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-correctness-seed42/adapter"
 ```
 
 Publish the pilot and each training/evaluation milestone. `--resume` restores
@@ -178,17 +190,21 @@ the v7 rubric with the [indexed evidence contract](../reports/amendments/2026-11
 and context preflight; only contract/transport failures receive
 bounded retries. Failed or unqualified calibration is explicitly recorded.
 
-After policy generation finishes, stop the CPU judge, load the evaluation server,
+After policy generation finishes, stop the training judge, load the evaluation server,
 then score each run with `evaluate --exploratory --run-id NAME`. All evaluation
-run names must start with `exploratory-single-v2-`. Use `--split test_ood` and
+run names must start with `exploratory-small-gpu-v1-`. Use `--split test_ood` and
 `-ood` run-name suffixes for the separate secondary suite. Generate source notes
 with `--split transfer_source`, then use
 `transfer --exploratory --source-runs NAME ...`; its files live in
-`$GROTH_ROOT/transfer/exploratory-single-v2/`. The same fixed manifests and paired
+`$GROTH_ROOT/transfer/exploratory-small-gpu-v1/`. The same fixed manifests and paired
 analyses apply, but all conclusions remain exploratory. Regenerate publications
 with `bash scripts/run.sh report` and view `bash scripts/run.sh dashboard`.
 
 ## Qualification-study feasibility and recovery
+
+This historical larger-model workflow is deferred. Restore its matching code and
+[archived configuration](../configs/history/exploratory-single-v2/README.md) before
+resuming it; current model locks select the smaller exploratory GPU experiment.
 
 After publication, use development-only pilots:
 

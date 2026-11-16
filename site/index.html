@@ -7,9 +7,10 @@
 <p class="lede">Testing whether useful structures, valid conceptual novelty and justified connections to distant mathematics improve explanations and transfer, with correctness first.</p>
 <div class="status"><span id="status">Loading saved evidence…</span><span id="updated"></span></div>
 <nav aria-label="Research views"><a href="#results">Results</a><a href="#judging">Judge calibration</a><a href="#live">Live training</a><a href="#examples">Outputs</a><a href="#method">Method</a><a href="https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr">Repository ↗</a></nav></header>
-<section id="results"><div class="section-title"><h2>Evidence, with its limits</h2><span class="tag">Independent Gemma assessment</span></div>
+<section id="results"><div class="section-title"><h2>Evidence, with its limits</h2><span class="tag">Separate frozen Qwen 4B assessment</span></div>
 <p>Missing results are pending. The main score is answer correctness multiplied by supported theory quality. Judge assessments are opinions, not proof certificates.</p>
 <p>The exploratory single-call experiment proceeds by explicit instruction despite failed calibration. Its prefixed runs and paired analyses remain separate from the original qualified study. Higher judge scores alone do not establish improved mathematical understanding.</p>
+<p>The current experiment prioritizes a 0.8B Qwen policy and quantized 2B judge on GPU, with a separate 4B Qwen evaluator. The larger CPU-judge/Gemma configuration is postponed. Both current judges share a model family, so correlated errors remain a limitation.</p>
 <div class="table-wrap"><table><thead><tr><th>Arm</th><th>Problems</th><th>Accuracy</th><th>Correctness × theory</th><th>Correctness × novelty</th><th>Tokens / answer</th></tr></thead><tbody id="result-rows"></tbody></table></div>
 <details><summary>Paired uncertainty and acceptance criteria</summary><pre id="analysis"></pre></details>
 <details><summary>Secondary held-out families and per-family results</summary><pre id="ood-analysis"></pre></details>

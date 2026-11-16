@@ -130,6 +130,17 @@ No code from papers is copied where an existing library implements the method.
 Runtime and task-source compatibility will be checked against the locked release,
 with deviations documented before comparative results.
 
+## Smaller GPU initial experiment
+
+The [small-GPU amendment](amendments/2026-11-16-small-qwen-gpu.md) changes scale
+and placement while reusing the same methods, manifests and reward rubric. It
+does not introduce a new optimization algorithm or establish that small judges
+are interchangeable with larger ones. Same-family Qwen training/evaluation
+judges can share errors; the frozen-recipient accuracy comparison therefore
+remains necessary. Previous CPU-judge timings are retained as historical
+measurements, not extrapolated to the new model combination. Implementation
+sources and license checks appear in the [literature review](literature-review.md).
+
 ## A distinct route: verified mathematical construction
 
 [ALPS, sections 3–4 and appendices](https://arxiv.org/html/2608.15979v1) asks for
