@@ -32,6 +32,8 @@ def parser():
     train.add_argument("--seed", type=int, default=42)
     train.add_argument("--resume", action="store_true")
     train.add_argument("--pilot", action="store_true")
+    train.add_argument("--runtime-diagnostic", choices=["cache-release-v1"],
+                       help="Registered development-only runtime probe; requires --pilot --exploratory")
     train.add_argument("--stop-after", type=int)
     generate = sub.add_parser("generate")
     generate.add_argument("--run-id", required=True)
