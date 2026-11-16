@@ -29,10 +29,10 @@ def test_runtime_environment_overrides_inherited_wait_settings(monkeypatch):
     assert defaults["UNRELATED_FIXTURE"] == "preserved"
 
 
-def test_training_judge_cannot_offload_and_unregistered_override_is_rejected(monkeypatch):
+def test_unregistered_gpu_override_is_rejected_before_launch(monkeypatch):
     """Reject configuration drift before opening either weights or a server."""
     monkeypatch.setattr(models.subprocess, "run", lambda *a, **k: pytest.fail("Must reject before launch"))
-    with pytest.raises(ValueError, match="CPU"):
+    with pytest.raises(ValueError, match="registered"):
         models.serve("training_judge", gpu_layers=1)
     with pytest.raises(ValueError, match="registered"):
         models.serve("evaluation_judge", gpu_layers=2)

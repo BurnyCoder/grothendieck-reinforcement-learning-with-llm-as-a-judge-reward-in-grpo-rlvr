@@ -3,7 +3,7 @@
 A local mathematics environment for testing whether **correctness-gated rewards
 for justified theory building and valid conceptual novelty** improve explanations
 and transfer to new problems. An external verifier checks the final answer; a frozen Qwen judge scores
-the explanation; GRPO updates a Qwen3.5 policy. A separate frozen Gemma judge and
+the explanation; GRPO updates a Qwen3.5-0.8B policy. A separate frozen Qwen3.5-4B judge and
 tests of transfer to new problems assess the resulting behavior.
 
 The motivation is [Grothendieck's rising-sea philosophy, discussed by Colin
@@ -17,13 +17,16 @@ latent-space mechanism is not claimed.
 
 **Evidence so far:**
 
-- **Execution success:** the repaired [development pilot](reports/experiments/exploratory-single-pilot.md)
+- **Current priority:** the [smaller GPU experiment](reports/amendments/2026-11-16-small-qwen-gpu.md)
+  uses a 0.8B policy and quantized 2B training judge on GPU. The 4B evaluator runs
+  separately. The previous CPU-judge setup is postponed, with its records retained.
+- **Previous execution success:** the repaired [larger-policy pilot](reports/experiments/exploratory-single-pilot.md)
   saved, resumed and updated adapter weights. Pilot updates are discarded.
 - **Negative result:** [two-call](reports/experiments/qwen-v8-two-stage-learnings.md)
   and [specialist](reports/experiments/qwen-v8-specialist-learnings.md) judging failed
   development calibration; false objections removed bonuses from valid mathematics.
-- **Learning remains untested:** baseline generation has started. Full comparative
-  training and scored evaluations remain pending at this publication milestone.
+- **Learning remains untested:** the new GPU feasibility pilot, baseline generation,
+  comparative training and scored evaluations remain pending at this publication milestone.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -44,7 +47,11 @@ The [exploratory amendment](reports/amendments/2026-11-16-exploratory-single-jud
 authorizes testing **one judge assessment per correct solution despite failed
 calibration**. Both judges remain unqualified and may have systematic, correlated
 errors. This is a separate exploratory study; it does not waive the original
-study's audit requirements or turn a failed calibration into a pass.
+study's audit requirements or turn a failed calibration into a pass. The
+[model-scale amendment](reports/amendments/2026-11-16-small-qwen-gpu.md) prioritizes
+smaller Qwen3.5 models fully resident on GPU. Both judges now belong to the same
+family; cross-family Gemma evaluation is deferred, increasing the concern about
+correlated errors. See the [postponed setup](configs/history/exploratory-single-v2/README.md).
 
 The first single-call pilot failed because the judge altered an exact evidence
 quotation. The [indexed-evidence repair](reports/amendments/2026-11-16-indexed-evidence.md)
@@ -52,12 +59,12 @@ lets it select source passages, which code copies exactly. The repaired pilot
 demonstrated execution and checkpoint recovery, not mathematical improvement.
 The reward, rubric weights, modest credit for valid connections and historical
 scores remain unchanged. The active profile is
-[`exploratory-single-v2`](configs/exploratory-single-judge.json).
+[`exploratory-small-gpu-v1`](configs/exploratory-single-judge.json).
 
 ### Results: method, baselines, controls and ablation
 
 This table is generated from saved evaluations. Arm names abbreviate the active
-`exploratory-single-v2-` prefix. **Pending means unmeasured, not zero.**
+`exploratory-small-gpu-v1-` prefix. **Pending means unmeasured, not zero.**
 The problem count is the number scored; incomplete counts are not complete
 evaluations. Original qualification-study results and all calibration failures
 remain in the [consolidated report](reports/experiments.md).
@@ -95,7 +102,8 @@ are retained in the [reports](reports/experiments.md).
 This figure uses the **first accepted assessment in recorded order** from the
 [repaired pilot log](reports/development/exploratory-single-pilot-step1.jsonl).
 The shortened display is labeled; full responses and evidence remain in the log.
-It is a development illustration, not a trained-versus-baseline comparison.
+It illustrates the postponed 2B-policy/9B-judge setup, not the new smaller GPU
+experiment or a trained-versus-baseline comparison.
 
 The [judge inspector](https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/#judging)
 shows recorded candidates, reference approaches, scores, evidence and objections,
@@ -116,7 +124,7 @@ flowchart LR
   R --> G[TRL Dr. GRPO: language LoRA updates]
   G --> P
   G --> E[Final fixed-budget checkpoint]
-  E --> H[Held-out generation then frozen Gemma scoring]
+  E --> H[Held-out generation then frozen Qwen 4B scoring]
   E --> N[Source notes then frozen Qwen recipient]
   H --> A[Saved records: reports, paper and explorer]
   N --> A
@@ -133,7 +141,7 @@ flowchart LR
 4. **Train:** compute one composite scalar per completion before passing it to
    [TRL](https://huggingface.co/docs/trl/grpo_trainer). Save optimizer-boundary
    checkpoints, complete prompts/responses and separate reward components.
-5. **Evaluate and report:** generate outputs before loading Gemma, assess the
+5. **Evaluate and report:** generate outputs before loading the 4B evaluator, assess the
    locked suites, test notes with a frozen recipient, and regenerate publications
    from saved records.
 
@@ -186,15 +194,15 @@ in the [judge runtime](configs/judge-runtime.json).
 
 | Role | Selected model | Execution |
 |---|---|---|
-| Policy | [Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B) | GPU through Unsloth/Transformers and TRL; BF16 base, language LoRA, vision components frozen |
-| Training judge | [Qwen3.5-9B](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) | Frozen Q4_K_M GGUF through llama.cpp; CPU, eight threads, no GPU layers |
-| Evaluation judge | [Gemma 4 12B](https://huggingface.co/unsloth/gemma-4-12b-it-GGUF) | Frozen UD-Q4_K_XL GGUF through llama.cpp; 24 GPU layers, eight CPU threads; policy unloaded first |
-| Transfer recipient | Selected unmodified Qwen3.5-2B base | GPU inference through Unsloth/Transformers; frozen, without a trained adapter |
+| Policy | [Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B) | GPU through Unsloth/Transformers and TRL; BF16 base, language LoRA, vision components frozen |
+| Training judge | [Qwen3.5-2B](https://huggingface.co/unsloth/Qwen3.5-2B-GGUF) | Frozen Q4_K_M GGUF through llama.cpp; all layers on GPU alongside the policy |
+| Evaluation judge | [Qwen3.5-4B](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) | Frozen Q4_K_M GGUF through llama.cpp; all layers on GPU; policy unloaded first |
+| Transfer recipient | Selected unmodified Qwen3.5-0.8B base | GPU inference through Unsloth/Transformers; frozen, without a trained adapter |
 
 Every trained arm starts with a fresh adapter on the same
 [selected base](configs/policy-selection.json); no arm continues another arm's
-training or retains pilot updates. Qwen3-1.7B remains a documented-feasibility-failure
-fallback; it is not selected. The [fixed configuration](configs/study.json),
+training or retains pilot updates. The larger-policy/CPU-judge setup is deferred;
+there is no automatic model fallback in this experiment. The [fixed configuration](configs/study.json),
 [training implementation](src/grothendieck_rlvr/training.py) and
 [budget amendment](reports/amendments/2026-11-15-training-budget.md) specify:
 
@@ -213,8 +221,11 @@ fallback; it is not selected. The [fixed configuration](configs/study.json),
 Training follows
 [Unsloth's Qwen3.5 route](https://unsloth.ai/docs/models/qwen3.5/fine-tune)
 using [TRL's GRPO implementation](https://huggingface.co/docs/trl/grpo_trainer).
-Fine-tuning memory advertisements are not treated as GRPO guarantees. Measured
-[runtime scenarios](reports/training-budget.md) are estimates, not completion promises.
+The policy remains BF16 because the guide cautions against Qwen3.5 4-bit QLoRA;
+only frozen judges are quantized. Fine-tuning memory advertisements are not treated
+as GRPO guarantees. Verify maximum-length backward and checkpoint recovery with
+the training judge co-resident. [Runtime scenarios](reports/training-budget.md)
+separate old CPU measurements from new GPU evidence; they are not completion promises.
 
 For [held-out generation and transfer](src/grothendieck_rlvr/evaluation.py),
 weights are frozen: one greedy response per problem (`do_sample=False`), at most
@@ -262,12 +273,13 @@ prior work and limitations.
 ### Model execution order
 
 This is the current [exploratory execution plan](reports/plan.md), including the
-CPU/GPU transitions. **At this documentation milestone, ordinary baseline
-generation is running and prompted baseline generation is queued. Full training
-and the subsequent evaluations are planned, not already running or queued.**
-The queue is a local execution wrapper, not an automatic scheduler installed by
-the README commands. Live progress belongs in the dashboard and timestamped logs;
-this publication snapshot is not a liveness check.
+GPU model transitions. **At this documentation milestone, the previous baseline
+and its queue have been stopped at the user's request. The smaller setup is being
+prepared; its pilot and comparative runs have not started.** First verify full
+GPU residency, maximum-length backward and save/resume with the 2B judge loaded.
+Discard pilot updates, publish feasibility evidence, then follow this sequence.
+Live progress belongs in the dashboard and timestamped logs; this publication
+snapshot is not a liveness check. CLI commands execute individual phases.
 
 1. **Ordinary baseline:** load the unmodified Qwen policy on the GPU and generate
    the 400 primary-test answers with the ordinary solve-and-explain prompt. No
@@ -275,10 +287,9 @@ this publication snapshot is not a liveness check.
 2. **Prompted baseline:** use the same base weights, problems and decoding settings,
    adding the rising-sea instruction to develop justified frameworks, reusable
    consequences and valid nonstandard connections. The comparison measures
-   prompting alone. The current queue starts this phase after confirming all
-   ordinary baseline answers were saved.
+   prompting alone. Start after confirming all ordinary baseline answers were saved.
 3. **Theory-bonus training, seed 42:** load a fresh policy adapter on the GPU and
-   start frozen Qwen3.5-9B on the CPU. Sample four completions per training prompt,
+   start frozen quantized Qwen3.5-2B on the same GPU. Sample four completions per training prompt,
    verify final answers, judge only correct responses, aggregate the composite
    reward in code and perform GRPO updates. The judge uses the quoted rubric and
    fixed conventional references. Calls are sequential: one accepted assessment
@@ -294,13 +305,13 @@ this publication snapshot is not a liveness check.
    baseline outputs and generate missing primary outputs, each configuration's
    200 OOD answers, and reusable notes on the 100 isolated transfer sources.
    Source-note prompts contain no target problems or target answers. No weights
-   change; Gemma stays unloaded during policy generation.
+   change; the 4B evaluator stays unloaded during policy generation.
 6. **Independent scoring:** unload the policy, stop the Qwen judge and load frozen
-   Gemma with GPU offload. Verify each saved primary/OOD final answer before
-   judging correct responses with the frozen single-call rubric. Gemma does not
+   Qwen3.5-4B fully on GPU. Verify each saved primary/OOD final answer before
+   judging correct responses with the frozen single-call rubric. The evaluator does not
    receive Qwen's scores. Compute accuracy, correctness-weighted theory/novelty,
    response lengths and the registered uncertainty estimates; publish the results.
-7. **Frozen-recipient transfer:** unload Gemma and reload the original Qwen base
+7. **Frozen-recipient transfer:** unload the evaluator and reload the original 0.8B Qwen base
    without an adapter. Solve four fresh targets per source with no notes, related
    notes, or unrelated notes matched in token length, including baseline-generated
    notes. The note limit is 1,024 tokens. Verify recipient answers without an LLM
@@ -313,8 +324,9 @@ this publication snapshot is not a liveness check.
    permutes bonuses among correct completions within a reward batch. The
    rubric-only control keeps the rubric while removing quotations and persona.
 
-During judged training, the policy stays on the GPU and Qwen judging uses the
-CPU. During Gemma scoring, policy generation/training is stopped. Neither judge
+During judged training, the policy and training judge stay on the GPU. During
+4B evaluation scoring, policy generation/training is stopped. Tokenization,
+verification and logging still use CPU. Neither judge
 receives gradient updates. The current judges remain unqualified, so all of these
 results remain exploratory; the original audit gates and failed results are preserved.
 
@@ -343,7 +355,7 @@ bash scripts/run.sh prepare-ood
 The default large-file location is `D:\AI\grothendieck-rlvr`, accessed in WSL as
 `/mnt/d/AI/grothendieck-rlvr`. Keep credentials in ignored local configuration.
 No paid inference API is required. Do not upgrade dependencies or model revisions
-between arms. Build the pinned CPU and CUDA llama.cpp servers using the
+between arms. Build the pinned CUDA llama.cpp server using the
 [installation commands](docs/runbook.md#install-and-prepare), then download and
 verify the frozen model files:
 
@@ -361,11 +373,11 @@ suppression; no locked audit has been opened. Full qualification and the
 development-only pilot commands are in the [runbook](docs/runbook.md).
 
 ```bash
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-ordinary
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-prompted --rising
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-prompted --rising
 ```
 
-For theory training, keep the CPU judge running in a separate terminal:
+For theory training, keep the quantized 2B GPU judge running in a separate terminal:
 
 ```bash
 bash scripts/run.sh serve --role training_judge
@@ -387,18 +399,18 @@ manifests or budgets. Full prompts and responses stream to timestamped logs.
 
 ### Evaluate and inspect results
 
-Generate the trained policy's primary outputs **before** loading Gemma:
+Generate the trained policy's primary outputs **before** loading the 4B evaluator:
 
 ```bash
 source scripts/environment.sh
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-theory-seed42 \
-  --adapter "$GROTH_ROOT/runs/exploratory-single-v2-theory-seed42/adapter"
-bash scripts/run.sh generate --exploratory --run-id exploratory-single-v2-correctness-seed42 \
-  --adapter "$GROTH_ROOT/runs/exploratory-single-v2-correctness-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42 \
+  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42 \
+  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-correctness-seed42/adapter"
 ```
 
 After generation exits, stop the Qwen server with Ctrl-C and start the separate
-evaluation server. Do not run GPU policy generation/training alongside Gemma.
+evaluation server. Do not run policy generation/training alongside the 4B evaluator.
 
 ```bash
 # Evaluation-server terminal:
@@ -408,10 +420,10 @@ bash scripts/run.sh serve --role evaluation_judge
 In another terminal:
 
 ```bash
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-ordinary
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-prompted
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-theory-seed42
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-single-v2-correctness-seed42
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-ordinary
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-prompted
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42
 bash scripts/run.sh report
 bash scripts/run.sh dashboard --port 8765
 ```
@@ -446,7 +458,8 @@ saved artifacts; the README's generated result block should not be edited by han
 
 - [x] Publish literature review, preregistration, implementation, locks and tests.
 - [x] Preserve failed calibration and the explicit exploratory amendment.
-- [x] Complete the repaired development save/resume pilot; discard its updates.
+- [x] Preserve the larger setup's repaired save/resume pilot and partial baseline.
+- [ ] Complete the smaller setup's GPU residency, backward and save/resume checks.
 - [ ] Complete ordinary and prompted baseline generation and independent scoring.
 - [ ] Train/evaluate the matched theory-bonus and correctness-only arms.
 - [ ] Complete later seeds, shuffled-bonus control and rubric-only ablation.

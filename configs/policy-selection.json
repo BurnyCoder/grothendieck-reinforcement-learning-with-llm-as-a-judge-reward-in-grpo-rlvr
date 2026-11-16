@@ -1,20 +1,18 @@
 {
-  "selected_at": "2026-11-15",
+  "selected_at": "2026-11-16",
   "policy": {
-    "repo": "Qwen/Qwen3.5-2B",
-    "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+    "repo": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
     "dtype": "bfloat16",
-    "license": "apache-2.0"
+    "license": "apache-2.0",
+    "artifact_subdir": "small-qwen-gpu-v1/policy",
+    "require_full_gpu": true
   },
   "artifact_hash_manifest": "configs/artifacts.lock.json",
   "initialization": "unmodified pinned base checkpoint for every comparative arm and transfer recipient",
   "pilot_adapters_excluded": true,
-  "evidence": [
-    "reports/development/feasibility-bf16-first.json",
-    "reports/development/feasibility-grpo-first-boundary.json",
-    "reports/development/feasibility-grpo-resumed-complete.json"
-  ],
-  "decision": "Preferred BF16 LoRA policy passed maximum-length backward and four-completion GRPO saving/resumption with a nonzero parameter change. No memory/runtime failure justifies the fallback.",
+  "evidence": ["reports/amendments/2026-11-16-small-qwen-gpu.md"],
+  "decision": "Selected before inference at the user's request to prioritize smaller Qwen3.5 models fully resident on GPU. This changes the model-scale experiment; it is not a feasibility failure of the postponed 2B policy.",
   "training_budget_amendment": "reports/amendments/2026-11-15-training-budget.md",
-  "remaining_gates": "Frozen judge calibration before comparative runs. The pilot is not a stable throughput or learning estimate."
+  "remaining_gates": "Before comparative training, verify full CUDA model placement and maximum-length backward with the GPU judge resident, then discard a two-boundary save/resume pilot. The exploratory exception permits unqualified judges; no old calibration qualifies this identity."
 }

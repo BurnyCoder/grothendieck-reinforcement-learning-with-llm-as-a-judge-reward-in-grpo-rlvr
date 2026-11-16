@@ -16,6 +16,7 @@ from .data import load_tasks, validate_manifests
 from .experiments import EXPLORATORY_PREFIX, experiment_profile, validate_judge
 from .io import PROJECT, EventLog, atomic_json, digest, read_json, root
 from .judge import Judge
+from .models import model_directory, require_cuda_policy
 from .prompts import policy_messages
 from .reward import CompositeReward
 
@@ -27,7 +28,7 @@ def load_policy(seed=42, adapter: Path | None=None, training=False):
     from transformers import set_seed
     cfg = read_json(PROJECT / "configs/study.json")
     set_seed(seed)
-    path = root() / "models/policy"
+    path = model_directory("policy")
     if not (path / "config.json").exists():
         raise RuntimeError("Download the pinned policy checkpoint before model loading")
     model, tokenizer = FastLanguageModel.from_pretrained(
@@ -44,6 +45,8 @@ def load_policy(seed=42, adapter: Path | None=None, training=False):
     for name, parameter in model.named_parameters():
         if "visual" in name or "vision" in name:
             parameter.requires_grad_(False)
+    if read_json(PROJECT / "configs/models.lock.json")["policy"].get("require_full_gpu"):
+        require_cuda_policy(model)
     if training:
         FastLanguageModel.for_training(model)
     else:
@@ -220,8 +223,10 @@ def memory_probe(seed=42) -> dict:
     if not torch.isfinite(loss):
         raise FloatingPointError("Worst-length backward loss is not finite")
     result = {"kind": "maximum_length_backward", "length": length, "microbatch": 1,
+              "model": read_json(PROJECT / "configs/models.lock.json")["policy"],
+              "parameter_devices": sorted({str(p.device) for p in model.parameters()}),
               "seconds": time.monotonic()-start, "loss": float(loss.detach().cpu()),
               "peak_gpu_allocated_bytes": torch.cuda.max_memory_allocated(),
               "peak_gpu_reserved_bytes": torch.cuda.max_memory_reserved(), "pilot_updates_discarded": True}
-    atomic_json(root() / "feasibility/memory.json", result)
+    atomic_json(root() / "feasibility" / f"memory-{EXPLORATORY_PREFIX.rstrip('-')}.json", result)
     return result

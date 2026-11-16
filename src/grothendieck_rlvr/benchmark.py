@@ -9,7 +9,7 @@ import subprocess
 from datetime import datetime, timezone
 
 from .io import PROJECT, EventLog, atomic_json, read_json, read_jsonl, root
-from .models import judge_environment
+from .models import judge_environment, model_directory
 
 
 def benchmark_judge(sweep="threads") -> dict:
@@ -39,7 +39,7 @@ def benchmark_judge(sweep="threads") -> dict:
     threads = [1, 4, 8] if sweep == "threads" else [8]
     gpu_layers = [runtime["gpu_layers"]] if sweep == "threads" else [24, 32, 40]
     depth = 2048 if sweep == "threads" else 8176
-    command = ["stdbuf", "-oL", "-eL", str(executable), "-m", str(root() / "models/evaluation_judge" / model["file"]),
+    command = ["stdbuf", "-oL", "-eL", str(executable), "-m", str(model_directory("evaluation_judge") / model["file"]),
                "-p", "0", "-n", "16", "-d", str(depth), "-r", "2",
                "-t", ",".join(map(str, threads)), "-ngl", ",".join(map(str, gpu_layers)),
                "-o", "jsonl", "--progress"]

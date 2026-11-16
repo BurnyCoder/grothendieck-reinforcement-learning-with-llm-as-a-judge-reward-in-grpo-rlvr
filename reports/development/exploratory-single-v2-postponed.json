@@ -1,0 +1,9 @@
+{
+  "time": "2026-11-16T01:48:50.692215+00:00",
+  "status": "postponed_by_user",
+  "run": "exploratory-single-v2-ordinary",
+  "saved_answers": 90,
+  "expected_answers": 400,
+  "last_answer_time": "2026-11-16T01:48:49.166678+00:00",
+  "reason": "Small Qwen3.5 GPU experiment prioritized; saved outputs and checkpoints retained."
+}

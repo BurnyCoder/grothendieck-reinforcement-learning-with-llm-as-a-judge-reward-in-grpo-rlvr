@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-16T01:05:20.764709+00:00.
+Generated from saved artifacts at 2026-11-16T02:04:12.735222+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -16,10 +16,10 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v2-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-single-v2-prompted | Pending | Pending | Pending | Pending |
-| exploratory-single-v2-theory-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-single-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v1-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v1-prompted | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v1-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 ## Judge calibration
 
@@ -55,11 +55,11 @@ The user authorized training with unqualified judges. These analyses cannot esta
 ```json
 {
   "profile": {
-    "id": "exploratory-single-v2",
-    "amendment": "reports/amendments/2026-11-16-indexed-evidence.md",
-    "authorization": "User explicitly requested single-call judge training despite failed acceptance thresholds on 2026-11-16 Europe/Berlin.",
+    "id": "exploratory-small-gpu-v1",
+    "amendment": "reports/amendments/2026-11-16-small-qwen-gpu.md",
+    "authorization": "User requested prioritizing smaller/quantized Qwen3.5 models fully on GPU on 2026-11-16; earlier authorization for exploratory single-call judging despite failed qualification remains in effect.",
     "calibration_required": false,
-    "interpretation": "Exploratory learning with unqualified, potentially systematically biased judges; not the calibration-qualified study.",
+    "interpretation": "Exploratory small-model GPU study with unqualified same-family judges; prior larger-model runs are deferred and not pooled.",
     "judge_protocol": "single-indexed-v1",
     "rubric_version": "v7",
     "reference_version": "v3",
@@ -71,18 +71,20 @@ The user authorized training with unqualified judges. These analyses cannot esta
     ],
     "input_hashes": {
       "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
-      "configs/models.lock.json": "19665fe0a0e451deccaa0ea52662b21a2056bdd335b79cc5e9efc58a28fa8495",
-      "configs/policy-selection.json": "698f3ed0cbab3e3a0a307fb0a721d46b7bb0636fe2f633632b2ba69e4a0576bd",
+      "configs/models.lock.json": "29a7152a84fea4d2b86e5229c1140e80685c583c07a7c6a5a352faba3af223d9",
+      "configs/policy-selection.json": "0c841de481c145140df1c2b78bb820eb3174033994fea365294616e7105e44af",
+      "configs/judge-runtime.json": "24a881eb8dba6760208b3eb1f928429a054a710c68e344b786e5fbae51fcc434",
       "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
-      "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062"
+      "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062",
+      "configs/artifacts.lock.json": "7fce628b3e3786c6c39b3ecb82a281b3f6c197cd1c38a44762fed06a55957b21"
     },
     "judge_identities": {
       "training_judge": {
-        "quoted": "b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a",
-        "rubric": "369ecf0cbc00b592c5897ea33485091b9dd5fecbed4f622fa18676a93caebc89"
+        "quoted": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+        "rubric": "65581b55e3539247b0368ce36fb16873d5ff9e405d6fc1eb328f352bc86520f6"
       },
       "evaluation_judge": {
-        "quoted": "368baea56bdf984b0554899338734fcdb4eb48071bda3d5d4219ec3700c70464"
+        "quoted": "7f50c54ec6f08eb5ecf44b1ed5316199900681fb5bbf5eb66022901d0cb84ea5"
       }
     },
     "evidence_protocol": "indexed-evidence-v1"

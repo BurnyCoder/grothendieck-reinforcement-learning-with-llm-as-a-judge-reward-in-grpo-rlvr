@@ -78,8 +78,15 @@ The repaired development pilot subsequently completed saving and resumption,
 advanced the task position and changed adapter parameters. Its discarded updates
 are execution evidence only. The generated pilot report and boundary records
 retain timings, reward components, retries and checkpoint state. Ordinary baseline
-generation has now begun, with prompted generation queued afterward. Comparative
-training and scored held-out evaluation remain pending.
+generation was stopped and its prompted queue cancelled when the user prioritized
+the smaller GPU experiment. Partial outputs and the larger configuration are
+preserved. Comparative training and scored held-out evaluation remain pending.
+
+The active `exploratory-small-gpu-v1` amendment selects a Qwen3.5-0.8B BF16 LoRA
+policy, frozen Qwen3.5-2B Q4_K_M GPU training judge and separate Qwen3.5-4B Q4_K_M
+GPU evaluator. All model layers must fit on GPU; the memory/backward/save-resume
+pilot runs before comparisons. The same-family judges remain unqualified. The
+9B/Gemma setup is postponed rather than merged into the new experiment's results.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

@@ -15,18 +15,20 @@ Selected matched budget: **64 optimizer updates per training arm**.
 
 Sources: `reports/development/feasibility-grpo-first-boundary.json` and `reports/development/feasibility-grpo-resumed-complete.json`. The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). This is not a guarantee that the full study fits in one week.
 
-## Exploratory single-call pilot
+## Current exploratory pilot: exploratory-small-gpu-v1
 
-These intervals use the current frozen single-call judge and remain separate from the historical non-thinking pilot above. They include generation, verification, judging and backward work; model loading and evaluation are excluded. Development prompts and few intervals cannot establish steady-state throughput. Future correctness, response lengths and retries affect runtime.
+Only intervals from the current experiment enter this estimate. They remain separate from the historical non-thinking pilot above. They include generation, verification, judging and backward work; model loading and evaluation are excluded. Development prompts and few intervals cannot establish steady-state throughput. Future correctness, response lengths and retries affect runtime.
 
-| Updates | One judge-scored arm (hours) | All judge-scored arms (hours) |
-|---:|---:|---:|
-| 32 | 7.16–7.69 | 35.80–38.43 |
-| 64 | 14.32–15.37 | 71.59–76.85 |
-| 128 | 28.64–30.74 | 143.19–153.70 |
-| 256 | 57.28–61.48 | 286.38–307.40 |
+No completed optimizer interval is recorded for this protocol yet.
 
-Sources: `reports/development/feasibility-exploratory-single-*.json`. Judge identity: `b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a`.
+## Postponed exploratory configurations
+
+These recorded intervals are historical evidence, not forecasts for the smaller GPU experiment.
+
+| Experiment | Judge identity | Observed step seconds |
+|---|---|---:|
+| exploratory-single-v2 | `b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a` | 864.57 |
+| exploratory-single-v2 | `b6add1897e852493e0cbea6a16a15a6bce81d2b1ef7e487b97386518ee6c545a` | 805.43 |
 
 ## Planned data exposure
 

@@ -65,6 +65,18 @@ explanation and speculation emphasized by
 
 ## Search scope and remaining uncertainty
 
+The 2026-11-16 smaller-GPU amendment reuses the existing training/inference stack.
+[Qwen's 0.8B model card](https://huggingface.co/Qwen/Qwen3.5-0.8B) and the
+[2B](https://huggingface.co/unsloth/Qwen3.5-2B-GGUF) and
+[4B](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) quantized repositories supply
+Apache-2.0 model artifacts. [Unsloth's guide](https://unsloth.ai/docs/models/qwen3.5/fine-tune)
+supports the smaller policy and recommends its non-vLLM route for GRPO, while
+cautioning against 4-bit QLoRA for this family. We retain BF16 policy training and
+quantize frozen judges. [llama.cpp's pinned server interface](https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/README.md)
+provides explicit CUDA device/layer placement with automatic fitting disabled.
+These sources support implementation choices, not an empirical claim that both
+models fit this machine during GRPO or that the smaller judges are reliable.
+
 The [exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
 tests whether learning remains useful with an unqualified judge. A follow-up
 review read [Gao, Schulman and Hilton's full paper](https://proceedings.mlr.press/v202/gao23h/gao23h.pdf),

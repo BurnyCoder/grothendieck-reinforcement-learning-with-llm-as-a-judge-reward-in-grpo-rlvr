@@ -1,6 +1,7 @@
 """Transparent runtime scenarios from development artifacts, never confidence intervals."""
 from collections import Counter
 
+from .experiments import EXPLORATORY_ID
 from .io import PROJECT, digest, read_json
 
 
@@ -12,12 +13,13 @@ def runtime_options(intervals: list[float], judged_arms: int) -> list[dict]:
             for updates in (32, 64, 128, 256)] if intervals else []
 
 
-def training_budget(feasibility: list[dict], config: dict) -> dict:
+def training_budget(feasibility: list[dict], config: dict, experiment_id=EXPLORATORY_ID) -> dict:
     """Do not infer evaluation cost or future reward density from two optimizer intervals."""
     kinds = {"grpo_first_saved_boundary", "grpo_resumed_completion"}
     intervals = [record["step_metrics"]["step_time"] for record in feasibility if record.get("kind") in kinds]
     judged_arms = len(config["training_seeds"]) + 2  # Proposed seeds, permutation control, rubric ablation.
-    exploratory = [r for r in feasibility if r.get("kind") == "exploratory_single_grpo_boundary"]
+    boundaries = [r for r in feasibility if r.get("kind") == "exploratory_single_grpo_boundary"]
+    exploratory = [r for r in boundaries if r.get("experiment") == experiment_id]
     identities = {r["judge_identity"] for r in exploratory}
     if len(identities) > 1:
         raise ValueError("Cannot pool runtime intervals from different judge identities")
@@ -41,7 +43,11 @@ def training_budget(feasibility: list[dict], config: dict) -> dict:
         "assumption": "Each future step repeats one observed development interval. These are scenarios, not confidence bounds.",
         "limitations": "Two intervals, including first-use overhead, used the v3 non-thinking judge. Neither the later reasoning-enabled judge nor the decomposed protocols are timed by these scenarios. Refresh development throughput before comparative training; future lengths, accuracy and theory density may differ. Excludes correctness-only runs, calibration, evaluation, transfer, loading and publication.",
         "options": runtime_options(intervals, judged_arms),
-        "exploratory_single": {"observed_step_seconds": current_intervals,
+        "historical_exploratory": [
+            {"experiment": r.get("experiment"), "judge_identity": r["judge_identity"],
+             "step_seconds": r["step_metrics"]["step_time"]}
+            for r in boundaries if r.get("experiment") != experiment_id],
+        "exploratory_single": {"experiment": experiment_id, "observed_step_seconds": current_intervals,
                                "judge_identity": next(iter(identities), None),
                                "options": runtime_options(current_intervals, judged_arms)},
     }
@@ -61,8 +67,8 @@ def budget_markdown(budget: dict) -> str:
                   "The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). "
                   "This is not a guarantee that the full study fits in one week."])
     current = budget["exploratory_single"]
-    lines.extend(["", "## Exploratory single-call pilot", "",
-                  "These intervals use the current frozen single-call judge and remain separate from the "
+    lines.extend(["", f"## Current exploratory pilot: {current['experiment']}", "",
+                  "Only intervals from the current experiment enter this estimate. They remain separate from the "
                   "historical non-thinking pilot above. They include generation, verification, "
                   "judging and backward work; model loading and evaluation are excluded. "
                   "Development prompts and few intervals cannot establish steady-state throughput. "
@@ -73,10 +79,16 @@ def budget_markdown(budget: dict) -> str:
         for row in current["options"]:
             one, all_arms = row["one_judged_arm_hours"], row["all_judged_arms_hours"]
             lines.append(f"| {row['updates']} | {one[0]:.2f}–{one[1]:.2f} | {all_arms[0]:.2f}–{all_arms[1]:.2f} |")
-        lines.extend(["", "Sources: `reports/development/feasibility-exploratory-single-*.json`. "
+        lines.extend(["", f"Sources: `reports/development/feasibility-{current['experiment']}-*.json`. "
                       f"Judge identity: `{current['judge_identity']}`."])
     else:
         lines.append("No completed optimizer interval is recorded for this protocol yet.")
+    if budget["historical_exploratory"]:
+        lines.extend(["", "## Postponed exploratory configurations", "",
+                      "These recorded intervals are historical evidence, not forecasts for the smaller GPU experiment.",
+                      "", "| Experiment | Judge identity | Observed step seconds |", "|---|---|---:|"])
+        lines.extend(f"| {r['experiment']} | `{r['judge_identity']}` | {r['step_seconds']:.2f} |"
+                     for r in budget["historical_exploratory"])
     exposure = budget["planned_exposure"]
     lines.extend(["", "## Planned data exposure", "", exposure["assumption"], "",
                   f"The configured budget schedules {exposure['completions']} completions across "
