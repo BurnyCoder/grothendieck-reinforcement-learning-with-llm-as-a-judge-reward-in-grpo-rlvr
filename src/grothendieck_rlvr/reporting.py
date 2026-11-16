@@ -122,6 +122,8 @@ def collect() -> dict:
                                 for family in sorted({r["family"] for r in rows})}
                          for name, rows in evaluations.items()},
             "calibration": calibration, "development": development_records(), "examples": examples,
+            "generation_completions": [read_json(path) for path in sorted(
+                (PROJECT / "reports/generation").glob("*.json"))],
             "budget": training_budget(list(feasibility.values()), cfg),
             "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
                                           cfg["transfer_sources"]),
@@ -244,6 +246,24 @@ def markdown_table(rows) -> str:
                      ["| " + " | ".join(row) + " |" for row in rows[1:]])
 
 
+def generation_text(snapshot) -> str:
+    """Publish checked coverage/timing receipts without implying mathematical success."""
+    records = snapshot.get("generation_completions", [])
+    if not records:
+        return "No completed generation receipts have been published."
+    descriptions = []
+    for record in records:
+        descriptions.append(
+            f"{record['run_id']}: {record['saved']}/{record['expected']} unique task outputs saved; "
+            f"mean recorded generation time {record['generation_seconds_mean']:.2f} seconds per answer; "
+            f"last saved response {record['last_response_at']}."
+        )
+    return " ".join(descriptions) + (
+        " These receipts verify saved task coverage and configuration, not answer correctness or theory quality. "
+        "Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/."
+    )
+
+
 def readme_results(snapshot) -> str:
     """Show every active comparison while leaving qualification history in the full report."""
     available = {row[0]: row for row in table_rows(snapshot)[1:]}
@@ -251,7 +271,7 @@ def readme_results(snapshot) -> str:
     for arm in ARMS:
         saved = available.get(EXPLORATORY_PREFIX + arm, [arm, *["Pending"] * 4])
         rows.append([arm, *saved[1:]])
-    return markdown_table(rows)
+    return markdown_table(rows) + "\n\nGeneration execution: " + generation_text(snapshot)
 
 
 def readme_example(snapshot):
@@ -531,6 +551,7 @@ def paper_sections(snapshot):
          f"analysis reports {status}. {comparison_text(snapshot['primary'])} "
          "Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
+        ("Generation execution", generation_text(snapshot)),
         ("Development execution", f"Preserved development logs contain "
          f"{sum(r['completed_responses'] for r in snapshot['development'])} completed judge responses and "
          f"{sum(r['incomplete_requests'] for r in snapshot['development'])} requests without a completed response. "
@@ -739,6 +760,13 @@ def report() -> dict:
     (PROJECT / "reports/training-budget.md").write_text(budget_markdown(snapshot["budget"]), encoding="utf-8")
     atomic_json(PROJECT / "site/snapshot.json", snapshot)
     atomic_json(PROJECT / "reports/results.json", snapshot)
+    generation_folder = PROJECT / "reports/generation"
+    generation_folder.mkdir(exist_ok=True)
+    (generation_folder / "README.md").write_text(
+        "# Generation execution\n\nGenerated from the checked completion receipts in this folder.\n\n" +
+        generation_text(snapshot) + "\n\n" + "\n\n".join(
+            f"[{record['run_id']} artifacts]({record['artifact_url']})"
+            for record in snapshot["generation_completions"]) + "\n", encoding="utf-8")
     rows = table_rows(snapshot)
     table = markdown_table(rows)
     figures(snapshot, PROJECT / "site/figures")
@@ -746,6 +774,7 @@ def report() -> dict:
                ".\n\nCorrectness is verified final-answer accuracy. Theory is a frozen judge's rubric "
                "assessment, not a proof certificate. C × theory weights that assessment by answer correctness. "
                "Pending means no result, not zero performance.\n\n" + table +
+               "\n\n## Generation execution\n\n" + generation_text(snapshot) +
                "\n\n## Judge calibration\n\n" + calibration_text(snapshot) +
                "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
                "\n## Exploratory single-call experiment\n\nThe user authorized training with unqualified judges. " +
