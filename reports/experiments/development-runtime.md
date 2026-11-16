@@ -18,7 +18,7 @@ training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts 
 
 Incomplete development suites stopped under the fixed futility rule. Upper bounds assume every remaining case succeeds solely to test attainability. Unobserved cases are not counted as measured successes or errors; no early pass is allowed.
 
-A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. A Qwen/Qwen3.5-0.8B BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 2.02 GiB and reserved memory 2.41 GiB. The measured forward/backward interval was 78.12 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result. The exploratory-small-gpu-v1 pilot generated 8 completions and exhausted 3 judge attempts on repetitive, truncated JSON. It accepted 0 assessments and saved 0 optimizer boundaries. Sampled whole-device usage peaked at 7666 MiB of 8151 MiB. This was an output-contract failure, not a GPU OOM or a learning result. The exploratory-single-v2 exploratory pilot saved boundary 1 from the selected base, with a step interval of 864.57 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.1328, mean novelty 0.0000, and 1 contract/transport retries. Peak allocated/reserved GPU memory was 4.89/6.10 GiB. Completed judge requests took 141.05–272.42 seconds, including unsuccessful contracts. The exploratory-single-v2 exploratory pilot saved boundary 2 after resumption, with a step interval of 805.43 seconds, learning rate 1e-05, batch accuracy 50.0%, mean theory 0.2078, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 4.97/6.25 GiB. Completed judge requests took 145.71–187.99 seconds, including unsuccessful contracts. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.
+A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. A Qwen/Qwen3.5-0.8B BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 2.02 GiB and reserved memory 2.41 GiB. The measured forward/backward interval was 78.12 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result. The exploratory-small-gpu-v1 pilot generated 8 completions and exhausted 3 judge attempts on repetitive, truncated JSON. It accepted 0 assessments and saved 0 optimizer boundaries. Sampled whole-device usage peaked at 7666 MiB of 8151 MiB. This was an output-contract failure, not a GPU OOM or a learning result. The exploratory-single-v2 exploratory pilot saved boundary 1 from the selected base, with a step interval of 864.57 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.1328, mean novelty 0.0000, and 1 contract/transport retries. Peak allocated/reserved GPU memory was 4.89/6.10 GiB. Completed judge requests took 141.05–272.42 seconds, including unsuccessful contracts. The exploratory-small-gpu-v2 exploratory pilot saved boundary 1 from the selected base, with a step interval of 179.71 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.2438, mean novelty 0.1250, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 2.34/3.72 GiB. Completed judge requests took 8.28–9.62 seconds, including unsuccessful contracts. The exploratory-single-v2 exploratory pilot saved boundary 2 after resumption, with a step interval of 805.43 seconds, learning rate 1e-05, batch accuracy 50.0%, mean theory 0.2078, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 4.97/6.25 GiB. Completed judge requests took 145.71–187.99 seconds, including unsuccessful contracts. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability. The exploratory-small-gpu-v2 exploratory pilot saved boundary 2 after resumption, with a step interval of 120.98 seconds, learning rate 1e-05, batch accuracy 0.0%, mean theory 0.0000, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 2.38/3.82 GiB. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability. During exploratory-small-gpu-v2 boundary 1, 188 whole-device samples recorded a peak of 7619 MiB out of 8151 MiB. This includes the judge and other GPU users; sampling can miss shorter peaks. During exploratory-small-gpu-v2 boundary 2, 129 whole-device samples recorded a peak of 6862 MiB out of 8151 MiB. This includes the judge and other GPU users; sampling can miss shorter peaks.
 
 ## Observed request latency
 
@@ -29,6 +29,8 @@ A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1,
 | exploratory-single-pilot-step2 | 4 | 4 | 0 | 0 | 158.77 | 145.71–187.99 |
 | exploratory-single-v1-pilot-failure | 3 | 0 | 3 | 0 | 177.01 | 149.01–260.85 |
 | exploratory-small-gpu-v1-pilot-failure | 3 | 0 | 3 | 0 | 142.26 | 130.53–185.94 |
+| exploratory-small-gpu-v2-pilot-step1 | 3 | 3 | 0 | 0 | 9.55 | 8.28–9.62 |
+| exploratory-small-gpu-v2-pilot-step2 | 0 | 0 | 0 | 0 | Pending | Pending |
 | gemma-cpu-v2 | 1 | 1 | 3 | 3 | 407.72 | 407.72–407.72 |
 | gemma-cuda-v3-interrupted | 0 | 0 | 0 | 1 | Pending | Pending |
 | gemma-cuda24-v4-interrupted | 4 | 4 | 0 | 1 | 97.69 | 58.45–247.47 |
@@ -952,6 +954,307 @@ Stage timings additionally include template/token checks and validation. Cache h
         142.2561587789969,
         185.93517910000082
       ],
+      "assessments": [],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-small-gpu-v2-pilot-step1.jsonl",
+      "requests": 3,
+      "completed_responses": 3,
+      "incomplete_requests": 0,
+      "judge_failures": 0,
+      "response_seconds": [
+        9.550954946003912,
+        8.278677936999884,
+        9.618391091004014
+      ],
+      "assessments": [
+        {
+          "time": "2026-11-16T02:43:34.370028+00:00",
+          "kind": "judge_assessment",
+          "key": "99b20dce0f0210e05702aa35a18b98d2d24aafae656bcba1b7372dc0549eb9a2",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": " earns no novelty credit.",
+              "addition_evidence": [
+                "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n",
+                "**Step 3: Prime Factorization of 510**\n",
+                "**Step 4: Identify Common Prime Factors**\n"
+              ],
+              "use_evidence": [
+                "The Greatest Common Divisor is 2.\n"
+              ],
+              "relation": "beyond_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n",
+                  "**Step 3: Prime Factorization of 510**\n",
+                  "**Step 4: Identify Common Prime Factors**\n"
+                ],
+                "rationale": "Uses prime factorization to identify common factors across all three numbers.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n",
+                  "**Step 3: Prime Factorization of 510**\n",
+                  "**Step 4: Identify Common Prime Factors**\n"
+                ],
+                "rationale": "Applies prime factorization method to a specific set of numbers.",
+                "score": 2
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "The Greatest Common Divisor is 2.\n"
+                ],
+                "rationale": "GCD is calculated directly from identified common factors.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "The Greatest Common Divisor is 2.\n"
+                ],
+                "rationale": "Uses standard GCD algorithm via prime factorization.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n",
+                  "**Step 3: Prime Factorization of 510**\n",
+                  "**Step 4: Identify Common Prime Factors**\n"
+                ],
+                "rationale": "Clear, concise steps without unnecessary jargon.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n",
+                  "**Step 3: Prime Factorization of 510**\n",
+                  "**Step 4: Identify Common Prime Factors**\n"
+                ],
+                "rationale": "Uses prime factorization to find common divisors, a standard method, but applies it to a specific set of numbers with clear boundary conditions. The candidate identifies the common factor 2 and calculates the GCD directly, which is a valid,",
+                "score": 1
+              }
+            },
+            "problems": [
+              "Find GCD of 510, 522, 14 using prime factorization.",
+              "Identify common prime factors across all three numbers.",
+              "Multiply common factors to find GCD.",
+              "Verify 2 is the greatest common divisor."
+            ]
+          },
+          "theory": 0.6,
+          "novelty": 0.25,
+          "novelty_credit": {
+            "raw_score": 1,
+            "effective_score": 1,
+            "score_cap": 4,
+            "eligible": true,
+            "withheld": false,
+            "gate_reasons": []
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of 510, 522, and 14, we will find the prime factorization of each number.\n\n**Step 1: Prime Factorization of 14**\n- 14 is an even number, so divide by 2: $14 = 2 \\times 7$.\n- 7 is a prime number.\n- Factorization of 14: $14 = 2^1 \\times 7^1$.\n\n**Step 2: Prime Factorization of 522**\n- Check divisibility by 2: $522 \\div 2 = 261$.\n- Now we have $2 \\times 261$. The digit sum of 261 is $2+6+1 = 9$, which is divisible by 3.\n- Divide 261 by 3: $261 \\div 3 = 87$.\n- Now we have $2 \\times 3 \\times 87$.\n- Check the factor 87: Divisible by 3? $8+7=15$, yes.\n- Divide 87 by 3: $87 \\div 3 = 29$.\n- Check 29: It is a prime number.\n- Factorization of 522: $522 = 2^1 \\times 3^2 \\times 29^1$.\n\n**Step 3: Prime Factorization of 510**\n- Check divisibility by 2: $510 \\div 2 = 255$.\n- Check divisibility by 3: $255 \\div 3 = 85$.\n- Check if 85 is divisible by 3: $8+5=13$, no.\n- Check if 85 is divisible by 5: $85 \\div 5 = 17$.\n- Check if 17 is prime (confirmed).\n- Factorization of 510: $510 = 2^1 \\times 3^1 \\times 5^1 \\times 17^1$.\n\n**Step 4: Identify Common Prime Factors**\n- **14**: $2^1 \\times 7^1$\n- **522**: $2^1 \\times 3^2 \\times 29^1$\n- **510**: $2^1 \\times 3^1 \\times 5^1 \\times 17^1$\n\nCompare the prime factors present in all three numbers:\n- $2$: Present in all three ($2$).\n- $3$: Present in 522 and 510, but not in 14. (No common factor 3)\n- $5$: Present in 510, but not in 14. (No common factor 5)\n- $17$: Present in 510, but not in 14. (No common factor 17)\n- $29$: Present in 522, but not in 510 or 14. (No common factor 29)\n\nOnly the prime factor **2** is common to all three numbers.\n\n**Step 5: Calculate the GCD**\nThe GCD is found by multiplying these common prime factors together.\n$$ \\text{GCD} = 2 $$\n\n*Note: The factors $3, 5,$ and $17$ appear in only two of the three numbers (522 and 510), but not in the third number (14), so they cannot form a common divisor.*\n\nFinal Answer:\nThe Greatest Common Divisor is 2.\n\n<final>2</final>"
+        },
+        {
+          "time": "2026-11-16T02:43:42.731692+00:00",
+          "kind": "judge_assessment",
+          "key": "f0978737c2b97523fd828f12b34f0b3403f955b586f4d8be453843b4803747a4",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": " earns no novelty credit.",
+              "addition_evidence": [
+                "<final>2</final>"
+              ],
+              "use_evidence": [
+                "GCD(510, 522, 14) = 2.\n"
+              ],
+              "relation": "within_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "<final>2</final>"
+                ],
+                "rationale": "Uses prime factorization to identify common factors between 510, 522, and 14.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "<final>2</final>"
+                ],
+                "rationale": "Applies prime factorization method to find GCD of multiple numbers.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "GCD(510, 522, 14) = 2.\n"
+                ],
+                "rationale": "GCD is calculated directly from identified common factors.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "GCD(510, 522, 14) = 2.\n"
+                ],
+                "rationale": "Uses standard prime factorization to connect numbers.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "<final>2</final>"
+                ],
+                "rationale": "Clear, concise steps without unnecessary abstraction.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "<final>2</final>"
+                ],
+                "rationale": "Uses prime factorization to find GCD, a standard method but applied to a specific problem. The reference mentions 'minimum prime exponents' as a conventional method, but the candidate's approach is a direct application of standard factorize",
+                "score": 1
+              }
+            },
+            "problems": [
+              "Find GCD of 510, 522, 14 using prime factorization.",
+              "Identify common prime factors between 510, 522, and 14.",
+              "Calculate GCD from identified common factors."
+            ]
+          },
+          "theory": 0.6000000000000001,
+          "novelty": 0.0,
+          "novelty_credit": {
+            "raw_score": 1,
+            "effective_score": 0,
+            "score_cap": 0,
+            "eligible": false,
+            "withheld": true,
+            "gate_reasons": [
+              "within_reference"
+            ]
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers 510, 522, and 14, we can use the method of prime factorization.\n\n**Step 1: Prime Factorization of 14**\n$14 = 2 \\times 7$\nPrime factors: $\\{2, 7\\}$\n\n**Step 2: Prime Factorization of 522**\nDivide 522 by 2:\n$522 \\div 2 = 261$\nNow factor 261. Try dividing by 3:\n$261 \\div 3 = 87$\n$87 \\div 3 = 29$\n29 is a prime number.\nPrime factorization of 261: $\\{3, 3, 29\\}$ or $3^2 \\times 29$.\nSo, $522 = 2 \\times 3 \\times 3 \\times 29$\nPrime factors: $\\{2, 3, 29\\}$\n\n**Step 3: Prime Factorization of 510**\nDivide 510 by 2:\n$510 \\div 2 = 255$\nNow factor 255. Try dividing by 3:\n$255 \\div 3 = 85$\n85 is divisible by 5 (ends in 5) and $85 \\div 5 = 17$.\n17 is a prime number.\nPrime factorization of 510: $\\{2, 3, 5, 17\\}$\nSo, $510 = 2 \\times 3 \\times 5 \\times 17$\nPrime factors: $\\{2, 3, 5, 17\\}$\n\n**Step 4: Identify Common Prime Factors**\nCompare the prime sets:\n- For $510$: $\\{2, 3, 5, 17\\}$\n- For $522$: $\\{2, 3, 29\\}$\n- For $14$: $\\{2, 7\\}$\nThe only common prime factor between all three numbers is **2**.\n\n**Step 5: Calculate the GCD**\nSince 2 is the greatest common prime factor, the GCD is simply 2.\nGCD(510, 522, 14) = 2.\n\n<final>2</final>"
+        },
+        {
+          "time": "2026-11-16T02:43:54.625056+00:00",
+          "kind": "judge_assessment",
+          "key": "76d8a1c9c66aa847c5dec54075d78ea5dc9282a9a293819d0f3de99d3192b699",
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "assessment": {
+            "theory_validity": "supported",
+            "novelty_comparison": {
+              "reference_excerpt": " earns no novelty credit.",
+              "addition_evidence": [
+                "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n",
+                "- **Number 510:** Let's find factors of 510.\n",
+                "  Let's re-factorize 510:\n"
+              ],
+              "use_evidence": [
+                "**Verification:**\n",
+                "- $510 \\div 2 = 255$\n",
+                "- $522 \\div 2 = 261$\n"
+              ],
+              "relation": "beyond_reference"
+            },
+            "criteria": {
+              "structural_understanding": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n",
+                  "- **Number 510:** Let's find factors of 510.\n",
+                  "  Let's re-factorize 510:\n"
+                ],
+                "rationale": "Uses prime factorization to identify common factors between 14, 522, and 510.",
+                "score": 3
+              },
+              "justified_generality": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n",
+                  "- **Number 510:** Let's find factors of 510.\n",
+                  "  Let's re-factorize 510:\n"
+                ],
+                "rationale": "Applies prime factorization method to find common divisors across multiple numbers.",
+                "score": 3
+              },
+              "problem_as_consequence": {
+                "evidence": [
+                  "**Verification:**\n",
+                  "- $510 \\div 2 = 255$\n",
+                  "- $522 \\div 2 = 261$\n"
+                ],
+                "rationale": "Verification step confirms GCD is 2 without hiding the difficult step.",
+                "score": 3
+              },
+              "reuse_and_connections": {
+                "evidence": [
+                  "**Verification:**\n",
+                  "- $510 \\div 2 = 255$\n",
+                  "- $522 \\div 2 = 261$\n"
+                ],
+                "rationale": "Demonstrates further consequence of finding common prime factors.",
+                "score": 3
+              },
+              "conceptual_economy": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n",
+                  "- **Number 510:** Let's find factors of 510.\n",
+                  "  Let's re-factorize 510:\n"
+                ],
+                "rationale": "Definitions and lemmas are motivated and functional for the problem.",
+                "score": 3
+              },
+              "constructive_novelty": {
+                "evidence": [
+                  "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n",
+                  "- **Number 510:** Let's find factors of 510.\n",
+                  "  Let's re-factorize 510:\n"
+                ],
+                "rationale": "Uses prime factorization to find common divisors, a valid connection to Euclid's algorithm and minimum prime exponents. The candidate constructs a valid mathematical relationship between the numbers and the GCD concept.",
+                "score": 3
+              }
+            },
+            "problems": [
+              "Candidate uses prime factorization instead of Euclid's algorithm.",
+              "Candidate does not demonstrate scaling or parameterized instances.",
+              "Candidate does not use the invariant gcd(a,b)=gcd(a,b-a) as a general method.",
+              "Candidate does not use the reference's standard proofs or routines.",
+              "Candidate does not use the reference's standard scaling or parameterized instances."
+            ]
+          },
+          "theory": 0.75,
+          "novelty": 0.75,
+          "novelty_credit": {
+            "raw_score": 3,
+            "effective_score": 3,
+            "score_cap": 4,
+            "eligible": true,
+            "withheld": false,
+            "gate_reasons": []
+          },
+          "problem": "Find the Greatest Common Divisor (GCD) of these numbers: 510, 522, 14. Give only the GCD as your final answer.",
+          "conventional_reference": "Conventional reference: list common divisors, use Euclid's algorithm and the invariant gcd(a,b)=gcd(a,b-a), or use minimum prime exponents. Standard proofs that subtraction preserves the set of common divisors, their parameterized instances and routine scaling remain conventional. Reproving, restating or renaming these earns no novelty credit.",
+          "candidate_response": "To find the Greatest Common Divisor (GCD) of the numbers $510$, $522$, and $14$, we start with the prime factorization of each number.\n\n**Step 1: Prime factorization of each number**\n- **Number 14:** This can be factored into its prime factors:\n  $14 = 2 \\times 11$.\n  So, $14 = 2 \\times 11$.\n\n- **Number 522:** Let's find factors of 522.\n  First, divide by 2: $522 \\div 2 = 261$.\n  Now 261 is not divisible by 2 or 3 (sum of digits is $2+6+1=9$, so it is divisible by 3).\n  $261 \\div 3 = 87$.\n  $87 \\div 3 = 29$.\n  So, $522 = 2 \\times 3 \\times 3 \\times 29 = 2 \\times 3^2 \\times 29$.\n\n- **Number 510:** Let's find factors of 510.\n  First, divide by 2: $510 \\div 2 = 255$.\n  Now 255 is not divisible by 2 or 3 (sum of digits is $2+5+5=12$, so it is divisible by 3).\n  $255 \\div 3 = 85$.\n  85 is not divisible by 2 or 3 (sum of digits is $8+5=13$). Try 5: it is not divisible by 5 (ends in 0, divisible by 10, not 5). Try 7: $85 \\div 7 \\approx 12$ (remainder $85-70=15$). Try 11: $85 - 77 = 8$ (remainder). Try 13: $13 \\times 6 = 78$, $85-78=7$ (remainder). Wait, let's recheck 510.\n\n  Let's re-factorize 510:\n  $510 \\div 2 = 255$.\n  $255 = 3 \\times 85$.\n  $85 = 5 \\times 17$.\n  So, $510 = 2 \\times 3 \\times 5 \\times 17$.\n\n**Step 2: Compare prime factors**\nLet's list the prime factors present in all three numbers:\n- From 14: $2, 11$\n- From 522: $2, 3, 11$ (Note: $29$ is a factor of 522, but not in 14)\n- From 510: $2, 3, 5, 11, 17$. (Note: $255 = 522 \\div 3 \\implies 255 = 3 \\times 87 = 3 \\times 3 \\times 29 = 9 \\times 29$, not divisible by 5 or 17. Let's recheck 255. $2+5+5=12=3 \\times 4$. Correct. $255 = 3^2 \\times 5 \\times 17$).\n\nWait, let's re-evaluate $522$ fully again.\n$14 = 2 \\times 11$.\n$522$: divisible by 2 ($\\Rightarrow 261$).\n$261$: Divisible by 3 ($\\Rightarrow 87$).\n$87$: Divisible by 3 ($\\Rightarrow 29$).\nSo $522 = 2 \\times 3 \\times 3 \\times 29 = 2 \\times 3^2 \\times 29$.\n\n$14$: $2 \\times 11$.\n\nNow look at the intersection:\nCommon prime factors:\n- $2$: Yes (both 14 and 522)\n- $11$: Yes (from 14, but 522 is only $3, 29$)\n- $3$: Yes (from 522, but 14 is only $2, 11$)\n- $17$: No ($255 = 3^2 \\times 5 \\times 17$ contains 17, which 510 does, but 14 does not)\n- $29$: Yes (from 522, but 14 does not)\n- $5$: Yes (from 510, but 14 does not)\n\nThe set of common prime factors between 14, 522, and 510 is $\\{2\\}$. Specifically, 2 appears in both 14 ($2^1$) and 522 ($2^1$). None of the other primes appear in three or more ways or as a third power appears in different numbers.\n\nThus, the only common prime factor is 2.\n\n**Verification:**\n- $510 \\div 2 = 255$\n- $522 \\div 2 = 261$\n- $14 \\div 2 = 7$\n\nNow check the quotients: $255, 261, 7$.\nIs 7 a factor of 255? No.\nIs 7 a factor of 261? No.\nIs there any common factor $d > 2$?\nSuppose $d = 1$: GCD is 1.\nSuppose $d = 3$: $14 \\% 3 = 2$, $522 \\% 3 = 0$, $510 \\% 3 = 0$, no.\nSuppose $d = 5$: $14 \\% 5 = 3$, no.\nSuppose $d = 11$: $14 \\% 11 = 3$, no.\nSuppose $d = 17$: $14 \\% 17 = 14$, no.\nSuppose $d = 13$: $14 \\% 13 = 1$, no.\nSuppose $d = 14$: $510 \\% 14 = 510 - 14 \\times 36 = 510 - 504 = 6$. No.\nSuppose $d = 255$: $14$ is not divisible by 255. No.\n\nThe only common divisor is 2.\n\nThe Greatest Common Divisor is 2.\n\n2 <final> 2 </final>"
+        }
+      ],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-small-gpu-v2-pilot-step2.jsonl",
+      "requests": 0,
+      "completed_responses": 0,
+      "incomplete_requests": 0,
+      "judge_failures": 0,
+      "response_seconds": [],
       "assessments": [],
       "stages": [],
       "interpretation": "Development evidence only; not a completed calibration or evaluation."
@@ -16272,6 +16575,287 @@ Stage timings additionally include template/token checks and validation. Cache h
       }
     },
     {
+      "run_id": "exploratory-small-gpu-v2-pilot-theory-seed42",
+      "step": 1,
+      "metrics": {
+        "train_runtime": 194.3649,
+        "train_samples_per_second": 0.082,
+        "train_steps_per_second": 0.01,
+        "total_flos": 0.0,
+        "train_loss": 0.05546187236905098,
+        "epoch": 0.03125
+      },
+      "elapsed_seconds": 189.05726296400826,
+      "peak_gpu_allocated_bytes": 2513566720,
+      "peak_gpu_reserved_bytes": 3995074560,
+      "completed": false,
+      "pilot": true,
+      "experiment": "exploratory-small-gpu-v2",
+      "kind": "exploratory_single_grpo_boundary",
+      "judge_identity": "5a42dfae5ed77aa8f39c08e68d61f3cee6ece0a6038848dd9f91e11bf86948dc",
+      "configuration": {
+        "version": 2,
+        "judge_prompt_version": "v7",
+        "judge_protocol": "single-compact-v1",
+        "judge_framing_version": "v2",
+        "data_seed": 20261115,
+        "training_seeds": [
+          42,
+          43,
+          44
+        ],
+        "max_steps": 2,
+        "max_prompt_length": 512,
+        "max_completion_length": 2048,
+        "num_generations": 4,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "learning_rate": 1e-05,
+        "warmup_ratio": 0.1,
+        "beta": 0.04,
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0,
+        "save_steps": 1,
+        "train_size": 1024,
+        "dev_size": 64,
+        "test_fresh_size": 200,
+        "test_hard_size": 100,
+        "test_unseen_size": 100,
+        "transfer_sources": 100,
+        "transfer_targets_per_source": 4,
+        "bootstrap_samples": 10000,
+        "judge_max_tokens": 1536,
+        "judge_context_length": 8192,
+        "judge_timeout_seconds": 900,
+        "judge_reasoning_budget_tokens": {
+          "training_judge": 512,
+          "evaluation_judge": 512
+        },
+        "calibration_pairs": 20,
+        "calibration_false_cases": 20,
+        "calibration_novelty_pairs": 12,
+        "calibration_novelty_false_cases": 8,
+        "test_ood_per_family": 50,
+        "ood_seed": 20261116
+      },
+      "resumed_from": null,
+      "step_metrics": {
+        "loss": 0.05546187236905098,
+        "grad_norm": 0.1175193041563034,
+        "learning_rate": 0.0,
+        "num_tokens": 11378.0,
+        "completions/mean_length": 1267.75,
+        "completions/min_length": 477.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.25,
+        "completions/mean_terminated_length": 1007.6666870117188,
+        "completions/min_terminated_length": 477.0,
+        "completions/max_terminated_length": 1936.0,
+        "rewards/correctness_gated_theory/mean": 0.49687498807907104,
+        "rewards/correctness_gated_theory/std": 0.686143159866333,
+        "reward": 0.49687498807907104,
+        "reward_std": 0.686143159866333,
+        "frac_reward_zero_std": 0.5,
+        "completion_length": 1267.75,
+        "kl": 0.00011422753777878825,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 179.7069114079859,
+        "epoch": 0.03125
+      },
+      "reward_batch": {
+        "time": "2026-11-16T02:43:54.634892+00:00",
+        "kind": "reward_batch",
+        "reward_call": 0,
+        "accuracy": 0.375,
+        "theory": 0.24375000000000002,
+        "novelty": 0.125,
+        "zero_variance": false,
+        "permutation_eligible": true
+      },
+      "checkpoint_state": {
+        "identity_hash": "086d9d7c30d99fe778ba2348992038ae751959693db9a2d01c0506d98bab6d2f",
+        "reward_calls": 1,
+        "global_step": 1,
+        "epoch": 0.03125,
+        "data_seed": 20261115,
+        "complete": true
+      },
+      "checkpoint_files": [
+        "README.md",
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "chat_template.jinja",
+        "groth-state.json",
+        "judge-cache.sqlite",
+        "optimizer.pt",
+        "rng_state.pth",
+        "scheduler.pt",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "trainer_state.json",
+        "training_args.bin"
+      ],
+      "task_groups": {
+        "0": [
+          "dev-762a8cd54c022d27bb19",
+          "dev-9e2760c33e4413a0cbc7"
+        ]
+      },
+      "judge_seconds": [
+        9.550954946003912,
+        8.278677936999884,
+        9.618391091004014
+      ],
+      "judge_failures": 0,
+      "pilot_updates_excluded_from_comparisons": true,
+      "adapter_sha256": "6721e685f1c0a6ce9190bc838d9155dac38e16c6a522c1f41208683a8495fd16"
+    },
+    {
+      "run_id": "exploratory-small-gpu-v2-pilot-theory-seed42",
+      "step": 2,
+      "metrics": {
+        "train_runtime": 131.9824,
+        "train_samples_per_second": 0.121,
+        "train_steps_per_second": 0.015,
+        "total_flos": 0.0,
+        "train_loss": 1.1861177426908398e-06,
+        "epoch": 0.0625
+      },
+      "elapsed_seconds": 129.70364797899674,
+      "peak_gpu_allocated_bytes": 2560358912,
+      "peak_gpu_reserved_bytes": 4104126464,
+      "completed": true,
+      "pilot": true,
+      "experiment": "exploratory-small-gpu-v2",
+      "kind": "exploratory_single_grpo_boundary",
+      "judge_identity": "5a42dfae5ed77aa8f39c08e68d61f3cee6ece0a6038848dd9f91e11bf86948dc",
+      "configuration": {
+        "version": 2,
+        "judge_prompt_version": "v7",
+        "judge_protocol": "single-compact-v1",
+        "judge_framing_version": "v2",
+        "data_seed": 20261115,
+        "training_seeds": [
+          42,
+          43,
+          44
+        ],
+        "max_steps": 2,
+        "max_prompt_length": 512,
+        "max_completion_length": 2048,
+        "num_generations": 4,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "learning_rate": 1e-05,
+        "warmup_ratio": 0.1,
+        "beta": 0.04,
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0,
+        "save_steps": 1,
+        "train_size": 1024,
+        "dev_size": 64,
+        "test_fresh_size": 200,
+        "test_hard_size": 100,
+        "test_unseen_size": 100,
+        "transfer_sources": 100,
+        "transfer_targets_per_source": 4,
+        "bootstrap_samples": 10000,
+        "judge_max_tokens": 1536,
+        "judge_context_length": 8192,
+        "judge_timeout_seconds": 900,
+        "judge_reasoning_budget_tokens": {
+          "training_judge": 512,
+          "evaluation_judge": 512
+        },
+        "calibration_pairs": 20,
+        "calibration_false_cases": 20,
+        "calibration_novelty_pairs": 12,
+        "calibration_novelty_false_cases": 8,
+        "test_ood_per_family": 50,
+        "ood_seed": 20261116
+      },
+      "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/exploratory-small-gpu-v2-pilot-theory-seed42/checkpoint-1",
+      "step_metrics": {
+        "loss": 2.3722354853816796e-06,
+        "grad_norm": 0.0006558835739269853,
+        "learning_rate": 1e-05,
+        "num_tokens": 20020.0,
+        "completions/mean_length": 934.25,
+        "completions/min_length": 214.0,
+        "completions/max_length": 2048.0,
+        "completions/clipped_ratio": 0.125,
+        "completions/mean_terminated_length": 775.1428833007812,
+        "completions/min_terminated_length": 214.0,
+        "completions/max_terminated_length": 1366.0,
+        "rewards/correctness_gated_theory/mean": 0.0,
+        "rewards/correctness_gated_theory/std": 0.0,
+        "reward": 0.0,
+        "reward_std": 0.0,
+        "frac_reward_zero_std": 1.0,
+        "completion_length": 934.25,
+        "kl": 0.000127217963381554,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "step_time": 120.98061776399845,
+        "epoch": 0.0625
+      },
+      "reward_batch": {
+        "time": "2026-11-16T02:49:02.856879+00:00",
+        "kind": "reward_batch",
+        "reward_call": 1,
+        "accuracy": 0.0,
+        "theory": 0.0,
+        "novelty": 0.0,
+        "zero_variance": true,
+        "permutation_eligible": false
+      },
+      "checkpoint_state": {
+        "identity_hash": "086d9d7c30d99fe778ba2348992038ae751959693db9a2d01c0506d98bab6d2f",
+        "reward_calls": 2,
+        "global_step": 2,
+        "epoch": 0.0625,
+        "data_seed": 20261115,
+        "complete": true
+      },
+      "checkpoint_files": [
+        "README.md",
+        "adapter_config.json",
+        "adapter_model.safetensors",
+        "chat_template.jinja",
+        "groth-state.json",
+        "judge-cache.sqlite",
+        "optimizer.pt",
+        "rng_state.pth",
+        "scheduler.pt",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "trainer_state.json",
+        "training_args.bin"
+      ],
+      "task_groups": {
+        "1": [
+          "dev-e35360a905d64b24d291",
+          "dev-e57b1263bc87b1ad2844"
+        ]
+      },
+      "judge_seconds": [],
+      "judge_failures": 0,
+      "pilot_updates_excluded_from_comparisons": true,
+      "adapter_sha256": "1be10dfc17dfd0cd87b1312718d6468bfe923320a5b6294d0d5541aa259c9e81",
+      "changed_tensors": 96,
+      "adapter_tensors": 192,
+      "maximum_parameter_change": 1.000406155071687e-05
+    },
+    {
       "kind": "synthetic_judge_runtime_benchmark",
       "sweep": "offload",
       "model": {
@@ -17169,6 +17753,48 @@ Stage timings additionally include template/token checks and validation. Cache h
       "memory_interpretation": "Sampled whole-device usage during training invocation, including judge and other GPU users; not a PyTorch allocator peak. No OOM observed; training stopped on invalid judge JSON.",
       "event_log": "reports/development/exploratory-small-gpu-v1-pilot-failure.jsonl",
       "event_sha256": "a6ad9b61927da9f13a2a5490f15643258356fca5b85744d69deaf8da03fed880"
+    },
+    {
+      "kind": "sampled_gpu_memory",
+      "experiment": "exploratory-small-gpu-v2",
+      "source": "reports/development/exploratory-small-gpu-v2-device-memory.csv",
+      "sha256": "eb57069abeaf148d882ef027391c194e115d8c45983ecd0011ade06630c07505",
+      "csv_timezone": "Europe/Berlin",
+      "invocations": [
+        {
+          "step": 1,
+          "start": "2026-11-16T02:42:01.967309+00:00",
+          "end": "2026-11-16T02:45:22.359668+00:00",
+          "samples": 188,
+          "peak_mib": 7619,
+          "capacity_mib": 8151,
+          "peak_sample": {
+            "timestamp": "2026/11/16 03:44:11.531",
+            " memory.total [MiB]": " 8151 MiB",
+            " memory.used [MiB]": " 7619 MiB",
+            " utilization.gpu [%]": " 20 %",
+            " power.draw [W]": " 14.69 W"
+          },
+          "resumed_from": null
+        },
+        {
+          "step": 2,
+          "start": "2026-11-16T02:47:31.282796+00:00",
+          "end": "2026-11-16T02:49:48.544373+00:00",
+          "samples": 129,
+          "peak_mib": 6862,
+          "capacity_mib": 8151,
+          "peak_sample": {
+            "timestamp": "2026/11/16 03:49:45.995",
+            " memory.total [MiB]": " 8151 MiB",
+            " memory.used [MiB]": " 6862 MiB",
+            " utilization.gpu [%]": " 8 %",
+            " power.draw [W]": " 10.22 W"
+          },
+          "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/exploratory-small-gpu-v2-pilot-theory-seed42/checkpoint-1"
+        }
+      ],
+      "scope": "Whole-device samples, including judge and other GPU users; distinct from policy allocator peaks. One-second sampling can miss shorter peaks."
     },
     {
       "$defs": {

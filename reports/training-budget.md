@@ -19,7 +19,14 @@ Sources: `reports/development/feasibility-grpo-first-boundary.json` and `reports
 
 Only intervals from the current experiment enter this estimate. They remain separate from the historical non-thinking pilot above. They include generation, verification, judging and backward work; model loading and evaluation are excluded. Development prompts and few intervals cannot establish steady-state throughput. Future correctness, response lengths and retries affect runtime.
 
-No completed optimizer interval is recorded for this protocol yet.
+| Updates | One judge-scored arm (hours) | All judge-scored arms (hours) |
+|---:|---:|---:|
+| 32 | 1.08–1.60 | 5.38–7.99 |
+| 64 | 2.15–3.19 | 10.75–15.97 |
+| 128 | 4.30–6.39 | 21.51–31.95 |
+| 256 | 8.60–12.78 | 43.02–63.90 |
+
+Sources: `reports/development/feasibility-exploratory-small-gpu-v2-*.json`. Judge identity: `5a42dfae5ed77aa8f39c08e68d61f3cee6ece0a6038848dd9f91e11bf86948dc`.
 
 ## Postponed exploratory configurations
 

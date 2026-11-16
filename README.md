@@ -33,9 +33,13 @@ and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-groth
   development calibration; false objections removed bonuses from valid mathematics.
 - **Current execution check:** the [small-policy maximum-length backward probe](reports/development/feasibility-small-gpu-memory.json)
   passed with all policy parameters on CUDA and the training judge loaded.
-- **New execution failure:** the [initial small-GPU pilot](reports/experiments/exploratory-small-gpu-v1-failure.md)
+- **Preserved execution failure:** the [initial small-GPU pilot](reports/experiments/exploratory-small-gpu-v1-failure.md)
   stopped on repetitive, truncated judge JSON before an optimizer update. The
-  [bounded-format repair](reports/amendments/2026-11-16-compact-gpu-judge.md) is published before a fresh pilot.
+  [bounded-format repair](reports/amendments/2026-11-16-compact-gpu-judge.md) was published before a fresh pilot.
+- **Current execution success:** the [compact GPU pilot](reports/experiments/exploratory-small-gpu-v2-pilot.md)
+  saved, resumed and changed adapter weights. Its resumed batch earned no task
+  reward; these checks establish recovery, not learning. Pilot updates are excluded
+  from every comparative initialization.
 - **Learning remains untested:** baseline generation, comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
@@ -288,11 +292,11 @@ prior work and limitations.
 
 This is the current [exploratory execution plan](reports/plan.md), including the
 GPU model transitions. **At this documentation milestone, the previous baseline
-and its queue have been stopped at the user's request. The smaller setup passed
-its maximum-length backward check, but the initial pilot stopped on invalid judge
-JSON. Comparative runs have not started.** Repeat the recovery check using the
-published compact-output repair with the 2B judge loaded.
-Discard pilot updates, publish feasibility evidence, then follow this sequence.
+and its queue remain postponed. The smaller setup passed its maximum-length
+backward check and, after the published compact-output repair, its save/resume
+check with the 2B judge loaded. Comparative runs have not started.** The saved
+pilot adapters are retained as execution evidence and excluded from comparisons.
+Publish this feasibility evidence, then follow this sequence from the unmodified base.
 Live progress belongs in the dashboard and timestamped logs; this publication
 snapshot is not a liveness check. CLI commands execute individual phases.
 
@@ -474,7 +478,7 @@ saved artifacts; the README's generated result block should not be edited by han
 - [x] Publish literature review, preregistration, implementation, locks and tests.
 - [x] Preserve failed calibration and the explicit exploratory amendment.
 - [x] Preserve the larger setup's repaired save/resume pilot and partial baseline.
-- [ ] Complete the smaller setup's GPU residency, backward and save/resume checks.
+- [x] Complete the smaller setup's GPU residency, backward and save/resume checks.
 - [ ] Complete ordinary and prompted baseline generation and independent scoring.
 - [ ] Train/evaluate the matched theory-bonus and correctness-only arms.
 - [ ] Complete later seeds, shuffled-bonus control and rubric-only ablation.
@@ -488,7 +492,7 @@ are future amended experiments requiring fresh held-out confirmation.
 
 **Postponed until after the current experiment sequence:**
 
-- [ ] Try **10B+, 100B and 1T+ parameter models** for policy and/or judge roles,
+- [ ] Try **10B+, 100B+ and 1T+ parameter models** for policy and/or judge roles,
   subject to available Qwen/Gemma checkpoints and suitable hardware.
 - [ ] Test more advanced **agentic RL**, with multi-step mathematical investigation,
   tool use, feedback, revision and reusable mathematical memory.
