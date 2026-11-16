@@ -64,11 +64,14 @@ bash scripts/run.sh serve --role evaluation_judge
 The archive checksums are pinned in `configs/llama-binaries.lock.json`. Serving
 parameters are frozen in `configs/judge-runtime.json` and included in judge/cache
 identities. The CLI rejects an inconsistent `--gpu-layers` override. A changed
-backend, offload count, or KV precision requires development recalibration and a
-matching audit; old results remain separate. The CPU build cannot offload even
-if a layer count is requested. Never place the training judge on GPU. Stop the
-evaluation judge before loading the policy, and generate policy outputs before
-loading the evaluation judge. Preserve interrupted development logs and locks.
+backend, offload count, or KV precision changes the instrument identity; the
+qualification study requires development recalibration and a matching audit,
+while the explicitly authorized exploratory track requires a published amendment.
+Old results remain separate. The CPU build cannot offload even if a layer count
+is requested. CPU training-judge placement belongs to the postponed larger-model
+setup. The active smaller-model experiment requires all training-judge layers on
+GPU. Stop the evaluation judge before loading the policy, and generate policy
+outputs before loading the evaluation judge. Preserve interrupted logs and locks.
 
 ## Publication gate
 

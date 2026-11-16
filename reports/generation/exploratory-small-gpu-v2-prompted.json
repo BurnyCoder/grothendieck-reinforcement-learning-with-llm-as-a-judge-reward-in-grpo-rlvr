@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-11-16T07:44:57.305955+00:00",
+  "run_id": "exploratory-small-gpu-v2-prompted",
+  "complete": true,
+  "expected": 400,
+  "saved": 400,
+  "unique": 400,
+  "split_counts": {
+    "test_fresh": 200,
+    "test_hard": 100,
+    "test_unseen": 100
+  },
+  "first_response_at": "2026-11-16T06:15:59.834547+00:00",
+  "last_response_at": "2026-11-16T07:43:39.780525+00:00",
+  "generation_seconds_sum": 4793.684186832717,
+  "generation_seconds_mean": 11.984210467081793,
+  "generation_config_matches_current": true,
+  "generations_sha256": "d3d0c805d1dabf261d5e937a2dbceba1b3a6fd1bee1222e5af6fde5861013b58",
+  "generation_config_sha256": "f7a7ed273e0cd273b064ee762851033aa62beaac29a85c2122827203358418db",
+  "events_sha256": "4300ad076d294b4b2f8384315f2e89daa69b2fbe53f6c2a8dd4713c0a930637a",
+  "event_counts": {
+    "policy_request": 401,
+    "policy_chunk": 215811,
+    "policy_response": 400
+  },
+  "scores_present": false,
+  "artifact_url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-prompted",
+  "interpretation": "Generation completed; mathematical correctness and theory quality have not been evaluated.",
+  "interruption": "Codex app restart interrupted an unfinished request. Unchanged-config resumption retained every completed task and generated only the missing IDs."
+}

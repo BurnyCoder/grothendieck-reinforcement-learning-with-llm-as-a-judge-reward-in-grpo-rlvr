@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-16T03:05:41.624054+00:00.
+Generated from saved artifacts at 2026-11-16T07:46:05.294666+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -20,6 +20,10 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | exploratory-small-gpu-v2-prompted | Pending | Pending | Pending | Pending |
 | exploratory-small-gpu-v2-theory-seed42 | Pending | Pending | Pending | Pending |
 | exploratory-small-gpu-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
+
+## Generation execution
+
+exploratory-small-gpu-v2-ordinary: 400/400 unique task outputs saved; mean recorded generation time 11.25 seconds per answer; last saved response 2026-11-16T04:21:45.066423+00:00. exploratory-small-gpu-v2-prompted: 400/400 unique task outputs saved; mean recorded generation time 11.98 seconds per answer; last saved response 2026-11-16T07:43:39.780525+00:00. These receipts verify saved task coverage and configuration, not answer correctness or theory quality. Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/.
 
 ## Judge calibration
 

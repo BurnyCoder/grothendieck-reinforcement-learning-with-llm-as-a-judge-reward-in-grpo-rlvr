@@ -40,7 +40,9 @@ and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-groth
   saved, resumed and changed adapter weights. Its resumed batch earned no task
   reward; these checks establish recovery, not learning. Pilot updates are excluded
   from every comparative initialization.
-- **Learning remains untested:** ordinary baseline generation has started; comparative training and scored evaluations remain pending.
+- **Baselines generated:** ordinary and rising-sea prompted outputs are saved for the complete primary set;
+  [completion receipts and raw artifacts](reports/generation/README.md) retain coverage and timing.
+- **Learning remains untested:** comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -98,6 +100,8 @@ remain in the [consolidated report](reports/experiments.md).
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
+
+Generation execution: exploratory-small-gpu-v2-ordinary: 400/400 unique task outputs saved; mean recorded generation time 11.25 seconds per answer; last saved response 2026-11-16T04:21:45.066423+00:00. exploratory-small-gpu-v2-prompted: 400/400 unique task outputs saved; mean recorded generation time 11.98 seconds per answer; last saved response 2026-11-16T07:43:39.780525+00:00. These receipts verify saved task coverage and configuration, not answer correctness or theory quality. Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/.
 
 <!-- RESULTS:END -->
 
@@ -294,7 +298,7 @@ This is the current [exploratory execution plan](reports/plan.md), including the
 GPU model transitions. **At this documentation milestone, the previous baseline
 and its queue remain postponed. The smaller setup passed its maximum-length
 backward check and, after the published compact-output repair, its save/resume
-check with the 2B judge loaded. Ordinary baseline generation has started.** The saved
+check with the 2B judge loaded. Ordinary and prompted primary generation are complete.** The saved
 pilot adapters are retained as execution evidence and excluded from comparisons.
 The feasibility evidence is published; follow this sequence from the unmodified base.
 Live progress belongs in the dashboard and timestamped logs; this publication
@@ -519,7 +523,8 @@ saved artifacts; the README's generated result block should not be edited by han
 - [x] Preserve failed calibration and the explicit exploratory amendment.
 - [x] Preserve the larger setup's repaired save/resume pilot and partial baseline.
 - [x] Complete the smaller setup's GPU residency, backward and save/resume checks.
-- [ ] Complete ordinary and prompted baseline generation and independent scoring.
+- [x] Complete ordinary and prompted primary baseline generation.
+- [ ] Independently score both baselines and complete their OOD/transfer phases.
 - [ ] Train/evaluate the matched theory-bonus and correctness-only arms.
 - [ ] Complete later seeds, shuffled-bonus control and rubric-only ablation.
 - [ ] Complete the additional OOD suite and frozen-recipient transfer comparisons.

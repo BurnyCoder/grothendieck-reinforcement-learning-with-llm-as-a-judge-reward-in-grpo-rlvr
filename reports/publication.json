@@ -150,5 +150,8 @@
   "compact_gpu_pilot_pages_workflow": 43795403463,
   "task_difficulty_fallback_merge": "31591d6b0e66a36324f5054e56130246b185ea01",
   "task_difficulty_fallback_huggingface_commit": "ee0c42d9795db12bfb532ed86d4e4d6c82bee721",
-  "task_difficulty_fallback_pages_workflow": 43796190340
+  "task_difficulty_fallback_pages_workflow": 43796190340,
+  "readme_model_sequence_merge": "fc61645babc6d08b60ba76adc47617d405dd9ddd",
+  "readme_model_sequence_huggingface_commit": "11d058e2a2f56838ea1a56b7aeae7e923804c151",
+  "readme_model_sequence_pages_workflow": 43796911722
 }
