@@ -135,5 +135,8 @@
   "readme_execution_order_pages_workflow": 43787281462,
   "small_gpu_preregistration_merge": "c4bf1e51fb7b0f255a92f9bafae873d5df23dd8f",
   "small_gpu_preregistration_huggingface_commit": "e820c5bc7ff2260857f9eb5b84ed1b45a9598ec7",
-  "small_gpu_preregistration_pages_workflow": 43790052799
+  "small_gpu_preregistration_pages_workflow": 43790052799,
+  "deferred_roadmap_and_quotations_merge": "80a3c66e53f9996b69bb3ded2e6202925ef76c33",
+  "deferred_roadmap_and_quotations_huggingface_commit": "cf8f04acb469b1127f36a2bd79a3870819446d44",
+  "deferred_roadmap_and_quotations_pages_workflow": 43791785404
 }

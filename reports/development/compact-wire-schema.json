@@ -1,0 +1,159 @@
+{
+  "$defs": {
+    "Criterion": {
+      "additionalProperties": false,
+      "description": "An ordinal rubric score supported by verbatim candidate excerpts.",
+      "properties": {
+        "evidence": {
+          "items": {
+            "type": "string",
+            "enum": [
+              "C0",
+              "C1"
+            ]
+          },
+          "title": "Evidence",
+          "type": "array",
+          "maxItems": 3
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string",
+          "maxLength": 240
+        },
+        "score": {
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Score",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evidence",
+        "rationale",
+        "score"
+      ],
+      "title": "Criterion",
+      "type": "object"
+    },
+    "NoveltyComparison": {
+      "additionalProperties": false,
+      "description": "Describe the reference, conceptual addition and any demonstrated further use.\n\nChecklist motivation: https://arxiv.org/html/2601.08654v1, section 3.\nThese are auditable judge decisions, not verified mathematical propositions.",
+      "properties": {
+        "reference_excerpt": {
+          "type": "string",
+          "enum": [
+            "R0"
+          ]
+        },
+        "addition_evidence": {
+          "items": {
+            "type": "string",
+            "enum": [
+              "C0",
+              "C1"
+            ]
+          },
+          "title": "Addition Evidence",
+          "type": "array",
+          "maxItems": 3
+        },
+        "use_evidence": {
+          "items": {
+            "type": "string",
+            "enum": [
+              "C0",
+              "C1"
+            ]
+          },
+          "title": "Use Evidence",
+          "type": "array",
+          "maxItems": 3
+        },
+        "relation": {
+          "enum": [
+            "within_reference",
+            "beyond_reference",
+            "unresolved"
+          ],
+          "title": "Relation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reference_excerpt",
+        "addition_evidence",
+        "use_evidence",
+        "relation"
+      ],
+      "title": "NoveltyComparison",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Evidence-bearing opinion from a frozen judge, not a proof certificate.",
+  "properties": {
+    "theory_validity": {
+      "enum": [
+        "none",
+        "supported",
+        "unsupported",
+        "contradicted"
+      ],
+      "title": "Theory Validity",
+      "type": "string"
+    },
+    "novelty_comparison": {
+      "$ref": "#/$defs/NoveltyComparison"
+    },
+    "criteria": {
+      "type": "object",
+      "properties": {
+        "structural_understanding": {
+          "$ref": "#/$defs/Criterion"
+        },
+        "justified_generality": {
+          "$ref": "#/$defs/Criterion"
+        },
+        "problem_as_consequence": {
+          "$ref": "#/$defs/Criterion"
+        },
+        "reuse_and_connections": {
+          "$ref": "#/$defs/Criterion"
+        },
+        "conceptual_economy": {
+          "$ref": "#/$defs/Criterion"
+        },
+        "constructive_novelty": {
+          "$ref": "#/$defs/Criterion"
+        }
+      },
+      "required": [
+        "structural_understanding",
+        "justified_generality",
+        "problem_as_consequence",
+        "reuse_and_connections",
+        "conceptual_economy",
+        "constructive_novelty"
+      ],
+      "additionalProperties": false
+    },
+    "problems": {
+      "items": {
+        "type": "string",
+        "maxLength": 160
+      },
+      "title": "Problems",
+      "type": "array",
+      "maxItems": 8
+    }
+  },
+  "required": [
+    "theory_validity",
+    "novelty_comparison",
+    "criteria",
+    "problems"
+  ],
+  "title": "Assessment",
+  "type": "object"
+}

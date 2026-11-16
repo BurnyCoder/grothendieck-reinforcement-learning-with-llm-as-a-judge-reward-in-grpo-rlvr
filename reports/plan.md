@@ -8,7 +8,9 @@ baseline queue are postponed, with configuration, checkpoints and partial answer
 preserved. The new GPU memory/backward/save-resume pilot must precede comparative
 runs. The [small-policy maximum-length backward check](development/feasibility-small-gpu-memory.json)
 has passed with all policy parameters on CUDA and the judge resident. The new
-save/resume pilot is in progress at this documentation snapshot; no comparative
+save/resume pilot stopped before an optimizer boundary on repetitive, truncated
+judge JSON. The [compact-output amendment](amendments/2026-11-16-compact-gpu-judge.md)
+registers a format and logging repair before a fresh pilot; no comparative
 learning or steady-state throughput result is established.
 
 Earlier authority: user-approved Qwen3.5/Gemma plan and
@@ -38,7 +40,7 @@ calibration checks novelty first and can stop when the fixed thresholds become
 unreachable. Untouched full locked audits remain required for the qualified study.
 The [new user-authorized exploratory continuation](amendments/2026-11-16-exploratory-single-judge.md)
 permits separate single-call judge training despite failed calibration. The new
-`exploratory-small-gpu-v1` profile retains that exception and the unchanged rubric,
+`exploratory-small-gpu-v2` profile retains that exception and the unchanged rubric,
 thresholds and modest connection credit. Full comparative training and scored
 evaluations remain pending; these experiments
 will not qualify the original study.

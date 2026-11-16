@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-16T02:18:23.943572+00:00.
+Generated from saved artifacts at 2026-11-16T02:38:09.467481+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -16,10 +16,10 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v1-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v1-prompted | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v1-theory-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v1-correctness-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-ordinary | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-prompted | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-theory-seed42 | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
 
 ## Judge calibration
 
@@ -55,12 +55,12 @@ The user authorized training with unqualified judges. These analyses cannot esta
 ```json
 {
   "profile": {
-    "id": "exploratory-small-gpu-v1",
-    "amendment": "reports/amendments/2026-11-16-small-qwen-gpu.md",
+    "id": "exploratory-small-gpu-v2",
+    "amendment": "reports/amendments/2026-11-16-compact-gpu-judge.md",
     "authorization": "User requested prioritizing smaller/quantized Qwen3.5 models fully on GPU on 2026-11-16; earlier authorization for exploratory single-call judging despite failed qualification remains in effect.",
     "calibration_required": false,
     "interpretation": "Exploratory small-model GPU study with unqualified same-family judges; prior larger-model runs are deferred and not pooled.",
-    "judge_protocol": "single-indexed-v1",
+    "judge_protocol": "single-compact-v1",
     "rubric_version": "v7",
     "reference_version": "v3",
     "initial_arms": [
@@ -80,14 +80,15 @@ The user authorized training with unqualified judges. These analyses cannot esta
     },
     "judge_identities": {
       "training_judge": {
-        "quoted": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
-        "rubric": "65581b55e3539247b0368ce36fb16873d5ff9e405d6fc1eb328f352bc86520f6"
+        "quoted": "5a42dfae5ed77aa8f39c08e68d61f3cee6ece0a6038848dd9f91e11bf86948dc",
+        "rubric": "3d0a631c8910f56dba0a111bd0c86565a0f875a2bd9c0fd1a2977b65a19807bb"
       },
       "evaluation_judge": {
-        "quoted": "7f50c54ec6f08eb5ecf44b1ed5316199900681fb5bbf5eb66022901d0cb84ea5"
+        "quoted": "f99f76537c11d98dff3653e4076644d8d3f3f62fa4c6e8f194526ad485a342e0"
       }
     },
-    "evidence_protocol": "indexed-evidence-v1"
+    "evidence_protocol": "compact-evidence-v1",
+    "logging_protocol": "persistent-append-flush-each-event-v1"
   },
   "primary": {
     "status": "pending",

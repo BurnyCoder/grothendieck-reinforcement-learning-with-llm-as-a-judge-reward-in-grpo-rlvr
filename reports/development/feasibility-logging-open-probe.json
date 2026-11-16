@@ -1,0 +1,19 @@
+{
+  "kind": "synthetic_logging_probe",
+  "time": "2026-11-16T02:24:33.478782+00:00",
+  "results": [
+    {
+      "mode": "per_event_open",
+      "records": 128,
+      "seconds": 2.0927182069935952,
+      "bytes": 17024
+    },
+    {
+      "mode": "persistent_handle",
+      "records": 128,
+      "seconds": 0.08286798599874601,
+      "bytes": 17024
+    }
+  ],
+  "scope": "Synthetic disk append/flush only; no model calls or stdout. Concurrent with GPU pilot; one sequential measurement each, no causal throughput guarantee."
+}

@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+import weakref
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -51,17 +52,42 @@ class EventLog:
     def __init__(self, path: Path):
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
+        self._handles = {}
+        # Keep append handles open: reopening each streamed token is costly on WSL/NTFS.
+        # Every event still flushes. Finalizers close streams on collection/process exit.
+        # https://docs.python.org/3.12/library/weakref.html#finalizer-objects
+        self._closers = []
+
+    def _append(self, path: Path, line: str) -> None:
+        """Append and flush one complete record; I/O failures propagate to the caller."""
+        if path not in self._handles:
+            handle = path.open("a", encoding="utf-8")
+            self._handles[path] = handle
+            self._closers.append(weakref.finalize(self, handle.close))
+        self._handles[path].write(line + "\n")
+        self._handles[path].flush()
+
+    def close(self) -> None:
+        """Release handles explicitly; subsequent events may reopen them in append mode."""
+        for closer in self._closers:
+            closer()
+        self._handles.clear()
+        self._closers.clear()
+
+    def __getstate__(self):
+        """A serialized reward callback must never carry live file descriptors."""
+        return {"path": self.path}
+
+    def __setstate__(self, state):
+        self.__init__(state["path"])
 
     def emit(self, kind: str, **fields) -> dict:
         """Log prompts/responses as data, without recording authorization headers."""
         event = {"time": datetime.now(timezone.utc).isoformat(), "kind": kind, **fields}
         line = json.dumps(event, ensure_ascii=False, allow_nan=False)
-        with self.path.open("a", encoding="utf-8") as handle:
-            handle.write(line + "\n")
-            handle.flush()
+        self._append(self.path, line)
         if self.path.name == "events.jsonl" and kind in {
             "training_metrics", "reward_batch", "checkpoint", "judge_failure", "training_finished"}:
-            with self.path.with_name("metrics.jsonl").open("a", encoding="utf-8") as metrics:
-                metrics.write(line + "\n")
+            self._append(self.path.with_name("metrics.jsonl"), line)
         print(line, flush=True)
         return event
