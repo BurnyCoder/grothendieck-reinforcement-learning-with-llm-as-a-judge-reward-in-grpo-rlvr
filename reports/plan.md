@@ -189,7 +189,13 @@ update. Its original profile and full failure logs are archived. The
 [indexed-evidence amendment](amendments/2026-11-16-indexed-evidence.md) replaces
 quotation copying with constrained passage selection and exact extraction in code.
 It retains single-call judging, all scoring rules and the unqualified exploratory
-interpretation. Publish the new identity before restarting the save/resume pilot.
+interpretation. The new identity was published before restarting the save/resume
+pilot, which has now completed both boundaries. Resumption advanced the task
+position and changed adapter parameters at nonzero learning rate. The
+[generated pilot report](experiments/exploratory-single-pilot.md) and
+[interpretation](experiments/exploratory-single-v2-pilot-learnings.md) preserve
+its outputs, retries and limits. Publish this milestone before the ordinary and
+prompted baselines; all comparative arms still start from the selected base.
 
 Implementation is present but model-backed integration remains unverified.
 The initial review/preregistration commit is `bcf85b1` in

@@ -658,6 +658,30 @@ def report() -> dict:
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     folder = PROJECT / "reports/experiments"
     folder.mkdir(exist_ok=True)
+    pilots = sorted((r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"),
+                    key=lambda r: r["step"])
+    if pilots:
+        behavior = [["Boundary", "Learning rate", "Accuracy", "C × theory", "C × novelty", "Mean reward"]]
+        execution = [["Boundary", "Resumed", "Step seconds", "Peak allocated GiB", "Completed judge calls", "Retries"]]
+        for pilot in pilots:
+            batch, metrics = pilot["reward_batch"], pilot["step_metrics"]
+            behavior.append([str(pilot["step"]), f"{metrics['learning_rate']:g}", display(batch["accuracy"]),
+                             display(batch["theory"]), display(batch["novelty"]), display(metrics["reward"])])
+            execution.append([str(pilot["step"]), str(bool(pilot["resumed_from"])),
+                              display(metrics["step_time"], 2), display(pilot["peak_gpu_allocated_bytes"]/2**30, 2),
+                              str(len(pilot["judge_seconds"])), str(pilot["judge_failures"])])
+        (folder / "exploratory-single-pilot.md").write_text(
+            "# Exploratory single-call save/resume pilot\n\nGenerated from "
+            "`reports/development/feasibility-exploratory-single-step*.json`. "
+            "These development updates are excluded from every comparative initialization. "
+            "A zero learning rate checks execution but does not demonstrate an adapter update.\n\n" +
+            markdown_table(behavior) + "\n\n" + markdown_table(execution) +
+            "\n\nTheory and novelty means include zero for incorrect or invalidly formatted answers. "
+            "Judge opinions remain unqualified. Request counts include completed invalid contracts; "
+            "cache hits are not additional calls. Step intervals include generation, checking, judging "
+            "and backward work; they are not stable throughput estimates or learning-effect estimates. "
+            "See [runtime scenarios](../training-budget.md) and "
+            "[interpretation](exploratory-single-v2-pilot-learnings.md).\n", encoding="utf-8")
     (folder / "development-runtime.md").write_text(
         "# Development execution records\n\nGenerated from preserved timestamped logs. "
         "These are incomplete development attempts, not calibrated judges or comparative results. "

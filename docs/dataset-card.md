@@ -74,6 +74,11 @@ before an optimizer update. The `2026-11-16-indexed-evidence` amendment introduc
 constrained passage IDs and code-based exact extraction under a new identity,
 retaining the same scoring rubric and unqualified interpretation. Both the
 failed pilot and its original profile are archived.
+The repaired development pilot subsequently completed saving and resumption,
+advanced the task position and changed adapter parameters. Its discarded updates
+are execution evidence only. The generated pilot report and boundary records
+retain timings, reward components, retries and checkpoint state. Comparative
+training and held-out evaluation remain pending.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

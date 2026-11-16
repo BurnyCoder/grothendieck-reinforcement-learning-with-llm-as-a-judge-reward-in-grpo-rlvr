@@ -28,6 +28,12 @@ lets the same judge select source passages; code copies their original text.
 It changes citation handling, preserves the scoring rubric, and starts a new
 experiment identity. Mathematical judgment remains unqualified.
 
+The repaired [development pilot](reports/experiments/exploratory-single-pilot.md)
+completed checkpoint saving, resumption and a nonzero-learning-rate adapter
+update. Its [interpretation](reports/experiments/exploratory-single-v2-pilot-learnings.md)
+separates execution success from learning claims. Pilot updates are discarded;
+comparative training and held-out evaluations remain pending.
+
 The [two-call trial](reports/experiments/qwen-v8-two-stage-learnings.md) credited
 a brief valid commutator connection, but still overcredited routine GCD/LCM
 mathematics and missed developed uses. It failed the fixed development gate.
