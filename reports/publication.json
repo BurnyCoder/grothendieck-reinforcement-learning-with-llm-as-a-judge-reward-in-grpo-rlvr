@@ -123,5 +123,8 @@
   "exploratory_single_protocol_pages_workflow": 43775363802,
   "indexed_evidence_protocol_merge": "28cd4cd7734106f1842a903f6e52d51fd4a2d9f6",
   "indexed_evidence_protocol_huggingface_commit": "58f25811a7fa147d5b8f820080a7a9a4100e3c45",
-  "indexed_evidence_protocol_pages_workflow": 43777646448
+  "indexed_evidence_protocol_pages_workflow": 43777646448,
+  "indexed_single_pilot_merge": "6d88fabccfb60d1b99bfaa8676e1281d079cff63",
+  "indexed_single_pilot_huggingface_commit": "a26437d064c8fb8b27f69f7a4d14f91a2bb9efdd",
+  "indexed_single_pilot_pages_workflow": 43781664704
 }
