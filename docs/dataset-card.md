@@ -113,9 +113,12 @@ The repository README records the [current inference/training order](https://git
 and [postponed model sequence](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#postponed-model-sequence),
 including each policy/judge pairing, seed, quantization and hardware transition.
 
-The README's [model execution order](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order)
-details inference, LoRA training, CPU/GPU model transitions, independent scoring
-and frozen-recipient transfer, distinguishing queued work from planned work.
+Ordinary and rising-sea prompted primary generation are complete. The
+[generation report](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/generation/README.md)
+links the raw outputs and checked completion receipts. Prompted generation
+resumed after an app restart without replacing completed tasks. Correctness and
+theory scores remain unmeasured; these are execution records, not evidence of
+mathematical improvement.
 
 Data schema, split sizes, generator settings, reference checks and semantic
 deduplication are specified in `reports/preregistration.md` and `data/manifest.lock.json`.

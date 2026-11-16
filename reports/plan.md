@@ -14,8 +14,12 @@ truncated judge JSON. After the published
 resumption and an adapter parameter update. Its resumed batch earned no task
 reward. These are execution results; no comparative learning or steady-state
 throughput result is established. The pilot evidence is published and its updates
-are excluded from comparisons. Ordinary baseline generation has started from
-the unmodified base; prompted baseline generation follows its completion.
+are excluded from comparisons. Ordinary and prompted primary baseline generation
+are complete from the unmodified base; independent scoring remains pending.
+The [generation receipts](generation/README.md) preserve coverage, timing and raw
+artifacts. Prompted generation recovered after an app restart, retaining saved
+task IDs and the frozen configuration. No held-out scores informed a change to
+the training setup. Fresh theory-bonus seed-42 training is the next phase.
 
 The user also authorized a [conditional simpler-task fallback](amendments/2026-11-16-task-difficulty-fallback.md)
 if the small policy cannot solve the present problems. Diagnose this on

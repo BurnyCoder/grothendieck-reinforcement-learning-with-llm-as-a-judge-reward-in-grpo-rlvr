@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T03:05:41.624054+00:00",
+  "generated_at": "2026-11-16T07:46:05.294666+00:00",
   "study": {
     "version": 2,
     "judge_prompt_version": "v8",
@@ -16797,6 +16797,67 @@
     }
   ],
   "examples": {},
+  "generation_completions": [
+    {
+      "checked_at": "2026-11-16T07:44:53.450302+00:00",
+      "run_id": "exploratory-small-gpu-v2-ordinary",
+      "complete": true,
+      "expected": 400,
+      "saved": 400,
+      "unique": 400,
+      "split_counts": {
+        "test_fresh": 200,
+        "test_hard": 100,
+        "test_unseen": 100
+      },
+      "first_response_at": "2026-11-16T03:02:12.289116+00:00",
+      "last_response_at": "2026-11-16T04:21:45.066423+00:00",
+      "generation_seconds_sum": 4498.997407917021,
+      "generation_seconds_mean": 11.24749351979255,
+      "generation_config_matches_current": true,
+      "generations_sha256": "244c68099e63b89ae7c5cda79caaa8dbf4fb49ad103e0bce7babbb1e0ebf19b0",
+      "generation_config_sha256": "d0fbc9c20793b72f9f1a1e6b6088d4b96e6167f4a2564a70f82c6b0d4399f1d1",
+      "events_sha256": "c31c39470820dc0be63949e5e3dbca194d27d1573938b6b293290242c829ebdf",
+      "event_counts": {
+        "policy_request": 400,
+        "policy_chunk": 193619,
+        "policy_response": 400
+      },
+      "scores_present": false,
+      "artifact_url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-ordinary",
+      "interpretation": "Generation completed; mathematical correctness and theory quality have not been evaluated."
+    },
+    {
+      "checked_at": "2026-11-16T07:44:57.305955+00:00",
+      "run_id": "exploratory-small-gpu-v2-prompted",
+      "complete": true,
+      "expected": 400,
+      "saved": 400,
+      "unique": 400,
+      "split_counts": {
+        "test_fresh": 200,
+        "test_hard": 100,
+        "test_unseen": 100
+      },
+      "first_response_at": "2026-11-16T06:15:59.834547+00:00",
+      "last_response_at": "2026-11-16T07:43:39.780525+00:00",
+      "generation_seconds_sum": 4793.684186832717,
+      "generation_seconds_mean": 11.984210467081793,
+      "generation_config_matches_current": true,
+      "generations_sha256": "d3d0c805d1dabf261d5e937a2dbceba1b3a6fd1bee1222e5af6fde5861013b58",
+      "generation_config_sha256": "f7a7ed273e0cd273b064ee762851033aa62beaac29a85c2122827203358418db",
+      "events_sha256": "4300ad076d294b4b2f8384315f2e89daa69b2fbe53f6c2a8dd4713c0a930637a",
+      "event_counts": {
+        "policy_request": 401,
+        "policy_chunk": 215811,
+        "policy_response": 400
+      },
+      "scores_present": false,
+      "artifact_url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-prompted",
+      "interpretation": "Generation completed; mathematical correctness and theory quality have not been evaluated.",
+      "interruption": "Codex app restart interrupted an unfinished request. Unchanged-config resumption retained every completed task and generated only the missing IDs."
+    }
+  ],
   "budget": {
     "observed_step_seconds": [
       699.9325059050007,
