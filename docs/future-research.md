@@ -52,6 +52,10 @@ the then-selected versions and licenses before reuse. Pin Lean and its mathemati
 library, inspect dependencies/axioms, reject proof placeholders and unapproved
 axioms, and check that formal statements express the intended task.
 
+Investigate scoring abstract structures in Lean by how fundamental they are:
+how much they use fundamental axioms to construct novel, deeper, more fundamental
+structures versus how much they combine more high-level theorems.
+
 Run any future generated tactics in a bounded, isolated environment. The present
 pipeline still does not execute generated code. A checked proof establishes the
 formal statement relative to its assumptions; it does not establish conceptual
