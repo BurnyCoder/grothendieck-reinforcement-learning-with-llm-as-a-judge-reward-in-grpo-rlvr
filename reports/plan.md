@@ -21,7 +21,7 @@ evidence of model performance.
 
 ## Postponed follow-up research
 
-After the current experiment sequence, investigate **10B+, 100B and 1T+ models**,
+After the current experiment sequence, investigate **10B+, 100B+ and 1T+ models**,
 more advanced **agentic RL**, **Lean** integration, and **explicit quantitative
 metrics/rewards in place of LLM-as-a-judge scoring** wherever feasible. The
 [deferred roadmap](../docs/future-research.md) records the user-requested scope,

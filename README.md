@@ -488,7 +488,7 @@ are future amended experiments requiring fresh held-out confirmation.
 
 **Postponed until after the current experiment sequence:**
 
-- [ ] Try **10B+, 100B and 1T+ parameter models** for policy and/or judge roles,
+- [ ] Try **10B+, 100B+ and 1T+ parameter models** for policy and/or judge roles,
   subject to available Qwen/Gemma checkpoints and suitable hardware.
 - [ ] Test more advanced **agentic RL**, with multi-step mathematical investigation,
   tool use, feedback, revision and reusable mathematical memory.

@@ -8,7 +8,7 @@ It registers intentions, not results or a fully specified future experiment.
 
 ## Larger models
 
-Try **10B+, 100B and 1T+ parameter models**, using available Qwen/Gemma models for
+Try **10B+, 100B+ and 1T+ parameter models**, using available Qwen/Gemma models for
 policy and/or judge roles. These are target scales, not claims that suitable
 checkpoints at every scale currently exist or fit the present GPU. For sparse
 mixture-of-experts models, report both total and active parameters. Plan hardware,

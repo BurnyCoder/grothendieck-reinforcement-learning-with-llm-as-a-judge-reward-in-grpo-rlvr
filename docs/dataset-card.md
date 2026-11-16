@@ -92,7 +92,7 @@ optimizer boundary. The compact-output amendment bounds assessment fields and
 retains full streaming logs with persistent append handles. Its new identity
 preserves the prior failure, scoring rules and unqualified interpretation.
 
-Further work on 10B+, 100B and 1T+ models, advanced agentic RL, Lean, and more
+Further work on 10B+, 100B+ and 1T+ models, advanced agentic RL, Lean, and more
 directly quantified rewards replacing LLM judgments is explicitly postponed until
 after the current experiment sequence. See `docs/future-research.md` for candidate
 metrics and limitations; these directions do not change the active configuration.

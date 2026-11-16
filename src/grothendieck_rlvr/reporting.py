@@ -604,7 +604,7 @@ def paper_sections(snapshot):
          "improvement are consistent with proxy optimization. Do not infer a latent mechanism from behavioral "
          "scores alone. Development/test separation and scoped claims follow methodological guidance [10,11]."),
         ("Postponed research directions", "After the current experiment sequence, the user requests trials with "
-         "10B+, 100B and 1T+ parameter models, advanced agentic RL, Lean-based formal feedback, and explicit "
+         "10B+, 100B+ and 1T+ parameter models, advanced agentic RL, Lean-based formal feedback, and explicit "
          "quantitative rewards replacing LLM judging where feasible. These are future research intentions, "
          "not implemented methods or results. Candidate measures include token/compute costs, checked "
          "consequences, dependency-based reuse and held-out transfer. Exact calculation does not establish "
