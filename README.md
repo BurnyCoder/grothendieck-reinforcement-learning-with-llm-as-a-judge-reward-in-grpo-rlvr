@@ -40,7 +40,7 @@ and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-groth
   saved, resumed and changed adapter weights. Its resumed batch earned no task
   reward; these checks establish recovery, not learning. Pilot updates are excluded
   from every comparative initialization.
-- **Learning remains untested:** baseline generation, comparative training and scored evaluations remain pending.
+- **Learning remains untested:** ordinary baseline generation has started; comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -294,9 +294,9 @@ This is the current [exploratory execution plan](reports/plan.md), including the
 GPU model transitions. **At this documentation milestone, the previous baseline
 and its queue remain postponed. The smaller setup passed its maximum-length
 backward check and, after the published compact-output repair, its save/resume
-check with the 2B judge loaded. Comparative runs have not started.** The saved
+check with the 2B judge loaded. Ordinary baseline generation has started.** The saved
 pilot adapters are retained as execution evidence and excluded from comparisons.
-Publish this feasibility evidence, then follow this sequence from the unmodified base.
+The feasibility evidence is published; follow this sequence from the unmodified base.
 Live progress belongs in the dashboard and timestamped logs; this publication
 snapshot is not a liveness check. CLI commands execute individual phases.
 
@@ -489,6 +489,14 @@ The [living plan](reports/plan.md) records outstanding work and amendments.
 Budget overruns are reported as unfinished experiments; sample sizes and matched
 budgets are not reduced to manufacture a positive result. Larger or better judges
 are future amended experiments requiring fresh held-out confirmation.
+
+**Conditional difficulty fallback:** if development checks establish that the
+small policy cannot solve the current tasks under a prespecified diagnostic,
+try simpler mathematics in a separate experiment and retain the current problems
+for the postponed larger models. The pilot already contains correct answers,
+so this change is not currently triggered. The [fallback protocol](reports/amendments/2026-11-16-task-difficulty-fallback.md)
+keeps difficulty selection separate from held-out evaluation and preserves the
+current manifests and results.
 
 **Postponed until after the current experiment sequence:**
 

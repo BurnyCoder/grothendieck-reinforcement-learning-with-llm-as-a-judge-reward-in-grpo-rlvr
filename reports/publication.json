@@ -144,5 +144,8 @@
   "compact_gpu_protocol_pages_workflow": 43793485671,
   "agri_quotation_merge": "b69571e6d0e40b1ed509daf18bc9a58398bae59c",
   "agri_quotation_huggingface_commit": "bef666341a9a65a0f781dc4190e433a865f7e08a",
-  "agri_quotation_pages_workflow": 43793969677
+  "agri_quotation_pages_workflow": 43793969677,
+  "compact_gpu_pilot_merge": "b46b9584021551d1692852c6ad7784363ce33c6d",
+  "compact_gpu_pilot_huggingface_commit": "129f2d826acc3daeb822fa55f710cb3602561915",
+  "compact_gpu_pilot_pages_workflow": 43795403463
 }

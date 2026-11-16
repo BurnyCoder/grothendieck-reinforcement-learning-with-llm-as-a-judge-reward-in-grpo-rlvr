@@ -20,6 +20,13 @@ baselines, and compare quality at both matched task exposure and reported comput
 cost. Larger models are a hypothesis about improved behavior or judgment, not a
 guarantee of calibration. Use fresh frozen identities and held-out confirmation.
 
+If the small-policy experiment needs the user's
+[simpler-task fallback](../reports/amendments/2026-11-16-task-difficulty-fallback.md),
+retain the current problems and their harder/OOD variants for these larger-model
+studies. Preserve their manifests and all prior outcomes. Keep results separated
+by difficulty; use new held-out confirmation when earlier outcomes informed
+development. The fallback is conditional and has not changed the active data.
+
 ## More advanced agentic RL
 
 Study multi-step mathematical investigation: propose a definition or invariant,
