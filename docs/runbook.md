@@ -161,6 +161,9 @@ a separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and
 baseline queue are postponed. Keep the 2B judge running during memory/pilot checks
 and theory training; unload policy and training judge before loading the evaluator.
 See the [execution order](../README.md#model-execution-order) and frozen runtime.
+The [compact-output repair](../reports/amendments/2026-11-16-compact-gpu-judge.md)
+follows an initial truncated-JSON failure. It uses a new identity and bounds
+assessment fields; do not resume the failed `exploratory-small-gpu-v1` run.
 
 The [larger-model, agentic-RL, Lean and quantitative-reward roadmap](future-research.md)
 is postponed until after this sequence. It does not change these commands or the
@@ -176,15 +179,15 @@ bash scripts/run.sh serve --role training_judge
 source scripts/environment.sh
 bash scripts/run.sh memory-probe
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --stop-after 1
-PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v1-pilot-theory-seed42"
+PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v2-pilot-theory-seed42"
 bash scripts/run.sh train --exploratory --pilot --arm theory --seed 42 --resume
-PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v1-pilot-theory-seed42"
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-ordinary
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-prompted --rising
+PYTHONPATH=src "${UV_PROJECT_ENVIRONMENT:-.venv}/bin/python" reports/development/extract_pilot.py "$GROTH_ROOT/runs/exploratory-small-gpu-v2-pilot-theory-seed42"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-prompted --rising
 bash scripts/run.sh train --exploratory --arm theory --seed 42
 bash scripts/run.sh train --exploratory --arm correctness --seed 42
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-theory-seed42/adapter"
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-correctness-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-theory-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v2-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-correctness-seed42 --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v2-correctness-seed42/adapter"
 ```
 
 Publish the pilot and each training/evaluation milestone. `--resume` restores
@@ -196,11 +199,11 @@ bounded retries. Failed or unqualified calibration is explicitly recorded.
 
 After policy generation finishes, stop the training judge, load the evaluation server,
 then score each run with `evaluate --exploratory --run-id NAME`. All evaluation
-run names must start with `exploratory-small-gpu-v1-`. Use `--split test_ood` and
+run names must start with `exploratory-small-gpu-v2-`. Use `--split test_ood` and
 `-ood` run-name suffixes for the separate secondary suite. Generate source notes
 with `--split transfer_source`, then use
 `transfer --exploratory --source-runs NAME ...`; its files live in
-`$GROTH_ROOT/transfer/exploratory-small-gpu-v1/`. The same fixed manifests and paired
+`$GROTH_ROOT/transfer/exploratory-small-gpu-v2/`. The same fixed manifests and paired
 analyses apply, but all conclusions remain exploratory. Regenerate publications
 with `bash scripts/run.sh report` and view `bash scripts/run.sh dashboard`.
 

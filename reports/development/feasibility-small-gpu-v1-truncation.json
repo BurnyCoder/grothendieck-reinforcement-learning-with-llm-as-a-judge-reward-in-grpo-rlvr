@@ -1,0 +1,146 @@
+{
+  "kind": "exploratory_grpo_truncation_failure",
+  "experiment": "exploratory-small-gpu-v1",
+  "run_id": "exploratory-small-gpu-v1-pilot-theory-seed42",
+  "identity": {
+    "arm": "theory",
+    "seed": 42,
+    "config": {
+      "version": 2,
+      "judge_prompt_version": "v7",
+      "judge_protocol": "single-indexed-v1",
+      "judge_framing_version": "v2",
+      "data_seed": 20261115,
+      "training_seeds": [
+        42,
+        43,
+        44
+      ],
+      "max_steps": 2,
+      "max_prompt_length": 512,
+      "max_completion_length": 2048,
+      "num_generations": 4,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "learning_rate": 1e-05,
+      "warmup_ratio": 0.1,
+      "beta": 0.04,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0,
+      "save_steps": 1,
+      "train_size": 1024,
+      "dev_size": 64,
+      "test_fresh_size": 200,
+      "test_hard_size": 100,
+      "test_unseen_size": 100,
+      "transfer_sources": 100,
+      "transfer_targets_per_source": 4,
+      "bootstrap_samples": 10000,
+      "judge_max_tokens": 1536,
+      "judge_context_length": 8192,
+      "judge_timeout_seconds": 900,
+      "judge_reasoning_budget_tokens": {
+        "training_judge": 512,
+        "evaluation_judge": 512
+      },
+      "calibration_pairs": 20,
+      "calibration_false_cases": 20,
+      "calibration_novelty_pairs": 12,
+      "calibration_novelty_false_cases": 8,
+      "test_ood_per_family": 50,
+      "ood_seed": 20261116
+    },
+    "manifest": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+    "model": {
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "dtype": "bfloat16",
+      "license": "apache-2.0",
+      "artifact_subdir": "small-qwen-gpu-v1/policy",
+      "require_full_gpu": true
+    },
+    "judge": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+    "experiment": {
+      "id": "exploratory-small-gpu-v1",
+      "amendment": "reports/amendments/2026-11-16-small-qwen-gpu.md",
+      "authorization": "User requested prioritizing smaller/quantized Qwen3.5 models fully on GPU on 2026-11-16; earlier authorization for exploratory single-call judging despite failed qualification remains in effect.",
+      "calibration_required": false,
+      "interpretation": "Exploratory small-model GPU study with unqualified same-family judges; prior larger-model runs are deferred and not pooled.",
+      "judge_protocol": "single-indexed-v1",
+      "rubric_version": "v7",
+      "reference_version": "v3",
+      "initial_arms": [
+        "ordinary",
+        "prompted",
+        "theory-seed42",
+        "correctness-seed42"
+      ],
+      "input_hashes": {
+        "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
+        "configs/models.lock.json": "29a7152a84fea4d2b86e5229c1140e80685c583c07a7c6a5a352faba3af223d9",
+        "configs/policy-selection.json": "0c841de481c145140df1c2b78bb820eb3174033994fea365294616e7105e44af",
+        "configs/judge-runtime.json": "24a881eb8dba6760208b3eb1f928429a054a710c68e344b786e5fbae51fcc434",
+        "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+        "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062",
+        "configs/artifacts.lock.json": "7fce628b3e3786c6c39b3ecb82a281b3f6c197cd1c38a44762fed06a55957b21"
+      },
+      "judge_identities": {
+        "training_judge": {
+          "quoted": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+          "rubric": "65581b55e3539247b0368ce36fb16873d5ff9e405d6fc1eb328f352bc86520f6"
+        },
+        "evaluation_judge": {
+          "quoted": "7f50c54ec6f08eb5ecf44b1ed5316199900681fb5bbf5eb66022901d0cb84ea5"
+        }
+      },
+      "evidence_protocol": "indexed-evidence-v1"
+    }
+  },
+  "policy_completions": 8,
+  "judge_requests": 3,
+  "accepted_assessments": 0,
+  "optimizer_boundaries": 0,
+  "judge_seconds": [
+    130.53325453399884,
+    142.2561587789969,
+    185.93517910000082
+  ],
+  "failures": [
+    {
+      "time": "2026-11-16T02:22:50.184458+00:00",
+      "kind": "judge_failure",
+      "attempt": 1,
+      "task_id": "dev-9e2760c33e4413a0cbc7",
+      "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 109 column 2995 [type=json_invalid, input_value='{\\n  \"theory_validity\": ...fied and mathematically', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+    },
+    {
+      "time": "2026-11-16T02:25:20.382832+00:00",
+      "kind": "judge_failure",
+      "attempt": 2,
+      "task_id": "dev-9e2760c33e4413a0cbc7",
+      "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 114 column 2899 [type=json_invalid, input_value='{\\n  \"theory_validity\": ... finding the GCD of 510', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+    },
+    {
+      "time": "2026-11-16T02:28:38.103901+00:00",
+      "kind": "judge_failure",
+      "attempt": 3,
+      "task_id": "dev-9e2760c33e4413a0cbc7",
+      "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 114 column 2900 [type=json_invalid, input_value='{\\n  \"theory_validity\": ...finding the GCD of 510,', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+    }
+  ],
+  "last_response_tail": " and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510,",
+  "sampled_device_peak_mib": 7666,
+  "device_capacity_mib": 8151,
+  "memory_sample_count": 583,
+  "memory_sample_peak": {
+    "timestamp": "2026/11/16 03:21:08.245",
+    " memory.total [MiB]": " 8151 MiB",
+    " memory.used [MiB]": " 7666 MiB",
+    " utilization.gpu [%]": " 29 %",
+    " power.draw [W]": " 7.83 W"
+  },
+  "memory_interpretation": "Sampled whole-device usage during training invocation, including judge and other GPU users; not a PyTorch allocator peak. No OOM observed; training stopped on invalid judge JSON.",
+  "event_log": "reports/development/exploratory-small-gpu-v1-pilot-failure.jsonl",
+  "event_sha256": "a6ad9b61927da9f13a2a5490f15643258356fca5b85744d69deaf8da03fed880"
+}

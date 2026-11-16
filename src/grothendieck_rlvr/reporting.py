@@ -187,6 +187,13 @@ def feasibility_text(snapshot) -> str:
                  f"{failure['accepted_assessments']} accepted judgments and {failure['optimizer_boundaries']} "
                  "saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed "
                  "despite bounded validation feedback. This is an execution failure, not a learning result.")
+    for failure in (r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_grpo_truncation_failure"):
+        text += (f" The {failure['experiment']} pilot generated {failure['policy_completions']} completions "
+                 f"and exhausted {failure['judge_requests']} judge attempts on repetitive, truncated JSON. "
+                 f"It accepted {failure['accepted_assessments']} assessments and saved "
+                 f"{failure['optimizer_boundaries']} optimizer boundaries. Sampled whole-device usage peaked "
+                 f"at {failure['sampled_device_peak_mib']} MiB of {failure['device_capacity_mib']} MiB. "
+                 "This was an output-contract failure, not a GPU OOM or a learning result.")
     current = sorted((r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"),
                      key=lambda r: r["step"])
     for saved in current:
@@ -565,6 +572,8 @@ def paper_sections(snapshot):
          "Following an exact-quotation execution failure, a new identity retains context preflight and "
          "replaces quotation copying with constrained passage IDs. Code extracts original source text; "
          "this follows the general source-location citation idea [19], using only local Qwen/Gemma. "
+         "After the smaller judge repeatedly exhausted its output budget, a separate identity bounds "
+         "rationale length and evidence/problem lists in the wire format without changing scoring rules. "
          "It does not verify that a selected passage entails the judge's claim. Each correct solution "
          "receives one accepted structured assessment; only output or transport failures permit bounded retries. "
          "Separate names and checkpoint identities keep these runs out of the qualified study. "
@@ -738,6 +747,32 @@ def report() -> dict:
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     folder = PROJECT / "reports/experiments"
     folder.mkdir(exist_ok=True)
+    for failure in (r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_grpo_truncation_failure"):
+        table = [["Measure", "Recorded value"],
+                 ["Policy completions", str(failure["policy_completions"])],
+                 ["Judge attempts", str(failure["judge_requests"])],
+                 ["Accepted assessments", str(failure["accepted_assessments"])],
+                 ["Saved optimizer boundaries", str(failure["optimizer_boundaries"])],
+                 ["Sampled whole-device peak / capacity MiB",
+                  f"{failure['sampled_device_peak_mib']} / {failure['device_capacity_mib']}"]]
+        table += [[f"Request {i} seconds", f"{seconds:.2f}"]
+                  for i, seconds in enumerate(failure["judge_seconds"], 1)]
+        (folder / f"{failure['experiment']}-failure.md").write_text(
+            f"# {failure['experiment']}: judge output-budget failure\n\nGenerated from "
+            "`reports/development/feasibility-small-gpu-v1-truncation.json`.\n\n" + markdown_table(table) +
+            "\n\nThe frozen small judge repeated rationale text until its unchanged token budget ended "
+            "inside a JSON string. Existing retries exhausted; invalid output was not converted to a "
+            "reward. No optimizer boundary was reached. Full prompts, responses and failures remain "
+            f"in [{failure['event_log']}](../../{failure['event_log']}).\n\n"
+            "The memory number samples the whole device, including the judge and other GPU users. "
+            "It is not the policy allocator peak. No GPU OOM was observed; a successful backward "
+            "probe does not establish full GRPO recovery. Request time includes transport and logging, "
+            "not only model decoding.\n\n"
+            "The [dated repair](../amendments/2026-11-16-compact-gpu-judge.md) adds bounded output "
+            "fields and persistent append logging under a separate identity. It preserves the rubric, "
+            "modest connection credit and qualification thresholds. Whether that repair completes "
+            "training is a subsequent measurement, not a conclusion from this failed attempt.\n",
+            encoding="utf-8")
     boundaries = [r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"]
     for experiment in sorted({r["experiment"] for r in boundaries}):
         pilots = sorted((r for r in boundaries if r["experiment"] == experiment), key=lambda r: r["step"])

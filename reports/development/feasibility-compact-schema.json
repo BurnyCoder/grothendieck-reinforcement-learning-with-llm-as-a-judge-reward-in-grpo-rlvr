@@ -1,0 +1,15 @@
+{
+  "kind": "offline_compact_schema_check",
+  "model_inference": false,
+  "llama_revision": "b1b770d90d94cad9e9ea5b993bdbc383a522fb28",
+  "schema_sha256": "fc87f8b380162dcbd91be609b0585a11343202af50c3226b25984234e261f497",
+  "grammar_sha256": "10f484091c354f63dcb1ca6a0f493712f6083a01bed2c1ab32de242a525309d5",
+  "asserted_grammar_repetitions": [
+    "{0,240}",
+    "{0,160}",
+    "{0,2}",
+    "{0,7}"
+  ],
+  "stderr": "",
+  "method": "Pinned upstream json_schema_to_grammar(schema,true) via a standalone helper linked to the existing libllama-common; no weights loaded."
+}

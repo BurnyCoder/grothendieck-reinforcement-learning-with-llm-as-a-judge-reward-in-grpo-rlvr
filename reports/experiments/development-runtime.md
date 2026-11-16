@@ -18,7 +18,7 @@ training_judge/quoted (dev, 66721e0e) failed: 2/5 observed preference contracts 
 
 Incomplete development suites stopped under the fixed futility rule. Upper bounds assume every remaining case succeeds solely to test attainability. Unobserved cases are not counted as measured successes or errors; no early pass is allowed.
 
-A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. A Qwen/Qwen3.5-0.8B BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 2.02 GiB and reserved memory 2.41 GiB. The measured forward/backward interval was 78.12 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result. The exploratory-single-v2 exploratory pilot saved boundary 1 from the selected base, with a step interval of 864.57 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.1328, mean novelty 0.0000, and 1 contract/transport retries. Peak allocated/reserved GPU memory was 4.89/6.10 GiB. Completed judge requests took 141.05–272.42 seconds, including unsuccessful contracts. The exploratory-single-v2 exploratory pilot saved boundary 2 after resumption, with a step interval of 805.43 seconds, learning rate 1e-05, batch accuracy 50.0%, mean theory 0.2078, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 4.97/6.25 GiB. Completed judge requests took 145.71–187.99 seconds, including unsuccessful contracts. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.
+A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 4.76 GiB and reserved memory 4.84 GiB. The measured forward/backward interval was 941.72 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. A Qwen/Qwen3.5-0.8B BF16 LoRA backward probe completed at 2560 tokens and microbatch 1, with peak allocated GPU memory 2.02 GiB and reserved memory 2.41 GiB. The measured forward/backward interval was 78.12 seconds, including first-use compilation. The synthetic repeated-token input checks execution and memory, not mathematical ability or steady-state throughput. The initial GRPO attempt failed during generation prefill when a carriage return entered the compiler-cache path, before any optimizer update. Its failure log is preserved. A repaired GRPO pilot reached optimizer boundary 1 and saved its checkpoint, with peak allocated memory 4.89 GiB and reserved memory 6.08 GiB. Its recorded learning rate was 0; the sampled batch had verified accuracy 62.5% and mean supported theory 0. A warmup boundary does not demonstrate learning. The resumed pilot completed boundary 2 at learning rate 1e-05, with a recorded step interval of 480.66 seconds. Peak allocated memory was 4.97 GiB and reserved memory 6.25 GiB. Its batch accuracy was 50.0%, and mean supported theory was 0. Checkpoint recovery and a parameter change are feasibility evidence, not an improvement estimate. A single resumed interval is not a stable throughput benchmark. Pilot adapters are excluded from comparative initialization. A synthetic Gemma decoding diagnostic recorded 24 GPU layers: 9.04 tokens/s; 32 GPU layers: 8.74 tokens/s; 40 GPU layers: 4.47 tokens/s. The fastest measured setting used 24 GPU layers. These short upstream llama-bench measurements omit structured-output sampling. The offload sweep allocates the registered maximum context. They do not establish end-to-end judgment latency or calibration quality. A synthetic Gemma decoding diagnostic recorded 1 threads: 1.92 tokens/s; 4 threads: 5.49 tokens/s; 8 threads: 6.38 tokens/s. The fastest measured setting used 8 threads. These short upstream llama-bench measurements omit structured-output sampling. The thread sweep uses a smaller allocated context than the server. They do not establish end-to-end judgment latency or calibration quality. The exploratory-single-v1 pilot generated 8 policy completions but stopped after 3 requests failed the evidence contract, with 0 accepted judgments and 0 saved optimizer boundaries. Reproducing mathematical typography in exact quotations failed despite bounded validation feedback. This is an execution failure, not a learning result. The exploratory-small-gpu-v1 pilot generated 8 completions and exhausted 3 judge attempts on repetitive, truncated JSON. It accepted 0 assessments and saved 0 optimizer boundaries. Sampled whole-device usage peaked at 7666 MiB of 8151 MiB. This was an output-contract failure, not a GPU OOM or a learning result. The exploratory-single-v2 exploratory pilot saved boundary 1 from the selected base, with a step interval of 864.57 seconds, learning rate 0, batch accuracy 37.5%, mean theory 0.1328, mean novelty 0.0000, and 1 contract/transport retries. Peak allocated/reserved GPU memory was 4.89/6.10 GiB. Completed judge requests took 141.05–272.42 seconds, including unsuccessful contracts. The exploratory-single-v2 exploratory pilot saved boundary 2 after resumption, with a step interval of 805.43 seconds, learning rate 1e-05, batch accuracy 50.0%, mean theory 0.2078, mean novelty 0.0000, and 0 contract/transport retries. Peak allocated/reserved GPU memory was 4.97/6.25 GiB. Completed judge requests took 145.71–187.99 seconds, including unsuccessful contracts. Resumption changed 96/192 adapter tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.
 
 ## Observed request latency
 
@@ -28,6 +28,7 @@ A historical BF16 LoRA backward probe completed at 2560 tokens and microbatch 1,
 | exploratory-single-pilot-step1 | 4 | 3 | 1 | 0 | 148.56 | 141.05–272.42 |
 | exploratory-single-pilot-step2 | 4 | 4 | 0 | 0 | 158.77 | 145.71–187.99 |
 | exploratory-single-v1-pilot-failure | 3 | 0 | 3 | 0 | 177.01 | 149.01–260.85 |
+| exploratory-small-gpu-v1-pilot-failure | 3 | 0 | 3 | 0 | 142.26 | 130.53–185.94 |
 | gemma-cpu-v2 | 1 | 1 | 3 | 3 | 407.72 | 407.72–407.72 |
 | gemma-cuda-v3-interrupted | 0 | 0 | 0 | 1 | Pending | Pending |
 | gemma-cuda24-v4-interrupted | 4 | 4 | 0 | 1 | 97.69 | 58.45–247.47 |
@@ -935,6 +936,21 @@ Stage timings additionally include template/token checks and validation. Cache h
         260.8472942189983,
         177.0105734930039,
         149.01391051699466
+      ],
+      "assessments": [],
+      "stages": [],
+      "interpretation": "Development evidence only; not a completed calibration or evaluation."
+    },
+    {
+      "artifact": "reports/development/exploratory-small-gpu-v1-pilot-failure.jsonl",
+      "requests": 3,
+      "completed_responses": 3,
+      "incomplete_requests": 0,
+      "judge_failures": 3,
+      "response_seconds": [
+        130.53325453399884,
+        142.2561587789969,
+        185.93517910000082
       ],
       "assessments": [],
       "stages": [],
@@ -15833,6 +15849,21 @@ Stage timings additionally include template/token checks and validation. Cache h
       "pilot_updates_discarded": true
     },
     {
+      "kind": "offline_compact_schema_check",
+      "model_inference": false,
+      "llama_revision": "b1b770d90d94cad9e9ea5b993bdbc383a522fb28",
+      "schema_sha256": "fc87f8b380162dcbd91be609b0585a11343202af50c3226b25984234e261f497",
+      "grammar_sha256": "10f484091c354f63dcb1ca6a0f493712f6083a01bed2c1ab32de242a525309d5",
+      "asserted_grammar_repetitions": [
+        "{0,240}",
+        "{0,160}",
+        "{0,2}",
+        "{0,7}"
+      ],
+      "stderr": "",
+      "method": "Pinned upstream json_schema_to_grammar(schema,true) via a standalone helper linked to the existing libllama-common; no weights loaded."
+    },
+    {
       "run_id": "exploratory-single-v2-pilot-theory-seed42",
       "step": 1,
       "metrics": {
@@ -16922,6 +16953,25 @@ Stage timings additionally include template/token checks and validation. Cache h
       "pilot_updates_excluded_from_comparisons": true
     },
     {
+      "kind": "synthetic_logging_probe",
+      "time": "2026-11-16T02:24:33.478782+00:00",
+      "results": [
+        {
+          "mode": "per_event_open",
+          "records": 128,
+          "seconds": 2.0927182069935952,
+          "bytes": 17024
+        },
+        {
+          "mode": "persistent_handle",
+          "records": 128,
+          "seconds": 0.08286798599874601,
+          "bytes": 17024
+        }
+      ],
+      "scope": "Synthetic disk append/flush only; no model calls or stdout. Concurrent with GPU pilot; one sequential measurement each, no causal throughput guarantee."
+    },
+    {
       "kind": "grpo_initial_generation_failure",
       "time": "2026-11-15T10:52:12.16698+01:00",
       "run_id": "pilot-theory-seed42",
@@ -16929,6 +16979,29 @@ Stage timings additionally include template/token checks and validation. Cache h
       "error": "SyntaxError during PyTorch guard evaluation; compiler-cache path contained a trailing carriage return",
       "source": "reports/development/pilot-first-failure.jsonl",
       "interpretation": "Implementation failure before scoring or backward, not a policy memory failure or a comparative result"
+    },
+    {
+      "kind": "gpu_residency",
+      "model": {
+        "repo": "unsloth/Qwen3.5-2B-GGUF",
+        "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+        "file": "Qwen3.5-2B-Q4_K_M.gguf",
+        "license": "apache-2.0",
+        "artifact_subdir": "small-qwen-gpu-v1/training_judge"
+      },
+      "receipt": "/mnt/d/AI/grothendieck-rlvr/services/training_judge.json",
+      "trace_log": "/mnt/d/AI/grothendieck-rlvr/logs/exploratory-small-gpu-v1-training-judge-trace.log",
+      "diagnostic_environment": {
+        "LLAMA_ARG_LOG_VERBOSITY": "4"
+      },
+      "evidence": [
+        "0.24.665.279 I load_tensors: offloaded 25/25 layers to GPU",
+        "0.24.665.288 I load_tensors:   CPU_Mapped model buffer size =   397.85 MiB",
+        "0.24.665.289 I load_tensors:        CUDA0 model buffer size =  1211.05 MiB",
+        "0.24.965.954 I llama_kv_cache:      CUDA0 KV buffer size =    96.00 MiB",
+        "0.24.969.016 I llama_memory_recurrent:      CUDA0 RS buffer size =    19.27 MiB"
+      ],
+      "interpretation": "All model layers offloaded; host mapping and I/O buffers remain. Verbosity affects logging only."
     },
     {
       "kind": "maximum_length_backward",
@@ -16950,6 +17023,311 @@ Stage timings additionally include template/token checks and validation. Cache h
       "peak_gpu_allocated_bytes": 2172249600,
       "peak_gpu_reserved_bytes": 2589982720,
       "pilot_updates_discarded": true
+    },
+    {
+      "kind": "exploratory_grpo_truncation_failure",
+      "experiment": "exploratory-small-gpu-v1",
+      "run_id": "exploratory-small-gpu-v1-pilot-theory-seed42",
+      "identity": {
+        "arm": "theory",
+        "seed": 42,
+        "config": {
+          "version": 2,
+          "judge_prompt_version": "v7",
+          "judge_protocol": "single-indexed-v1",
+          "judge_framing_version": "v2",
+          "data_seed": 20261115,
+          "training_seeds": [
+            42,
+            43,
+            44
+          ],
+          "max_steps": 2,
+          "max_prompt_length": 512,
+          "max_completion_length": 2048,
+          "num_generations": 4,
+          "per_device_train_batch_size": 1,
+          "gradient_accumulation_steps": 8,
+          "learning_rate": 1e-05,
+          "warmup_ratio": 0.1,
+          "beta": 0.04,
+          "lora_rank": 16,
+          "lora_alpha": 32,
+          "lora_dropout": 0,
+          "save_steps": 1,
+          "train_size": 1024,
+          "dev_size": 64,
+          "test_fresh_size": 200,
+          "test_hard_size": 100,
+          "test_unseen_size": 100,
+          "transfer_sources": 100,
+          "transfer_targets_per_source": 4,
+          "bootstrap_samples": 10000,
+          "judge_max_tokens": 1536,
+          "judge_context_length": 8192,
+          "judge_timeout_seconds": 900,
+          "judge_reasoning_budget_tokens": {
+            "training_judge": 512,
+            "evaluation_judge": 512
+          },
+          "calibration_pairs": 20,
+          "calibration_false_cases": 20,
+          "calibration_novelty_pairs": 12,
+          "calibration_novelty_false_cases": 8,
+          "test_ood_per_family": 50,
+          "ood_seed": 20261116
+        },
+        "manifest": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+        "model": {
+          "repo": "Qwen/Qwen3.5-0.8B",
+          "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+          "dtype": "bfloat16",
+          "license": "apache-2.0",
+          "artifact_subdir": "small-qwen-gpu-v1/policy",
+          "require_full_gpu": true
+        },
+        "judge": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+        "experiment": {
+          "id": "exploratory-small-gpu-v1",
+          "amendment": "reports/amendments/2026-11-16-small-qwen-gpu.md",
+          "authorization": "User requested prioritizing smaller/quantized Qwen3.5 models fully on GPU on 2026-11-16; earlier authorization for exploratory single-call judging despite failed qualification remains in effect.",
+          "calibration_required": false,
+          "interpretation": "Exploratory small-model GPU study with unqualified same-family judges; prior larger-model runs are deferred and not pooled.",
+          "judge_protocol": "single-indexed-v1",
+          "rubric_version": "v7",
+          "reference_version": "v3",
+          "initial_arms": [
+            "ordinary",
+            "prompted",
+            "theory-seed42",
+            "correctness-seed42"
+          ],
+          "input_hashes": {
+            "configs/study.json": "f6ff5203056f5f5eeb555f4c69f608dd3dc746562f2ee2a783668ab5292225e6",
+            "configs/models.lock.json": "29a7152a84fea4d2b86e5229c1140e80685c583c07a7c6a5a352faba3af223d9",
+            "configs/policy-selection.json": "0c841de481c145140df1c2b78bb820eb3174033994fea365294616e7105e44af",
+            "configs/judge-runtime.json": "24a881eb8dba6760208b3eb1f928429a054a710c68e344b786e5fbae51fcc434",
+            "data/manifest.lock.json": "d68e3c4c8759bc298f51aa9d4758e7701ae58374aca1733226a4db7387157a7c",
+            "data/ood.lock.json": "11d75a026b7aab76c1e154a8172846c4735962f370fca2191606c4bff82eb062",
+            "configs/artifacts.lock.json": "7fce628b3e3786c6c39b3ecb82a281b3f6c197cd1c38a44762fed06a55957b21"
+          },
+          "judge_identities": {
+            "training_judge": {
+              "quoted": "bd257f656acb3e1d30c28676a160807e279d4313b7a4b7a116be89bc587d936f",
+              "rubric": "65581b55e3539247b0368ce36fb16873d5ff9e405d6fc1eb328f352bc86520f6"
+            },
+            "evaluation_judge": {
+              "quoted": "7f50c54ec6f08eb5ecf44b1ed5316199900681fb5bbf5eb66022901d0cb84ea5"
+            }
+          },
+          "evidence_protocol": "indexed-evidence-v1"
+        }
+      },
+      "policy_completions": 8,
+      "judge_requests": 3,
+      "accepted_assessments": 0,
+      "optimizer_boundaries": 0,
+      "judge_seconds": [
+        130.53325453399884,
+        142.2561587789969,
+        185.93517910000082
+      ],
+      "failures": [
+        {
+          "time": "2026-11-16T02:22:50.184458+00:00",
+          "kind": "judge_failure",
+          "attempt": 1,
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 109 column 2995 [type=json_invalid, input_value='{\\n  \"theory_validity\": ...fied and mathematically', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+        },
+        {
+          "time": "2026-11-16T02:25:20.382832+00:00",
+          "kind": "judge_failure",
+          "attempt": 2,
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 114 column 2899 [type=json_invalid, input_value='{\\n  \"theory_validity\": ... finding the GCD of 510', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+        },
+        {
+          "time": "2026-11-16T02:28:38.103901+00:00",
+          "kind": "judge_failure",
+          "attempt": 3,
+          "task_id": "dev-9e2760c33e4413a0cbc7",
+          "error": "1 validation error for Assessment\n  Invalid JSON: EOF while parsing a string at line 114 column 2900 [type=json_invalid, input_value='{\\n  \"theory_validity\": ...finding the GCD of 510,', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/json_invalid"
+        }
+      ],
+      "last_response_tail": " and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510, 522, and 14. The framework is justified and mathematically sound to the extent you can assess. The candidate introduces a clear, valid connection between the general method of prime factorization and the specific problem of finding the GCD of 510,",
+      "sampled_device_peak_mib": 7666,
+      "device_capacity_mib": 8151,
+      "memory_sample_count": 583,
+      "memory_sample_peak": {
+        "timestamp": "2026/11/16 03:21:08.245",
+        " memory.total [MiB]": " 8151 MiB",
+        " memory.used [MiB]": " 7666 MiB",
+        " utilization.gpu [%]": " 29 %",
+        " power.draw [W]": " 7.83 W"
+      },
+      "memory_interpretation": "Sampled whole-device usage during training invocation, including judge and other GPU users; not a PyTorch allocator peak. No OOM observed; training stopped on invalid judge JSON.",
+      "event_log": "reports/development/exploratory-small-gpu-v1-pilot-failure.jsonl",
+      "event_sha256": "a6ad9b61927da9f13a2a5490f15643258356fca5b85744d69deaf8da03fed880"
+    },
+    {
+      "$defs": {
+        "Criterion": {
+          "additionalProperties": false,
+          "description": "An ordinal rubric score supported by verbatim candidate excerpts.",
+          "properties": {
+            "evidence": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "C0",
+                  "C1"
+                ]
+              },
+              "title": "Evidence",
+              "type": "array",
+              "maxItems": 3
+            },
+            "rationale": {
+              "title": "Rationale",
+              "type": "string",
+              "maxLength": 240
+            },
+            "score": {
+              "maximum": 4,
+              "minimum": 0,
+              "title": "Score",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "evidence",
+            "rationale",
+            "score"
+          ],
+          "title": "Criterion",
+          "type": "object"
+        },
+        "NoveltyComparison": {
+          "additionalProperties": false,
+          "description": "Describe the reference, conceptual addition and any demonstrated further use.\n\nChecklist motivation: https://arxiv.org/html/2601.08654v1, section 3.\nThese are auditable judge decisions, not verified mathematical propositions.",
+          "properties": {
+            "reference_excerpt": {
+              "type": "string",
+              "enum": [
+                "R0"
+              ]
+            },
+            "addition_evidence": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "C0",
+                  "C1"
+                ]
+              },
+              "title": "Addition Evidence",
+              "type": "array",
+              "maxItems": 3
+            },
+            "use_evidence": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "C0",
+                  "C1"
+                ]
+              },
+              "title": "Use Evidence",
+              "type": "array",
+              "maxItems": 3
+            },
+            "relation": {
+              "enum": [
+                "within_reference",
+                "beyond_reference",
+                "unresolved"
+              ],
+              "title": "Relation",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reference_excerpt",
+            "addition_evidence",
+            "use_evidence",
+            "relation"
+          ],
+          "title": "NoveltyComparison",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Evidence-bearing opinion from a frozen judge, not a proof certificate.",
+      "properties": {
+        "theory_validity": {
+          "enum": [
+            "none",
+            "supported",
+            "unsupported",
+            "contradicted"
+          ],
+          "title": "Theory Validity",
+          "type": "string"
+        },
+        "novelty_comparison": {
+          "$ref": "#/$defs/NoveltyComparison"
+        },
+        "criteria": {
+          "type": "object",
+          "properties": {
+            "structural_understanding": {
+              "$ref": "#/$defs/Criterion"
+            },
+            "justified_generality": {
+              "$ref": "#/$defs/Criterion"
+            },
+            "problem_as_consequence": {
+              "$ref": "#/$defs/Criterion"
+            },
+            "reuse_and_connections": {
+              "$ref": "#/$defs/Criterion"
+            },
+            "conceptual_economy": {
+              "$ref": "#/$defs/Criterion"
+            },
+            "constructive_novelty": {
+              "$ref": "#/$defs/Criterion"
+            }
+          },
+          "required": [
+            "structural_understanding",
+            "justified_generality",
+            "problem_as_consequence",
+            "reuse_and_connections",
+            "conceptual_economy",
+            "constructive_novelty"
+          ],
+          "additionalProperties": false
+        },
+        "problems": {
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "title": "Problems",
+          "type": "array",
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "theory_validity",
+        "novelty_comparison",
+        "criteria",
+        "problems"
+      ],
+      "title": "Assessment",
+      "type": "object"
     },
     {
       "default_generation_settings": {

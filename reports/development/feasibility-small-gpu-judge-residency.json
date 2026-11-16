@@ -1,0 +1,23 @@
+{
+  "kind": "gpu_residency",
+  "model": {
+    "repo": "unsloth/Qwen3.5-2B-GGUF",
+    "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+    "file": "Qwen3.5-2B-Q4_K_M.gguf",
+    "license": "apache-2.0",
+    "artifact_subdir": "small-qwen-gpu-v1/training_judge"
+  },
+  "receipt": "/mnt/d/AI/grothendieck-rlvr/services/training_judge.json",
+  "trace_log": "/mnt/d/AI/grothendieck-rlvr/logs/exploratory-small-gpu-v1-training-judge-trace.log",
+  "diagnostic_environment": {
+    "LLAMA_ARG_LOG_VERBOSITY": "4"
+  },
+  "evidence": [
+    "0.24.665.279 I load_tensors: offloaded 25/25 layers to GPU",
+    "0.24.665.288 I load_tensors:   CPU_Mapped model buffer size =   397.85 MiB",
+    "0.24.665.289 I load_tensors:        CUDA0 model buffer size =  1211.05 MiB",
+    "0.24.965.954 I llama_kv_cache:      CUDA0 KV buffer size =    96.00 MiB",
+    "0.24.969.016 I llama_memory_recurrent:      CUDA0 RS buffer size =    19.27 MiB"
+  ],
+  "interpretation": "All model layers offloaded; host mapping and I/O buffers remain. Verbosity affects logging only."
+}

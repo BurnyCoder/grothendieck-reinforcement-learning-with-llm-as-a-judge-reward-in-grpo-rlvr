@@ -15,7 +15,7 @@ Selected matched budget: **64 optimizer updates per training arm**.
 
 Sources: `reports/development/feasibility-grpo-first-boundary.json` and `reports/development/feasibility-grpo-resumed-complete.json`. The reduction is preregistered in [the budget amendment](amendments/2026-11-15-training-budget.md). This is not a guarantee that the full study fits in one week.
 
-## Current exploratory pilot: exploratory-small-gpu-v1
+## Current exploratory pilot: exploratory-small-gpu-v2
 
 Only intervals from the current experiment enter this estimate. They remain separate from the historical non-thinking pilot above. They include generation, verification, judging and backward work; model loading and evaluation are excluded. Development prompts and few intervals cannot establish steady-state throughput. Future correctness, response lengths and retries affect runtime.
 

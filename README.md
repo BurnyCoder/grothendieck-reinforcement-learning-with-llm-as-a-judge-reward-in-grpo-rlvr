@@ -30,8 +30,10 @@ are preserved with separate attributions and source-check notes.
   development calibration; false objections removed bonuses from valid mathematics.
 - **Current execution check:** the [small-policy maximum-length backward probe](reports/development/feasibility-small-gpu-memory.json)
   passed with all policy parameters on CUDA and the training judge loaded.
-- **Learning remains untested:** the new save/resume pilot is in progress at this
-  publication snapshot; baseline generation, comparative training and scored evaluations remain pending.
+- **New execution failure:** the [initial small-GPU pilot](reports/experiments/exploratory-small-gpu-v1-failure.md)
+  stopped on repetitive, truncated judge JSON before an optimizer update. The
+  [bounded-format repair](reports/amendments/2026-11-16-compact-gpu-judge.md) is published before a fresh pilot.
+- **Learning remains untested:** baseline generation, comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -64,12 +66,13 @@ lets it select source passages, which code copies exactly. The repaired pilot
 demonstrated execution and checkpoint recovery, not mathematical improvement.
 The reward, rubric weights, modest credit for valid connections and historical
 scores remain unchanged. The active profile is
-[`exploratory-small-gpu-v1`](configs/exploratory-single-judge.json).
+[`exploratory-small-gpu-v2`](configs/exploratory-single-judge.json). Its compact
+assessment format bounds rationales and evidence lists; all scoring rules stay fixed.
 
 ### Results: method, baselines, controls and ablation
 
 This table is generated from saved evaluations. Arm names abbreviate the active
-`exploratory-small-gpu-v1-` prefix. **Pending means unmeasured, not zero.**
+`exploratory-small-gpu-v2-` prefix. **Pending means unmeasured, not zero.**
 The problem count is the number scored; incomplete counts are not complete
 evaluations. Original qualification-study results and all calibration failures
 remain in the [consolidated report](reports/experiments.md).
@@ -164,6 +167,9 @@ The [single-call rubric](src/grothendieck_rlvr/prompts/rubric-v7.txt) scores eac
 criterion from 0–4. The [citation contract](src/grothendieck_rlvr/prompts/indexed-evidence-v1.txt)
 requires evidence IDs; the [scoring implementation](src/grothendieck_rlvr/schema.py)
 normalizes the weighted sum and applies validity and novelty gates.
+The [compact wire format](src/grothendieck_rlvr/compact_evidence.py) bounds rationale
+and evidence-list length to limit repetitive judge output. It does not impose a
+length penalty on policy explanations or change modest connection credit.
 
 | Criterion | Weight | What earns credit |
 |---|---:|---|
@@ -280,8 +286,9 @@ prior work and limitations.
 This is the current [exploratory execution plan](reports/plan.md), including the
 GPU model transitions. **At this documentation milestone, the previous baseline
 and its queue have been stopped at the user's request. The smaller setup passed
-its maximum-length backward check and has started its save/resume pilot;
-comparative runs have not started.** Complete the recovery check with the 2B judge loaded.
+its maximum-length backward check, but the initial pilot stopped on invalid judge
+JSON. Comparative runs have not started.** Repeat the recovery check using the
+published compact-output repair with the 2B judge loaded.
 Discard pilot updates, publish feasibility evidence, then follow this sequence.
 Live progress belongs in the dashboard and timestamped logs; this publication
 snapshot is not a liveness check. CLI commands execute individual phases.
@@ -378,8 +385,8 @@ suppression; no locked audit has been opened. Full qualification and the
 development-only pilot commands are in the [runbook](docs/runbook.md).
 
 ```bash
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-ordinary
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-prompted --rising
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-ordinary
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-prompted --rising
 ```
 
 For theory training, keep the quantized 2B GPU judge running in a separate terminal:
@@ -408,10 +415,10 @@ Generate the trained policy's primary outputs **before** loading the 4B evaluato
 
 ```bash
 source scripts/environment.sh
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42 \
-  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-theory-seed42/adapter"
-bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42 \
-  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v1-correctness-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-theory-seed42 \
+  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v2-theory-seed42/adapter"
+bash scripts/run.sh generate --exploratory --run-id exploratory-small-gpu-v2-correctness-seed42 \
+  --adapter "$GROTH_ROOT/runs/exploratory-small-gpu-v2-correctness-seed42/adapter"
 ```
 
 After generation exits, stop the Qwen server with Ctrl-C and start the separate
@@ -425,10 +432,10 @@ bash scripts/run.sh serve --role evaluation_judge
 In another terminal:
 
 ```bash
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-ordinary
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-prompted
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-theory-seed42
-bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v1-correctness-seed42
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v2-ordinary
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v2-prompted
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v2-theory-seed42
+bash scripts/run.sh evaluate --exploratory --run-id exploratory-small-gpu-v2-correctness-seed42
 bash scripts/run.sh report
 bash scripts/run.sh dashboard --port 8765
 ```
