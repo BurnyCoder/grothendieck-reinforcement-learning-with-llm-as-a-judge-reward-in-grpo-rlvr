@@ -594,6 +594,14 @@ def paper_sections(snapshot):
          "equivalent to historically novel mathematics. Higher training scores without independent or transfer "
          "improvement are consistent with proxy optimization. Do not infer a latent mechanism from behavioral "
          "scores alone. Development/test separation and scoped claims follow methodological guidance [10,11]."),
+        ("Postponed research directions", "After the current experiment sequence, the user requests trials with "
+         "10B+, 100B and 1T+ parameter models, advanced agentic RL, Lean-based formal feedback, and explicit "
+         "quantitative rewards replacing LLM judging where feasible. These are future research intentions, "
+         "not implemented methods or results. Candidate measures include token/compute costs, checked "
+         "consequences, dependency-based reuse and held-out transfer. Exact calculation does not establish "
+         "that a metric captures conceptual novelty, generality or understanding. docs/future-research.md "
+         "documents candidate measures, source links and required controls. Each direction needs a new "
+         "registered protocol; the current small-model experiment and reward remain unchanged."),
         ("Conclusion", "The protocol tests whether an explicit interpretation of rising-sea theory building "
          "can supply useful training feedback while preserving mathematical accuracy. Its outcome must be read "
          "from the recorded comparisons; the motivating philosophical analogy is not itself evidence."),

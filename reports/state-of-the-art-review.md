@@ -36,9 +36,13 @@ The user also supplied a lecture paraphrase titled *Linear algebra and vector
 analysis: Rising Sea*, commentary associated with
 [3Blue1Brown's video](https://www.youtube.com/watch?v=LKrwhjOI8Nc), and a
 [social-media discussion](https://x.com/littmath/status/2109653733470572878).
-These are distinct commentary sources, not direct Grothendieck quotations. Their
-supplied wording has not been independently authenticated here and is not used
-as historical evidence or as additional quotations in the judge prompt.
+These are distinct commentary sources, not direct Grothendieck quotations. The
+[complete user-supplied passages](../docs/rising-sea-quotations.md) preserve all
+wording with separate attributions and source-check notes. The lecture handout
+and nLab entry were located; the supplied lecture version has small differences.
+The video transcript and social-media wording have not been independently
+authenticated. This commentary archive is not additional judge-prompt content
+or empirical evidence for the training method.
 
 ## Reusable software and source audit
 

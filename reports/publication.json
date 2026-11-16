@@ -132,5 +132,8 @@
   "readme_research_format_pages_workflow": 43784427095,
   "readme_execution_order_merge": "e83d41a1502ce41176749c8a37e5cfa597662da8",
   "readme_execution_order_huggingface_commit": "7dd7931aab4a75976e536bd0c695b68df0bec54f",
-  "readme_execution_order_pages_workflow": 43787281462
+  "readme_execution_order_pages_workflow": 43787281462,
+  "small_gpu_preregistration_merge": "c4bf1e51fb7b0f255a92f9bafae873d5df23dd8f",
+  "small_gpu_preregistration_huggingface_commit": "e820c5bc7ff2260857f9eb5b84ed1b45a9598ec7",
+  "small_gpu_preregistration_pages_workflow": 43790052799
 }
