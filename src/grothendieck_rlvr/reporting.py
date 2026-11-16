@@ -616,7 +616,12 @@ def paper_sections(snapshot):
          "consequences, dependency-based reuse and held-out transfer. Exact calculation does not establish "
          "that a metric captures conceptual novelty, generality or understanding. docs/future-research.md "
          "documents candidate measures, source links and required controls. Each direction needs a new "
-         "registered protocol; the current small-model experiment and reward remain unchanged."),
+         "registered protocol; the current small-model experiment and reward remain unchanged. "
+         "If prespecified development diagnostics find that the small policy cannot solve the current "
+         "tasks, a separate easier-mathematics experiment is authorized, preserving the present tasks "
+         "for larger models. Difficulty must not be selected on held-out scores or changed within a "
+         "comparison. The current pilot contains correct completions, so this fallback is not activated. "
+         "The dated task-difficulty amendment records the diagnosis and separation requirements."),
         ("Conclusion", "The protocol tests whether an explicit interpretation of rising-sea theory building "
          "can supply useful training feedback while preserving mathematical accuracy. Its outcome must be read "
          "from the recorded comparisons; the motivating philosophical analogy is not itself evidence."),

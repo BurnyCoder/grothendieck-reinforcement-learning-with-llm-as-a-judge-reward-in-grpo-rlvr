@@ -100,6 +100,11 @@ Further work on 10B+, 100B+ and 1T+ models, advanced agentic RL, Lean, and more
 directly quantified rewards replacing LLM judgments is explicitly postponed until
 after the current experiment sequence. See `docs/future-research.md` for candidate
 metrics and limitations; these directions do not change the active configuration.
+If development diagnostics establish that the small policy cannot solve the
+present tasks, the user-authorized fallback is a separate easier-mathematics
+experiment, preserving these manifests for larger models. The current pilot
+contains correct completions, so no difficulty change has been activated. See
+`reports/amendments/2026-11-16-task-difficulty-fallback.md`.
 
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr

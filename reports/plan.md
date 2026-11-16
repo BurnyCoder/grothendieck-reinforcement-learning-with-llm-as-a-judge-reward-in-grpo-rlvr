@@ -13,8 +13,16 @@ truncated judge JSON. After the published
 [fresh pilot](experiments/exploratory-small-gpu-v2-pilot.md) completed saving,
 resumption and an adapter parameter update. Its resumed batch earned no task
 reward. These are execution results; no comparative learning or steady-state
-throughput result is established. Publish the pilot evidence, exclude its updates,
-then generate the ordinary and prompted baselines from the unmodified base.
+throughput result is established. The pilot evidence is published and its updates
+are excluded from comparisons. Ordinary baseline generation has started from
+the unmodified base; prompted baseline generation follows its completion.
+
+The user also authorized a [conditional simpler-task fallback](amendments/2026-11-16-task-difficulty-fallback.md)
+if the small policy cannot solve the present problems. Diagnose this on
+prespecified development data, not held-out results. If needed, publish a separate
+easier experiment and retain the present tasks for the postponed larger models.
+The existing pilot contains correct completions, so the condition is not currently
+established and the active data remain unchanged.
 
 Earlier authority: user-approved Qwen3.5/Gemma plan and
 [preregistration](preregistration.md), amended before judgments by the
