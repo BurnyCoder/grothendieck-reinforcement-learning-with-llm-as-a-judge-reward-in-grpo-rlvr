@@ -6,13 +6,29 @@ Use a 0.8B BF16 LoRA policy, fully GPU-resident 2B Q4_K_M training judge, and
 separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and its
 baseline queue are postponed, with configuration, checkpoints and partial answers
 preserved. The new GPU memory/backward/save-resume pilot must precede comparative
-runs. No new-model feasibility or speedup claim exists at this registration.
+runs. The [small-policy maximum-length backward check](development/feasibility-small-gpu-memory.json)
+has passed with all policy parameters on CUDA and the judge resident. The new
+save/resume pilot is in progress at this documentation snapshot; no comparative
+learning or steady-state throughput result is established.
 
 Earlier authority: user-approved Qwen3.5/Gemma plan and
 [preregistration](preregistration.md), amended before judgments by the
 [valid-novelty/OOD protocol](amendments/2026-11-15-valid-novelty-and-ood.md).
 This checklist is a status record, not
 evidence of model performance.
+
+## Postponed follow-up research
+
+After the current experiment sequence, investigate **10B+, 100B and 1T+ models**,
+more advanced **agentic RL**, **Lean** integration, and **explicit quantitative
+metrics/rewards in place of LLM-as-a-judge scoring** wherever feasible. The
+[deferred roadmap](../docs/future-research.md) records the user-requested scope,
+candidate measurements, controls and limitations. Model availability and hardware
+are not assumed. No current settings change, no new large models are downloaded,
+and no token-length penalty is activated by this planning update. Each future
+experiment needs its own preregistration/amendment and held-out confirmation.
+
+## Current implementation and execution
 
 Development judging motivated a [v3 novelty-boundary clarification](amendments/2026-11-15-novelty-reference-boundary.md).
 The v2 and v3 attempts are preserved. The
@@ -58,12 +74,17 @@ will not qualify the original study.
 - [ ] Evaluate all frozen comparison checkpoints on the separate OOD suite.
 - [ ] Publish each milestone, including negative/unfinished outcomes.
 
+## Historical development record: postponed larger setup
+
+The following records the earlier sequence; current priorities and model choices
+are stated above. These outcomes are not pooled with the small-GPU experiment.
+
 Model downloads and artifact hashes are complete. The maximum-length BF16 LoRA
 backward probe passed; the repaired four-completion GRPO pilot completed
 checkpoint resumption and a nonzero parameter update. Its first boundary had
 a zero warmup learning rate. These are execution checks, not learning evidence;
 pilot updates are excluded from comparative initialization.
-The [policy selection](../configs/policy-selection.json) freezes the preferred
+The [historical policy selection](../configs/history/exploratory-single-v2/policy-selection.json) freezes the preferred
 Qwen3.5-2B base revision for every arm and the transfer recipient. No fallback
 is selected. The [budget amendment](amendments/2026-11-15-training-budget.md)
 selects 64 updates uniformly before any comparative run. Judge calibration remains a gate.

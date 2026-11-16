@@ -88,6 +88,11 @@ GPU evaluator. All model layers must fit on GPU; the memory/backward/save-resume
 pilot runs before comparisons. The same-family judges remain unqualified. The
 9B/Gemma setup is postponed rather than merged into the new experiment's results.
 
+Further work on 10B+, 100B and 1T+ models, advanced agentic RL, Lean, and more
+directly quantified rewards replacing LLM judgments is explicitly postponed until
+after the current experiment sequence. See `docs/future-research.md` for candidate
+metrics and limitations; these directions do not change the active configuration.
+
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
 

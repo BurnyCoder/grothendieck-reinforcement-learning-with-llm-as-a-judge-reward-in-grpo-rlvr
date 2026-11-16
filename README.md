@@ -15,6 +15,9 @@ reference-relative novelty in a reusable experimental pipeline. Its contribution
 is that environment and research protocol; a new optimizer or a demonstrated
 latent-space mechanism is not claimed.
 
+The [supplied rising-sea quotations and video commentary](docs/rising-sea-quotations.md)
+are preserved with separate attributions and source-check notes.
+
 **Evidence so far:**
 
 - **Current priority:** the [smaller GPU experiment](reports/amendments/2026-11-16-small-qwen-gpu.md)
@@ -25,8 +28,10 @@ latent-space mechanism is not claimed.
 - **Negative result:** [two-call](reports/experiments/qwen-v8-two-stage-learnings.md)
   and [specialist](reports/experiments/qwen-v8-specialist-learnings.md) judging failed
   development calibration; false objections removed bonuses from valid mathematics.
-- **Learning remains untested:** the new GPU feasibility pilot, baseline generation,
-  comparative training and scored evaluations remain pending at this publication milestone.
+- **Current execution check:** the [small-policy maximum-length backward probe](reports/development/feasibility-small-gpu-memory.json)
+  passed with all policy parameters on CUDA and the training judge loaded.
+- **Learning remains untested:** the new save/resume pilot is in progress at this
+  publication snapshot; baseline generation, comparative training and scored evaluations remain pending.
   No improvement over a baseline has been demonstrated.
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
@@ -274,9 +279,9 @@ prior work and limitations.
 
 This is the current [exploratory execution plan](reports/plan.md), including the
 GPU model transitions. **At this documentation milestone, the previous baseline
-and its queue have been stopped at the user's request. The smaller setup is being
-prepared; its pilot and comparative runs have not started.** First verify full
-GPU residency, maximum-length backward and save/resume with the 2B judge loaded.
+and its queue have been stopped at the user's request. The smaller setup passed
+its maximum-length backward check and has started its save/resume pilot;
+comparative runs have not started.** Complete the recovery check with the 2B judge loaded.
 Discard pilot updates, publish feasibility evidence, then follow this sequence.
 Live progress belongs in the dashboard and timestamped logs; this publication
 snapshot is not a liveness check. CLI commands execute individual phases.
@@ -470,6 +475,23 @@ The [living plan](reports/plan.md) records outstanding work and amendments.
 Budget overruns are reported as unfinished experiments; sample sizes and matched
 budgets are not reduced to manufacture a positive result. Larger or better judges
 are future amended experiments requiring fresh held-out confirmation.
+
+**Postponed until after the current experiment sequence:**
+
+- [ ] Try **10B+, 100B and 1T+ parameter models** for policy and/or judge roles,
+  subject to available Qwen/Gemma checkpoints and suitable hardware.
+- [ ] Test more advanced **agentic RL**, with multi-step mathematical investigation,
+  tool use, feedback, revision and reusable mathematical memory.
+- [ ] Integrate **Lean** for checked definitions, lemmas, proofs and dependencies.
+- [ ] Develop **explicit, reproducible quantitative rewards in place of LLM judging**
+  wherever feasible: token/compute costs, checked consequences, reuse and measured
+  transfer. Exact calculation does not by itself make a metric an exact measure
+  of mathematical novelty or understanding.
+
+These are future research directions, not active downloads, implementations or
+changes to the current reward. The [deferred research roadmap](docs/future-research.md)
+records candidate measures, controls and prerequisites; the small GPU experiment
+continues first.
 
 ## Research documentation and licenses
 

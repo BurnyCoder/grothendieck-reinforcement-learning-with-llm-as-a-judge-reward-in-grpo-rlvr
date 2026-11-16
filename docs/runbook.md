@@ -162,6 +162,10 @@ baseline queue are postponed. Keep the 2B judge running during memory/pilot chec
 and theory training; unload policy and training judge before loading the evaluator.
 See the [execution order](../README.md#model-execution-order) and frozen runtime.
 
+The [larger-model, agentic-RL, Lean and quantitative-reward roadmap](future-research.md)
+is postponed until after this sequence. It does not change these commands or the
+active LLM-judge reward.
+
 Start the judge in another terminal, then run the maximum-length check and pilot:
 
 ```bash
