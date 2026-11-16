@@ -138,5 +138,8 @@
   "small_gpu_preregistration_pages_workflow": 43790052799,
   "deferred_roadmap_and_quotations_merge": "80a3c66e53f9996b69bb3ded2e6202925ef76c33",
   "deferred_roadmap_and_quotations_huggingface_commit": "cf8f04acb469b1127f36a2bd79a3870819446d44",
-  "deferred_roadmap_and_quotations_pages_workflow": 43791785404
+  "deferred_roadmap_and_quotations_pages_workflow": 43791785404,
+  "compact_gpu_protocol_merge": "af056595f9f03d2690633e0aea7562c9d15f89d5",
+  "compact_gpu_protocol_huggingface_commit": "77a3eef27fc55b535d0c06a5405c4c6c40169137",
+  "compact_gpu_protocol_pages_workflow": 43793485671
 }
