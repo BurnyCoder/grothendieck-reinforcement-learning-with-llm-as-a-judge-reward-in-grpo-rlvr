@@ -84,6 +84,10 @@ training and scored held-out evaluation remain pending.
 Source code and preregistration history:
 https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr
 
+The README's [model execution order](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order)
+details inference, LoRA training, CPU/GPU model transitions, independent scoring
+and frozen-recipient transfer, distinguishing queued work from planned work.
+
 Data schema, split sizes, generator settings, reference checks and semantic
 deduplication are specified in `reports/preregistration.md` and `data/manifest.lock.json`.
 Manifests retain the original generator question, seed, index and version.
