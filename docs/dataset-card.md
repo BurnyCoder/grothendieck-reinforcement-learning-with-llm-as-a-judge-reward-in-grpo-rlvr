@@ -85,12 +85,16 @@ preserved. Comparative training and scored held-out evaluation remain pending.
 The active `exploratory-small-gpu-v2` profile retains a Qwen3.5-0.8B BF16 LoRA
 policy, frozen Qwen3.5-2B Q4_K_M GPU training judge and separate Qwen3.5-4B Q4_K_M
 GPU evaluator. All model layers must fit on GPU; the memory/backward/save-resume
-pilot runs before comparisons. The same-family judges remain unqualified. The
+checks have completed before comparisons. The same-family judges remain unqualified. The
 9B/Gemma setup is postponed rather than merged into the new experiment's results.
 The initial small-GPU pilot stopped on repeated truncated judge JSON before an
 optimizer boundary. The compact-output amendment bounds assessment fields and
 retains full streaming logs with persistent append handles. Its new identity
 preserves the prior failure, scoring rules and unqualified interpretation.
+The compact-output pilot saved, resumed and changed adapter weights, but its
+resumed batch earned no task reward. This demonstrates execution and recovery,
+not mathematical improvement. Its adapters are excluded from comparative
+initialization; see `reports/experiments/exploratory-small-gpu-v2-pilot.md`.
 
 Further work on 10B+, 100B+ and 1T+ models, advanced agentic RL, Lean, and more
 directly quantified rewards replacing LLM judgments is explicitly postponed until

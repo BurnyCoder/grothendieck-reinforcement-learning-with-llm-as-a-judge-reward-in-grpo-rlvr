@@ -1,0 +1,42 @@
+{
+  "kind": "sampled_gpu_memory",
+  "experiment": "exploratory-small-gpu-v2",
+  "source": "reports/development/exploratory-small-gpu-v2-device-memory.csv",
+  "sha256": "eb57069abeaf148d882ef027391c194e115d8c45983ecd0011ade06630c07505",
+  "csv_timezone": "Europe/Berlin",
+  "invocations": [
+    {
+      "step": 1,
+      "start": "2026-11-16T02:42:01.967309+00:00",
+      "end": "2026-11-16T02:45:22.359668+00:00",
+      "samples": 188,
+      "peak_mib": 7619,
+      "capacity_mib": 8151,
+      "peak_sample": {
+        "timestamp": "2026/11/16 03:44:11.531",
+        " memory.total [MiB]": " 8151 MiB",
+        " memory.used [MiB]": " 7619 MiB",
+        " utilization.gpu [%]": " 20 %",
+        " power.draw [W]": " 14.69 W"
+      },
+      "resumed_from": null
+    },
+    {
+      "step": 2,
+      "start": "2026-11-16T02:47:31.282796+00:00",
+      "end": "2026-11-16T02:49:48.544373+00:00",
+      "samples": 129,
+      "peak_mib": 6862,
+      "capacity_mib": 8151,
+      "peak_sample": {
+        "timestamp": "2026/11/16 03:49:45.995",
+        " memory.total [MiB]": " 8151 MiB",
+        " memory.used [MiB]": " 6862 MiB",
+        " utilization.gpu [%]": " 8 %",
+        " power.draw [W]": " 10.22 W"
+      },
+      "resumed_from": "/mnt/d/AI/grothendieck-rlvr/runs/exploratory-small-gpu-v2-pilot-theory-seed42/checkpoint-1"
+    }
+  ],
+  "scope": "Whole-device samples, including judge and other GPU users; distinct from policy allocator peaks. One-second sampling can miss shorter peaks."
+}

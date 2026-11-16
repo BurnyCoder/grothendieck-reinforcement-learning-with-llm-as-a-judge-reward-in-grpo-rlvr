@@ -141,5 +141,8 @@
   "deferred_roadmap_and_quotations_pages_workflow": 43791785404,
   "compact_gpu_protocol_merge": "af056595f9f03d2690633e0aea7562c9d15f89d5",
   "compact_gpu_protocol_huggingface_commit": "77a3eef27fc55b535d0c06a5405c4c6c40169137",
-  "compact_gpu_protocol_pages_workflow": 43793485671
+  "compact_gpu_protocol_pages_workflow": 43793485671,
+  "agri_quotation_merge": "b69571e6d0e40b1ed509daf18bc9a58398bae59c",
+  "agri_quotation_huggingface_commit": "bef666341a9a65a0f781dc4190e433a865f7e08a",
+  "agri_quotation_pages_workflow": 43793969677
 }

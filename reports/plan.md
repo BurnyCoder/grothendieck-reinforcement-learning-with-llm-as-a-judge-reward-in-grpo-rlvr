@@ -5,13 +5,16 @@ Updated 2026-11-16. Current priority: the user-requested
 Use a 0.8B BF16 LoRA policy, fully GPU-resident 2B Q4_K_M training judge, and
 separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and its
 baseline queue are postponed, with configuration, checkpoints and partial answers
-preserved. The new GPU memory/backward/save-resume pilot must precede comparative
-runs. The [small-policy maximum-length backward check](development/feasibility-small-gpu-memory.json)
-has passed with all policy parameters on CUDA and the judge resident. The new
-save/resume pilot stopped before an optimizer boundary on repetitive, truncated
-judge JSON. The [compact-output amendment](amendments/2026-11-16-compact-gpu-judge.md)
-registers a format and logging repair before a fresh pilot; no comparative
-learning or steady-state throughput result is established.
+preserved. The [small-policy maximum-length backward check](development/feasibility-small-gpu-memory.json)
+passed with all policy parameters on CUDA and the judge resident. The initial
+small-GPU save/resume attempt stopped before an optimizer boundary on repetitive,
+truncated judge JSON. After the published
+[compact-output amendment](amendments/2026-11-16-compact-gpu-judge.md), the
+[fresh pilot](experiments/exploratory-small-gpu-v2-pilot.md) completed saving,
+resumption and an adapter parameter update. Its resumed batch earned no task
+reward. These are execution results; no comparative learning or steady-state
+throughput result is established. Publish the pilot evidence, exclude its updates,
+then generate the ordinary and prompted baselines from the unmodified base.
 
 Earlier authority: user-approved Qwen3.5/Gemma plan and
 [preregistration](preregistration.md), amended before judgments by the
@@ -67,7 +70,7 @@ will not qualify the original study.
 - [x] Publish the tested novelty/OOD amendment and regenerated artifacts before judgments.
 - [ ] Complete development calibration, then audit both frozen judges and rubric-only variant.
 - [x] Complete development execution pilot and freeze the unmodified policy checkpoint.
-- [ ] Complete GPU residency/backward/save-resume checks for the new 0.8B/2B combination; discard pilot updates.
+- [x] Complete GPU residency/backward/save-resume checks for the new 0.8B/2B combination; discard pilot updates.
 - [x] Freeze the matched comparative update budget from development timing evidence.
 - [ ] Evaluate unmodified ordinary and prompted policies.
 - [ ] Train/evaluate theory-bonus seed 42 and correctness-only seed 42.

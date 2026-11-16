@@ -212,6 +212,12 @@ def feasibility_text(snapshot) -> str:
         if "changed_tensors" in saved:
             text += (f" Resumption changed {saved['changed_tensors']}/{saved['adapter_tensors']} adapter "
                      "tensors. These discarded pilot updates demonstrate execution, not improved mathematical ability.")
+    for record in (r for r in snapshot["feasibility"] if r.get("kind") == "sampled_gpu_memory"):
+        for invocation in record["invocations"]:
+            text += (f" During {record['experiment']} boundary {invocation['step']}, "
+                     f"{invocation['samples']} whole-device samples recorded a peak of "
+                     f"{invocation['peak_mib']} MiB out of {invocation['capacity_mib']} MiB. "
+                     "This includes the judge and other GPU users; sampling can miss shorter peaks.")
     return text
 
 
@@ -797,6 +803,9 @@ def report() -> dict:
             "Judge opinions remain unqualified. Request counts include completed invalid contracts; "
             "cache hits are not additional calls. Step intervals include generation, checking, judging "
             "and backward work; they are not stable throughput estimates or learning-effect estimates. "
+            "The boundaries use different development batches, so their accuracies do not measure "
+            "a learning trend. A parameter update with zero task reward can reflect restored optimizer "
+            "momentum and the KL term; it does not establish learning from that batch. "
             "See [runtime scenarios](../training-budget.md) and the "
             "[dated amendments](../amendments/).\n", encoding="utf-8")
     (folder / "development-runtime.md").write_text(
