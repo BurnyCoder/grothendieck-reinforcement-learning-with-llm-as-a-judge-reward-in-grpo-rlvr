@@ -31,6 +31,9 @@ Compare against the current single-response GRPO and matched-compute tool-use
 baselines; test each added mechanism with an ablation. TRL documents
 [tool-calling GRPO and environment integration](https://huggingface.co/docs/trl/main/en/grpo_trainer#tool-calling-with-grpo);
 compatibility with the project's future pinned runtime must be tested.
+The supplied [AGrI passage](rising-sea-quotations.md#artificial-grothendieck-intelligence-agri)
+also motivates investigating coordinated research agents. That proposal remains
+part of this postponed direction, not an implemented capability of the current run.
 
 ## Lean and formal mathematical feedback
 

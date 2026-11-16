@@ -90,6 +90,32 @@ interpretation is the post author's commentary.
 
 > In his memoir, “Récoltes et Semailles” (Reaping and Sowing), Grothendieck explains his approach to problem solving and mathematics more generally: "The unknown thing to be known appeared to me as some stretch of earth or hard marl, resisting penetration… the sea advances insensibly in silence, nothing seems to happen, nothing moves, the water is so far off you hardly hear it... yet it finally surrounds the resistant substance." He compared a precise mathematical question to a nut, which, rather than being cracked open by a chisel, yields at the perfect time to simple hand pressure once it has been soaked in the ocean of mathematical understanding. According to this account of mathematical progress, solutions, though important, are ancillary to the advance of the rising sea of mathematical understanding. At best they measure it to some extent, but the goal is to raise the water level.
 
+## Artificial Grothendieck Intelligence (AGrI)
+
+Source supplied by the user: [@aran_nayebi's post](https://x.com/aran_nayebi/status/2057592779308429687).
+This is the user-supplied wording, attributed to that post rather than to
+Grothendieck. Direct retrieval returned HTTP 403, so independent authentication
+is not claimed. It proposes a future research direction; the present project does
+not claim to have achieved AGrI, solved the named open problems, or demonstrated
+the proposed research-agent organization.
+
+> I think the next milestone will be "Artificial Grothendieck Intelligence" (AGrI): defining new general mathematical structures to solve the hardest of open problems as special cases, like the Riemann Hypothesis or P vs. NP.
+>
+> But for the "very big" problems, maybe extensive search through constructions in the vast existing literature is not enough. Maybe what is needed for those problems is closer to Grothendieck-style mathematics: inventing the right ambient language in which the original problem becomes a special case of a more general structure. That's what I mean by Artificial Grothendieck Intelligence (AGrI). Not merely AI that proves theorems, but AI that invents the new mathematical objects in which the theorems become *inevitable*.
+>
+> And why stop at one AGrI? You could imagine simulating something like the IHES school: manager agents dividing a research program into subprograms, subagents pursuing lemmas for hours or days, other agents distilling the resulting abstractions, checking them, and communicating the useful pieces back upward.
+>
+> One reason Grothendieck's IHES school was so successful is that its abstractions were relatively human-compressible. Once you adopted the relative perspective, the ideas could propagate through the community.
+>
+> But maybe that constraint has also been a bottleneck. Maybe many longstanding open problems, like those in number theory which Grothendieck felt was the hardest nut to crack, have solutions that are checkable in principle, but whose motivating abstractions are not human-compressible.
+
+## Related article
+
+Libor “Burny” Burian's background discussion:
+[“Explosion of AI generated mathematics with counterexamples to conjectures and the future of AI mathematics with Artificial Grothendieck Intelligence”](https://burnyverse.com/Articles/Explosion+of+AI+generated+mathematics+with+counterexamples+to+conjectures+and+the+future+of+AI+mathematics+with+Artificial+Grothendieck+Intelligence).
+The [deferred roadmap](future-research.md) records future agentic-RL work separately
+from the current small-model experiment.
+
 The quotations retain their respective source attribution and rights; they are
 not original project prose or relicensed by the code's Apache-2.0 license. See
 [NOTICE](../NOTICE). The project's independently specified rubric is linked from

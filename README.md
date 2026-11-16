@@ -17,6 +17,9 @@ latent-space mechanism is not claimed.
 
 The [supplied rising-sea quotations and video commentary](docs/rising-sea-quotations.md)
 are preserved with separate attributions and source-check notes.
+See also Libor “Burny” Burian's [background article on AI mathematics and Artificial
+Grothendieck Intelligence](https://burnyverse.com/Articles/Explosion+of+AI+generated+mathematics+with+counterexamples+to+conjectures+and+the+future+of+AI+mathematics+with+Artificial+Grothendieck+Intelligence)
+and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-grothendieck-intelligence-agri).
 
 **Evidence so far:**
 
