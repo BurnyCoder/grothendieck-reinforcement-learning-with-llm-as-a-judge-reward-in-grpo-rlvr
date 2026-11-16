@@ -1,0 +1,21 @@
+{
+  "kind": "maximum_length_backward",
+  "length": 2560,
+  "microbatch": 1,
+  "model": {
+    "repo": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "dtype": "bfloat16",
+    "license": "apache-2.0",
+    "artifact_subdir": "small-qwen-gpu-v1/policy",
+    "require_full_gpu": true
+  },
+  "parameter_devices": [
+    "cuda:0"
+  ],
+  "seconds": 78.12334322500101,
+  "loss": 0.0013373781694099307,
+  "peak_gpu_allocated_bytes": 2172249600,
+  "peak_gpu_reserved_bytes": 2589982720,
+  "pilot_updates_discarded": true
+}
