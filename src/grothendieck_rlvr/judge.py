@@ -155,18 +155,20 @@ class Judge:
         self.config = read_json(PROJECT / "configs/study.json")
         self.anchors = read_json(PROJECT / "configs/novelty-anchors.json")
         self.protocol = protocol or self.config.get("judge_protocol", "legacy")
-        single = self.protocol in ("legacy", "single-v1", "single-indexed-v1")
+        from . import compact_evidence
+        self.evidence = {"single-indexed-v1": evidence, "single-compact-v1": compact_evidence}.get(self.protocol)
+        single = self.protocol in ("legacy", "single-v1") or self.evidence is not None
         self.stages = [] if single else stage_specs(self.protocol, variant)
         self.system = judge_system(variant, version="v7" if single else "v8")
-        if self.protocol == "single-indexed-v1":
-            self.system = evidence.indexed_system(self.system)
+        if self.evidence:
+            self.system = self.evidence.indexed_system(self.system)
         self.role, self.variant = role, variant
         self.log = log or EventLog(root() / "logs" / f"{role}-{variant}.jsonl")
         runtime = models.judge_runtime(role)
         reasoning_budget = self.config.get("judge_reasoning_budget_tokens", {}).get(role, 0)
         self.client = LocalChat(url, role, self.log, self.config["judge_timeout_seconds"], runtime,
                                 self.spec, self.config["judge_context_length"], reasoning_budget,
-                                check_context=self.protocol in ("single-v1", "single-indexed-v1"))
+                                check_context=self.protocol == "single-v1" or self.evidence is not None)
         cache = cache or root() / "judge-cache.sqlite"
         cache.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(cache)
@@ -198,12 +200,12 @@ class Judge:
             self.identity = digest({"base": self.identity, "protocol": self.protocol,
                                     "stages": [s.manifest() for s in self.stages],
                                     "context_check": "served-template-tokenizer-reserve-full-generation-v1"})
-        elif self.protocol in ("single-v1", "single-indexed-v1"):
+        elif self.protocol == "single-v1" or self.evidence:
             # Keep historical legacy scores intact; preflight behavior has its own identity.
             self.identity = digest({"base": self.identity, "protocol": self.protocol,
                                     "context_check": "served-template-tokenizer-reserve-full-generation-v1"})
-            if self.protocol == "single-indexed-v1":
-                self.identity = digest({"base": self.identity, "evidence": evidence.protocol_manifest()})
+            if self.evidence:
+                self.identity = digest({"base": self.identity, "evidence": self.evidence.protocol_manifest()})
 
     def assess(self, task: Task, response: str) -> Assessment:
         """The correctness gate is externally established before this method is called."""
@@ -235,18 +237,18 @@ class Judge:
             self._stage_progress(task.id, None, "completed")
             return assessment
         wire_schema = assessment_schema()
-        if self.protocol == "single-indexed-v1":
+        if self.evidence:
             candidate = evidence.catalog(response, "C")
             reference = evidence.catalog(self.anchors[task.family], "R")
             payload.update(candidate_response=candidate, conventional_reference=reference)
-            wire_schema = evidence.indexed_schema(wire_schema, candidate, reference)
+            wire_schema = self.evidence.indexed_schema(wire_schema, candidate, reference)
         for attempt in range(RETRY_PROTOCOL["max_attempts"]):
             messages = [{"role": "system", "content": self.system},
                         {"role": "user", "content": json.dumps(payload, ensure_ascii=False)}]
             output = None
             try:
                 output = self.client.generate(messages, self.config["judge_max_tokens"], wire_schema)
-                assessment = evidence.materialize(output, candidate, reference) if self.protocol == "single-indexed-v1" \
+                assessment = self.evidence.materialize(output, candidate, reference) if self.evidence \
                     else Assessment.model_validate_json(output)
                 assessment.validate_evidence(response)
                 assessment.validate_reference(self.anchors[task.family])

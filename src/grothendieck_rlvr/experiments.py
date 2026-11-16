@@ -1,7 +1,7 @@
 """Explicitly separate the authorized noisy-judge experiment from the qualified study."""
 from .io import PROJECT, digest, read_json
 
-EXPLORATORY_ID = "exploratory-small-gpu-v1"
+EXPLORATORY_ID = "exploratory-small-gpu-v2"
 EXPLORATORY_PREFIX = EXPLORATORY_ID + "-"
 
 
@@ -16,7 +16,7 @@ def experiment_profile(exploratory=False, run_id=None):
     profile = read_json(PROJECT / "configs/exploratory-single-judge.json")
     if profile["id"] != EXPLORATORY_ID or profile["calibration_required"] is not False:
         raise ValueError("Unsupported exploratory experiment profile")
-    if profile["judge_protocol"] != "single-indexed-v1":
+    if profile["judge_protocol"] != "single-compact-v1":
         raise ValueError("Exploratory track requires the frozen single-call protocol")
     for path, expected in profile["input_hashes"].items():
         if digest(read_json(PROJECT / path)) != expected:
