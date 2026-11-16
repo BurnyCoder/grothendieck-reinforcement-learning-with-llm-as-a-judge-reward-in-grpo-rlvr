@@ -9,6 +9,26 @@ from pathlib import Path
 from .io import PROJECT, atomic_json, read_json, root
 
 
+def model_directory(role: str) -> Path:
+    """Keep each frozen experiment's downloads separate from postponed model artifacts."""
+    spec = read_json(PROJECT / "configs/models.lock.json")[role]
+    base = root() / "models"
+    directory = base / spec.get("artifact_subdir", role)
+    if not directory.resolve().is_relative_to(base.resolve()):
+        raise ValueError("Configured model directory escapes the project artifact store")
+    return directory
+
+
+def require_cuda_policy(model) -> None:
+    """Reject CPU/disk placement for the experiment requiring all policy weights on GPU.
+
+    https://pytorch.org/docs/stable/tensor_attributes.html#torch.device
+    """
+    devices = {parameter.device.type for parameter in model.parameters()}
+    if devices != {"cuda"}:
+        raise RuntimeError(f"Policy requires all parameter tensors on CUDA; observed {sorted(devices)}")
+
+
 def download(role="all") -> dict:
     """Download only pinned official/quantized Qwen and Gemma artifacts through the Hub API."""
     from huggingface_hub import hf_hub_download, snapshot_download
@@ -19,7 +39,7 @@ def download(role="all") -> dict:
         if name not in ("policy", "training_judge", "evaluation_judge"):
             raise ValueError("Fallback requires a documented policy-selection amendment")
         spec = lock[name]
-        directory = root() / "models" / name
+        directory = model_directory(name)
         if "file" in spec:
             hf_hub_download(spec["repo"], spec["file"], revision=spec["revision"], local_dir=directory)
         else:
@@ -32,7 +52,7 @@ def artifact_hashes() -> dict:
     """Publish content hashes after downloads; no tensor is loaded or model executed."""
     hashes = {}
     for role in ("policy", "training_judge", "evaluation_judge"):
-        directory = root() / "models" / role
+        directory = model_directory(role)
         files = [p for p in directory.rglob("*") if p.is_file() and ".cache" not in p.parts]
         if not any(p.suffix in (".gguf", ".safetensors") for p in files):
             raise FileNotFoundError(f"Weights not downloaded for {role}")
@@ -65,8 +85,11 @@ def doctor() -> dict:
 def judge_runtime(role: str) -> dict:
     """Freeze numerically relevant serving settings alongside the prompt and weights."""
     runtime = read_json(PROJECT / "configs/judge-runtime.json")[role]
-    if role == "training_judge" and (runtime["backend"] != "cpu" or runtime["gpu_layers"] != 0):
-        raise ValueError("The registered training judge must remain on CPU")
+    if runtime.get("require_full_gpu") and (runtime["backend"] == "cpu" or
+                                           runtime["gpu_layers"] != 999 or runtime["fit"] != "off"):
+        raise ValueError("The registered full GPU judge cannot reduce layers or silently fit to CPU")
+    if runtime["backend"] == "cpu" and runtime["gpu_layers"] != 0:
+        raise ValueError("CPU runtime cannot request GPU layers")
     return runtime
 
 
@@ -89,8 +112,6 @@ def serve(role="training_judge", gpu_layers=None):
     """A foreground server is easy to supervise and stop; aliases identify the role."""
     if role not in ("training_judge", "evaluation_judge"):
         raise ValueError("Only the frozen judge models use GGUF serving")
-    if role == "training_judge" and gpu_layers:
-        raise ValueError("The registered training judge must remain on CPU")
     runtime = judge_runtime(role)
     if gpu_layers is not None and gpu_layers != runtime["gpu_layers"]:
         raise ValueError("Offload differs from registered judge-runtime.json; amend and recalibrate first")
@@ -99,7 +120,7 @@ def serve(role="training_judge", gpu_layers=None):
                                    else "llama-b12359-cuda12/bin/llama-server")
     variable = "LLAMA_SERVER_CPU" if runtime["backend"] == "cpu" else "LLAMA_SERVER_CUDA"
     executable = Path(os.environ.get(variable, default))
-    model = root() / "models" / role / spec["file"]
+    model = model_directory(role) / spec["file"]
     if not executable.exists() or not model.exists():
         raise FileNotFoundError("Build the pinned llama-server and download the frozen judge first")
     version = subprocess.run([str(executable), "--version"], capture_output=True, text=True, check=True)
@@ -118,6 +139,10 @@ def serve(role="training_judge", gpu_layers=None):
             "--batch-size", str(runtime["batch_size"]), "--ubatch-size", str(runtime["ubatch_size"]),
             "--flash-attn", runtime["flash_attention"], "--cache-type-k", runtime["cache_type_k"],
             "--cache-type-v", runtime["cache_type_v"], "--fit", runtime["fit"], "--jinja"]
+    if runtime.get("require_full_gpu"):
+        # Explicit device/layers with fitting disabled fail on OOM instead of spilling layers.
+        # https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/README.md
+        args += ["--device", "CUDA0"]
     # The receipt makes accidental use of a stale, differently configured server explicit.
     atomic_json(root() / "services" / f"{role}.json", {"model": spec, "runtime": runtime,
                 "context_length": context, "command": args,

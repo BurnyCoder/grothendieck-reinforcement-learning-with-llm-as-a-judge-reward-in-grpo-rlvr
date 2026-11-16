@@ -1,7 +1,7 @@
 """Explicitly separate the authorized noisy-judge experiment from the qualified study."""
 from .io import PROJECT, digest, read_json
 
-EXPLORATORY_ID = "exploratory-single-v2"
+EXPLORATORY_ID = "exploratory-small-gpu-v1"
 EXPLORATORY_PREFIX = EXPLORATORY_ID + "-"
 
 

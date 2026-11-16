@@ -61,11 +61,11 @@ def archive(directory: Path) -> dict:
             changes = [float((first.get_tensor(k)-second.get_tensor(k)).abs().max()) for k in first.keys()]
         record.update(changed_tensors=sum(c > 0 for c in changes), adapter_tensors=len(changes),
                       maximum_parameter_change=max(changes))
-    destination = PROJECT / f"reports/development/feasibility-exploratory-single-step{summary['step']}.json"
+    destination = PROJECT / f"reports/development/feasibility-{EXPLORATORY_ID}-step{summary['step']}.json"
     if destination.exists() and read_json(destination) != record:
         raise ValueError("Refusing to overwrite different archived pilot evidence")
     atomic_json(destination, record)
-    log_path = destination.with_name(f"exploratory-single-pilot-step{summary['step']}.jsonl")
+    log_path = destination.with_name(f"{EXPLORATORY_ID}-pilot-step{summary['step']}.jsonl")
     log_text = "".join(json.dumps(e, ensure_ascii=False, allow_nan=False)+"\n" for e in invocation)
     if log_path.exists() and log_path.read_text(encoding="utf-8") != log_text:
         raise ValueError("Refusing to overwrite different archived pilot events")

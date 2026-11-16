@@ -1,20 +1,22 @@
 {
   "training_judge": {
-    "backend": "cpu",
+    "backend": "cuda12.8",
     "fit": "off",
-    "gpu_layers": 0,
+    "gpu_layers": 999,
+    "require_full_gpu": true,
     "threads": 8,
     "batch_size": 512,
     "ubatch_size": 512,
     "flash_attention": "auto",
     "cache_type_k": "f16",
     "cache_type_v": "f16",
-    "environment": {"OMP_WAIT_POLICY": null, "GOMP_SPINCOUNT": null}
+    "environment": {"OMP_WAIT_POLICY": "PASSIVE", "GOMP_SPINCOUNT": "0"}
   },
   "evaluation_judge": {
     "backend": "cuda12.8",
     "fit": "off",
-    "gpu_layers": 24,
+    "gpu_layers": 999,
+    "require_full_gpu": true,
     "threads": 8,
     "batch_size": 512,
     "ubatch_size": 512,

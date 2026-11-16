@@ -104,6 +104,7 @@ def collect() -> dict:
         (root() / "feasibility").glob("*.json"))
     feasibility = {digest(record): record for record in map(read_json, feasibility_paths)}
     return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg,
+            "models": read_json(PROJECT / "configs/models.lock.json"),
             "summaries": {name: summarize(rows) for name, rows in evaluations.items()},
             "strata": {name: {split: summarize([r for r in rows if r["split"] == split])
                               for split in sorted({r["split"] for r in rows})}
@@ -132,13 +133,14 @@ def feasibility_text(snapshot) -> str:
     probes = [r for r in snapshot["feasibility"] if r.get("kind") == "maximum_length_backward"]
     if not probes:
         return "No completed maximum-length backward probe is recorded."
-    first = probes[0]
-    text = (f"A recorded BF16 LoRA backward probe completed at {first['length']} tokens and microbatch "
-            f"{first['microbatch']}, with peak allocated GPU memory "
-            f"{first['peak_gpu_allocated_bytes']/2**30:.2f} GiB and reserved memory "
-            f"{first['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
-            f"{first['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
-            "input checks execution and memory, not mathematical ability or steady-state throughput.")
+    text = " ".join(
+        f"A {probe.get('model', {}).get('repo', 'historical')} BF16 LoRA backward probe completed at "
+        f"{probe['length']} tokens and microbatch {probe['microbatch']}, with peak allocated GPU memory "
+        f"{probe['peak_gpu_allocated_bytes']/2**30:.2f} GiB and reserved memory "
+        f"{probe['peak_gpu_reserved_bytes']/2**30:.2f} GiB. The measured forward/backward interval was "
+        f"{probe['seconds']:.2f} seconds, including first-use compilation. The synthetic repeated-token "
+        "input checks execution and memory, not mathematical ability or steady-state throughput."
+        for probe in probes)
     if any(r.get("kind") == "grpo_initial_generation_failure" for r in snapshot["feasibility"]):
         text += (" The initial GRPO attempt failed during generation prefill when a carriage return "
                  "entered the compiler-cache path, before any optimizer update. Its failure log is preserved.")
@@ -188,7 +190,7 @@ def feasibility_text(snapshot) -> str:
     current = sorted((r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"),
                      key=lambda r: r["step"])
     for saved in current:
-        text += (f" The separate exploratory single-call pilot saved boundary {saved['step']} "
+        text += (f" The {saved['experiment']} exploratory pilot saved boundary {saved['step']} "
                  f"{'after resumption' if saved['resumed_from'] else 'from the selected base'}, with a "
                  f"step interval of {saved['step_metrics']['step_time']:.2f} seconds, learning rate "
                  f"{saved['step_metrics']['learning_rate']:g}, batch accuracy "
@@ -406,7 +408,7 @@ def figures(snapshot, destination: Path) -> None:
     boxes = [(0.2, 1.8, "Locked tasks\nReasoning Gym"), (3.0, 1.8, "Qwen policy\nfour completions"),
              (5.8, 1.8, "Answer verifier\ncorrectness gate"), (8.6, 1.8, "Frozen Qwen\nstructured judgment"),
              (3.0, .15, "TRL Dr. GRPO\nLoRA updates"), (5.8, .15, "C × (1 + 0.5T)\ncomposite reward"),
-             (8.6, .15, "Frozen Gemma\nand recipient tests")]
+             (8.6, .15, "Frozen evaluator\nand recipient tests")]
     for x, y, label in boxes:
         ax.add_patch(FancyBboxPatch((x, y), 2.1, 1, boxstyle="round,pad=.06", facecolor="#edf5f5", edgecolor="#286667"))
         ax.text(x+1.05, y+.5, label, ha="center", va="center")
@@ -460,7 +462,7 @@ def paper_sections(snapshot):
     return [
         ("Abstract", "We specify a local experiment testing whether correctness-gated rubric rewards "
          "improve useful mathematical theory building. A frozen Qwen judge assesses explanations; "
-         "external arithmetic verifies final answers. Independent Gemma judgment and frozen-recipient "
+         "external arithmetic verifies final answers. Separate frozen judging and frozen-recipient "
          f"transfer assess behavior. Qualified-study analysis status: {status}. After calibration failures, "
          "a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. "
          "Its results remain separate. No latent-space mechanism is established."),
@@ -478,7 +480,7 @@ def paper_sections(snapshot):
          "frameworks and distant mathematical connections earn that credit only when justified and useful. "
          "Historical originality and pretraining distribution are not inferred. Supporting excerpts are required. "
          "The two-call protocol separated conceptual analysis from overall validity and quality. "
-         "Its selected fallback has eight specialist roles. Code derives novelty from explicit addition, "
+         "Its historical fallback used eight specialist roles. That protocol derived novelty from explicit addition, "
          "application and consequence findings, and withholds novelty unless supported theory is declared "
          "beyond-reference with an excerpt identifying a concrete addition. Brief valid connections can "
          "earn one novelty point without a further worked use; developed mathematics can earn up to four. "
@@ -487,12 +489,16 @@ def paper_sections(snapshot):
          "Checklist-based judging [14] and decomposition [15] motivate auditable "
          "prerequisites; the checks do not certify mathematical entailment. "
          "Final-answer verification does not certify surrounding proofs."),
-        ("Models and training", "Qwen3.5-2B BF16 LoRA is preferred; Qwen3.5-9B Q4_K_M judges training "
-         "on CPU, and Gemma 4 12B UD-Q4_K_XL judges evaluation separately. Exact revisions and dependencies "
+        ("Models and training", "The active smaller-model experiment selects Qwen3.5-0.8B BF16 LoRA, "
+         "with a frozen Qwen3.5-2B Q4_K_M training judge resident on the same GPU. A frozen "
+         "Qwen3.5-4B Q4_K_M evaluator runs on GPU after policy generation. All policy parameters and "
+         "judge layers must fit on CUDA; tokenization, verification and logging remain CPU work. "
+         "The earlier 2B-policy/9B-CPU-judge/Gemma-12B setup is postponed and preserved. "
+         "Exact revisions and dependencies "
          "are locked. Unsloth's documented non-vLLM route [8] and TRL [9] implement training. The preregistration "
          "fixes group size, optimizer settings, sample budgets and fallback criteria. A pre-comparison "
          f"runtime-budget amendment selects {snapshot['study']['max_steps']} optimizer updates for every training arm. "
-         f"The qualification protocol is {snapshot['study'].get('judge_protocol', 'legacy')}; per-role prompts, "
+         f"The deferred qualification protocol is {snapshot['study'].get('judge_protocol', 'legacy')}; per-role prompts, "
          "visible/reasoning budgets and dependencies are locked in its identity. Separate calls reuse the "
          "same frozen model and may share errors. Studies report setting-dependent benefits "
          "and failures of additional judging computation [12,13]; neither validates this novelty rubric. "
@@ -500,7 +506,7 @@ def paper_sections(snapshot):
          "calibration is development evidence, not a negative test of the behavioral hypothesis."),
         ("Experimental design and analysis", "Compare ordinary and prompted unmodified models, correctness-only "
          "training, the proposed bonus, shuffled bonuses and a rubric-only ablation. The main trained comparison "
-         "uses matched seeds. The primary measure is mean C*T from frozen Gemma, with paired stratified "
+         "uses matched seeds. The primary measure is mean C*T from the frozen evaluation judge, with paired stratified "
          "problem-level bootstrap intervals and an accuracy noninferiority condition. Transfer resamples source "
          "problems while retaining their related probes. Single-seed findings are exploratory. No adaptive "
          "sample extension is allowed to obtain significance. A pre-judgment amendment adds a separate locked "
@@ -563,7 +569,11 @@ def paper_sections(snapshot):
          "receives one accepted structured assessment; only output or transport failures permit bounded retries. "
          "Separate names and checkpoint identities keep these runs out of the qualified study. "
          "The initial comparison is theory bonus versus correctness-only at seed 42, with ordinary and "
-         "rising-sea prompted baselines. Gemma's single-call scores are also unqualified. "
+         "rising-sea prompted baselines. The current 4B Qwen evaluator's scores are also unqualified. "
+         "Both judges share a model family and may share systematic errors. The larger CPU setup was "
+         "postponed at the user's request after a partial ordinary baseline; its saved outputs are not "
+         "pooled with the smaller-policy comparison. The model-size change also changes the reward "
+         "instrument, so historical timing or scores cannot isolate a CPU-versus-GPU effect. "
          "Held-out correctness and recipient transfer are therefore particularly useful checks, while "
          "judged theory remains a potentially biased proxy. Reward-model overoptimization has been observed "
          "in a distinct synthetic reward-model setting [18]; it does not determine this experiment's outcome. "
@@ -575,8 +585,9 @@ def paper_sections(snapshot):
          "with all four targets retained. Comparisons require complete matching source and target coverage. "
          "The machine-readable report publishes each source policy's related-minus-unrelated contrast "
          "and all pairs of note-source policies, with unadjusted exploratory intervals."),
-        ("Discussion and limitations", "Judge scores are imperfect proxies and the two model families may "
-         "share biases or training data. Quantization can change judgments. Synthetic elementary tasks limit "
+        ("Discussion and limitations", "Judge scores are imperfect proxies. The current training and evaluation judges "
+         "share the Qwen family and may share biases or training data; the cross-family comparison is deferred. "
+         "Quantization can change judgments. Synthetic elementary tasks limit "
          "external validity. The constructed audit changes numerical instances while sharing mathematical "
          "templates with development; it does not establish generalization to unseen failure types. "
          "Fixed small-seed comparisons may be inconclusive. Reusable exposition is not "
@@ -719,9 +730,9 @@ def report() -> dict:
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     folder = PROJECT / "reports/experiments"
     folder.mkdir(exist_ok=True)
-    pilots = sorted((r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"),
-                    key=lambda r: r["step"])
-    if pilots:
+    boundaries = [r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_single_grpo_boundary"]
+    for experiment in sorted({r["experiment"] for r in boundaries}):
+        pilots = sorted((r for r in boundaries if r["experiment"] == experiment), key=lambda r: r["step"])
         behavior = [["Boundary", "Learning rate", "Accuracy", "C × theory", "C × novelty", "Mean reward"]]
         execution = [["Boundary", "Resumed", "Step seconds", "Peak allocated GiB", "Completed judge calls", "Retries"]]
         for pilot in pilots:
@@ -731,9 +742,11 @@ def report() -> dict:
             execution.append([str(pilot["step"]), str(bool(pilot["resumed_from"])),
                               display(metrics["step_time"], 2), display(pilot["peak_gpu_allocated_bytes"]/2**30, 2),
                               str(len(pilot["judge_seconds"])), str(pilot["judge_failures"])])
-        (folder / "exploratory-single-pilot.md").write_text(
-            "# Exploratory single-call save/resume pilot\n\nGenerated from "
-            "`reports/development/feasibility-exploratory-single-step*.json`. "
+        filename = "exploratory-single-pilot.md" if experiment == "exploratory-single-v2" else f"{experiment}-pilot.md"
+        source = "exploratory-single" if experiment == "exploratory-single-v2" else experiment
+        (folder / filename).write_text(
+            f"# Exploratory single-call save/resume pilot: {experiment}\n\nGenerated from "
+            f"`reports/development/feasibility-{source}-step*.json`. "
             "These development updates are excluded from every comparative initialization. "
             "A zero learning rate checks execution but does not demonstrate an adapter update.\n\n" +
             markdown_table(behavior) + "\n\n" + markdown_table(execution) +
@@ -741,8 +754,8 @@ def report() -> dict:
             "Judge opinions remain unqualified. Request counts include completed invalid contracts; "
             "cache hits are not additional calls. Step intervals include generation, checking, judging "
             "and backward work; they are not stable throughput estimates or learning-effect estimates. "
-            "See [runtime scenarios](../training-budget.md) and "
-            "[interpretation](exploratory-single-v2-pilot-learnings.md).\n", encoding="utf-8")
+            "See [runtime scenarios](../training-budget.md) and the "
+            "[dated amendments](../amendments/).\n", encoding="utf-8")
     (folder / "development-runtime.md").write_text(
         "# Development execution records\n\nGenerated from preserved timestamped logs. "
         "These are incomplete development attempts, not calibrated judges or comparative results. "
