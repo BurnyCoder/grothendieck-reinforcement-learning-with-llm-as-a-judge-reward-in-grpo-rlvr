@@ -19,7 +19,13 @@ are complete from the unmodified base; independent scoring remains pending.
 The [generation receipts](generation/README.md) preserve coverage, timing and raw
 artifacts. Prompted generation recovered after an app restart, retaining saved
 task IDs and the frozen configuration. No held-out scores informed a change to
-the training setup. Fresh theory-bonus seed-42 training is the next phase.
+the training setup. The first theory-bonus seed-42 attempt subsequently stopped
+at a complete optimizer checkpoint after reserved CUDA memory grew and update
+times increased. Its [saved execution evidence](experiments/exploratory-small-gpu-v2-memory-growth.md)
+remains an incomplete attempt. Next, publish and run the
+[cache-release development diagnostic](amendments/2026-11-16-cuda-cache-diagnostic.md),
+then publish any activation under a new matched-training identity. Diagnostic and
+interrupted-run updates remain excluded from comparative initialization.
 
 The user also authorized a [conditional simpler-task fallback](amendments/2026-11-16-task-difficulty-fallback.md)
 if the small policy cannot solve the present problems. Diagnose this on

@@ -120,6 +120,12 @@ resumed after an app restart without replacing completed tasks. Correctness and
 theory scores remain unmeasured; these are execution records, not evidence of
 mathematical improvement.
 
+The first full-budget theory-bonus attempt was then stopped at a complete
+checkpoint after CUDA allocator reservation grew and updates slowed. Its partial
+records are execution evidence, not a completed comparison. The registered
+`cache-release-v1` development diagnostic tests the standard Trainer cache-release
+option before any amended comparative activation; its updates are discarded.
+
 Data schema, split sizes, generator settings, reference checks and semantic
 deduplication are specified in `reports/preregistration.md` and `data/manifest.lock.json`.
 Manifests retain the original generator question, seed, index and version.

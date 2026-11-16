@@ -153,5 +153,11 @@
   "task_difficulty_fallback_pages_workflow": 43796190340,
   "readme_model_sequence_merge": "fc61645babc6d08b60ba76adc47617d405dd9ddd",
   "readme_model_sequence_huggingface_commit": "11d058e2a2f56838ea1a56b7aeae7e923804c151",
-  "readme_model_sequence_pages_workflow": 43796911722
+  "readme_model_sequence_pages_workflow": 43796911722,
+  "baseline_generation_merge": "4c78872b21878e7c1632232a5c4d4f2bc3d031a3",
+  "baseline_generation_huggingface_commit": "4050c95a680221fba3b117fa8e152d41a58713c3",
+  "baseline_generation_pages_workflow": 43826435265,
+  "ordinary_baseline_artifacts_huggingface_commit": "8988f67dbe34f27384ae01603a5ee2274ca36962",
+  "prompted_baseline_artifacts_huggingface_commit": "b66d99f4bdcff0b9572783e37a6e554b6f5767ca",
+  "interrupted_small_gpu_training_artifacts_huggingface_commit": "f1a15e65551d6f05a1a41b46ac1f8b13ce74ccc3"
 }

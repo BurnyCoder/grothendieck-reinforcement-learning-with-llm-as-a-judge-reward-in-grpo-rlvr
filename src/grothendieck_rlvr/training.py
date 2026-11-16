@@ -73,10 +73,19 @@ def latest_complete_checkpoint(directory: Path) -> Path:
     return max(candidates, key=lambda p: int(p.name.split("-")[-1]))
 
 
-def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exploratory=False) -> dict:
+def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exploratory=False,
+          runtime_diagnostic=None) -> dict:
     """Every experiment starts from the same base; only reward treatment and seed differ."""
     if arm not in ("theory", "correctness", "shuffled", "rubric"):
         raise ValueError("Unknown training arm")
+    diagnostic = None
+    if runtime_diagnostic is not None:
+        if not (pilot and exploratory):
+            raise ValueError("Runtime diagnostics require an explicit exploratory pilot")
+        presets = read_json(PROJECT / "configs/runtime-diagnostics.json")
+        if runtime_diagnostic not in presets or arm != "theory" or seed != 42:
+            raise ValueError("Runtime diagnostic must use its registered preset, theory arm and seed 42")
+        diagnostic = presets[runtime_diagnostic]
     profile = experiment_profile(exploratory)
     if not pilot and not exploratory:
         require_calibration()
@@ -89,8 +98,11 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exp
         cfg = {**cfg, "judge_protocol": profile["judge_protocol"], "judge_prompt_version": "v7"}
     if pilot:
         cfg = {**cfg, "max_steps": 2, "save_steps": 1}
+    if diagnostic:
+        cfg = {**cfg, **diagnostic["training_overrides"]}
     manifest = validate_manifests()
-    run_id = f"{EXPLORATORY_PREFIX if exploratory else ''}{'pilot-' if pilot else ''}{arm}-seed{seed}"
+    pilot_label = f"pilot-{runtime_diagnostic}-" if diagnostic else "pilot-" if pilot else ""
+    run_id = f"{EXPLORATORY_PREFIX if exploratory else ''}{pilot_label}{arm}-seed{seed}"
     directory = root() / "runs" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     log = EventLog(directory / "events.jsonl")
@@ -105,6 +117,8 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exp
                 "judge": judge.identity if judge else None}
     if profile:
         identity["experiment"] = profile
+    if diagnostic:
+        identity["runtime_diagnostic"] = diagnostic
     config_path = directory / "run.json"
     if config_path.exists() and read_json(config_path) != identity:
         raise RuntimeError("Run configuration changed; use an amended experiment identifier")
@@ -149,7 +163,9 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exp
             log.emit("training_metrics", step=state.global_step, metrics=values,
                      elapsed_seconds=time.monotonic()-started,
                      peak_gpu_allocated_bytes=torch.cuda.max_memory_allocated(),
-                     peak_gpu_reserved_bytes=torch.cuda.max_memory_reserved())
+                     peak_gpu_reserved_bytes=torch.cuda.max_memory_reserved(),
+                     current_gpu_allocated_bytes=torch.cuda.memory_allocated(),
+                     current_gpu_reserved_bytes=torch.cuda.memory_reserved())
 
         def on_step_end(self, args, state, control, **kwargs):
             if stopping["requested"] or (stop_after is not None and state.global_step >= stop_after):
@@ -183,6 +199,10 @@ def train(arm="theory", seed=42, resume=False, pilot=False, stop_after=None, exp
     # args.seed (not data_seed): https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/grpo_trainer.py
     # Newer TRL removed max_prompt_length; explicit token checking above preserves its contract.
     fields = inspect.signature(GRPOConfig).parameters
+    if "torch_empty_cache_steps" in cfg:
+        # Reuse Trainer's supported allocator-cache control; no loss/optimizer rewrite.
+        # https://huggingface.co/docs/transformers/v5.17.0/main_classes/trainer
+        args["torch_empty_cache_steps"] = cfg["torch_empty_cache_steps"]
     if "max_prompt_length" in fields:
         args["max_prompt_length"] = cfg["max_prompt_length"]
     if "chat_template_kwargs" in fields:

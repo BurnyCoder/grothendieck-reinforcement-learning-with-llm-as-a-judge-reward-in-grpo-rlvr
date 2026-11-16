@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-16T07:46:05.294666+00:00.
+Generated from saved artifacts at 2026-11-16T15:41:26.475455+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -138,3 +138,7 @@ Descriptive paired intervals; not a replacement success criterion.
   "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
 }
 ```
+
+## Interrupted training execution
+
+The exploratory-small-gpu-v2-theory-seed42 attempt stopped at optimizer boundary 13 with peak allocated/reserved policy memory 2.46/8.98 GiB. The pinned generated configuration's cache-clearing interval was 250 steps. Checkpoint state and partial outputs are preserved. This is an incomplete execution attempt, not a completed comparison or evidence that mathematical performance improved or worsened.

@@ -1,0 +1,13 @@
+{
+  "cache-release-v1": {
+    "id": "cache-release-v1",
+    "amendment": "reports/amendments/2026-11-16-cuda-cache-diagnostic.md",
+    "data_split": "dev",
+    "training_overrides": {
+      "max_steps": 16,
+      "save_steps": 8,
+      "torch_empty_cache_steps": 1
+    },
+    "interpretation": "Development-only execution diagnostic. Discard every update; no comparative training run may use this entry point."
+  }
+}

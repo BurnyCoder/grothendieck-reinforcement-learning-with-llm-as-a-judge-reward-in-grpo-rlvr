@@ -11,6 +11,7 @@ from .analysis import primary_comparison, summarize, transfer_analysis
 from .budget import training_budget, budget_markdown
 from .experiments import EXPLORATORY_ID, EXPLORATORY_PREFIX, experiment_profile
 from .io import PROJECT, atomic_json, digest, read_json, read_jsonl, root
+from .runtime_reports import GROWTH_KIND, growth_text, write_runtime_reports
 
 ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
         "correctness-seed43", "theory-seed43", "correctness-seed44", "theory-seed44",
@@ -220,6 +221,9 @@ def feasibility_text(snapshot) -> str:
                      f"{invocation['samples']} whole-device samples recorded a peak of "
                      f"{invocation['peak_mib']} MiB out of {invocation['capacity_mib']} MiB. "
                      "This includes the judge and other GPU users; sampling can miss shorter peaks.")
+    for record in snapshot["feasibility"]:
+        if record.get("kind") == GROWTH_KIND:
+            text += " " + growth_text(record)
     return text
 
 
@@ -784,9 +788,14 @@ def report() -> dict:
                json.dumps(snapshot["secondary_ood"], indent=2) + "\n```\n" +
                "\n## Frozen-recipient transfer\n\n" + markdown_table(transfer_rows(snapshot)) +
                "\n\n```json\n" + json.dumps(snapshot["transfer"], indent=2) + "\n```\n")
+    interruptions = [growth_text(record) for record in snapshot["feasibility"]
+                     if record.get("kind") == GROWTH_KIND]
+    if interruptions:
+        summary += "\n## Interrupted training execution\n\n" + "\n\n".join(interruptions) + "\n"
     (PROJECT / "reports/experiments.md").write_text(summary, encoding="utf-8")
     folder = PROJECT / "reports/experiments"
     folder.mkdir(exist_ok=True)
+    write_runtime_reports(snapshot, markdown_table)
     for failure in (r for r in snapshot["feasibility"] if r.get("kind") == "exploratory_grpo_truncation_failure"):
         table = [["Measure", "Recorded value"],
                  ["Policy completions", str(failure["policy_completions"])],
