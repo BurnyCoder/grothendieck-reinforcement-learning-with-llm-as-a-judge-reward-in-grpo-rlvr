@@ -96,17 +96,20 @@ def calibration_text(snapshot) -> str:
 
 def collect() -> dict:
     """Missing artifacts remain missing; they never become fabricated zero results."""
-    evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
+    evaluations = {p.parent.name: read_jsonl(p) for p in sorted((root() / "evaluations").glob("*/scores.jsonl"))}
     cfg = read_json(PROJECT / "configs/study.json")
     exploratory = {name.removeprefix(EXPLORATORY_PREFIX): rows for name, rows in evaluations.items()
                    if name.startswith(EXPLORATORY_PREFIX)}
-    training = {p.parent.name: read_jsonl(p) for p in (root() / "runs").glob("*/metrics.jsonl")}
+    training = {p.parent.name: read_jsonl(p) for p in sorted((root() / "runs").glob("*/metrics.jsonl"))}
     calibration = calibration_records()
     examples = baseline_examples(root()) | {name: sorted(rows, key=lambda r: r["task_id"])[:12]
                                             for name, rows in evaluations.items()}
-    feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json")) + list(
-        (root() / "feasibility").glob("*.json"))
+    feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json"))
     feasibility = {digest(record): record for record in map(read_json, feasibility_paths)}
+    for path in sorted((root() / "feasibility").glob("*.json")):
+        record = read_json(path)
+        if record.get("kind") or record.get("run_id"):
+            feasibility[digest(record)] = record
     return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg, **audit_snapshot(),
             "models": read_json(PROJECT / "configs/models.lock.json"),
             "summaries": {name: summarize(rows) for name, rows in evaluations.items()},
@@ -442,7 +445,8 @@ def figures(snapshot, destination: Path) -> None:
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
     destination.mkdir(parents=True, exist_ok=True)
-    plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
+                         "svg.hashsalt": "grothendieck-rlvr"})
     fig, ax = plt.subplots(figsize=(11, 3.3))
     ax.set(xlim=(0, 11), ylim=(0, 3.3))
     ax.axis("off")
@@ -459,7 +463,7 @@ def figures(snapshot, destination: Path) -> None:
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="->", mutation_scale=14, color="#36595b"))
     fig.tight_layout()
     fig.savefig(destination / "architecture.png", dpi=180)
-    fig.savefig(destination / "architecture.svg")
+    fig.savefig(destination / "architecture.svg", metadata={"Date": None})
     svg = destination / "architecture.svg"
     svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)

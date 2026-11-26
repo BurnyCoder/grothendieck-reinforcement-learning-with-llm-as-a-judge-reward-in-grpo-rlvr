@@ -1,5 +1,5 @@
 """Publish the dated review and baseline statistics directly from the independent CPU records."""
-from .io import PROJECT, read_json
+from .io import PROJECT, atomic_json, read_json
 
 FOLDER = PROJECT / "results/scientific-audit"
 REVIEW = "2026-11-26-scientific-audit.md"
@@ -96,7 +96,7 @@ def write_review(snapshot):
     """Integrate reproducible numbers with source-level determinations and mathematical derivations."""
     from .reporting import markdown_table
     inputs = {k: read_json(FOLDER / (k+".json")) for k in
-              ("manifests", "calibration", "transcripts", "execution", "chronology", "inventory", "objections")}
+              ("manifests", "calibration", "transcripts", "execution", "chronology", "inventory", "objections", "generation")}
     cal, execution, manifest = inputs["calibration"], inputs["execution"], inputs["manifests"]
     link = "../../results/scientific-audit/"
     report = ["# Independent scientific audit", "Libor “Burny” Burian · 26 November 2026",
@@ -186,13 +186,30 @@ def write_review(snapshot):
                   "the registered 4.5 GiB ceiling. Its final four scheduled updates and the 0.5 GiB range "
                   "criterion were never observed. No checkpoint or resumed invocation is recorded for the diagnostic. "
                   "[Registered resource criteria](../amendments/2026-11-16-cuda-cache-diagnostic.md)")
-    for window in execution["device_windows"]:
-        report.append(f"A registered pilot monitoring window contains {window['samples']} whole-device samples "
+    for number, window in enumerate(execution["device_windows"], 1):
+        report.append(f"Pilot monitoring window {number} contains {window['samples']} whole-device samples "
                       f"with a maximum of {window['peak_mib']} MiB.")
     for r in execution["pilots"]:
         report.append(f"{r['run']} changed {r['changed_tensors']}/{r['adapter_tensors']} tensors between "
                       f"the first two checkpoints. The maximum absolute parameter change was {r['maximum_parameter_change']:.8g}.")
-    report += ["The checkpoints establish that parameters changed. Different development batches, optimizer "
+    history = inputs["chronology"]
+    events = [["Milestone", "Recorded timestamp", "Evidence"]]
+    original = history["original_registration"]
+    events.append(["Original registration commit", original["committer_time"], original["commit"][:12]])
+    for arm, observation in inputs["generation"].items():
+        events.append([arm + " baseline, last saved answer", observation["last_saved"], "generation log"])
+    comparative = next(v for k,v in execution["trajectories"].items() if "cache-release" not in k)
+    events.append(["Last comparative optimizer update", comparative["updates"][-1]["time"], "training log"])
+    amended = history["amendments"]["reports/amendments/2026-11-16-cuda-cache-diagnostic.md"]
+    events.append(["Cache-release registration commit", amended["committer_time"], amended["commit"][:12]])
+    events.append(["First cache diagnostic update", cache["updates"][0]["time"], "training log"])
+    events.append(["Last cache diagnostic update", cache["updates"][-1]["time"], "training log"])
+    protocol = history["audit_registration"]
+    events.append(["CPU scoring protocol commit", protocol["committer_time"], protocol["commit"][:12]])
+    report += [markdown_table(events),
+               f"Times retain their recorded UTC offsets. [Generation events and save timestamps]({link}generation.json) · "
+               "[Public scoring protocol merge](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/pull/56)",
+               "The checkpoints establish that parameters changed. Different development batches, optimizer "
                "state and KL regularization preclude a learning-effect estimate. Reserved allocator bytes, "
                "allocated tensor bytes and sampled whole-device use measure different quantities. Time "
                "comparisons also confound task difficulty, decoding length, judge latency and host load. "
@@ -216,7 +233,10 @@ def write_review(snapshot):
                "[Paired resampling](https://aclanthology.org/W04-3250/)",
                f"The [file and passage index]({link}inventory.json) identifies the original Git blobs and "
                "the public dataset card. The [claim register](2026-11-26-claim-register.json) records evidence, "
-               f"corrections and implications. [Dated source-access receipts]({link}source-access.json) record URL reachability. A source establishing how an algorithm works cannot validate "
+               f"corrections and implications. The [original Hub inventory]({link}hub-inventory.json) exposed missing "
+               "adapter tensors and a trainer card that named its base model as None. The archived bytes and "
+               f"[corrected checkpoint cards]({link}checkpoint-cards.json) restore the evidence and attribution. "
+               f"[Dated source-access receipts]({link}source-access.json) record URL reachability. A source establishing how an algorithm works cannot validate "
                "a local effect size. The archive cannot resolve unlogged activity, pretraining exposure, "
                "general human agreement, historical novelty or the exact provenance of all supplied social "
                "and video wording. These remain unverified. Dated registrations and raw model utterances "
@@ -228,6 +248,24 @@ def update_audit_documents(snapshot):
     if snapshot.get("cpu_baseline", {}).get("status") != "complete" or "audit_conclusions" not in snapshot:
         return
     write_review(snapshot)
+    execution = read_json(FOLDER/"execution.json")
+    run, trajectory = next((name,r) for name,r in execution["trajectories"].items() if "cache-release" not in name)
+    model = snapshot["models"]["policy"]
+    cards = {}
+    boundaries = {"": trajectory["last_step"], "adapter/": trajectory["last_step"]}
+    boundaries.update({f"checkpoint-{step}/": step for step in trajectory["checkpoints"]})
+    for subdir, step in boundaries.items():
+        cards[f"runs/{run}/{subdir}README.md"] = (
+            f"---\nbase_model: {model['repo']}\nlibrary_name: peft\nlicense: apache-2.0\n---\n\n"
+            f"# Interrupted theory-reward run, update {step}\n\n"
+            f"This archived LoRA adapter belongs to the exploratory run `{run}`. The run used "
+            f"[{model['repo']} at the recorded revision](https://huggingface.co/{model['repo']}/tree/{model['revision']}). "
+            f"The archive reached update {trajectory['last_step']} of {trajectory['required']}. "
+            "The judge was unqualified. Comparative accuracy, theory quality and recipient transfer for these "
+            "weights remain unmeasured.\n\nThe 26 November 2026 audit corrected the trainer-generated card's "
+            "base-model attribution. The adapter configuration preserves the original runtime path. "
+            "[Execution record](https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/blob/main/results/scientific-audit/execution.json)\n")
+    atomic_json(FOLDER/"checkpoint-cards.json", cards)
     body = baseline_text(snapshot) + "\n\n" + snapshot["audit_conclusions"]
     (PROJECT/"reports/summary.md").write_text("# Scientific results\n\n" + body +
         f"\n\n[Independent audit](reviews/{REVIEW})\n", encoding="utf-8")

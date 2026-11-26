@@ -4,15 +4,22 @@ import numpy as np
 from .analysis_evidence import locked_tasks, qualified_evidence
 
 
-def paired_bootstrap(differences, strata, samples=10000, seed=20261115, hierarchical=False):
+def paired_bootstrap(differences, strata, samples=10000, seed=20261115, hierarchical=False, score_units=None):
     """Keep matched seeds together within each problem; optionally resample seed pairs too."""
     values = np.asarray(differences, dtype=float)
     if values.ndim == 1:
         values = values[:, None]
     if not len(values) or len(values) != len(strata) or not np.isfinite(values).all():
         raise ValueError("Require finite paired observations with one stratum per problem")
+    if score_units is not None:
+        # The registered rubric advances in 1/80 units. Sum integer ticks before dividing
+        # so a bound at a strict decision threshold is represented like its literal cutoff.
+        ticks = np.rint(values * score_units)
+        if not np.allclose(ticks, values * score_units, rtol=0, atol=1e-10):
+            raise ValueError("Scores lie outside the registered measurement scale")
+        values = ticks.astype(np.int64)
     rng = np.random.default_rng(seed)
-    draws = np.zeros(samples)
+    draws = np.zeros(samples, dtype=np.int64 if score_units else float)
     labels = np.asarray(strata)
     seed_indices = rng.integers(values.shape[1], size=(samples, values.shape[1])) if hierarchical else None
     for label in sorted(set(strata)):
@@ -21,10 +28,15 @@ def paired_bootstrap(differences, strata, samples=10000, seed=20261115, hierarch
         sampled = group[indices]
         if hierarchical:
             sampled = np.take_along_axis(sampled, seed_indices[:, None, :], axis=2)
-        draws += sampled.mean(axis=(1, 2)) * len(group) / len(values)
+        if score_units:
+            draws += sampled.sum(axis=(1, 2))
+        else:
+            draws += sampled.mean(axis=(1, 2)) * len(group) / len(values)
     low, high = np.quantile(draws, [.025, .975])
-    per_seed = values.mean(axis=0)
-    return {"difference": float(values.mean()), "ci95": [float(low), float(high)],
+    quantile_scale = values.size * score_units if score_units else 1
+    per_seed = values.sum(axis=0) / (len(values)*(score_units or 1))
+    point = values.sum()/(values.size*(score_units or 1))
+    return {"difference": float(point), "ci95": [float(low/quantile_scale), float(high/quantile_scale)],
             "per_seed_differences": per_seed.tolist(),
             "between_seed_sd": float(per_seed.std(ddof=1)) if len(per_seed) > 1 else None,
             "problems": len(values), "seeds": values.shape[1],
@@ -47,15 +59,13 @@ def summarize(rows: list[dict]) -> dict:
 
 def h1_decision(theory, accuracy):
     """Evaluate the registered inequalities; failure to show noninferiority alone is inconclusive."""
-    # The discrete rubric and fixed sample resolve far less than twelve decimals.
-    # Remove binary representation noise before applying the three strict/inclusive boundaries.
-    tlo, thi = (round(float(x), 12) for x in theory["ci95"])
-    alo, ahi = (round(float(x), 12) for x in accuracy["ci95"])
+    tlo, thi = theory["ci95"]
+    alo, ahi = accuracy["ci95"]
     if ahi < -.03:
         return "accuracy_inferior"
     if thi < .05:
         return "useful_gain_ruled_out"
-    if round(float(theory["difference"]), 12) >= .05 and tlo > 0 and alo > -.03:
+    if theory["difference"] >= .05 and tlo > 0 and alo > -.03:
         return "criteria_met"
     return "inconclusive"
 
@@ -98,9 +108,11 @@ def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False,
     for metric in metrics:
         difference = [[float(maps["theory", s][i][metric])-float(maps["correctness", s][i][metric])
                        for s in seeds] for i in identifiers]
-        results[metric] = paired_bootstrap(difference, strata, cfg["bootstrap_samples"], cfg["data_seed"])
+        units = {"metric": 80, "correct": 1}.get(metric)
+        results[metric] = paired_bootstrap(difference, strata, cfg["bootstrap_samples"], cfg["data_seed"],
+                                           score_units=units)
         results[metric + "_hierarchical"] = paired_bootstrap(
-            difference, strata, cfg["bootstrap_samples"], cfg["data_seed"], hierarchical=True)
+            difference, strata, cfg["bootstrap_samples"], cfg["data_seed"], hierarchical=True, score_units=units)
     expected = {"test_fresh": cfg["test_fresh_size"], "test_hard": cfg["test_hard_size"],
                 "test_unseen": cfg["test_unseen_size"]}
     if secondary:

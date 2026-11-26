@@ -170,7 +170,8 @@ def registered_transfer(directory: Path, cfg, analyse):
         source = source_configs[name]
         if (source.get("split") != "transfer_source" or source.get("run_id") != name
                 or source.get("tasks") != digest([t.model_dump() for t in sources])
-                or source.get("inference", {}).get("model") != config.get("inference", {}).get("model")):
+                or any(source.get("inference", {}).get(k) != v for k,v in config["inference"].items() if k != "files")
+                or not source.get("adapter") and source["inference"] != config["inference"]):
             return {"status": "incomplete", "summaries": {}, "reason": "Source-note provenance differs"}
         note_dir = storage/"evaluations"/name
         raw = read_jsonl(note_dir/"generations.jsonl")
