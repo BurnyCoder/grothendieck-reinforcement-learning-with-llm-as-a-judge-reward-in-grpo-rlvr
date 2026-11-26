@@ -85,8 +85,12 @@ def test_rubric_ablation_preserves_novelty_without_historical_framing():
     assert current.strip() == original.strip()
 
 
-def test_secondary_results_cannot_satisfy_primary_acceptance():
+def test_secondary_results_cannot_satisfy_primary_acceptance(monkeypatch):
     from grothendieck_rlvr.analysis import primary_comparison
+    from types import SimpleNamespace
+    import grothendieck_rlvr.analysis as analysis
+    monkeypatch.setattr(analysis, "locked_tasks", lambda secondary: [
+        SimpleNamespace(id=str(i), split="test_ood", family=str(i)) for i in range(4)])
     cfg = {"training_seeds": [42, 43, 44], "data_seed": 1, "bootstrap_samples": 20,
            "test_fresh_size": 1, "test_hard_size": 1, "test_unseen_size": 2, "test_ood_per_family": 1}
     evaluations = {}
@@ -95,6 +99,7 @@ def test_secondary_results_cannot_satisfy_primary_acceptance():
             evaluations[f"{arm}-seed{seed}-ood"] = [
                 {"task_id": str(i), "split": "test_ood", "family": str(i), "judge_identity": "fixture",
                  "metric": .5 if arm == "theory" else 0, "novelty": 1 if arm == "theory" else 0,
+                 "theory": .5 if arm == "theory" else 0, "verification": {"status": "correct"},
                  "correct": True} for i in range(4)]
     assert primary_comparison(evaluations, cfg)["status"] == "pending"
     result = primary_comparison(evaluations, cfg, suffix="-ood", secondary=True)

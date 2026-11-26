@@ -12,7 +12,7 @@ def composite(correct: bool, assessment: Assessment | None) -> float:
 
 
 def permute_correct(values: list[float], correct: list[bool], seed: int) -> list[float]:
-    """Preserve the correct subset's bonus multiset while removing its assignment."""
+    """Randomly permute the eligible bonuses; individual assignments can remain fixed."""
     indices = [i for i, passed in enumerate(correct) if passed]
     shuffled = [values[i] for i in indices]
     random.Random(seed).shuffle(shuffled)

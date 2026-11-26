@@ -138,7 +138,7 @@ def test_exploratory_results_never_fill_the_qualified_comparison(tmp_path, monke
         (folder / "scores.jsonl").write_text(json.dumps(row)+'\n')
     snapshot = reporting.collect()
     assert snapshot["primary"]["status"] == "pending"
-    assert snapshot["exploratory_single"]["primary"]["status"] == "exploratory_uncalibrated"
+    assert snapshot["exploratory_single"]["primary"]["status"] == "incomplete"
     rows = reporting.table_rows(snapshot)
     standard = next(row for row in rows if row[0] == "theory-seed42")
     assert standard[1:] == ["Pending"] * 4

@@ -1,6 +1,8 @@
 """Prespecified paired analyses; resampling units are problems or transfer sources."""
 import numpy as np
 
+from .analysis_evidence import locked_tasks, qualified_evidence
+
 
 def paired_bootstrap(differences, strata, samples=10000, seed=20261115, hierarchical=False):
     """Keep matched seeds together within each problem; optionally resample seed pairs too."""
@@ -43,7 +45,22 @@ def summarize(rows: list[dict]) -> dict:
             "valid_format_rate": sum(r["verification"]["status"] != "invalid_format" for r in rows)/len(rows)}
 
 
-def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False, exploratory=False) -> dict:
+def h1_decision(theory, accuracy):
+    """Evaluate the registered inequalities; failure to show noninferiority alone is inconclusive."""
+    # The discrete rubric and fixed sample resolve far less than twelve decimals.
+    # Remove binary representation noise before applying the three strict/inclusive boundaries.
+    tlo, thi = (round(float(x), 12) for x in theory["ci95"])
+    alo, ahi = (round(float(x), 12) for x in accuracy["ci95"])
+    if ahi < -.03:
+        return "accuracy_inferior"
+    if thi < .05:
+        return "useful_gain_ruled_out"
+    if round(float(theory["difference"]), 12) >= .05 and tlo > 0 and alo > -.03:
+        return "criteria_met"
+    return "inconclusive"
+
+
+def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False, exploratory=False, archive=None) -> dict:
     """Do not turn a first-seed or partial result into a confirmatory success claim."""
     seeds = [s for s in cfg["training_seeds"]
              if f"theory-seed{s}{suffix}" in evaluations and f"correctness-seed{s}{suffix}" in evaluations]
@@ -60,10 +77,20 @@ def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False,
     if not all(ids == id_sets[0] for ids in id_sets):
         return {"status": "incomplete", "reason": "Matched runs have different evaluated problem IDs"}
     identifiers = sorted(id_sets[0])
+    tasks = locked_tasks(secondary)
+    expected_ids = {t.id: (t.split, t.family) for t in tasks}
+    if any({i: (r["split"], r["family"]) for i, r in m.items()} != expected_ids for m in maps.values()):
+        return {"status": "incomplete", "reason": "Evaluated IDs, splits or families differ from the locked manifest"}
     strata = [maps["theory", seeds[0]][i]["family" if secondary else "split"] for i in identifiers]
     judgments = {r["judge_identity"] for m in maps.values() for r in m.values()}
     if len(judgments) != 1:
         raise ValueError("Primary comparison requires identical frozen independent judge settings")
+    for group in maps.values():
+        for row in group.values():
+            if (type(row["correct"]) is not bool or not 0 <= row["metric"] <= 1
+                    or row["metric"] != row["correct"] * row["theory"]
+                    or row["correct"] != (row["verification"]["status"] == "correct")):
+                raise ValueError("Inconsistent archived correctness or C times theory")
     results = {}
     metrics = ["metric", "correct"]
     if all("novelty" in r for m in maps.values() for r in m.values()):
@@ -82,11 +109,15 @@ def primary_comparison(evaluations: dict, cfg: dict, suffix="", secondary=False,
     observed = [maps["theory", seeds[0]][i]["split"] for i in identifiers]
     complete = seeds == cfg["training_seeds"] and len(observed) == sum(expected.values()) \
         and all(observed.count(k) == n for k, n in expected.items())
-    passed = results["metric"]["difference"] >= .05 and results["metric"]["ci95"][0] > 0 \
-        and results["correct"]["ci95"][0] > -.03
     status = ("secondary" if secondary else "confirmatory") if complete else "exploratory"
+    decision = None
+    if complete and not secondary and not exploratory:
+        reason = qualified_evidence(archive, maps, next(iter(judgments)), cfg, tasks)
+        if reason:
+            return {"status": "unqualified", "reason": reason, "criteria_met": None, **results}
+        decision = h1_decision(results["metric"], results["correct"])
     return {"status": "exploratory_uncalibrated" if exploratory else status, "seeds": seeds,
-            "criteria_met": bool(passed) if complete and not secondary and not exploratory else None, **results}
+            "decision": decision, "criteria_met": decision == "criteria_met" if decision else None, **results}
 
 
 def transfer_analysis(rows: list[dict], samples=10000, expected_sources=100) -> dict:
