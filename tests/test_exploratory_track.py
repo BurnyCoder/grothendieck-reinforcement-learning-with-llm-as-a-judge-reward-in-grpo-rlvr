@@ -66,16 +66,19 @@ def test_exploratory_training_records_separate_identity_before_model_loading(tmp
     assert not (tmp_path / "runs/correctness-seed42").exists()
 
 
-def test_uncalibrated_three_seed_result_never_becomes_confirmatory():
+def test_uncalibrated_three_seed_result_never_becomes_confirmatory(monkeypatch):
     cfg = {"training_seeds": [42, 43, 44], "data_seed": 9, "bootstrap_samples": 100,
            "test_fresh_size": 1, "test_hard_size": 1, "test_unseen_size": 1}
     evaluations = {}
+    splits = ("test_fresh", "test_hard", "test_unseen")
+    monkeypatch.setattr(analysis, "locked_tasks", lambda secondary: [
+        SimpleNamespace(id=split, family="fixture", split=split) for split in splits])
     for seed in cfg["training_seeds"]:
         for arm, metric in [("theory", .9), ("correctness", .5)]:
             evaluations[f"{arm}-seed{seed}"] = [
                 {"task_id": split, "family": "fixture", "split": split,
-                 "judge_identity": "same", "metric": metric, "correct": True}
-                for split in ("test_fresh", "test_hard", "test_unseen")]
+                 "judge_identity": "same", "metric": metric, "theory": metric, "correct": True,
+                 "verification": {"status": "correct"}} for split in splits]
     result = analysis.primary_comparison(evaluations, cfg, exploratory=True)
     assert result["status"] == "exploratory_uncalibrated"
     assert result["criteria_met"] is None

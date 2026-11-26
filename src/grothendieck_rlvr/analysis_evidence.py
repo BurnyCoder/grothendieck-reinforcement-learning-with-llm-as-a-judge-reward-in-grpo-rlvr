@@ -1,6 +1,7 @@
 """Verify the registered inputs of statistical comparisons using only archived artifacts."""
 from pathlib import Path
 import re
+from collections import Counter
 
 from .data import load_tasks
 from .io import PROJECT, digest, read_json, read_jsonl
@@ -15,17 +16,24 @@ def locked_tasks(secondary):
     return [t for split in ("test_fresh", "test_hard", "test_unseen") for t in load_tasks(split)]
 
 
+def matches_checkpoint(checkpoint, inference):
+    """Compare final adapter configuration and weight bytes, independently of the generation path."""
+    from .saved_correctness import file_hash
+    files = ("adapter_config.json", "adapter_model.safetensors")
+    return all((checkpoint/f).is_file() and inference["files"].get(f) == file_hash(checkpoint/f) for f in files)
+
+
 def qualified_evidence(directory, maps, judge_id, cfg, tasks):
     """A complete file count alone cannot identify a qualified judge or the trained checkpoint."""
-    from .calibration import build_cases, calibration_summary, require_calibration
+    from .calibration import build_cases, calibration_summary, require_passed_calibration
     from .saved_correctness import file_hash
     if directory is None:
         return "Qualification and final checkpoints lack archive provenance"
     try:
         if cfg != read_json(PROJECT/"configs/study.json"):
             return "Analysis configuration differs from the locked study"
-        require_calibration()
         for split in ("dev", "audit"):
+            require_passed_calibration(split, archive=directory)
             cases = build_cases(split)
             for role, variant in (("training_judge", "quoted"), ("training_judge", "rubric"), ("evaluation_judge", "quoted")):
                 record = read_json(directory / "calibration" / f"{role}-{variant}-{split}.json")
@@ -85,20 +93,35 @@ def qualified_evidence(directory, maps, judge_id, cfg, tasks):
             if (gen["run_id"] != name or not gen["adapter"] or gen.get("experiment") or gen["rising"]
                     or gen["split"] != "test" or gen["tasks"] != task_hash or gen["prompts"] != digest(prompts)
                     or gen["inference"]["model"] != selected or gen["inference"]["do_sample"]
+                    or gen["inference"]["enable_thinking"] or gen["inference"]["context_length"] != 8192
+                    or gen["inference"]["max_new_tokens"] != cfg["max_completion_length"]
+                    or gen["inference"]["files"]["uv.lock"] != file_hash(PROJECT/"uv.lock")
                     or not status["complete"] or status["judge_identity"] != judge_id
                     or status["expected"] != len(tasks) or status["scored"] != len(tasks)):
                 return f"{name}: evaluation identity or coverage differs"
-            for file in ("adapter_model.safetensors", "adapter_config.json"):
-                if gen["inference"]["files"][file] != file_hash(ckpt / file):
-                    return f"{name}: generation differs from the final checkpoint"
+            if not matches_checkpoint(ckpt, gen["inference"]):
+                return f"{name}: generation differs from the final checkpoint"
             raw = read_jsonl(ev / "generations.jsonl")
             if len(raw) != len(tasks) or {r["task_id"] for r in raw} != set(observations):
                 return f"{name}: raw generations do not cover the manifest"
             for row in raw:
                 scored = observations[row["task_id"]]
-                if (scored.get("experiment") != "qualified-study" or row["prompt"] != prompts[row["task_id"]]
+                if (row["split"] != scored["split"] or row["family"] != scored["family"]
+                        or row["response_tokens"] != scored["response_tokens"]
+                        or scored.get("experiment") != "qualified-study" or row["prompt"] != prompts[row["task_id"]]
                         or row["response"] != scored["response"] or scored["prompt"] != row["prompt"]):
                     return f"{name}: scored response differs from generation"
+                if scored["correct"]:
+                    from .schema import Assessment
+                    assessment = Assessment.model_validate(scored["assessment"])
+                    if assessment.quality != scored["theory"] or assessment.novelty != scored["novelty"]:
+                        return f"{name}: stored rubric disagrees with reported score"
+                elif scored["assessment"] is not None or scored["theory"] or scored["novelty"]:
+                    return f"{name}: incorrect answer has a rubric score"
+        generation_seeds = {read_json(directory/"evaluations"/f"{arm}-seed{s}"/"generation-config.json")["seed"]
+                            for arm, s in maps}
+        if len(generation_seeds) != 1:
+            return "Evaluation RNG seeds differ across paired arms"
     except (OSError, KeyError, TypeError, ValueError, RuntimeError) as exc:
         return f"Missing or incompatible qualification evidence: {exc}"
     return None
@@ -160,12 +183,33 @@ def registered_transfer(directory: Path, cfg, analyse):
         note_sets[name] = {r["task_id"]: extract_notes(r["response"]) for r in raw}
     if config.get("notes") != digest(note_sets):
         return {"status": "incomplete", "summaries": {}, "reason": "Source-note digest differs"}
+    # Verify the recipient actually received the declared note text. Empty/malformed notes are retained.
+    target_tasks = {t.id: t for t in targets}
+    calls = Counter()
+    request = None
+    for event in read_jsonl(directory/"events.jsonl"):
+        if event["kind"] == "policy_request":
+            request = event
+        if event["kind"] == "policy_response" and request is not None:
+            if request["seed"] != config["seed"] or request["max_new_tokens"] != config["inference"]["max_new_tokens"]:
+                return {"status": "incomplete", "summaries": {}, "reason": "Recipient decoding differs across conditions"}
+            calls[digest([request["messages"], event["response"], event["seconds"]])] += 1
+            request = None
+    for r in rows:
+        if r["condition"] != "no_notes":
+            producer, kind = r["condition"].rsplit(":", 1)
+            source_id = r["source_id"] if kind == "notes" else deranged[r["source_id"]]
+            if not note_sets[producer][source_id].startswith(r["notes"]):
+                return {"status": "incomplete", "summaries": {}, "reason": "Cannot verify truncated note against its assigned source"}
+        key = digest([policy_messages(target_tasks[r["task_id"]], notes=r["notes"]), r["response"], r["seconds"]])
+        if calls[key] < 1:
+            return {"status": "incomplete", "summaries": {}, "reason": "Recipient prompt or response lacks a matching raw event"}
+        calls[key] -= 1
     # The design also requires note producers from both baseline prompts and matched trained policies.
     baseline_prompts = {v["rising"] for v in source_configs.values() if v["adapter"] is None}
     trained = {"theory": set(), "correctness": set()}
     for spec in source_configs.values():
         if spec.get("adapter"):
-            from .saved_correctness import file_hash
             boundary = Path(spec["adapter"])
             match = re.search(r"(?:^|-)(theory|correctness)-seed(\d+)$", boundary.parent.name)
             run = storage/"runs"/boundary.parent.name
@@ -175,8 +219,7 @@ def registered_transfer(directory: Path, cfg, analyse):
                 return {"status": "incomplete", "summaries": {}, "reason": "Missing final note-producer checkpoint"}
             end, state = read_json(run/"summary.json"), read_json(ckpt/"groth-state.json")
             if (end["completed"] and not end["pilot"] and end["step"] == state["global_step"] == cfg["max_steps"]
-                    and state["complete"] and all((ckpt/f).is_file() and spec["inference"]["files"].get(f) == file_hash(ckpt/f)
-                                                  for f in ("adapter_model.safetensors", "adapter_config.json"))):
+                    and state["complete"] and matches_checkpoint(ckpt, spec["inference"])):
                 trained[match[1]].add(int(match[2]))
             else:
                 return {"status": "incomplete", "summaries": {}, "reason": "Note producer differs from final checkpoint"}

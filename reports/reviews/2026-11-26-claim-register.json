@@ -1,0 +1,79 @@
+{
+  "registration": {
+    "claim": "Comparative H1 needs three matched qualified runs per arm, a useful point gain, a positive lower bound and accuracy noninferiority. H2 is exploratory.",
+    "verdict": "Design verified against the initial registration. Both behavioral outcomes are currently untested.",
+    "evidence": ["reports/preregistration.md", "results/scientific-audit/chronology.json", "src/grothendieck_rlvr/analysis.py", "src/grothendieck_rlvr/analysis_evidence.py"],
+    "sources": ["https://aclanthology.org/W04-3250/", "https://neurips.cc/public/guides/PaperChecklist"],
+    "impact": "An inconclusive interval, an interval excluding the useful gain, clear accuracy inferiority and a missing experiment have distinct interpretations."
+  },
+  "datasets": {
+    "claim": "Locked generator references, split counts, within-family mathematical identities and transfer-source assignments.",
+    "verdict": "Checked independently with prime valuations, inclusion-exclusion, polynomial interpolation, rational real-root isolation, four-neighbor flood fill, rational row reduction, angle sums and modular inversion.",
+    "evidence": ["results/scientific-audit/manifests.json", "data/manifest.lock.json", "data/ood.lock.json", "src/grothendieck_rlvr/audit_math.py"],
+    "sources": ["https://github.com/open-thought/reasoning-gym/tree/v0.1.25", "https://docs.sympy.org/latest/modules/polys/reference.html", "https://docs.sympy.org/latest/modules/matrices/matrices.html"],
+    "impact": "Separate task IDs and mathematical instances establish the studied split separation. Templates and skills recur; pretraining contamination is unknown. Unseen-family and secondary OOD measure the named project splits."
+  },
+  "answers": {
+    "claim": "A terminal answer can pass the arithmetic verifier while failing a requested answer-form requirement.",
+    "verdict": "Reproduced on synthetic fixtures. Frozen baseline scoring and a preregistered-for-this-retrospective-analysis form sensitivity quantify the observed consequence.",
+    "evidence": ["reports/amendments/2026-11-26-cpu-baseline-audit.md", "results/scientific-audit/baseline-summary.json", "results/scientific-audit/ordinary.json", "results/scientific-audit/prompted.json", "src/grothendieck_rlvr/verifier_worker.py"],
+    "sources": ["https://github.com/huggingface/Math-Verify", "https://github.com/open-thought/reasoning-gym/blob/v0.1.25/reasoning_gym/algebra/polynomial_multiplication.py"],
+    "impact": "Report final-answer accuracy, invalid format and sensitivity explicitly. Neither metric certifies explanation validity."
+  },
+  "generation": {
+    "claim": "The two completed primary baseline generations are paired observations from the same frozen policy and decoding configuration.",
+    "verdict": "Checked the three file hashes per arm, full system and user prompts, exact manifest membership, unique IDs, timings and shared inference configuration.",
+    "evidence": ["reports/generation/", "results/scientific-audit/baseline-summary.json", "src/grothendieck_rlvr/saved_correctness.py"],
+    "sources": ["https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations"],
+    "impact": "The retrospective contrast estimates prompting on these tasks. The larger-policy partial generation and trained checkpoints are distinct populations."
+  },
+  "calibration": {
+    "claim": "The completed records of early-stopped development trials missed their fixed attainable preference threshold.",
+    "verdict": "Recomputed raw criterion weights, validity and version-specific novelty gates, pair order, ties and remaining-case upper bounds per run. False-case suppression was unobserved in these runs.",
+    "evidence": ["results/scientific-audit/calibration.json", "results/scientific-audit/transcripts.json", "reports/development/", "reports/amendments/2026-11-15-modest-valid-connections.md"],
+    "sources": ["https://arxiv.org/html/2306.05685", "https://arxiv.org/html/2601.08654v1", "https://aclanthology.org/2025.coling-main.156/"],
+    "impact": "Adaptive reuse of labeled development templates limits external validity. An attainable-rate bound is deterministic; it is not a statistical confidence interval. Unobserved cases have unknown outcomes."
+  },
+  "mathematics": {
+    "claim": "Some saved specialist objections mistake valid mathematics or an omitted substitution for a mathematical error.",
+    "verdict": "Checked the GCD subgroup, LCM cosets, quadratic norm, commutator and parity arguments against their actual domains; the independent case derivations are in the dated audit.",
+    "evidence": ["reports/development/qwen-v8-specialists-dev.jsonl", "reports/development/qwen-v8-specialists-rubric-dev.jsonl", "src/grothendieck_rlvr/novelty_cases.py", "results/scientific-audit/objections.json"],
+    "sources": ["https://docs.python.org/3/library/math.html#math.gcd", "https://docs.sympy.org/latest/modules/polys/reference.html"],
+    "impact": "These examples establish specific false objections. They cannot establish a population error rate, independent specialist errors, or human agreement."
+  },
+  "objective": {
+    "claim": "The implementation adds a correctness-gated weighted judge bonus to group-relative policy optimization with Dr. GRPO normalization.",
+    "verdict": "Checked the configured loss, constant token denominator, omitted reward standard-deviation scaling, group means, language adapters, KL penalty and archived rollout rewards. The separate positive KL coefficient differs from the original Dr. GRPO experiment.",
+    "evidence": ["src/grothendieck_rlvr/training.py", "src/grothendieck_rlvr/schema.py", "src/grothendieck_rlvr/reward.py", "results/scientific-audit/execution.json", "reports/development/feasibility-small-gpu-v2-cache-growth.json"],
+    "sources": ["https://arxiv.org/html/2402.03300v3", "https://arxiv.org/html/2503.20783v2", "https://arxiv.org/html/2507.17746v1", "https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/grpo_trainer.py"],
+    "impact": "Only the final-answer component is externally verifiable. The rubric, novelty anchors and weights define a project-specific proxy. A shuffled control preserves the batch reward multiset and may leave individual assignments fixed."
+  },
+  "runtime": {
+    "claim": "Saved optimizer boundaries, resumed updates and memory measurements demonstrate bounded feasibility.",
+    "verdict": "Checked the numeric adapter buffers, reward batches, raw update events and device sampling windows. The comparative attempt and the cache-release diagnostic each stopped short of their registered horizon.",
+    "evidence": ["results/scientific-audit/execution.json", "reports/development/", "configs/runtime-diagnostics.json", "reports/amendments/2026-11-16-cuda-cache-diagnostic.md"],
+    "sources": ["https://docs.pytorch.org/docs/2.14/notes/cuda.html#memory-management", "https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/trainer.py"],
+    "impact": "Checkpoint changes do not identify their causal contribution to performance. Peak reserved bytes are cumulative; device samples include other consumers. Completion, speedup and cache causation require different evidence."
+  },
+  "literature": {
+    "claim": "Prior work motivates the study and describes method-specific benefits and limitations in other settings.",
+    "verdict": "Scoped by task and instrument. G-Eval evaluates generated text, MT-Bench studies preference judgments, FERMAT uses symbolic production, and Gao et al. use a synthetic gold reward model. None measures this project's mathematical outcomes.",
+    "evidence": ["reports/literature-review.md", "reports/state-of-the-art-review.md", "reports/judge-inference-review.md"],
+    "sources": ["https://arxiv.org/html/2511.14778v1", "https://arxiv.org/pdf/2303.16634", "https://arxiv.org/html/2506.13639v1", "https://proceedings.mlr.press/v202/gao23h.html", "https://arxiv.org/html/2509.13332v1", "https://arxiv.org/html/2606.07810v1", "https://arxiv.org/html/2610.02022v1", "https://arxiv.org/abs/2604.02450v1", "https://arxiv.org/abs/2511.21522v1", "https://arxiv.org/abs/2608.15979v1"],
+    "impact": "Different judges, training scales, retrieval, decoding and human labels preclude direct transfer of effect sizes."
+  },
+  "history": {
+    "claim": "Grothendieck's rising-sea analogy motivates this rubric. Additional contemporary commentary was supplied with separate attributions.",
+    "verdict": "The scholarly source supports the analogy. Exact supplied transcript wording and inaccessible social-media quotations have weaker provenance.",
+    "evidence": ["docs/rising-sea-quotations.md", "NOTICE", "src/grothendieck_rlvr/prompts/rising-sea-v2.txt"],
+    "sources": ["https://ncatlab.org/nlab/files/McLartyRisingSea.pdf", "https://www.youtube.com/watch?v=LKrwhjOI8Nc", "https://x.com/littmath/status/2109653733470572878", "https://x.com/aran_nayebi/status/2057592779308429687"],
+    "impact": "Attribute preserved wording to the supplied source and flag unverifiable provenance. The analogy provides motivation only."
+  },
+  "scope": {
+    "claim": "Human preference alignment, historical originality, pretraining absence, a latent mechanism, and broad mathematical discovery.",
+    "verdict": "Unmeasured. Dated plans, setup commands and future Lean or larger-model proposals are specifications.",
+    "evidence": ["reports/preregistration.md", "docs/future-research.md", "configs/exploratory-single-judge.json"],
+    "sources": ["https://arxiv.org/abs/1807.03341", "https://arxiv.org/abs/2108.02497"],
+    "impact": "Preserve the distinction between motivated hypotheses, operational measures and observations."
+  }
+}

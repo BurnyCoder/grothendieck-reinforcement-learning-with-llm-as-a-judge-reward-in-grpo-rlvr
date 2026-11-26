@@ -86,3 +86,17 @@ def test_transfer_rejects_substituted_probes_and_missing_conditions(tmp_path, mo
     assert check(rows[:-1])["status"] == "incomplete"
     assert check([{**rows[0], "task_id": "unregistered"}, *rows[1:]])["status"] == "incomplete"
     assert "note condition" in check(rows)["reason"]
+
+
+def test_final_checkpoint_requires_both_matching_files(tmp_path):
+    from grothendieck_rlvr.analysis_evidence import matches_checkpoint
+    from grothendieck_rlvr.saved_correctness import file_hash
+    config, weights = tmp_path/"adapter_config.json", tmp_path/"adapter_model.safetensors"
+    config.write_text("{}")
+    weights.write_bytes(b"fixture checkpoint bytes")
+    frozen = {"files": {p.name: file_hash(p) for p in (config, weights)}}
+    assert matches_checkpoint(tmp_path, frozen)
+    weights.write_bytes(b"different checkpoint")
+    assert not matches_checkpoint(tmp_path, frozen)
+    weights.unlink()
+    assert not matches_checkpoint(tmp_path, frozen)
