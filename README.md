@@ -40,14 +40,14 @@ and the [supplied AGrI quotation](docs/rising-sea-quotations.md#artificial-groth
   saved, resumed and changed adapter weights. Its resumed batch earned no task
   reward; these checks establish recovery, not learning. Pilot updates are excluded
   from every comparative initialization.
-- **Baselines generated:** ordinary and rising-sea prompted outputs are saved for the complete primary set;
-  [completion receipts and raw artifacts](reports/generation/README.md) retain coverage and timing.
+- The [independent scientific audit](reports/reviews/2026-11-26-scientific-audit.md) compares ordinary and rising-sea prompts on the same saved primary problems. The [paired results](results/scientific-audit/baseline-summary.json) report verified final answers and answer-form sensitivity.
 - **Long-run runtime issue:** the [first comparative training attempt](reports/experiments/exploratory-small-gpu-v2-memory-growth.md)
   accumulated reserved CUDA memory and slowed down. It stopped at a complete checkpoint.
   A [separate cache-release development diagnostic](reports/amendments/2026-11-16-cuda-cache-diagnostic.md)
-  is registered before restarting matched comparisons under an amended identity.
-- **Learning remains untested:** full-budget comparative training and scored evaluations remain pending.
-  No improvement over a baseline has been demonstrated.
+  produced partial update records and stopped before the registered save/resume test.
+- The trained reward comparison (H1) and frozen-recipient note transfer (H2) both lack outcomes.
+
+![Paired final-answer outcomes for the two prompts on the registered primary problems](site/figures/evaluation.png)
 
 The implementation uses Python, uv, PyTorch, Unsloth, TRL, Reasoning Gym,
 Math-Verify, SymPy and local llama.cpp servers. It includes resumable training,
@@ -94,8 +94,8 @@ remain in the [consolidated report](reports/experiments.md).
 
 | Arm | Problems scored | Accuracy | C × theory | C × novelty |
 |---|---|---|---|---|
-| ordinary | Pending | Pending | Pending | Pending |
-| prompted | Pending | Pending | Pending | Pending |
+| ordinary | 400 | 0.3700 | Pending | Pending |
+| prompted | 400 | 0.3275 | Pending | Pending |
 | correctness-seed42 | Pending | Pending | Pending | Pending |
 | theory-seed42 | Pending | Pending | Pending | Pending |
 | correctness-seed43 | Pending | Pending | Pending | Pending |
@@ -105,7 +105,9 @@ remain in the [consolidated report](reports/experiments.md).
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
 
-Generation execution: exploratory-small-gpu-v2-ordinary: 400/400 unique task outputs saved; mean recorded generation time 11.25 seconds per answer; last saved response 2026-11-16T04:21:45.066423+00:00. exploratory-small-gpu-v2-prompted: 400/400 unique task outputs saved; mean recorded generation time 11.98 seconds per answer; last saved response 2026-11-16T07:43:39.780525+00:00. These receipts verify saved task coverage and configuration, not answer correctness or theory quality. Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/.
+The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00). Both prompts passed 99 problems, ordinary alone 49, prompted alone 32 and neither 220. Invalid formats accounted for 177 ordinary and 189 prompted answers. The stricter form check retained 148/400 and 131/400 respectively (zero changes for reduced fractions, expanded products and rounded roots in both arms). Its paired difference was -4.25 points (95% interval -8.50 to +0.00). All 400 problems retained their original stratum weights in 10,000 paired resamples. This retrospective prompt contrast is conditional on these strata, one checkpoint and one decoding setup. The primary interval includes zero. Theory and novelty are unmeasured.
+
+exploratory-small-gpu-v2-ordinary: 400/400 unique task outputs saved; mean recorded generation time 11.25 seconds per answer; last saved response 2026-11-16T04:21:45.066423+00:00. exploratory-small-gpu-v2-prompted: 400/400 unique task outputs saved; mean recorded generation time 11.98 seconds per answer; last saved response 2026-11-16T07:43:39.780525+00:00. These receipts verify saved task coverage and configuration, not answer correctness or theory quality. Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/.
 
 <!-- RESULTS:END -->
 

@@ -1,10 +1,10 @@
 # Correctness-gated mathematical theory building
 
-Libor “Burny” Burian · 2026-11-16
+Libor “Burny” Burian · 2026-11-26
 
 ## Abstract
 
-We specify a local experiment testing whether correctness-gated rubric rewards improve useful mathematical theory building. A frozen Qwen judge assesses explanations; external arithmetic verifies final answers. Separate frozen judging and frozen-recipient transfer assess behavior. Qualified-study analysis status: pending. After calibration failures, a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. Its results remain separate. No latent-space mechanism is established.
+We specify a local experiment testing whether correctness-gated rubric rewards improve useful mathematical theory building. A frozen Qwen judge assesses explanations; external arithmetic verifies final answers. Separate frozen judging and frozen-recipient transfer assess behavior. Qualified-study analysis status: pending. After calibration failures, a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. H1 and the exploratory frozen-recipient H2 remain untested. The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00).
 
 ## Context, motivation and related work
 
@@ -38,8 +38,8 @@ All tables and figures in this paper are generated from saved records. Pending c
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v2-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v2-prompted | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-ordinary | 400 | 0.3700 | Pending | Pending |
+| exploratory-small-gpu-v2-prompted | 400 | 0.3275 | Pending | Pending |
 | exploratory-small-gpu-v2-theory-seed42 | Pending | Pending | Pending | Pending |
 | exploratory-small-gpu-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
 
@@ -54,9 +54,17 @@ All tables and figures in this paper are generated from saved records. Pending c
 
 exploratory-small-gpu-v2-ordinary: 400/400 unique task outputs saved; mean recorded generation time 11.25 seconds per answer; last saved response 2026-11-16T04:21:45.066423+00:00. exploratory-small-gpu-v2-prompted: 400/400 unique task outputs saved; mean recorded generation time 11.98 seconds per answer; last saved response 2026-11-16T07:43:39.780525+00:00. These receipts verify saved task coverage and configuration, not answer correctness or theory quality. Mean times exclude startup, interrupted attempts and downtime. Sources: reports/generation/.
 
+## Paired retrospective prompt comparison
+
+The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00). Both prompts passed 99 problems, ordinary alone 49, prompted alone 32 and neither 220. Invalid formats accounted for 177 ordinary and 189 prompted answers. The stricter form check retained 148/400 and 131/400 respectively (zero changes for reduced fractions, expanded products and rounded roots in both arms). Its paired difference was -4.25 points (95% interval -8.50 to +0.00). All 400 problems retained their original stratum weights in 10,000 paired resamples. This retrospective prompt contrast is conditional on these strata, one checkpoint and one decoding setup. The primary interval includes zero. Theory and novelty are unmeasured. The scoring protocol, raw-linked results and paired resampling reference are available in [20–22].
+
+## Independent scientific audit
+
+The comparative attempt logged 13/64 updates and the cache-release diagnostic logged 7/16. The diagnostic stopped before the required save/resume boundary. The records cannot establish a cache-release benefit. The qualified reward comparison and frozen-recipient transfer experiment lack outcome data. The project-specific correctness-gated rubric measures a judge's opinion. The training loss uses Dr. GRPO length and variance choices with a separate positive KL penalty. See the dated scientific review for raw evidence and errata. The evidence index and dated errata are in [23].
+
 ## Development execution
 
-Preserved development logs contain 270 completed judge responses and 10 requests without a completed response. These counts are generated from reports/development logs. Interrupted CPU and CUDA judging attempts and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not establish calibration reliability. Conventional arguments received nonzero novelty credit, including after the v3 clarification. The clean standalone Gemma retry completed judgments, including a rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty to some conventional controls. Passive OpenMP waiting completed the observed requests without a transport failure; that short run does not establish sustained reliability. Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional generalized explanations. It was interrupted for a documented reasoning-mode development revision, without being declared a calibration pass or threshold failure. The later v5 attempt stopped after bounded retries repeated a contradiction between the declared reference relation and numerical novelty score; that calibration remained incomplete. V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when the user clarified that brief valid connections should receive modest novelty credit. V7 implements that changed construct. Its first trial failed the control-credit conditions despite correct observed framework/control rankings. A later reference-scope amendment clarified commutative-polynomial and ordinary biased-probability baselines. That trial also failed: routine probability controls received zero novelty, but brief commutator connections remained uncredited and a brief subgroup connection tied a developed framework on novelty while scoring higher overall. A conventional invariant was cited as a use of the added connection; exact-excerpt validation cannot establish that semantic attribution. Historical results are retained, and qualification remains unestablished. The two-call decomposition subsequently failed development: it credited a brief commutator connection but overcredited conventional GCD/LCM mathematics and missed developed uses. The preserved stage findings and case report document these errors. The preregistered specialist fallback also failed quoted-Qwen development. Its roles emitted mathematical objections to omitted elementary steps, conventionality and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. Selected exact checks of the disputed steps are preserved without rescoring the trial. Rubric-only Qwen specialist development also failed: correct validity findings were vetoed by other roles, while a conventional calculation was mistaken for use of a brief connection. Quoted Gemma specialist development was deferred following the user's new execution instruction. Related proof-verification studies discuss false rejection [16,17], but use different models and aggregation rules and do not qualify this instrument.
+Preserved development logs contain 270 completed-response entries and 10 unmatched requests summed across excerpts. Overlapping excerpts can contain the same event. Interrupted CPU and CUDA judging attempts and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not establish calibration reliability. Conventional arguments received nonzero novelty credit, including after the v3 clarification. The clean standalone Gemma retry completed judgments, including a rejected abbreviated quote and an accepted retry. V4 requests evidence before scores and supplies bounded validation feedback. V4 Gemma contrasts favored valid bridges but also assigned novelty to some conventional controls. Passive OpenMP waiting completed the observed requests without a transport failure; that short run does not establish sustained reliability. Qwen's subsequent partial v4 attempt also assigned no-theory verdicts to conventional generalized explanations. It was interrupted for a documented reasoning-mode development revision, without being declared a calibration pass or threshold failure. The later v5 attempt stopped after bounded retries repeated a contradiction between the declared reference relation and numerical novelty score; that calibration remained incomplete. V6 demonstrated a logged eligibility gate on that discrepancy, then was interrupted when the user clarified that brief valid connections should receive modest novelty credit. V7 implements that changed construct. Its first trial failed the control-credit conditions despite correct observed framework/control rankings. A later reference-scope amendment clarified commutative-polynomial and ordinary biased-probability baselines. That trial also failed: routine probability controls received zero novelty, but brief commutator connections remained uncredited and a brief subgroup connection tied a developed framework on novelty while scoring higher overall. A conventional invariant was cited as a use of the added connection; exact-excerpt validation cannot establish that semantic attribution. Historical results are retained, and qualification remains unestablished. The two-call decomposition subsequently failed development: it credited a brief commutator connection but overcredited conventional GCD/LCM mathematics and missed developed uses. The preserved stage findings and case report document these errors. The preregistered specialist fallback also failed quoted-Qwen development. Its roles emitted mathematical objections to omitted elementary steps, conventionality and perceived irrelevance, removing bonuses from valid frameworks and a brief connection. Selected exact checks of the disputed steps are preserved without rescoring the trial. Rubric-only Qwen specialist development also failed: correct validity findings were vetoed by other roles, while a conventional calculation was mistaken for use of a brief connection. Quoted Gemma specialist development was deferred following the user's new execution instruction. Related proof-verification studies discuss false rejection [16,17], but use different models and aggregation rules and do not qualify this instrument.
 
 evaluation_judge/quoted (dev, ef8a300c) failed: 2/4 observed preference contracts passed; false-theory suppression was not measured. Incomplete suite; lowest stratum-wise final upper bounds: preference 75.0%, false-theory suppression 100.0%.
 
@@ -131,7 +139,8 @@ The dated amendment explicitly permits training without calibration qualificatio
     "versus_no_notes": {},
     "versus_unrelated": {},
     "between_note_sources": {},
-    "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
+    "interpretation": "exploratory; source-clustered, unadjusted paired intervals",
+    "status": "pending"
   }
 }
 ```
@@ -199,5 +208,13 @@ The repository contains the dated preregistration, model and data locks, full pr
 [18] [Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization](https://proceedings.mlr.press/v202/gao23h.html)
 
 [19] [Anthropic, source-location citation representation (documentation only)](https://platform.claude.com/docs/en/build-with-claude/citations)
+
+[20] [Published retrospective scoring protocol](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/3e2d4bea0d567463e51155f2e9ac8fd368545ef9/reports/amendments/2026-11-26-cpu-baseline-audit.md)
+
+[21] [CPU results and per-answer records](https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/results/scientific-audit)
+
+[22] [Koehn, Statistical Significance Tests for Machine Translation Evaluation](https://aclanthology.org/W04-3250/)
+
+[23] [Independent scientific audit and evidence register](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/reviews/2026-11-26-scientific-audit.md)
 
 AI statement: Codex wrote this codebase and paper from the exact specification provided by a human. Human cleanup and rewriting are in progress.

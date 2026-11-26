@@ -60,4 +60,4 @@ def write_runtime_reports(snapshot, markdown_table):
             "include optimizer, scheduler, RNG, data position and judge-cache state.\n\n"
             "The [registered development intervention](../amendments/2026-11-16-cuda-cache-diagnostic.md) "
             "tests the existing Trainer cache-release option. Its updates are discarded. "
-            "No comparative configuration is silently changed.\n", encoding="utf-8")
+            + snapshot.get("audit_conclusions", "") + "\n", encoding="utf-8")

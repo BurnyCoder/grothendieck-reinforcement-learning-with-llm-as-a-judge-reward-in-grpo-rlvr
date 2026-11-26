@@ -1,0 +1,797 @@
+{
+  "date": "2026-11-26",
+  "interpretation": "Dated HTTP reachability observations. A successful response is not a content validation. See the claim register for scientific readings and source limitations.",
+  "urls": [
+    {
+      "url": "http://www.apache.org/licenses/",
+      "status": 200,
+      "resolved": "https://www.apache.org/licenses/",
+      "method": "HEAD"
+    },
+    {
+      "url": "http://www.apache.org/licenses/LICENSE-2.0",
+      "status": 200,
+      "resolved": "https://www.apache.org/licenses/LICENSE-2.0",
+      "method": "HEAD"
+    },
+    {
+      "url": "http://www.w3.org/2000/svg",
+      "status": 200,
+      "resolved": "https://www.w3.org/2000/svg",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://aclanthology.org/2025.coling-main.156.pdf",
+      "status": 200,
+      "resolved": "https://aclanthology.org/2025.coling-main.156.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://aclanthology.org/2025.coling-main.156/",
+      "status": 200,
+      "resolved": "https://aclanthology.org/2025.coling-main.156/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/capabilities/thinking",
+      "status": 200,
+      "resolved": "https://gemma.ai/get-started/capabilities/thinking/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+      "status": 200,
+      "resolved": "https://gemma.ai/models/gemma-4/model-card/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/1807.03341",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/1807.03341",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2108.02497",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2108.02497",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2306.05685",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2306.05685",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.03300",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2402.03300",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.20783",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2503.20783",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2507.17746",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2507.17746",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2509.13332",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2509.13332",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2511.14778",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2511.14778",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2511.21522v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2511.21522v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2601.08654",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2601.08654",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.02450v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2604.02450v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/abs/2606.07810",
+      "status": 200,
+      "resolved": "https://arxiv.org/abs/2606.07810",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/1807.03341",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/1807.03341",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2108.02497v4",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2108.02497v4",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2402.03300v3",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2402.03300v3",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2503.20783v2",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2503.20783v2",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2506.13639v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2506.13639v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2507.17746v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2507.17746v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2509.13332v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2509.13332v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2511.14778v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2511.14778v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2601.08654v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2601.08654v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2606.07810v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2606.07810v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2608.15979v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2608.15979v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/html/2610.02022v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/html/2610.02022v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2303.16634",
+      "status": 200,
+      "resolved": "https://arxiv.org/pdf/2303.16634",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2511.21522v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/pdf/2511.21522v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2604.02450v1",
+      "status": 200,
+      "resolved": "https://arxiv.org/pdf/2604.02450v1",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/",
+      "status": 200,
+      "resolved": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/#examples",
+      "status": 200,
+      "resolved": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/#examples",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/#judging",
+      "status": 200,
+      "resolved": "https://burnycoder.github.io/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/#judging",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://burnyverse.com/Articles/Explosion+of+AI+generated+mathematics+with+counterexamples+to+conjectures+and+the+future+of+AI+mathematics+with+Artificial+Grothendieck+Intelligence",
+      "status": 200,
+      "resolved": "https://burnyverse.com/Articles/Explosion+of+AI+generated+mathematics+with+counterexamples+to+conjectures+and+the+future+of+AI+mathematics+with+Artificial+Grothendieck+Intelligence",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path",
+      "status": 200,
+      "resolved": "https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.astral.sh/uv/getting-started/installation/",
+      "status": 200,
+      "resolved": "https://docs.astral.sh/uv/getting-started/installation/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.pydantic.dev/latest/concepts/models/#field-ordering",
+      "status": 200,
+      "resolved": "https://pydantic.dev/docs/validation/latest/concepts/models/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/asyncio-task.html#asyncio.timeout",
+      "status": 200,
+      "resolved": "https://docs.python.org/3.12/library/asyncio-task.html#asyncio.timeout",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/hashlib.html#hashlib.file_digest",
+      "status": 200,
+      "resolved": "https://docs.python.org/3.12/library/hashlib.html#hashlib.file_digest",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/weakref.html#finalizer-objects",
+      "status": 200,
+      "resolved": "https://docs.python.org/3.12/library/weakref.html#finalizer-objects",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3/library/ast.html",
+      "status": 200,
+      "resolved": "https://docs.python.org/3/library/ast.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3/library/ast.html#ast.get_source_segment",
+      "status": 200,
+      "resolved": "https://docs.python.org/3/library/ast.html#ast.get_source_segment",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3/library/fractions.html",
+      "status": 200,
+      "resolved": "https://docs.python.org/3/library/fractions.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3/library/resource.html",
+      "status": 200,
+      "resolved": "https://docs.python.org/3/library/resource.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html",
+      "status": 200,
+      "resolved": "https://docs.python.org/3/library/sqlite3.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.empty_cache.html",
+      "status": 200,
+      "resolved": "https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.empty_cache.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/2.14/notes/cuda.html#memory-management",
+      "status": 200,
+      "resolved": "https://docs.pytorch.org/docs/2.14/notes/cuda.html#memory-management",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.sympy.org/latest/modules/core.html#sympy.core.function.expand",
+      "status": 200,
+      "resolved": "https://docs.sympy.org/latest/modules/core.html#sympy.core.function.expand",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.sympy.org/latest/modules/core.html#sympy.core.intfunc.mod_inverse",
+      "status": 200,
+      "resolved": "https://docs.sympy.org/latest/modules/core.html#sympy.core.intfunc.mod_inverse",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.sympy.org/latest/modules/matrices/matrices.html",
+      "status": 200,
+      "resolved": "https://docs.sympy.org/latest/modules/matrices/matrices.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.sympy.org/latest/modules/polys/reference.html#sympy.polys.polytools.rem",
+      "status": 200,
+      "resolved": "https://docs.sympy.org/latest/modules/polys/reference.html#sympy.polys.polytools.rem",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://gcc.gnu.org/onlinedocs/libgomp/GOMP_005fSPINCOUNT.html",
+      "status": 200,
+      "resolved": "https://gcc.gnu.org/onlinedocs/libgomp/GOMP_005fSPINCOUNT.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#model-execution-order",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#postponed-model-sequence",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr#postponed-model-sequence",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/docs/future-research.md",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/docs/future-research.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/amendments/2026-11-16-task-difficulty-fallback.md",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/amendments/2026-11-16-task-difficulty-fallback.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/experiments/exploratory-small-gpu-v2-memory-growth.md",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/experiments/exploratory-small-gpu-v2-memory-growth.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/generation/README.md",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/generation/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/paper.pdf",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/paper.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/preregistration.md",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/preregistration.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/pull/36",
+      "status": 200,
+      "resolved": "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/pull/36",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/grammars/README.md",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/grammars/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/README.md",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/server-common.cpp",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/blob/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server/server-common.cpp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/issues/31516",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/issues/31516",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/issues/9588",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/issues/9588",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b12359",
+      "status": "404",
+      "method": "GET"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12359",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/releases/tag/b12359",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/tree/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/llama-bench",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/tree/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/llama-bench",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/tree/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/tree/b1b770d90d94cad9e9ea5b993bdbc383a522fb28/tools/server",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/tree/master/tools/server",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/tree/master/tools/server",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/ggml-org/llama.cpp/tree/master/tools/server#api-endpoints",
+      "status": 200,
+      "resolved": "https://github.com/ggml-org/llama.cpp/tree/master/tools/server#api-endpoints",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/huggingface/Math-Verify",
+      "status": 200,
+      "resolved": "https://github.com/huggingface/Math-Verify",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/trainer.py",
+      "status": 200,
+      "resolved": "https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/trainer.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/huggingface/trl",
+      "status": 200,
+      "resolved": "https://github.com/huggingface/trl",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/grpo_trainer.py",
+      "status": 200,
+      "resolved": "https://github.com/huggingface/trl/blob/v1.15.0/trl/trainer/grpo_trainer.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/lean-dojo/LeanDojo",
+      "status": 200,
+      "resolved": "https://github.com/lean-dojo/LeanDojo",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/judge_prompts.jsonl",
+      "status": 200,
+      "resolved": "https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/judge_prompts.jsonl",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/open-thought/reasoning-gym",
+      "status": 200,
+      "resolved": "https://github.com/open-thought/reasoning-gym",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/open-thought/reasoning-gym/blob/main/reasoning_gym/algebra/polynomial_equations.py",
+      "status": 200,
+      "resolved": "https://github.com/open-thought/reasoning-gym/blob/main/reasoning_gym/algebra/polynomial_equations.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/open-thought/reasoning-gym/blob/main/reasoning_gym/algebra/polynomial_multiplication.py",
+      "status": 200,
+      "resolved": "https://github.com/open-thought/reasoning-gym/blob/main/reasoning_gym/algebra/polynomial_multiplication.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/open-thought/reasoning-gym/tree/main/reasoning_gym",
+      "status": 200,
+      "resolved": "https://github.com/open-thought/reasoning-gym/tree/main/reasoning_gym",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/trishullab/Fermat",
+      "status": 200,
+      "resolved": "https://github.com/trishullab/Fermat",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/unslothai/unsloth",
+      "status": 200,
+      "resolved": "https://github.com/unslothai/unsloth",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/unslothai/unsloth/blob/main/pyproject.toml",
+      "status": 200,
+      "resolved": "https://github.com/unslothai/unsloth/blob/main/pyproject.toml",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "status": 200,
+      "resolved": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "status": 200,
+      "resolved": "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "status": 200,
+      "resolved": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8",
+      "status": 200,
+      "resolved": "https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr",
+      "status": 200,
+      "resolved": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/commit/ea1b2297d10d0b19b75b504f630e1d8cce3f6591",
+      "status": 200,
+      "resolved": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/commit/ea1b2297d10d0b19b75b504f630e1d8cce3f6591",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-ordinary",
+      "status": 200,
+      "resolved": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-ordinary",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-prompted",
+      "status": 200,
+      "resolved": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/generations/exploratory-small-gpu-v2-prompted",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/runs/exploratory-small-gpu-v2-theory-seed42",
+      "status": 200,
+      "resolved": "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/runs/exploratory-small-gpu-v2-theory-seed42",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/datasets/about_cache",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/datasets/about_cache",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/transformers/main_classes/trainer",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/transformers/main_classes/trainer",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/transformers/v5.17.0/main_classes/trainer",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/transformers/v5.17.0/main_classes/trainer",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/trl/grpo_trainer",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/trl/grpo_trainer",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/trl/grpo_trainer#logged-metrics",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/trl/grpo_trainer#logged-metrics",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/trl/grpo_trainer#trl.GRPOConfig",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/trl/grpo_trainer#trl.GRPOConfig",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer#tool-calling-with-grpo",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/trl/main/en/grpo_trainer#tool-calling-with-grpo",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/docs/trl/main/en/grpo_trainer#using-a-custom-reward-function",
+      "status": 200,
+      "resolved": "https://huggingface.co/docs/trl/main/en/grpo_trainer#using-a-custom-reward-function",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF",
+      "status": 200,
+      "resolved": "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF",
+      "status": 200,
+      "resolved": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF",
+      "status": 200,
+      "resolved": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF",
+      "status": 200,
+      "resolved": "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://lean-lang.org/doc/reference/latest/Introduction/",
+      "status": 200,
+      "resolved": "https://lean-lang.org/doc/reference/latest/Introduction/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/filesystems",
+      "status": 200,
+      "resolved": "https://learn.microsoft.com/en-us/windows/wsl/filesystems",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://ncatlab.org/nlab/files/McLartyRisingSea.pdf",
+      "status": 200,
+      "resolved": "https://ncatlab.org/nlab/files/McLartyRisingSea.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://ncatlab.org/nlab/show/The%2BRising%2BSea",
+      "status": 200,
+      "resolved": "https://ncatlab.org/nlab/show/The%2BRising%2BSea",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://neurips.cc/public/guides/PaperChecklist",
+      "status": 200,
+      "resolved": "https://neurips.cc/public/guides/PaperChecklist",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://people.math.harvard.edu/~knill/teaching/math22b2019/",
+      "status": 200,
+      "resolved": "https://people.math.harvard.edu/~knill/teaching/math22b2019/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://people.math.harvard.edu/~knill/teaching/math22b2019/handouts/lecture15.pdf",
+      "status": 200,
+      "resolved": "https://people.math.harvard.edu/~knill/teaching/math22b2019/handouts/lecture15.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations",
+      "status": 200,
+      "resolved": "https://platform.claude.com/docs/en/build-with-claude/citations",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations#how-citations-work",
+      "status": 200,
+      "resolved": "https://platform.claude.com/docs/en/build-with-claude/citations#how-citations-work",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v202/gao23h.html",
+      "status": 200,
+      "resolved": "https://proceedings.mlr.press/v202/gao23h.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://proceedings.mlr.press/v202/gao23h/gao23h.pdf",
+      "status": 200,
+      "resolved": "https://proceedings.mlr.press/v202/gao23h/gao23h.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/4b8001fc75f0532827472ea5a16af9ca-Abstract-Conference.html",
+      "status": 200,
+      "resolved": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/4b8001fc75f0532827472ea5a16af9ca-Abstract-Conference.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://pypi.org/pypi/unsloth/2026.11.4/json",
+      "status": 200,
+      "resolved": "https://pypi.org/pypi/unsloth/2026.11.4/json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://pytorch.org/docs/stable/tensor_attributes.html#torch.device",
+      "status": 200,
+      "resolved": "https://docs.pytorch.org/docs/stable/tensor_attributes.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide/fp8-reinforcement-learning",
+      "status": 200,
+      "resolved": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide/fp8-reinforcement-learning",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune",
+      "status": 200,
+      "resolved": "https://unsloth.ai/docs/models/qwen3.5/fine-tune",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.python-httpx.org/advanced/timeouts/",
+      "status": 200,
+      "resolved": "https://www.python-httpx.org/advanced/timeouts/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=LKrwhjOI8Nc",
+      "status": 200,
+      "resolved": "https://www.youtube.com/watch?v=LKrwhjOI8Nc",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://x.com/aran_nayebi/status/2057592779308429687",
+      "status": 200,
+      "resolved": "https://x.com/aran_nayebi/status/2057592779308429687",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://x.com/littmath/status/2109653733470572878",
+      "status": 200,
+      "resolved": "https://x.com/littmath/status/2109653733470572878",
+      "method": "HEAD"
+    }
+  ]
+}

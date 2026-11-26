@@ -43,6 +43,14 @@ def parser():
     generate.add_argument("--seed", type=int, default=42)
     evaluate = sub.add_parser("evaluate")
     evaluate.add_argument("--run-id", required=True)
+    scored = sub.add_parser("score-saved-correctness", help="Audit frozen baseline text on CPU")
+    scored.add_argument("--archives", type=Path)
+    scored.add_argument("--output", type=Path)
+    scored.add_argument("--workers", type=int, default=2)
+    audit = sub.add_parser("reproduce-scientific-audit", help="Rebuild the independent review from frozen CPU inputs")
+    audit.add_argument("--storage", type=Path)
+    audit.add_argument("--archives", type=Path)
+    audit.add_argument("--workers", type=int, default=2)
     transfer = sub.add_parser("transfer")
     transfer.add_argument("--source-runs", nargs="+", required=True)
     for phase in (train, generate, evaluate, transfer):
@@ -67,6 +75,12 @@ def main():
         elif command in ("doctor", "download", "serve", "hash-models"):
             from . import models
             result = getattr(models, "artifact_hashes" if command == "hash-models" else command)(**args)
+        elif command == "score-saved-correctness":
+            from .saved_correctness import score_saved_correctness
+            result = score_saved_correctness(**args)
+        elif command == "reproduce-scientific-audit":
+            from .scientific_audit import reproduce_scientific_audit
+            result = reproduce_scientific_audit(**args)
         elif command == "calibrate":
             from .calibration import calibrate
             from .judge import Judge

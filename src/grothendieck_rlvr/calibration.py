@@ -187,13 +187,13 @@ def calibrate(judge, split: str, restart_development=False) -> dict:
     return result
 
 
-def require_passed_calibration(split: str) -> None:
+def require_passed_calibration(split: str, archive=None) -> None:
     """Require complete matching results from all three configurations, without inference."""
     from .judge import Judge
     for role, variant, url in [("training_judge", "quoted", "http://127.0.0.1:8081"),
                                ("training_judge", "rubric", "http://127.0.0.1:8081"),
                                ("evaluation_judge", "quoted", "http://127.0.0.1:8082")]:
-        path = root() / "calibration" / f"{role}-{variant}-{split}.json"
+        path = (root() if archive is None else archive) / "calibration" / f"{role}-{variant}-{split}.json"
         if not path.exists() or not read_json(path)["passed"]:
             raise RuntimeError(f"Qualification blocked: missing or failed {role}/{variant} {split}")
         judge = Judge(url, role, variant)

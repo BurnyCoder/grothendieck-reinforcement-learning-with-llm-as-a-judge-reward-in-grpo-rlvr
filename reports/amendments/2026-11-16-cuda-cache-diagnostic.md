@@ -77,3 +77,5 @@ bytes, task IDs, prompts and decoding settings, with explicit provenance.
 No held-out mathematical scores were inspected to choose this intervention.
 The original calibration gates, modest valid-connection credit, reward weights,
 sample sizes, and 64-update comparative budgets remain unchanged.
+
+**Record update, 2026-11-26.** The [independent audit](../reviews/2026-11-26-scientific-audit.md) recovered partial optimizer events. The required save/resume and end-of-run memory measurements were never reached. The original decision rule above remains the historical registration.

@@ -1,6 +1,6 @@
 # Experiment summary
 
-Generated from saved artifacts at 2026-11-16T15:41:26.475455+00:00.
+Generated from saved artifacts at 2026-11-26T12:51:39.883466+00:00.
 
 Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric assessment, not a proof certificate. C × theory weights that assessment by answer correctness. Pending means no result, not zero performance.
 
@@ -16,10 +16,14 @@ Correctness is verified final-answer accuracy. Theory is a frozen judge's rubric
 | theory-seed44 | Pending | Pending | Pending | Pending |
 | shuffled-seed42 | Pending | Pending | Pending | Pending |
 | rubric-seed42 | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v2-ordinary | Pending | Pending | Pending | Pending |
-| exploratory-small-gpu-v2-prompted | Pending | Pending | Pending | Pending |
+| exploratory-small-gpu-v2-ordinary | 400 | 0.3700 | Pending | Pending |
+| exploratory-small-gpu-v2-prompted | 400 | 0.3275 | Pending | Pending |
 | exploratory-small-gpu-v2-theory-seed42 | Pending | Pending | Pending | Pending |
 | exploratory-small-gpu-v2-correctness-seed42 | Pending | Pending | Pending | Pending |
+
+## Retrospective prompt comparison
+
+The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00). Both prompts passed 99 problems, ordinary alone 49, prompted alone 32 and neither 220. Invalid formats accounted for 177 ordinary and 189 prompted answers. The stricter form check retained 148/400 and 131/400 respectively (zero changes for reduced fractions, expanded products and rounded roots in both arms). Its paired difference was -4.25 points (95% interval -8.50 to +0.00). All 400 problems retained their original stratum weights in 10,000 paired resamples. This retrospective prompt contrast is conditional on these strata, one checkpoint and one decoding setup. The primary interval includes zero. Theory and novelty are unmeasured.
 
 ## Generation execution
 
@@ -107,7 +111,8 @@ The user authorized training with unqualified judges. These analyses cannot esta
     "versus_no_notes": {},
     "versus_unrelated": {},
     "between_note_sources": {},
-    "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
+    "interpretation": "exploratory; source-clustered, unadjusted paired intervals",
+    "status": "pending"
   }
 }
 ```
@@ -135,7 +140,8 @@ Descriptive paired intervals; not a replacement success criterion.
   "versus_no_notes": {},
   "versus_unrelated": {},
   "between_note_sources": {},
-  "interpretation": "exploratory; source-clustered, unadjusted paired intervals"
+  "interpretation": "exploratory; source-clustered, unadjusted paired intervals",
+  "status": "pending"
 }
 ```
 

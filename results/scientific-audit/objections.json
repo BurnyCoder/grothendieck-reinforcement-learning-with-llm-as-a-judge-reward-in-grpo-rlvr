@@ -1,0 +1,318 @@
+{
+  "trials": {
+    "qwen-v8-specialists-dev": [
+      {
+        "id": "novelty-dev-0",
+        "side": "developed",
+        "family": "gcd",
+        "candidate_digest": "6f45656f521925c8488005958a85e1fe35633de4e5a4944323c90ccb266facaf",
+        "problem": "Find gcd(8, 12).",
+        "answer": "4",
+        "validity": "contradicted",
+        "issues": [
+          {
+            "stage": "validity",
+            "evidence": [
+              "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ.",
+              "Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1."
+            ],
+            "rationale": "The candidate introduces specific examples (a=2n, b=3n) that do not match the problem (8, 12) and makes assertions about reachability (n+1 not reachable) that are contextually confusing or irrelevant to the specific instance requested. While the general theory is correct, the specific application to the problem instance is muddled.",
+            "severity": "contradicted"
+          },
+          {
+            "stage": "development",
+            "evidence": [
+              "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ."
+            ],
+            "rationale": "The candidate shifts from the specific problem gcd(8,12) to a general parameterization a=2n, b=3n without solving the original instance explicitly using the framework, though the framework itself is valid.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "conceptual_economy",
+            "evidence": [
+              "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ.",
+              "Further, ua+vb=t has an integer solution exactly when d divides t; with these step sizes n is reachable and n+1 is not for n>1."
+            ],
+            "rationale": "The candidate applies the general theory to specific numbers 8 and 12 incorrectly. 8 and 12 are not of the form 2n and 3n for the same n. 8=2*4, 12=3*4, so n=4 works, but the text implies a general form 2n, 3n without fixing n=4. The claim 'n is reachable and n+1 is not for n>1' is irrelevant to finding gcd(8,12) and mathematically confused in this context.",
+            "severity": "contradicted"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-0",
+        "side": "control",
+        "family": "gcd",
+        "candidate_digest": "1c185c4d1064db7dc1dedf296d44ff1ed109cf8f45be2ef6de1dd2eec35b4299",
+        "problem": "Find gcd(8, 12).",
+        "answer": "4",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "Thus gcd(2n,3n)=n for positive n. The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.",
+              "<final>4</final>"
+            ],
+            "rationale": "The response claims gcd(8,12)=4 based on the formula gcd(2n,3n)=n (where n=4), but fails to explicitly apply the reduction gcd(8,12)->gcd(8,4) or gcd(4,4) to justify the final value within the provided text.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-1",
+        "side": "developed",
+        "family": "lcm",
+        "candidate_digest": "ec028dd9e28ba001b5fbc8c62e4c3cbcad20e4a7d28b311d82b6df85aab62e8d",
+        "problem": "Find lcm(12, 18).",
+        "answer": "36",
+        "validity": "contradicted",
+        "issues": [
+          {
+            "stage": "validity",
+            "evidence": [
+              "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k.",
+              "For phases r=s=n with periods 2n,3n, common times are n+6nZ."
+            ],
+            "rationale": "The candidate uses '2n and 3n' as a proxy for 12 and 18 without explicitly mapping n=6. While mathematically consistent within the generalization, it obscures the direct solution to the specific problem instance.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "development",
+            "evidence": [
+              "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k."
+            ],
+            "rationale": "The candidate substitutes 12 and 18 with 2n and 3n without defining n. If n=6, lcm(12,18)=36, but the text implies n is a variable parameter. The derivation '6nZ' for lcm(2n, 3n) is correct (6n), but the connection to the specific numbers 12 and 18 is implicit rather than explicit in the final step.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "conceptual_economy",
+            "evidence": [
+              "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k."
+            ],
+            "rationale": "The candidate generalizes to '2n and 3n' without defining 'n' relative to the specific problem inputs 12 and 18. This creates a gap between the general theory and the specific instance calculation.",
+            "severity": "contradicted"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-1",
+        "side": "control",
+        "family": "lcm",
+        "candidate_digest": "f6592e70374c696d9f3b5ea0b9106bfe1cc28b25317218e3af40637b7881adf1",
+        "problem": "Find lcm(12, 18).",
+        "answer": "36",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b."
+            ],
+            "rationale": "The claim that max exponents give lcm and min give gcd is standard number theory, not a new conceptual addition. The response does not develop this into a framework.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-2",
+        "side": "developed",
+        "family": "polynomial_multiplication",
+        "candidate_digest": "18450138a8d10f070b023d5576dc9fb05bdeae375c200e4631655fcd322b5ab6",
+        "problem": "Expand (x+8)*(x-8).",
+        "answer": "x**2-64",
+        "validity": "contradicted",
+        "issues": [
+          {
+            "stage": "validity",
+            "evidence": [
+              "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+            ],
+            "rationale": "The claim that N(u) equals (x+n)(x-n) requires justification via the isomorphism to R[x] x R[x] or explicit multiplication in the quotient ring. The response asserts equality without showing the product (x+n*e)(x-n*e) explicitly.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "development",
+            "evidence": [
+              "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+            ],
+            "rationale": "The claim that N(u) equals (x+n)(x-n) relies on evaluation at e=1 and e=-1, but the norm is defined as a^2-b^2. The equality (x+n)(x-n) = x^2-n^2 is the identity being proved, not a consequence of evaluation in the algebra unless the algebra is isomorphic to R[x] via e->1 and e->-1, which is not explicitly justified as a derivation of the identity from the norm property alone.",
+            "severity": "contradicted"
+          },
+          {
+            "stage": "structural_understanding",
+            "evidence": [
+              "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+            ],
+            "rationale": "The candidate claims N(u) equals (x+n)(x-n) by evaluation, but N(u) is defined as a^2-b^2. The connection to the specific problem (n=8) is asserted without showing the evaluation map explicitly yields the polynomial product in the base ring.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "justified_generality",
+            "evidence": [
+              "The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field."
+            ],
+            "rationale": "This statement is mathematically correct regarding the algebra structure but is irrelevant to the derivation of the polynomial expansion and adds unnecessary detail that does not advance the 'rising-sea' understanding of the specific problem.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "problem_as_consequence",
+            "evidence": [
+              "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+            ],
+            "rationale": "The claim that N(u) equals (x+n)(x-n) relies on evaluation at e=1 and e=-1, which is not fully justified within the algebraic framework described. The norm is defined as a^2-b^2, while (x+n)(x-n) is a product in R[x]. The connection requires mapping the algebra element to the polynomial product, which is asserted rather than derived from the algebra's multiplication rules.",
+            "severity": "contradicted"
+          },
+          {
+            "stage": "conceptual_economy",
+            "evidence": [
+              "The algebra has zero divisors: (1+e)(1-e)=0 although both factors are nonzero; it is not a field."
+            ],
+            "rationale": "This statement is mathematically correct but irrelevant to the specific task of expanding (x+8)(x-8). It adds unnecessary context without contributing to the derivation of the result.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-2",
+        "side": "control",
+        "family": "polynomial_multiplication",
+        "candidate_digest": "e1865f3a81ce1063488cc8e34b0c015dca6e79766adaaa8ecda09365b3c7eeb9",
+        "problem": "Expand (x+8)*(x-8).",
+        "answer": "x**2-64",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "Noncommuting products retain a cross-term commutator."
+            ],
+            "rationale": "The mention of noncommuting products is a contrast but lacks mathematical work connecting it to the specific problem or expanding the framework.",
+            "severity": "unsupported"
+          }
+        ]
+      }
+    ],
+    "qwen-v8-specialists-rubric-dev": [
+      {
+        "id": "novelty-dev-0",
+        "side": "developed",
+        "family": "gcd",
+        "candidate_digest": "6f45656f521925c8488005958a85e1fe35633de4e5a4944323c90ccb266facaf",
+        "problem": "Find gcd(8, 12).",
+        "answer": "4",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "conceptual_economy",
+            "evidence": [
+              "For a=2n,b=3n, every displacement is a multiple of n and n=3n-2n is reachable, so I=nZ."
+            ],
+            "rationale": "The candidate shifts from the specific problem (8,12) to a general case (2n,3n) without solving the original instance explicitly within the conceptual framework, creating unnecessary abstraction.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-0",
+        "side": "control",
+        "family": "gcd",
+        "candidate_digest": "1c185c4d1064db7dc1dedf296d44ff1ed109cf8f45be2ef6de1dd2eec35b4299",
+        "problem": "Find gcd(8, 12).",
+        "answer": "4",
+        "validity": "contradicted",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "The same argument gives gcd(a,b)=gcd(a,b-a), the invariant of Euclid's algorithm.",
+              "Thus gcd(2n,3n)=n for positive n."
+            ],
+            "rationale": "Candidate claims the general invariant is derived from the specific case gcd(2n,3n)=n. This reverses the logical dependency; the general property justifies the specific case, not vice versa.",
+            "severity": "contradicted"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-1",
+        "side": "developed",
+        "family": "lcm",
+        "candidate_digest": "ec028dd9e28ba001b5fbc8c62e4c3cbcad20e4a7d28b311d82b6df85aab62e8d",
+        "problem": "Find lcm(12, 18).",
+        "answer": "36",
+        "validity": "contradicted",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k."
+            ],
+            "rationale": "The candidate substitutes 12 and 18 with 2n and 3n without explicitly solving for n, though the final answer 36 implies n=6. This is a minor notational gap rather than a mathematical error.",
+            "severity": "unsupported"
+          },
+          {
+            "stage": "problem_as_consequence",
+            "evidence": [
+              "For 2n and 3n this is 6nZ, since t=n*k must have 6 dividing k."
+            ],
+            "rationale": "The candidate introduces '2n and 3n' without establishing that 12 and 18 correspond to these parameters (e.g., n=6). The mapping from the specific problem inputs to the general framework variables is missing, making the derivation incomplete.",
+            "severity": "contradicted"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-1",
+        "side": "control",
+        "family": "lcm",
+        "candidate_digest": "f6592e70374c696d9f3b5ea0b9106bfe1cc28b25317218e3af40637b7881adf1",
+        "problem": "Find lcm(12, 18).",
+        "answer": "36",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "More generally maximum prime exponents give lcm; minimum exponents give gcd, proving gcd(a,b)*lcm(a,b)=a*b."
+            ],
+            "rationale": "The claim that max exponents give lcm and min give gcd is standard conventional reference, not a novel development.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-2",
+        "side": "developed",
+        "family": "polynomial_multiplication",
+        "candidate_digest": "18450138a8d10f070b023d5576dc9fb05bdeae375c200e4631655fcd322b5ab6",
+        "problem": "Expand (x+8)*(x-8).",
+        "answer": "x**2-64",
+        "validity": "unsupported",
+        "issues": [
+          {
+            "stage": "development",
+            "evidence": [
+              "Setting u=x+n*e gives N(u)=x**2-n**2, equal to (x+n)(x-n) by evaluation at e=1 and e=-1."
+            ],
+            "rationale": "The claim that N(u) equals (x+n)(x-n) by evaluation at e=1 and e=-1 is mathematically imprecise. N(u) is defined as a^2-b^2. The product (x+n)(x-n) is the scalar result of the norm, not an evaluation of the algebra element itself. The connection relies on the isomorphism between the norm map and the product of conjugates, not direct evaluation of u.",
+            "severity": "unsupported"
+          }
+        ]
+      },
+      {
+        "id": "novelty-dev-2",
+        "side": "control",
+        "family": "polynomial_multiplication",
+        "candidate_digest": "e1865f3a81ce1063488cc8e34b0c015dca6e79766adaaa8ecda09365b3c7eeb9",
+        "problem": "Expand (x+8)*(x-8).",
+        "answer": "x**2-64",
+        "validity": "supported",
+        "issues": []
+      }
+    ]
+  },
+  "norm_composition_residual": "0",
+  "literature_case6": {
+    "linear_on_singletons": false,
+    "full_set_fixed": true,
+    "singleton_image_size": 2
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "files": {
+    "calibration-gemma-v3-standalone.jsonl": {
+      "judge_assessment": 4,
+      "judge_failure": 1,
+      "model_chunk": 2574,
+      "model_request": 6,
+      "model_response": 5
+    },
+    "exploratory-single-pilot-step1.jsonl": {
+      "checkpoint": 1,
+      "judge_assessment": 3,
+      "judge_context_check": 4,
+      "judge_failure": 1,
+      "model_chunk": 3730,
+      "model_request": 4,
+      "model_response": 4,
+      "policy_completion": 8,
+      "reward_batch": 1,
+      "rollout": 8,
+      "training_finished": 1,
+      "training_metrics": 2,
+      "training_started": 1
+    },
+    "exploratory-single-pilot-step2.jsonl": {
+      "checkpoint": 1,
+      "judge_assessment": 4,
+      "judge_context_check": 4,
+      "model_chunk": 3708,
+      "model_request": 4,
+      "model_response": 4,
+      "policy_completion": 8,
+      "reward_batch": 1,
+      "rollout": 8,
+      "training_finished": 1,
+      "training_metrics": 2,
+      "training_started": 1
+    },
+    "exploratory-single-v1-pilot-failure.jsonl": {
+      "judge_context_check": 3,
+      "judge_failure": 3,
+      "model_chunk": 3382,
+      "model_request": 3,
+      "model_response": 3,
+      "policy_completion": 8,
+      "training_started": 1
+    },
+    "exploratory-small-gpu-v1-pilot-failure.jsonl": {
+      "judge_context_check": 3,
+      "judge_failure": 3,
+      "model_chunk": 6061,
+      "model_request": 3,
+      "model_response": 3,
+      "policy_completion": 8,
+      "training_started": 1
+    },
+    "exploratory-small-gpu-v2-pilot-step1.jsonl": {
+      "checkpoint": 1,
+      "judge_assessment": 3,
+      "judge_context_check": 3,
+      "model_chunk": 3245,
+      "model_request": 3,
+      "model_response": 3,
+      "policy_completion": 8,
+      "reward_batch": 1,
+      "rollout": 8,
+      "training_finished": 1,
+      "training_metrics": 2,
+      "training_started": 1
+    },
+    "exploratory-small-gpu-v2-pilot-step2.jsonl": {
+      "checkpoint": 1,
+      "policy_completion": 8,
+      "reward_batch": 1,
+      "rollout": 8,
+      "training_finished": 1,
+      "training_metrics": 2,
+      "training_started": 1
+    },
+    "gemma-cpu-v2.jsonl": {
+      "judge_assessment": 1,
+      "judge_failure": 3,
+      "model_chunk": 830,
+      "model_request": 4,
+      "model_response": 1
+    },
+    "gemma-cuda-v3-interrupted.jsonl": {
+      "calibration_development_archived": 1,
+      "model_chunk": 45,
+      "model_request": 1
+    },
+    "gemma-cuda24-v4-interrupted.jsonl": {
+      "calibration_development_archived": 1,
+      "judge_assessment": 4,
+      "model_chunk": 2596,
+      "model_request": 5,
+      "model_response": 4
+    },
+    "gemma-cuda24-v4-resumed-interrupted.jsonl": {
+      "judge_assessment": 14,
+      "judge_cache_hit": 4,
+      "model_chunk": 8571,
+      "model_request": 15,
+      "model_response": 14
+    },
+    "gemma-passive-v4-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 8,
+      "model_chunk": 4852,
+      "model_request": 8,
+      "model_response": 8
+    },
+    "pilot-first-failure.jsonl": {
+      "phase_failure": 1
+    },
+    "pilot-theory-seed42.jsonl": {
+      "checkpoint": 2,
+      "judge_assessment": 9,
+      "model_chunk": 3188,
+      "model_request": 9,
+      "model_response": 9,
+      "policy_completion": 16,
+      "reward_batch": 2,
+      "rollout": 16,
+      "training_finished": 2,
+      "training_metrics": 4,
+      "training_started": 2
+    },
+    "qwen-cpu-v2.jsonl": {
+      "judge_assessment": 4,
+      "model_chunk": 2507,
+      "model_request": 4,
+      "model_response": 4
+    },
+    "qwen-cpu-v3-interrupted.jsonl": {
+      "calibration_development_archived": 1,
+      "judge_assessment": 17,
+      "model_chunk": 8113,
+      "model_request": 18,
+      "model_response": 17
+    },
+    "qwen-reasoning512-v4-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 6,
+      "judge_failure": 1,
+      "model_chunk": 7943,
+      "model_request": 7,
+      "model_response": 7
+    },
+    "qwen-v4-interrupted.jsonl": {
+      "calibration_development_archived": 1,
+      "judge_assessment": 9,
+      "model_chunk": 5690,
+      "model_request": 10,
+      "model_response": 9
+    },
+    "qwen-v5-contract-failure.jsonl": {
+      "calibration_development_archived": 1,
+      "judge_assessment": 7,
+      "judge_failure": 3,
+      "model_chunk": 12402,
+      "model_request": 10,
+      "model_response": 10,
+      "phase_failure": 1
+    },
+    "qwen-v6-user-interrupted.jsonl": {
+      "calibration_development_archived": 1,
+      "judge_assessment": 14,
+      "model_chunk": 18717,
+      "model_request": 15,
+      "model_response": 14
+    },
+    "qwen-v7-anchors-v3-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 18,
+      "judge_failure": 1,
+      "model_chunk": 23359,
+      "model_request": 19,
+      "model_response": 19
+    },
+    "qwen-v7-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 14,
+      "model_chunk": 17346,
+      "model_request": 14,
+      "model_response": 14
+    },
+    "qwen-v8-specialists-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 6,
+      "judge_context_check": 49,
+      "judge_failure": 1,
+      "judge_stage_assessment": 48,
+      "judge_stage_started": 49,
+      "model_chunk": 28337,
+      "model_request": 49,
+      "model_response": 49
+    },
+    "qwen-v8-specialists-rubric-dev.jsonl": {
+      "calibration_complete": 1,
+      "judge_assessment": 6,
+      "judge_context_check": 48,
+      "judge_stage_assessment": 48,
+      "judge_stage_started": 48,
+      "model_chunk": 25516,
+      "model_request": 48,
+      "model_response": 48
+    },
+    "qwen-v8-two-stage-dev.jsonl": {
+      "calibration_complete": 1,
+      "calibration_development_archived": 1,
+      "judge_assessment": 10,
+      "judge_context_check": 21,
+      "judge_failure": 1,
+      "judge_stage_assessment": 20,
+      "judge_stage_started": 21,
+      "model_chunk": 20908,
+      "model_request": 21,
+      "model_response": 21
+    }
+  },
+  "distinct_events": {
+    "model_request": 280,
+    "model_response": 270,
+    "judge_assessment": 161
+  }
+}

@@ -8,10 +8,12 @@ from statistics import median
 from zoneinfo import ZoneInfo
 
 from .analysis import primary_comparison, summarize, transfer_analysis
+from .analysis_evidence import registered_transfer
 from .budget import training_budget, budget_markdown
 from .experiments import EXPLORATORY_ID, EXPLORATORY_PREFIX, experiment_profile
 from .io import PROJECT, atomic_json, digest, read_json, read_jsonl, root
 from .runtime_reports import GROWTH_KIND, growth_text, write_runtime_reports
+from .audit_publication import audit_snapshot, baseline_examples, baseline_text, update_audit_documents
 
 ARMS = ["ordinary", "prompted", "correctness-seed42", "theory-seed42",
         "correctness-seed43", "theory-seed43", "correctness-seed44", "theory-seed44",
@@ -94,30 +96,33 @@ def calibration_text(snapshot) -> str:
 
 def collect() -> dict:
     """Missing artifacts remain missing; they never become fabricated zero results."""
-    evaluations = {p.parent.name: read_jsonl(p) for p in (root() / "evaluations").glob("*/scores.jsonl")}
+    evaluations = {p.parent.name: read_jsonl(p) for p in sorted((root() / "evaluations").glob("*/scores.jsonl"))}
     cfg = read_json(PROJECT / "configs/study.json")
     exploratory = {name.removeprefix(EXPLORATORY_PREFIX): rows for name, rows in evaluations.items()
                    if name.startswith(EXPLORATORY_PREFIX)}
-    training = {p.parent.name: read_jsonl(p) for p in (root() / "runs").glob("*/metrics.jsonl")}
+    training = {p.parent.name: read_jsonl(p) for p in sorted((root() / "runs").glob("*/metrics.jsonl"))}
     calibration = calibration_records()
-    examples = {name: sorted(rows, key=lambda r: r["task_id"])[:12] for name, rows in evaluations.items()}
-    feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json")) + list(
-        (root() / "feasibility").glob("*.json"))
+    examples = baseline_examples(root()) | {name: sorted(rows, key=lambda r: r["task_id"])[:12]
+                                            for name, rows in evaluations.items()}
+    feasibility_paths = sorted((PROJECT / "reports/development").glob("feasibility-*.json"))
     feasibility = {digest(record): record for record in map(read_json, feasibility_paths)}
-    return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg,
+    for path in sorted((root() / "feasibility").glob("*.json")):
+        record = read_json(path)
+        if record.get("kind") or record.get("run_id"):
+            feasibility[digest(record)] = record
+    return {"generated_at": datetime.now(timezone.utc).isoformat(), "study": cfg, **audit_snapshot(),
             "models": read_json(PROJECT / "configs/models.lock.json"),
             "summaries": {name: summarize(rows) for name, rows in evaluations.items()},
             "strata": {name: {split: summarize([r for r in rows if r["split"] == split])
                               for split in sorted({r["split"] for r in rows})}
                        for name, rows in evaluations.items()},
-            "primary": primary_comparison(evaluations, cfg), "training": training,
+            "primary": primary_comparison(evaluations, cfg, archive=root()), "training": training,
             "exploratory_single": {
                 "profile": experiment_profile(True),
                 "primary": primary_comparison(exploratory, cfg, exploratory=True),
                 "secondary_ood": primary_comparison(exploratory, cfg, suffix="-ood", secondary=True,
                                                      exploratory=True),
-                "transfer": transfer_analysis(read_jsonl(root() / "transfer" / EXPLORATORY_ID / "scores.jsonl"),
-                                              cfg["bootstrap_samples"], cfg["transfer_sources"])},
+                "transfer": registered_transfer(root() / "transfer" / EXPLORATORY_ID, cfg, transfer_analysis)},
             "secondary_ood": primary_comparison(evaluations, cfg, suffix="-ood", secondary=True),
             "families": {name: {family: summarize([r for r in rows if r["family"] == family])
                                 for family in sorted({r["family"] for r in rows})}
@@ -126,8 +131,7 @@ def collect() -> dict:
             "generation_completions": [read_json(path) for path in sorted(
                 (PROJECT / "reports/generation").glob("*.json"))],
             "budget": training_budget(list(feasibility.values()), cfg),
-            "transfer": transfer_analysis(read_jsonl(root() / "transfer/scores.jsonl"), cfg["bootstrap_samples"],
-                                          cfg["transfer_sources"]),
+            "transfer": registered_transfer(root() / "transfer", cfg, transfer_analysis),
             "feasibility": list(feasibility.values())}
 
 
@@ -238,7 +242,8 @@ def table_rows(snapshot):
     exploratory = [EXPLORATORY_PREFIX + arm for arm in
                    snapshot.get("exploratory_single", {}).get("profile", {}).get("initial_arms", [])]
     for arm in dict.fromkeys(ARMS + exploratory + sorted(snapshot["summaries"])):
-        s = snapshot["summaries"].get(arm, {})
+        baseline = snapshot.get("cpu_baseline", {}).get("arms", {}) if arm.startswith(EXPLORATORY_PREFIX) else {}
+        s = snapshot["summaries"].get(arm) or baseline.get(arm.removeprefix(EXPLORATORY_PREFIX), {})
         rows.append([arm, display(s.get("n")), display(s.get("accuracy")),
                      display(s.get("metric")), display(s.get("correctness_weighted_novelty"))])
     return rows
@@ -275,7 +280,7 @@ def readme_results(snapshot) -> str:
     for arm in ARMS:
         saved = available.get(EXPLORATORY_PREFIX + arm, [arm, *["Pending"] * 4])
         rows.append([arm, *saved[1:]])
-    return markdown_table(rows) + "\n\nGeneration execution: " + generation_text(snapshot)
+    return markdown_table(rows) + "\n\n" + baseline_text(snapshot) + "\n\n" + generation_text(snapshot)
 
 
 def readme_example(snapshot):
@@ -344,6 +349,8 @@ def comparison_text(result):
     if "metric" not in result:
         return f"Analysis status: {result['status']}. {result.get('reason', '')}".rstrip(" .") + "."
     pieces = [f"Analysis status: {result['status']}."]
+    if result.get("decision"):
+        pieces.append("Registered decision: " + result["decision"].replace("_", " ") + ".")
     for metric, name in (("metric", "C times theory"), ("correct", "accuracy")):
         row = result[metric]
         pieces.append(f"Theory-minus-correctness {name} difference {row['difference']:.4f}, "
@@ -438,7 +445,8 @@ def figures(snapshot, destination: Path) -> None:
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
     destination.mkdir(parents=True, exist_ok=True)
-    plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update({"font.size": 10, "axes.spines.top": False, "axes.spines.right": False,
+                         "svg.hashsalt": "grothendieck-rlvr"})
     fig, ax = plt.subplots(figsize=(11, 3.3))
     ax.set(xlim=(0, 11), ylim=(0, 3.3))
     ax.axis("off")
@@ -455,7 +463,7 @@ def figures(snapshot, destination: Path) -> None:
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="->", mutation_scale=14, color="#36595b"))
     fig.tight_layout()
     fig.savefig(destination / "architecture.png", dpi=180)
-    fig.savefig(destination / "architecture.svg")
+    fig.savefig(destination / "architecture.svg", metadata={"Date": None})
     svg = destination / "architecture.svg"
     svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)
@@ -464,9 +472,12 @@ def figures(snapshot, destination: Path) -> None:
     if available:
         ax.barh([x[0] for x in available], [x[1]["metric"] for x in available], color="#286667")
         ax.set_xlim(0, 1)
-        ax.set_xlabel("Mean correctness-weighted independent theory score")
+        ax.set_xlabel("Mean correctness-weighted frozen-evaluator theory score")
+    elif snapshot.get("cpu_baseline", {}).get("status") == "complete":
+        from .audit_publication import baseline_plot
+        baseline_plot(ax, snapshot["cpu_baseline"])
     else:
-        ax.text(.5, .5, "No empirical evaluations yet\nPlanned arms remain pending", ha="center", va="center", transform=ax.transAxes)
+        ax.text(.5, .5, "Held-out evaluations pending", ha="center", va="center", transform=ax.transAxes)
         ax.set_axis_off()
     fig.tight_layout()
     fig.savefig(destination / "evaluation.png", dpi=160)
@@ -502,7 +513,7 @@ def paper_sections(snapshot):
          "external arithmetic verifies final answers. Separate frozen judging and frozen-recipient "
          f"transfer assess behavior. Qualified-study analysis status: {status}. After calibration failures, "
          "a user-authorized exploratory continuation uses a single judge call despite unqualified rewards. "
-         "Its results remain separate. No latent-space mechanism is established."),
+         "H1 and the exploratory frozen-recipient H2 remain untested. " + baseline_text(snapshot, short=True)),
         ("Context, motivation and related work", "Grothendieck's rising-sea metaphor motivates building "
          "structures until a specific question becomes a consequence. McLarty's account supplies the "
          "historical attribution [1]. We combine GRPO [2], Dr. GRPO normalization [3], and rubric rewards [4]. "
@@ -556,10 +567,12 @@ def paper_sections(snapshot):
          "Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
         ("Generation execution", generation_text(snapshot)),
+        ("Paired retrospective prompt comparison", baseline_text(snapshot) + " The scoring protocol, raw-linked results and paired resampling reference are available in [20–22]."),
+        ("Independent scientific audit", snapshot.get("audit_conclusions", "Awaiting independent evidence.") + " The evidence index and dated errata are in [23]."),
         ("Development execution", f"Preserved development logs contain "
-         f"{sum(r['completed_responses'] for r in snapshot['development'])} completed judge responses and "
-         f"{sum(r['incomplete_requests'] for r in snapshot['development'])} requests without a completed response. "
-         "These counts are generated from reports/development logs. Interrupted CPU and CUDA judging attempts "
+         f"{sum(r['completed_responses'] for r in snapshot['development'])} completed-response entries and "
+         f"{sum(r['incomplete_requests'] for r in snapshot['development'])} unmatched requests summed across excerpts. "
+         "Overlapping excerpts can contain the same event. Interrupted CPU and CUDA judging attempts "
          "and runtime changes are documented in dated amendments. CUDA loading succeeded, but slow decoding "
          "motivated a bounded thread-count diagnostic before recalibration. Partial judgments do not "
          "establish calibration reliability. Conventional arguments received nonzero novelty credit, including "
@@ -677,6 +690,10 @@ REFERENCES = [
     ("Huang et al., Pessimistic Verification for Open Ended Math Questions", "https://arxiv.org/abs/2511.21522v1"),
     ("Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization", "https://proceedings.mlr.press/v202/gao23h.html"),
     ("Anthropic, source-location citation representation (documentation only)", "https://platform.claude.com/docs/en/build-with-claude/citations"),
+    ("Published retrospective scoring protocol", "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/3e2d4bea0d567463e51155f2e9ac8fd368545ef9/reports/amendments/2026-11-26-cpu-baseline-audit.md"),
+    ("CPU results and per-answer records", "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/results/scientific-audit"),
+    ("Koehn, Statistical Significance Tests for Machine Translation Evaluation", "https://aclanthology.org/W04-3250/"),
+    ("Independent scientific audit and evidence register", "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/reviews/2026-11-26-scientific-audit.md"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")
@@ -725,7 +742,7 @@ def write_paper(snapshot, rows, destination: Path):
                                       ("LINEBELOW", (0,0), (-1,0), .5, colors.grey),
                                       ("BOTTOMPADDING", (0,0), (-1,-1), 5)]))
             story.extend([Spacer(1, 8), table, Spacer(1, 8)])
-            if snapshot["summaries"]:
+            if snapshot["summaries"] or snapshot.get("cpu_baseline", {}).get("status") == "complete":
                 story.append(Image(str(PROJECT / "site/figures/evaluation.png"), width=6.5*inch, height=2.6*inch))
             markdown.append(markdown_table(rows))
             markdown.append("```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```")
@@ -768,7 +785,8 @@ def report() -> dict:
     generation_folder.mkdir(exist_ok=True)
     (generation_folder / "README.md").write_text(
         "# Generation execution\n\nGenerated from the checked completion receipts in this folder.\n\n" +
-        generation_text(snapshot) + "\n\n" + "\n\n".join(
+        generation_text(snapshot) + "\n\nThe dated receipts describe the state at generation. The 2026-11-26 "
+        "[independent audit](../reviews/2026-11-26-scientific-audit.md) scores the archived final answers.\n\n" + "\n\n".join(
             f"[{record['run_id']} artifacts]({record['artifact_url']})"
             for record in snapshot["generation_completions"]) + "\n", encoding="utf-8")
     rows = table_rows(snapshot)
@@ -778,6 +796,7 @@ def report() -> dict:
                ".\n\nCorrectness is verified final-answer accuracy. Theory is a frozen judge's rubric "
                "assessment, not a proof certificate. C × theory weights that assessment by answer correctness. "
                "Pending means no result, not zero performance.\n\n" + table +
+               "\n\n## Retrospective prompt comparison\n\n" + baseline_text(snapshot) +
                "\n\n## Generation execution\n\n" + generation_text(snapshot) +
                "\n\n## Judge calibration\n\n" + calibration_text(snapshot) +
                "\n\n## Primary analysis\n\n```json\n" + json.dumps(snapshot["primary"], indent=2) + "\n```\n" +
@@ -916,5 +935,6 @@ def report() -> dict:
     else:
         content += "\n## Recorded evaluation results\n\n" + start + "\n\n" + readme_results(snapshot) + "\n\n" + end + "\n"
     readme.write_text(content, encoding="utf-8")
+    update_audit_documents(snapshot)
     write_paper(snapshot, rows, PROJECT / "reports/paper.pdf")
     return {"snapshot": str(PROJECT / "site/snapshot.json"), "paper": str(PROJECT / "reports/paper.pdf")}

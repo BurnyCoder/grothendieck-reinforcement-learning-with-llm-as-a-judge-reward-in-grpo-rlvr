@@ -1,0 +1,515 @@
+[
+  {
+    "log": "gemma-passive-v4-dev.jsonl",
+    "judge": "ef8a300c6c16a420a871b67912839cd6b822b71a82949bc26ec8bebdccecd8c6",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.8625,
+          0.5875
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.9125,
+          0.5625
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          1.0,
+          0.725
+        ],
+        "novelty": [
+          1.0,
+          0.5
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-3",
+        "quality": [
+          0.9125,
+          0.5375
+        ],
+        "novelty": [
+          0.75,
+          0.25
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 2,
+    "observed": 4,
+    "quality_ties": 0,
+    "scheduled": 8,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 8,
+    "responses": 8
+  },
+  {
+    "log": "qwen-reasoning512-v4-dev.jsonl",
+    "judge": "08145e59c7462c82ca5f2b89dcde5cfd20b8feec7bd05b745f8a0a64bb5ab5ec",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.525,
+          0.6125
+        ],
+        "novelty": [
+          0.0,
+          0.25
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.6625,
+          0.525
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.6375,
+          0.6125
+        ],
+        "novelty": [
+          0.5,
+          0.25
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 1,
+    "observed": 3,
+    "quality_ties": 0,
+    "scheduled": 8,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 7,
+    "responses": 7
+  },
+  {
+    "log": "qwen-v7-anchors-v3-dev.jsonl",
+    "judge": "ebe93e9d0be235f21c5406700018aef3af41e81a0ca3629c4c6cb63423a5fe9f",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.6625,
+          0.5625
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.6625,
+          0.4125
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.725,
+          0.525
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-3",
+        "quality": [
+          0.7125,
+          0.4875
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-4",
+        "quality": [
+          0.6625,
+          0.3875
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-5",
+        "quality": [
+          0.7,
+          0.4375
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-6",
+        "quality": [
+          0.75,
+          0.475
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-7",
+        "quality": [
+          0.7125,
+          0.4375
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-8",
+        "quality": [
+          0.6625,
+          0.7
+        ],
+        "novelty": [
+          0.5,
+          0.5
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 6,
+    "observed": 9,
+    "quality_ties": 0,
+    "scheduled": 12,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 19,
+    "responses": 19
+  },
+  {
+    "log": "qwen-v7-dev.jsonl",
+    "judge": "a3fa911eb18ca121ac9b27878079af67795df0e1830e8dc164a9eb7ef35493fa",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.6625,
+          0.5625
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.6625,
+          0.4125
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.725,
+          0.5625
+        ],
+        "novelty": [
+          0.75,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-3",
+        "quality": [
+          0.7125,
+          0.4875
+        ],
+        "novelty": [
+          0.75,
+          0.25
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-4",
+        "quality": [
+          0.6625,
+          0.3875
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-5",
+        "quality": [
+          0.7,
+          0.4375
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-6",
+        "quality": [
+          0.6375,
+          0.5125
+        ],
+        "novelty": [
+          0.5,
+          0.0
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 4,
+    "observed": 7,
+    "quality_ties": 0,
+    "scheduled": 12,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 14,
+    "responses": 14
+  },
+  {
+    "log": "qwen-v8-specialists-dev.jsonl",
+    "judge": "b33cb353c2aa2c5e6b68d9ddc5eda51443157474676b09cb849f38303124c56d",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.0,
+          0.0
+        ],
+        "novelty": [
+          0.0,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.0,
+          0.0
+        ],
+        "novelty": [
+          0.0,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.0,
+          0.0
+        ],
+        "novelty": [
+          0.0,
+          0.0
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 0,
+    "observed": 3,
+    "quality_ties": 3,
+    "scheduled": 12,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 49,
+    "responses": 49
+  },
+  {
+    "log": "qwen-v8-specialists-rubric-dev.jsonl",
+    "judge": "c07b8d14cafb12cf69dec7095ecf08aa5c10c66dbb01301f83224ce218fd557f",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.0,
+          0.0
+        ],
+        "novelty": [
+          0.0,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.0,
+          0.0
+        ],
+        "novelty": [
+          0.0,
+          0.0
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.0,
+          0.7
+        ],
+        "novelty": [
+          0.0,
+          0.5
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 0,
+    "observed": 3,
+    "quality_ties": 2,
+    "scheduled": 12,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 48,
+    "responses": 48
+  },
+  {
+    "log": "qwen-v8-two-stage-dev.jsonl",
+    "judge": "66721e0efa62096394ff0295a24a530f059743cb7e67d64eace897fd6640ca92",
+    "pairs": [
+      {
+        "id": "novelty-dev-0",
+        "quality": [
+          0.6125,
+          0.6125
+        ],
+        "novelty": [
+          0.25,
+          0.25
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-1",
+        "quality": [
+          0.5875,
+          0.65
+        ],
+        "novelty": [
+          0.25,
+          0.25
+        ],
+        "passed": false
+      },
+      {
+        "id": "novelty-dev-2",
+        "quality": [
+          0.775,
+          0.6125
+        ],
+        "novelty": [
+          1.0,
+          0.25
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-3",
+        "quality": [
+          0.65,
+          0.5125
+        ],
+        "novelty": [
+          0.25,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "id": "novelty-dev-4",
+        "quality": [
+          0.6125,
+          0.5875
+        ],
+        "novelty": [
+          0.25,
+          0.25
+        ],
+        "passed": false
+      }
+    ],
+    "passes": 2,
+    "observed": 5,
+    "quality_ties": 1,
+    "scheduled": 12,
+    "attainable_rate": 0.75,
+    "suppression_observed": 0,
+    "suppression_rate": null,
+    "requests": 21,
+    "responses": 21
+  }
+]

@@ -358,3 +358,16 @@ root; publish archival research logs separately from the small website snapshot.
 Publish after every completed training/evaluation milestone and preserve failures.
 Do not treat an infrastructure exception as a mathematical error. For the exact
 metrics, seed treatment and stopping rules see the preregistration.
+## Reproducing the scientific audit offline
+
+Use the full Git checkout for registration history, the locked Python 3.12 environment, and the published raw input files. The dataset layout has `generations/` and `runs/` under one directory. The [input receipt](../results/scientific-audit/raw-inputs.json) lists paths, byte lengths and SHA-256 digests. The two pilot adapters per completed pilot are read as arrays on CPU. The model weights, an inference server and a training installation are unnecessary.
+
+```bash
+uv sync --frozen
+hf download BurnyCoder/grothendieck-rlvr --repo-type dataset --revision c691b4eb6a83ca732a71d65cccda9e2fe8074937 --include 'generations/*' --include 'runs/*/metrics.jsonl' --include 'runs/*/events.jsonl' --include 'runs/*/run.json' --include 'runs/*/checkpoint-1/adapter_model.safetensors' --include 'runs/*/checkpoint-2/adapter_model.safetensors' --local-dir ./tmp/audit-inputs
+PYTHONHASHSEED=0 CUDA_VISIBLE_DEVICES=-1 uv run --frozen grothendieck-rlvr reproduce-scientific-audit --storage ./tmp/audit-inputs
+```
+
+For just the paired answer analysis use `score-saved-correctness --archives ./tmp/audit-inputs/generations --output ./tmp/answer-audit`. If a bounded worker fails twice, its answer has missing correctness and the complete paired estimate is withheld. The [published scoring rules](../reports/amendments/2026-11-26-cpu-baseline-audit.md) specify the estimand and sensitivity. [Dated findings](../reports/reviews/2026-11-26-scientific-audit.md)
+
+To compare a second checkout after it has replayed the audit, run `python scripts/check_scientific_reproduction.py /path/to/second/checkout` from the published checkout. It checks all new deterministic evidence files, every figure, the PDF text and the numerical agreement between the publication surfaces. Poppler supplies `pdftotext`. HTTP reachability observations and the failed initial attempt are dated source records.

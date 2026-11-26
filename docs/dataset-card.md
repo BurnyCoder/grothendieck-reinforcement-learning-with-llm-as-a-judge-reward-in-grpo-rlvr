@@ -13,8 +13,17 @@ tags:
 # Grothendieck RLVR research artifacts
 
 The single [research collection](https://huggingface.co/collections/BurnyCoder/grothendieck-rlvr-6afa2f0ab898f347b91b71e8)
-links these artifacts and the frozen upstream models. Project-trained adapters
-remain pending training.
+links these artifacts and the frozen upstream models. The raw audit inputs include discarded pilot checkpoint tensors. A completed comparative adapter is unavailable.
+
+<!-- CPU-AUDIT:START -->
+
+The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00). Both prompts passed 99 problems, ordinary alone 49, prompted alone 32 and neither 220. Invalid formats accounted for 177 ordinary and 189 prompted answers. The stricter form check retained 148/400 and 131/400 respectively (zero changes for reduced fractions, expanded products and rounded roots in both arms). Its paired difference was -4.25 points (95% interval -8.50 to +0.00). All 400 problems retained their original stratum weights in 10,000 paired resamples. This retrospective prompt contrast is conditional on these strata, one checkpoint and one decoding setup. The primary interval includes zero. Theory and novelty are unmeasured.
+
+The comparative attempt logged 13/64 updates and the cache-release diagnostic logged 7/16. The diagnostic stopped before the required save/resume boundary. The records cannot establish a cache-release benefit. The qualified reward comparison and frozen-recipient transfer experiment lack outcome data. The project-specific correctness-gated rubric measures a judge's opinion. The training loss uses Dr. GRPO length and variance choices with a separate positive KL penalty. See the dated scientific review for raw evidence and errata.
+
+<!-- CPU-AUDIT:END -->
+
+[Dated review](https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/blob/main/reports/reviews/2026-11-26-scientific-audit.md) · [Item-level evidence](https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/results/scientific-audit)
 
 Preregistered local Qwen/Gemma research on correctness-gated theory-building
 rewards, including valid conceptual novelty relative to fixed reference approaches.
@@ -80,7 +89,7 @@ are execution evidence only. The generated pilot report and boundary records
 retain timings, reward components, retries and checkpoint state. Ordinary baseline
 generation was stopped and its prompted queue cancelled when the user prioritized
 the smaller GPU experiment. Partial outputs and the larger configuration are
-preserved. Comparative training and scored held-out evaluation remain pending.
+preserved. These earlier runs did not complete a comparative trained-policy evaluation.
 
 The active `exploratory-small-gpu-v2` profile retains a Qwen3.5-0.8B BF16 LoRA
 policy, frozen Qwen3.5-2B Q4_K_M GPU training judge and separate Qwen3.5-4B Q4_K_M
@@ -116,15 +125,13 @@ including each policy/judge pairing, seed, quantization and hardware transition.
 Ordinary and rising-sea prompted primary generation are complete. The
 [generation report](https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/generation/README.md)
 links the raw outputs and checked completion receipts. Prompted generation
-resumed after an app restart without replacing completed tasks. Correctness and
-theory scores remain unmeasured; these are execution records, not evidence of
-mathematical improvement.
+resumed after an app restart without replacing completed tasks. The retrospective CPU analysis above scores the saved final answers. Explanation scores remain unmeasured.
 
 The first full-budget theory-bonus attempt was then stopped at a complete
 checkpoint after CUDA allocator reservation grew and updates slowed. Its partial
 records are execution evidence, not a completed comparison. The registered
 `cache-release-v1` development diagnostic tests the standard Trainer cache-release
-option before any amended comparative activation; its updates are discarded.
+option. The archived partial trajectory ended before the required save/resume test. Its updates are discarded.
 
 Data schema, split sizes, generator settings, reference checks and semantic
 deduplication are specified in `reports/preregistration.md` and `data/manifest.lock.json`.
