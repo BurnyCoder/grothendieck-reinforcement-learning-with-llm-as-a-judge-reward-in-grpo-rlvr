@@ -39,7 +39,7 @@ def comparable(path):
 def compare(rebuild):
     names = ("ordinary", "prompted", "baseline-summary", "manifests", "generator-replay", "calibration",
              "execution", "transcripts", "generation", "objections", "inventory", "chronology", "raw-inputs",
-             "checkpoint-cards")
+             "checkpoint-cards", "eligibility-regression")
     files = [SCORES/(name+".json") for name in names]
     files += [Path(p) for p in ("README.md", "docs/dataset-card.md", "reports/paper.md", "reports/paper.pdf",
               "reports/experiments.md", "reports/summary.md", "reports/results.json", "site/snapshot.json",

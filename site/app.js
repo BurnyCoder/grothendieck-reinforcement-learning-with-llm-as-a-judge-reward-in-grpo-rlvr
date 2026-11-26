@@ -49,7 +49,10 @@ function render(){
     `Analysis: ${snapshot.primary.status}`;
   $('updated').textContent='Snapshot '+new Date(snapshot.generated_at).toLocaleString();
   const arms=['ordinary','prompted','correctness-seed42','theory-seed42','correctness-seed43','theory-seed43','correctness-seed44','theory-seed44','shuffled-seed42','rubric-seed42',...(snapshot.exploratory_single?.profile.initial_arms||[]).map(arm=>snapshot.exploratory_single.profile.id+'-'+arm)];
-  $('result-rows').replaceChildren(...[...new Set([...arms,...Object.keys(snapshot.summaries)])].map(arm=>{const row=element('tr'),s=snapshot.summaries[arm]||{};[arm,s.n,s.accuracy,s.metric,s.correctness_weighted_novelty,s.mean_response_tokens].forEach(value=>row.append(element('td',number(value))));return row;}));
+  const baseline = snapshot.cpu_baseline;
+  const prefix = (snapshot.exploratory_single?.profile.id || '') + '-';
+  $('baseline-audit').textContent = snapshot.baseline_description || 'Paired CPU analysis pending.';
+  $('result-rows').replaceChildren(...[...new Set([...arms,...Object.keys(snapshot.summaries)])].map(arm=>{const row=element('tr'),s=snapshot.summaries[arm]||(arm.startsWith(prefix) && baseline?.arms[arm.slice(prefix.length)])||{};[arm,s.n,s.accuracy,s.metric,s.correctness_weighted_novelty,s.mean_response_tokens].forEach(value=>row.append(element('td',number(value))));return row;}));
   $('analysis').textContent=JSON.stringify({qualified_study:snapshot.primary,exploratory_single:snapshot.exploratory_single?.primary},null,2);
   $('ood-analysis').textContent=JSON.stringify({qualified_study:snapshot.secondary_ood,exploratory_single:snapshot.exploratory_single?.secondary_ood,families:snapshot.families},null,2);
   $('transfer-analysis').textContent=JSON.stringify({qualified_study:snapshot.transfer,exploratory_single:snapshot.exploratory_single?.transfer},null,2);

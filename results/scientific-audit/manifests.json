@@ -1,0 +1,56 @@
+{
+  "by_split_family": {
+    "train": {
+      "dice": 256,
+      "gcd": 256,
+      "lcm": 256,
+      "polynomial_multiplication": 256
+    },
+    "dev": {
+      "dice": 16,
+      "gcd": 16,
+      "lcm": 16,
+      "polynomial_multiplication": 16
+    },
+    "test_fresh": {
+      "dice": 50,
+      "gcd": 50,
+      "lcm": 50,
+      "polynomial_multiplication": 50
+    },
+    "test_hard": {
+      "dice": 25,
+      "gcd": 25,
+      "lcm": 25,
+      "polynomial_multiplication": 25
+    },
+    "test_unseen": {
+      "polynomial_equations": 50,
+      "prime_factorization": 50
+    },
+    "transfer_source": {
+      "dice": 25,
+      "gcd": 25,
+      "lcm": 25,
+      "polynomial_multiplication": 25
+    },
+    "transfer_target": {
+      "dice": 100,
+      "gcd": 100,
+      "lcm": 100,
+      "polynomial_multiplication": 100
+    },
+    "test_ood": {
+      "largest_island": 50,
+      "matrix_rank": 50,
+      "modular_inverse": 50,
+      "simple_geometry": 50
+    }
+  },
+  "records": 2188,
+  "reference_or_metadata_errors": [],
+  "semantic_duplicates": [],
+  "matched_transfer": true,
+  "transfer_sources": 100,
+  "transfer_targets": 400
+}

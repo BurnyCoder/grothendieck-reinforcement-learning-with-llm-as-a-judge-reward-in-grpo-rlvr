@@ -229,7 +229,7 @@ def write_review(snapshot):
                "notes come from another family, so any eventual contrast could reflect topical relevance "
                "rather than reuse of a source-specific construction. The ordinary-note and correctness-policy "
                "conditions address different comparisons. Cross-source intervals are exploratory and unadjusted. "
-               "[Registration](../preregistration.md) · [Regression tests](../../tests/test_scientific_audit.py) · "
+               f"[Registration](../preregistration.md) · [Synthetic defect replay]({link}eligibility-regression.json) · [Regression tests](../../tests/test_scientific_audit.py) · "
                "[Paired resampling](https://aclanthology.org/W04-3250/)",
                f"The [file and passage index]({link}inventory.json) identifies the original Git blobs and "
                "the public dataset card. The [claim register](2026-11-26-claim-register.json) records evidence, "

@@ -1,6 +1,6 @@
 # Implementation and experiment plan
 
-Updated 2026-11-16. Current priority: the user-requested
+Updated 2026-11-26. The [independent audit](reviews/2026-11-26-scientific-audit.md) scores the two archived prompts and reconciles the partial cache diagnostic. The following plan records the 2026-11-16 priorities for the user-requested
 [smaller Qwen3.5 GPU experiment](amendments/2026-11-16-small-qwen-gpu.md).
 Use a 0.8B BF16 LoRA policy, fully GPU-resident 2B Q4_K_M training judge, and
 separate fully GPU-resident 4B Q4_K_M evaluator. The previous larger setup and its
@@ -15,16 +15,16 @@ resumption and an adapter parameter update. Its resumed batch earned no task
 reward. These are execution results; no comparative learning or steady-state
 throughput result is established. The pilot evidence is published and its updates
 are excluded from comparisons. Ordinary and prompted primary baseline generation
-are complete from the unmodified base; independent scoring remains pending.
+are complete from the unmodified base. The dated CPU audit provides final-answer accuracy. Rubric scoring remains pending.
 The [generation receipts](generation/README.md) preserve coverage, timing and raw
 artifacts. Prompted generation recovered after an app restart, retaining saved
 task IDs and the frozen configuration. No held-out scores informed a change to
 the training setup. The first theory-bonus seed-42 attempt subsequently stopped
 at a complete optimizer checkpoint after reserved CUDA memory grew and update
 times increased. Its [saved execution evidence](experiments/exploratory-small-gpu-v2-memory-growth.md)
-remains an incomplete attempt. Next, publish and run the
+remains an incomplete attempt. Subsequent logs record part of the
 [cache-release development diagnostic](amendments/2026-11-16-cuda-cache-diagnostic.md),
-then publish any activation under a new matched-training identity. Diagnostic and
+without reaching the registered completion test. Any activation requires a new matched-training identity. Diagnostic and
 interrupted-run updates remain excluded from comparative initialization.
 
 The user also authorized a [conditional simpler-task fallback](amendments/2026-11-16-task-difficulty-fallback.md)

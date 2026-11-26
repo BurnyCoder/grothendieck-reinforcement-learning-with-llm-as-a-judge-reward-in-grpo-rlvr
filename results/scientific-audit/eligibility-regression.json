@@ -1,0 +1,16 @@
+{
+  "synthetic": true,
+  "historical_git_blob": "113eaf9f21a6c776ed0a70fdf52ce726395036ab",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "problems_per_run": 400,
+  "old_status": "confirmatory",
+  "old_criteria_met": true,
+  "current": {
+    "status": "incomplete",
+    "reason": "Evaluated IDs, splits or families differ from the locked manifest"
+  }
+}

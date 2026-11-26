@@ -12,8 +12,7 @@ The closest formal environment found is
 [FERMAT](https://arxiv.org/html/2511.14778v1), which represents mathematical
 entities and symbolic production rules and studies interestingness functions.
 Its formal entities differ from the explanations scored here. The present
-project therefore measures supported exposition and recipient transfer, not
-discovery of a new mathematical theory.
+project proposes measures of supported exposition and recipient transfer. The [current review](reviews/2026-11-26-scientific-audit.md) identifies which outcomes have been observed.
 
 The [novelty/OOD amendment](amendments/2026-11-15-valid-novelty-and-ood.md)
 explicitly tests useful departures from documented conventional approaches.
@@ -37,7 +36,7 @@ values established by those papers.
 
 [Judge evaluation research](https://arxiv.org/abs/2306.05685) motivates testing
 judge behavior rather than assuming it is correct. The protocol separates
-training reward, independent-family judgment, and verified recipient accuracy.
+training reward, a separate frozen judge, and verified recipient accuracy. The original qualification design uses a different model family for evaluation. Both active small-GPU judges are Qwen checkpoints. [Model lock](../configs/models.lock.json)
 These measures can disagree, which is scientifically informative.
 
 The observed development confusion between conventional generality and novelty

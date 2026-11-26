@@ -567,8 +567,8 @@ def paper_sections(snapshot):
          "Implementation checks do not establish mathematical performance. "
          "Calibration cases are constructed expectations, not human preference evidence."),
         ("Generation execution", generation_text(snapshot)),
-        ("Paired retrospective prompt comparison", baseline_text(snapshot)),
-        ("Independent scientific audit", snapshot.get("audit_conclusions", "Awaiting independent evidence.")),
+        ("Paired retrospective prompt comparison", baseline_text(snapshot) + " The scoring protocol, raw-linked results and paired resampling reference are available in [20–22]."),
+        ("Independent scientific audit", snapshot.get("audit_conclusions", "Awaiting independent evidence.") + " The evidence index and dated errata are in [23]."),
         ("Development execution", f"Preserved development logs contain "
          f"{sum(r['completed_responses'] for r in snapshot['development'])} completed-response entries and "
          f"{sum(r['incomplete_requests'] for r in snapshot['development'])} unmatched requests summed across excerpts. "
@@ -690,6 +690,10 @@ REFERENCES = [
     ("Huang et al., Pessimistic Verification for Open Ended Math Questions", "https://arxiv.org/abs/2511.21522v1"),
     ("Gao, Schulman and Hilton, Scaling Laws for Reward Model Overoptimization", "https://proceedings.mlr.press/v202/gao23h.html"),
     ("Anthropic, source-location citation representation (documentation only)", "https://platform.claude.com/docs/en/build-with-claude/citations"),
+    ("Published retrospective scoring protocol", "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/3e2d4bea0d567463e51155f2e9ac8fd368545ef9/reports/amendments/2026-11-26-cpu-baseline-audit.md"),
+    ("CPU results and per-answer records", "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/main/results/scientific-audit"),
+    ("Koehn, Statistical Significance Tests for Machine Translation Evaluation", "https://aclanthology.org/W04-3250/"),
+    ("Independent scientific audit and evidence register", "https://github.com/BurnyCoder/grothendieck-reinforcement-learning-with-llm-as-a-judge-reward-in-grpo-rlvr/blob/main/reports/reviews/2026-11-26-scientific-audit.md"),
 ]
 AI_STATEMENT = ("AI statement: Codex wrote this codebase and paper from the exact specification provided "
                 "by a human. Human cleanup and rewriting are in progress.")

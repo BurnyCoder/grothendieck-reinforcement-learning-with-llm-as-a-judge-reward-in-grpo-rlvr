@@ -46,6 +46,17 @@ or empirical evidence for the training method.
 
 ## Reusable software and source audit
 
+The 26 November review checked the applicable comparisons against their original methods and the local instrument.
+
+| Source and passage | What transfers to this study | Limit on interpretation |
+|---|---|---|
+| [G-Eval, evaluation procedure](https://arxiv.org/pdf/2303.16634) and [Yamauchi et al., experiments](https://arxiv.org/html/2506.13639v1) | Criteria and references can change judge behavior. G-Eval uses generated evaluation steps and probabilities over scores. | Local scores are single structured responses. Field ordering alone has no established benefit here. |
+| [Jayarao et al., §§3–4](https://arxiv.org/html/2509.13332v1) and [SLMJury, §§3–4](https://arxiv.org/html/2606.07810v1) | Evaluation depends on judge, task, prompt and reasoning budget. | Preference labels, answer agreement and open-ended ratings measure different outcomes. The reported effects do not qualify the local judge. |
+| [RULERS, §3](https://arxiv.org/html/2601.08654v1) and [DnA-Eval, method and ablations](https://aclanthology.org/2025.coling-main.156/) | Evidence anchoring and decomposing a rating yield inspectable intermediate judgments. | The local fixed rubric and strict veto differ from their aggregation and alignment procedures. |
+| [Sternlicht et al., §§3–5](https://arxiv.org/html/2610.02022v1) and [ALPS, task construction](https://arxiv.org/html/2608.15979v1) | A research-idea novelty rating and a computationally checked construction operationalize different questions. | Neither validates historical originality or the local reference-relative novelty score. |
+| [Naik et al., proof verification](https://arxiv.org/abs/2604.02450v1) and [Huang et al., Appendix A](https://arxiv.org/abs/2511.21522v1) | False rejection matters alongside error detection. Huang's case 6 uses union as if it were symmetric difference. | The [finite counterexample](../results/scientific-audit/objections.json) addresses those two proof steps. The other benchmark cases were not relabeled. |
+| [Gao et al., experimental setup](https://proceedings.mlr.press/v202/gao23h.html) | Optimizing a learned proxy can diverge from evaluation by a separate synthetic gold reward model. | This project has no trained-arm comparison measuring that divergence. |
+
 * [Reasoning Gym](https://github.com/open-thought/reasoning-gym), Apache-2.0:
   reuse its generators, with recorded versions, parameters and seeds. Source
   inspection found `Random(seed + index)`; disjoint indices alone are insufficient
@@ -80,8 +91,8 @@ or empirical evidence for the training method.
 
 ## Model provenance and selection
 
-The preferred policy is [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B).
-Use frozen [Qwen3.5-9B Q4_K_M](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF)
+The original qualified-study design selected [Qwen/Qwen3.5-2B](https://huggingface.co/Qwen/Qwen3.5-2B).
+It specified frozen [Qwen3.5-9B Q4_K_M](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF)
 for training judgment and
 [Gemma 4 12B UD-Q4_K_XL](https://huggingface.co/unsloth/gemma-4-12b-it-GGUF)
 for independent assessment. Model repository metadata lists Apache-2.0;
@@ -89,6 +100,8 @@ retain repository license files and exact revisions with downloads. The
 [Gemma 4 model card](https://ai.google.dev/gemma/docs/core/model_card_4)
 provides architecture and intended-use context. Quantization may change judgment
 quality; calibration applies to these exact quantized artifacts.
+
+The later exploratory experiment uses a 0.8B policy and separate 2B and 4B Qwen judges. Cross-family evaluation in the review table describes the earlier design. [Dated amendment](amendments/2026-11-16-small-qwen-gpu.md) · [Current model identities](../configs/models.lock.json)
 
 [Unsloth FP8 RL](https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide/fp8-reinforcement-learning)
 describes Qwen3-1.7B as a small-memory route. It is an explicitly conditional

@@ -1,0 +1,7 @@
+# Scientific results
+
+The ordinary prompt passed 148/400 problems (37.00%) and the rising-sea prompt passed 131/400 (32.75%). Prompted minus ordinary accuracy was -4.25 percentage points (paired 95% percentile interval -8.50 to +0.00). Both prompts passed 99 problems, ordinary alone 49, prompted alone 32 and neither 220. Invalid formats accounted for 177 ordinary and 189 prompted answers. The stricter form check retained 148/400 and 131/400 respectively (zero changes for reduced fractions, expanded products and rounded roots in both arms). Its paired difference was -4.25 points (95% interval -8.50 to +0.00). All 400 problems retained their original stratum weights in 10,000 paired resamples. This retrospective prompt contrast is conditional on these strata, one checkpoint and one decoding setup. The primary interval includes zero. Theory and novelty are unmeasured.
+
+The comparative attempt logged 13/64 updates and the cache-release diagnostic logged 7/16. The diagnostic stopped before the required save/resume boundary. The records cannot establish a cache-release benefit. The qualified reward comparison and frozen-recipient transfer experiment lack outcome data. The project-specific correctness-gated rubric measures a judge's opinion. The training loss uses Dr. GRPO length and variance choices with a separate positive KL penalty. See the dated scientific review for raw evidence and errata.
+
+[Independent audit](reviews/2026-11-26-scientific-audit.md)

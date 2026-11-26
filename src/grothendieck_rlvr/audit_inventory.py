@@ -4,7 +4,9 @@ import hashlib
 import json
 import posixpath
 import re
+import runpy
 import subprocess
+import tempfile
 from pathlib import Path
 
 from .io import PROJECT
@@ -143,3 +145,32 @@ def chronology():
             "original_first_parent": history("--first-parent", START),
             "amendments": {name: history("--diff-filter=A", START, "--", name)[0] for name in amendments},
             "qualification": "Git timestamps describe recorded chronology. The baseline scoring protocol was publicly merged in PR 56 before scoring."}
+
+
+def eligibility_regression():
+    """Run only the pinned historical statistical functions on synthetic IDs, then apply today's admission rule."""
+    from .analysis import primary_comparison
+    from .io import read_json
+    cfg = read_json(PROJECT/"configs/study.json")
+    field = "src/grothendieck_rlvr/analysis.py"
+    blob = git("rev-parse", START+":"+field).decode().strip()
+    if blob != "113eaf9f21a6c776ed0a70fdf52ce726395036ab":
+        raise ValueError("Unexpected historical statistical implementation")
+    with tempfile.TemporaryDirectory(prefix="grothendieck-audit-regression-") as directory:
+        module = Path(directory)/"historical_analysis.py"
+        module.write_bytes(git("cat-file","blob",blob))
+        historical = runpy.run_path(str(module))["primary_comparison"]
+    evaluations = {}
+    for seed in cfg["training_seeds"]:
+        for arm, score in (("theory", .5), ("correctness", .25)):
+            evaluations[f"{arm}-seed{seed}"] = [
+                {"task_id": f"invented-{split}-{i}", "split": split, "family": "fixture",
+                 "metric":score, "theory":score, "correct":True, "verification":{"status":"correct"},
+                 "judge_identity":"fixture"} for split in ("test_fresh","test_hard","test_unseen")
+                for i in range(cfg[split+"_size"])]
+    previous, current = historical(evaluations, cfg), primary_comparison(evaluations,cfg)
+    if not previous["criteria_met"] or previous["status"] != "confirmatory" or current["status"] != "incomplete":
+        raise ValueError("Off-manifest regression did not reproduce")
+    return {"synthetic":True, "historical_git_blob":blob, "seeds":cfg["training_seeds"],
+            "problems_per_run":len(next(iter(evaluations.values()))), "old_status":previous["status"],
+            "old_criteria_met":previous["criteria_met"], "current":current}

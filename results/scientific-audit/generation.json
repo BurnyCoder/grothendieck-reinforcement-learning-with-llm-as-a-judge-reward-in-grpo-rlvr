@@ -1,0 +1,32 @@
+{
+  "ordinary": {
+    "events": {
+      "policy_request": 400,
+      "policy_chunk": 193619,
+      "policy_response": 400
+    },
+    "saved": 400,
+    "first_response_event": "2026-11-16T03:02:12.287310+00:00",
+    "last_response_event": "2026-11-16T04:21:45.065421+00:00",
+    "first_saved": "2026-11-16T03:02:12.289116+00:00",
+    "last_saved": "2026-11-16T04:21:45.066423+00:00",
+    "seconds_sum": 4498.997407917021,
+    "seconds_mean": 11.24749351979255,
+    "unmatched_requests": 0
+  },
+  "prompted": {
+    "events": {
+      "policy_request": 401,
+      "policy_chunk": 215811,
+      "policy_response": 400
+    },
+    "saved": 400,
+    "first_response_event": "2026-11-16T06:15:59.833150+00:00",
+    "last_response_event": "2026-11-16T07:43:39.778917+00:00",
+    "first_saved": "2026-11-16T06:15:59.834547+00:00",
+    "last_saved": "2026-11-16T07:43:39.780525+00:00",
+    "seconds_sum": 4793.684186832717,
+    "seconds_mean": 11.984210467081793,
+    "unmatched_requests": 1
+  }
+}

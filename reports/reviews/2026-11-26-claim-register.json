@@ -69,6 +69,13 @@
     "sources": ["https://ncatlab.org/nlab/files/McLartyRisingSea.pdf", "https://www.youtube.com/watch?v=LKrwhjOI8Nc", "https://x.com/littmath/status/2109653733470572878", "https://x.com/aran_nayebi/status/2057592779308429687"],
     "impact": "Attribute preserved wording to the supplied source and flag unverifiable provenance. The analogy provides motivation only."
   },
+  "archive": {
+    "claim": "The dataset's historical interrupted-run archive exposes restorable checkpoints and accurately identifies the base model.",
+    "verdict": "Corrected. The previous Hub revision had state and optimizer files but omitted the adapter tensors. Its trainer card named a nonexistent None model and three PEFT cards gave a machine-local base path. The audited publication restores the archived bytes and corrects each card.",
+    "evidence": ["results/scientific-audit/hub-inventory.json", "results/scientific-audit/checkpoint-cards.json", "results/scientific-audit/raw-inputs.json", "configs/models.lock.json"],
+    "sources": ["https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/53ff4ae5ef4a1a3da4ca01fb889af0518310fa13/runs/exploratory-small-gpu-v2-theory-seed42", "https://huggingface.co/datasets/BurnyCoder/grothendieck-rlvr/tree/c691b4eb6a83ca732a71d65cccda9e2fe8074937/runs", "https://huggingface.co/Qwen/Qwen3.5-0.8B/tree/2fc06364715b967f1860aea9cf38778875588b17"],
+    "impact": "The public archive now supports byte-level CPU comparisons. End-to-end restoration and performance of the interrupted checkpoint were not tested in this audit."
+  },
   "scope": {
     "claim": "Human preference alignment, historical originality, pretraining absence, a latent mechanism, and broad mathematical discovery.",
     "verdict": "Unmeasured. Dated plans, setup commands and future Lean or larger-model proposals are specifications.",

@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 from .audit_history import calibration_history, execution_history, generation_history, mathematical_objections, transcript_counts
-from .audit_inventory import chronology, inventory
+from .audit_inventory import chronology, eligibility_regression, inventory
 from .audit_math import audit_manifests, replay_generators
 from .io import atomic_json, root
 from .saved_correctness import ARMS, AUDIT, EXPLORATORY_PREFIX, file_hash, score_saved_correctness
@@ -34,7 +34,7 @@ def rebuild_evidence(storage, archives, output):
     for name, function in (("manifests", audit_manifests), ("generator-replay", replay_generators), ("calibration", calibration_history),
                            ("execution", lambda: execution_history(storage)), ("objections", mathematical_objections),
                            ("transcripts", transcript_counts), ("generation", lambda: generation_history(archives)),
-                           ("inventory", inventory), ("chronology", chronology),
+                           ("inventory", inventory), ("chronology", chronology), ("eligibility-regression", eligibility_regression),
                            ("raw-inputs", lambda: input_receipts(storage, archives))):
         print(f"Checking {name}", flush=True)
         atomic_json(output/(name+".json"), function())

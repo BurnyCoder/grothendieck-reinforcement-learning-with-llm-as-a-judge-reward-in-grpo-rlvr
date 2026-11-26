@@ -1,0 +1,422 @@
+{
+  "original_registration": {
+    "commit": "bcf85b145aee403ecb5cb2a7c427f638e9565c39",
+    "committer_time": "2026-11-15T07:58:23+01:00",
+    "subject": "Preregister correctness-gated theory-building study"
+  },
+  "audit_registration": {
+    "commit": "3e2d4bea0d567463e51155f2e9ac8fd368545ef9",
+    "committer_time": "2026-11-26T12:54:51+01:00",
+    "subject": "Register CPU-only baseline scoring before outcome access"
+  },
+  "original_first_parent": [
+    {
+      "commit": "bcf85b145aee403ecb5cb2a7c427f638e9565c39",
+      "committer_time": "2026-11-15T07:58:23+01:00",
+      "subject": "Preregister correctness-gated theory-building study"
+    },
+    {
+      "commit": "c0b5355487970f74f36a52f6ba4b3845b893b837",
+      "committer_time": "2026-11-15T08:36:40+01:00",
+      "subject": "Merge pull request #1 from BurnyCoder/feat/environment"
+    },
+    {
+      "commit": "3e0dae6eacc9cc34c81be455cc783f3f1c917314",
+      "committer_time": "2026-11-15T08:40:56+01:00",
+      "subject": "Merge pull request #2 from BurnyCoder/feat/runtime-observability"
+    },
+    {
+      "commit": "67fab26d84be591a6ddd562137e8637d93c56877",
+      "committer_time": "2026-11-15T09:04:21+01:00",
+      "subject": "Merge pull request #3 from BurnyCoder/feat/valid-conceptual-novelty"
+    },
+    {
+      "commit": "6a7ee302eb96b42f0c9c7a342b2ccb5c9f5a714c",
+      "committer_time": "2026-11-15T09:11:42+01:00",
+      "subject": "Merge pull request #4 from BurnyCoder/feat/complete-transfer-comparisons"
+    },
+    {
+      "commit": "a7ed0857849c485d55a213288b8bce0b87dbbf44",
+      "committer_time": "2026-11-15T09:21:52+01:00",
+      "subject": "Merge pull request #5 from BurnyCoder/fix/scalar-verifier-startup"
+    },
+    {
+      "commit": "759aed1d39a897f684ab777658606449ff5f5c8c",
+      "committer_time": "2026-11-15T09:57:00+01:00",
+      "subject": "Merge pull request #6 from BurnyCoder/fix/judge-runtime-provenance"
+    },
+    {
+      "commit": "38fcec39838b6a9d81d84585d54b797eab59c1e2",
+      "committer_time": "2026-11-15T10:05:20+01:00",
+      "subject": "Merge pull request #7 from BurnyCoder/fix/runtime-cache-location"
+    },
+    {
+      "commit": "e61c4c34c50981e59105b7f0d54ba52d5cc9bbfd",
+      "committer_time": "2026-11-15T10:13:57+01:00",
+      "subject": "Merge pull request #8 from BurnyCoder/fix/native-wsl-environment"
+    },
+    {
+      "commit": "f6af57ed2aa4d9720ddf0debebfbe60109880c7e",
+      "committer_time": "2026-11-15T10:41:11+01:00",
+      "subject": "Merge pull request #9 from BurnyCoder/fix/novelty-reference-boundary"
+    },
+    {
+      "commit": "a546d3ceb4e79db160d06796a8d6318a77c38f59",
+      "committer_time": "2026-11-15T10:57:16+01:00",
+      "subject": "Merge pull request #10 from BurnyCoder/evidence/development-integration"
+    },
+    {
+      "commit": "46d64bcad43cc894d57d6951f1ee68dde71616ab",
+      "committer_time": "2026-11-15T11:34:12+01:00",
+      "subject": "Merge pull request #11 from BurnyCoder/evidence/grpo-pilot-boundaries"
+    },
+    {
+      "commit": "9d472bfdab8577755a8ddf74b2bc454f31315982",
+      "committer_time": "2026-11-15T11:49:36+01:00",
+      "subject": "Merge pull request #12 from BurnyCoder/fix/evaluation-identities"
+    },
+    {
+      "commit": "f00356e0fb88e24151c2997bdf87348646c31bc1",
+      "committer_time": "2026-11-15T11:56:18+01:00",
+      "subject": "Merge pull request #13 from BurnyCoder/chore/judge-runtime-benchmark"
+    },
+    {
+      "commit": "15a3997c65b037d2e2bdb7a94207ca65f7e2abe1",
+      "committer_time": "2026-11-15T11:58:34+01:00",
+      "subject": "Merge pull request #14 from BurnyCoder/fix/benchmark-event"
+    },
+    {
+      "commit": "895ca3892847e14334813d642c519c405816df29",
+      "committer_time": "2026-11-15T12:07:43+01:00",
+      "subject": "Merge pull request #15 from BurnyCoder/evidence/judge-thread-benchmark"
+    },
+    {
+      "commit": "20a1e051334374605ed1e283b65c8232b11780fe",
+      "committer_time": "2026-11-15T12:28:14+01:00",
+      "subject": "Merge pull request #16 from BurnyCoder/fix/judge-evidence-and-calibration-protocol"
+    },
+    {
+      "commit": "b338c47f3705492402cc78e4d3aec25576016301",
+      "committer_time": "2026-11-15T12:40:13+01:00",
+      "subject": "Merge pull request #17 from BurnyCoder/evidence/policy-selection-and-judge-v4"
+    },
+    {
+      "commit": "faea40fb2be30b7454a7dd88b28759f93bca36e0",
+      "committer_time": "2026-11-15T12:50:22+01:00",
+      "subject": "Merge pull request #18 from BurnyCoder/evidence/evaluation-offload-result"
+    },
+    {
+      "commit": "370878dfda5a21899ac5a8f38f36e8c7d059108b",
+      "committer_time": "2026-11-15T13:00:24+01:00",
+      "subject": "Merge pull request #19 from BurnyCoder/protocol/matched-training-budget"
+    },
+    {
+      "commit": "8b60192f99e9eb3da5127e2f1fd365f3fd7af2f0",
+      "committer_time": "2026-11-15T13:30:11+01:00",
+      "subject": "Merge pull request #20 from BurnyCoder/fix/judge-stall-deadline"
+    },
+    {
+      "commit": "189194418a8b699dfcbf38d64ebe27d95bc5cb24",
+      "committer_time": "2026-11-15T13:34:09+01:00",
+      "subject": "Merge pull request #21 from BurnyCoder/docs/calibration-runtime-status"
+    },
+    {
+      "commit": "dddb81b58dfabca08d7cd65671fb90fb82df14bc",
+      "committer_time": "2026-11-15T13:58:25+01:00",
+      "subject": "Merge pull request #22 from BurnyCoder/docs/training-exposure"
+    },
+    {
+      "commit": "7a97306f17caeaf91f4b30b982643436e251e49d",
+      "committer_time": "2026-11-15T14:10:01+01:00",
+      "subject": "Merge pull request #23 from BurnyCoder/results/gemma-v4-calibration"
+    },
+    {
+      "commit": "9c7c574989bb92184bd60774d7a7a7842f010be1",
+      "committer_time": "2026-11-15T14:35:11+01:00",
+      "subject": "Merge pull request #24 from BurnyCoder/feat/bounded-judge-reasoning"
+    },
+    {
+      "commit": "e9a152e7429b605d84c1e597456d359cbeb02077",
+      "committer_time": "2026-11-15T14:57:35+01:00",
+      "subject": "Merge pull request #25 from BurnyCoder/docs/reasoning-calibration-evidence"
+    },
+    {
+      "commit": "1020a42534a2f55aaeca540be16d8fc89055bbf5",
+      "committer_time": "2026-11-15T15:07:31+01:00",
+      "subject": "Merge pull request #26 from BurnyCoder/feat/explicit-novelty-reference"
+    },
+    {
+      "commit": "aa0c9cbcf11498574b939e27d6146559047a3f6a",
+      "committer_time": "2026-11-15T15:14:43+01:00",
+      "subject": "Merge pull request #27 from BurnyCoder/feat/calibration-output-explorer"
+    },
+    {
+      "commit": "1d4bbb22c8eb8437083a0a2fa30365dab3f87cfd",
+      "committer_time": "2026-11-15T15:42:13+01:00",
+      "subject": "Merge pull request #28 from BurnyCoder/docs/reference-contract-failure"
+    },
+    {
+      "commit": "5604015533f78bd9c9ddc6634b40fbdea8004fe3",
+      "committer_time": "2026-11-15T15:51:46+01:00",
+      "subject": "Merge pull request #29 from BurnyCoder/fix/explicit-novelty-eligibility"
+    },
+    {
+      "commit": "0ddf3b41bd9cee4ef4db1a666634b6b11f4bffa1",
+      "committer_time": "2026-11-15T16:09:45+01:00",
+      "subject": "Merge pull request #30 from BurnyCoder/reports/judge-request-latency"
+    },
+    {
+      "commit": "c6de6d37f561ce9c976158610316558fdef7a496",
+      "committer_time": "2026-11-15T16:48:18+01:00",
+      "subject": "Merge pull request #31 from BurnyCoder/feat/modest-valid-connections"
+    },
+    {
+      "commit": "52bbc262ad69e68a9682c658d05e9f863b37bd6a",
+      "committer_time": "2026-11-15T17:36:33+01:00",
+      "subject": "Merge pull request #32 from BurnyCoder/docs/judge-v7-development"
+    },
+    {
+      "commit": "77594ff60564c7ec3677b4b0c6d3c01c59b74097",
+      "committer_time": "2026-11-15T17:42:57+01:00",
+      "subject": "Merge pull request #33 from BurnyCoder/feat/explicit-reference-scope"
+    },
+    {
+      "commit": "e3294c2564f4e1d365dcfdef61224ee40c28ce4c",
+      "committer_time": "2026-11-15T18:01:45+01:00",
+      "subject": "Merge pull request #34 from BurnyCoder/docs/reference-scope-evidence"
+    },
+    {
+      "commit": "9a0b645fd94e642bf1fb96d284fb798e95f44509",
+      "committer_time": "2026-11-15T18:45:57+01:00",
+      "subject": "Merge pull request #35 from BurnyCoder/reports/reference-scope-v3-outcome"
+    },
+    {
+      "commit": "132e928f8e32054ce77dc632d08c7d25693ac63b",
+      "committer_time": "2026-11-15T20:59:17+01:00",
+      "subject": "Merge pull request #36 from BurnyCoder/feature/decomposed-judge-protocols"
+    },
+    {
+      "commit": "e3d94066eb8b44bd29638759640422004d4cc2e5",
+      "committer_time": "2026-11-15T21:54:12+01:00",
+      "subject": "Merge pull request #37 from BurnyCoder/reports/decomposed-development"
+    },
+    {
+      "commit": "ba3adbda1999c33ecd5ee2aecb15789ffcf0449f",
+      "committer_time": "2026-11-15T23:14:05+01:00",
+      "subject": "Merge pull request #38 from BurnyCoder/reports/specialist-development"
+    },
+    {
+      "commit": "274a086022bbd32636f77fba1d1145204f35c229",
+      "committer_time": "2026-11-15T23:17:35+01:00",
+      "subject": "Merge pull request #39 from BurnyCoder/reports/specialist-rubric-development"
+    },
+    {
+      "commit": "fb0d24e4f0dd1e9c77053ba914cb8a5645edd087",
+      "committer_time": "2026-11-16T00:32:22+01:00",
+      "subject": "Merge pull request #40 from BurnyCoder/feature/exploratory-single-judge"
+    },
+    {
+      "commit": "28cd4cd7734106f1842a903f6e52d51fd4a2d9f6",
+      "committer_time": "2026-11-16T00:58:19+01:00",
+      "subject": "Merge pull request #41 from BurnyCoder/reports/exploratory-single-pilot"
+    },
+    {
+      "commit": "6d88fabccfb60d1b99bfaa8676e1281d079cff63",
+      "committer_time": "2026-11-16T01:39:25+01:00",
+      "subject": "Merge pull request #42 from BurnyCoder/reports/indexed-single-pilot"
+    },
+    {
+      "commit": "a8dcd3ccc1d2e3776940e4177cc239c9b2867c53",
+      "committer_time": "2026-11-16T02:07:57+01:00",
+      "subject": "Merge pull request #43 from BurnyCoder/docs/readme-research-format"
+    },
+    {
+      "commit": "e83d41a1502ce41176749c8a37e5cfa597662da8",
+      "committer_time": "2026-11-16T02:36:48+01:00",
+      "subject": "Merge pull request #44 from BurnyCoder/docs/model-execution-order"
+    },
+    {
+      "commit": "c4bf1e51fb7b0f255a92f9bafae873d5df23dd8f",
+      "committer_time": "2026-11-16T03:05:34+01:00",
+      "subject": "Merge pull request #45 from BurnyCoder/feat/small-qwen-gpu-experiment"
+    },
+    {
+      "commit": "80a3c66e53f9996b69bb3ded2e6202925ef76c33",
+      "committer_time": "2026-11-16T03:22:34+01:00",
+      "subject": "Merge pull request #46 from BurnyCoder/docs/postponed-research-roadmap"
+    },
+    {
+      "commit": "af056595f9f03d2690633e0aea7562c9d15f89d5",
+      "committer_time": "2026-11-16T03:39:18+01:00",
+      "subject": "Merge pull request #47 from BurnyCoder/fix/compact-small-gpu-judge"
+    },
+    {
+      "commit": "b69571e6d0e40b1ed509daf18bc9a58398bae59c",
+      "committer_time": "2026-11-16T03:44:20+01:00",
+      "subject": "Merge pull request #48 from BurnyCoder/docs/agri-quotation"
+    },
+    {
+      "commit": "b46b9584021551d1692852c6ad7784363ce33c6d",
+      "committer_time": "2026-11-16T03:59:16+01:00",
+      "subject": "Merge pull request #49 from BurnyCoder/docs/small-gpu-pilot-milestone"
+    },
+    {
+      "commit": "31591d6b0e66a36324f5054e56130246b185ea01",
+      "committer_time": "2026-11-16T04:06:59+01:00",
+      "subject": "Merge pull request #50 from BurnyCoder/docs/conditional-task-difficulty"
+    },
+    {
+      "commit": "fc61645babc6d08b60ba76adc47617d405dd9ddd",
+      "committer_time": "2026-11-16T04:13:54+01:00",
+      "subject": "Merge pull request #51 from BurnyCoder/docs/readme-model-sequence"
+    },
+    {
+      "commit": "4c78872b21878e7c1632232a5c4d4f2bc3d031a3",
+      "committer_time": "2026-11-16T08:48:45+01:00",
+      "subject": "Merge pull request #52 from BurnyCoder/reports/baseline-generation-milestone"
+    },
+    {
+      "commit": "1d296e00495df7e2b02c325cd4914ea090a23fba",
+      "committer_time": "2026-11-16T16:46:18+01:00",
+      "subject": "Merge pull request #53 from BurnyCoder/fix/gpu-cache-diagnostic"
+    },
+    {
+      "commit": "464e486abaed2a3aabe0778a0609636ecbe92c84",
+      "committer_time": "2026-11-16T20:12:12+01:00",
+      "subject": "Merge pull request #54 from BurnyCoder/docs/lean-fundamentality-roadmap"
+    },
+    {
+      "commit": "fac5d9e788c33d066e1e92289fbf220e11e26625",
+      "committer_time": "2026-11-16T20:13:39+01:00",
+      "subject": "Merge pull request #55 from BurnyCoder/docs/readme-lean-fundamentality"
+    }
+  ],
+  "amendments": {
+    "reports/amendments/2026-11-15-bounded-judge-reasoning.md": {
+      "commit": "eecf69c6298d3680be42f2901a22b6a22402e64e",
+      "committer_time": "2026-11-15T14:34:35+01:00",
+      "subject": "Register bounded judge reasoning and preserve v4 development evidence"
+    },
+    "reports/amendments/2026-11-15-declared-novelty-eligibility.md": {
+      "commit": "6f9e6c36550bfa935932864239f967455989abb2",
+      "committer_time": "2026-11-15T15:51:30+01:00",
+      "subject": "Register and document the novelty eligibility protocol before inference"
+    },
+    "reports/amendments/2026-11-15-decomposed-judges.md": {
+      "commit": "018830e8918591e41d4e715492652b20a3484cc4",
+      "committer_time": "2026-11-15T20:58:50+01:00",
+      "subject": "Preregister decomposed judge qualification and publish regenerated reports"
+    },
+    "reports/amendments/2026-11-15-environment-storage.md": {
+      "commit": "c60a393b7327981f2534063569f1bc9e314e4841",
+      "committer_time": "2026-11-15T10:12:40+01:00",
+      "subject": "Support a native WSL project environment without changing dependency locks"
+    },
+    "reports/amendments/2026-11-15-evaluation-offload-diagnostic.md": {
+      "commit": "e986ead31868488a35ff5802f5e6a782b64488ab",
+      "committer_time": "2026-11-15T12:39:44+01:00",
+      "subject": "Preserve partial v4 evidence and preregister GPU offload diagnostic"
+    },
+    "reports/amendments/2026-11-15-explicit-reference-decisions.md": {
+      "commit": "da77321f0e26947dd1a9cf80ead2fee64425f2af",
+      "committer_time": "2026-11-15T15:07:05+01:00",
+      "subject": "Register reference-comparison development protocol"
+    },
+    "reports/amendments/2026-11-15-explicit-reference-scope.md": {
+      "commit": "e60f33ce5f05f75ef18743e9366e12bfb36320ee",
+      "committer_time": "2026-11-15T17:42:42+01:00",
+      "subject": "Clarify finite reference domains before fresh judge calibration"
+    },
+    "reports/amendments/2026-11-15-judge-evidence-protocol.md": {
+      "commit": "71fe9aaf609b8b881619b005b177d7890c32a09a",
+      "committer_time": "2026-11-15T12:27:45+01:00",
+      "subject": "Repair judge evidence retries and bound development calibration"
+    },
+    "reports/amendments/2026-11-15-judge-runtime.md": {
+      "commit": "dff469ee65f46992e99b897c24b3433b7d3fbee3",
+      "committer_time": "2026-11-15T09:56:29+01:00",
+      "subject": "Publish runtime development evidence and artifact checksums"
+    },
+    "reports/amendments/2026-11-15-judge-stream-deadline.md": {
+      "commit": "d7aade88f16e3e3c3cf38b442dce825bf5715fb5",
+      "committer_time": "2026-11-15T13:29:29+01:00",
+      "subject": "Bound judge streams and register passive evaluation waiting"
+    },
+    "reports/amendments/2026-11-15-judge-thread-diagnostic.md": {
+      "commit": "b2a3349314b55aee0f86351a32978564719d13e6",
+      "committer_time": "2026-11-15T11:55:51+01:00",
+      "subject": "Preregister bounded Gemma thread-count diagnostic"
+    },
+    "reports/amendments/2026-11-15-modest-valid-connections.md": {
+      "commit": "fdfffe4aeac9de83ada16bf1adbf72f5f239910f",
+      "committer_time": "2026-11-15T16:47:43+01:00",
+      "subject": "Register revised novelty contrasts and refresh research documentation"
+    },
+    "reports/amendments/2026-11-15-novelty-reference-boundary.md": {
+      "commit": "bd96649d9c44fb4a554cbf5d356fa38042984475",
+      "committer_time": "2026-11-15T10:35:04+01:00",
+      "subject": "Distinguish conventional proofs from constructive novelty in judge v3"
+    },
+    "reports/amendments/2026-11-15-pre-inference-clarifications.md": {
+      "commit": "74d63187ef153b5f7b928d5487356909fa03a677",
+      "committer_time": "2026-11-15T08:35:21+01:00",
+      "subject": "Publish CLI, research reports, dashboard and validation evidence"
+    },
+    "reports/amendments/2026-11-15-specialist-activation.md": {
+      "commit": "c4069cd06b07a7676325ccbaa08ae0b270d5a7ce",
+      "committer_time": "2026-11-15T21:53:48+01:00",
+      "subject": "Preserve two-call calibration failure and activate specialist fallback"
+    },
+    "reports/amendments/2026-11-15-specialist-development-matrix.md": {
+      "commit": "bb868adb447e0be3ddde5cac571cfbd47fec28e3",
+      "committer_time": "2026-11-15T23:13:39+01:00",
+      "subject": "Archive quoted-Qwen specialist failure and clarify remaining development runs"
+    },
+    "reports/amendments/2026-11-15-training-budget.md": {
+      "commit": "63bda3b0f573ca27d87682088d77d28ea3d88f2c",
+      "committer_time": "2026-11-15T12:59:58+01:00",
+      "subject": "Preregister matched 64-update budget from development timing scenarios"
+    },
+    "reports/amendments/2026-11-15-valid-novelty-and-ood.md": {
+      "commit": "dd5d89d972d229ecf604658f1bcc015f6d1e7927",
+      "committer_time": "2026-11-15T09:03:08+01:00",
+      "subject": "Document amended novelty protocol and regenerate research artifacts"
+    },
+    "reports/amendments/2026-11-15-verifier-runtime.md": {
+      "commit": "fa01633aa1679b404c13e15d6256012dd0e1c5b3",
+      "committer_time": "2026-11-15T09:21:16+01:00",
+      "subject": "Avoid symbolic startup for scalar verification and preserve exact decimals"
+    },
+    "reports/amendments/2026-11-16-compact-gpu-judge.md": {
+      "commit": "5fbfd4512dcb6a31b84be9c45f079da7296ab67c",
+      "committer_time": "2026-11-16T03:38:13+01:00",
+      "subject": "Bound single-call judge assessments and retain persistent streaming logs"
+    },
+    "reports/amendments/2026-11-16-cuda-cache-diagnostic.md": {
+      "commit": "f495506f569929a0ea4164a67cf6fadb47a4d71f",
+      "committer_time": "2026-11-16T16:45:48+01:00",
+      "subject": "Isolate a registered CUDA cache-release development diagnostic"
+    },
+    "reports/amendments/2026-11-16-exploratory-single-judge.md": {
+      "commit": "1d4c0d8449cb3532d91e4063658f091cbb144915",
+      "committer_time": "2026-11-16T00:31:53+01:00",
+      "subject": "Add isolated single-call exploratory training and evaluation"
+    },
+    "reports/amendments/2026-11-16-indexed-evidence.md": {
+      "commit": "e873663f0ed0fc2694b31391b73ba3c2f2c42e36",
+      "committer_time": "2026-11-16T00:57:52+01:00",
+      "subject": "Use indexed source passages for single-call judge evidence"
+    },
+    "reports/amendments/2026-11-16-small-qwen-gpu.md": {
+      "commit": "653dfc47e5c520d6523d15f1186a9241cf282a0b",
+      "committer_time": "2026-11-16T03:05:03+01:00",
+      "subject": "feat: register small Qwen GPU experiment with isolated artifacts"
+    },
+    "reports/amendments/2026-11-16-task-difficulty-fallback.md": {
+      "commit": "7e33c17db084d32ad699d39c38c143bb4ad7dde6",
+      "committer_time": "2026-11-16T04:06:36+01:00",
+      "subject": "Record conditional easier mathematics fallback for the small policy"
+    }
+  },
+  "qualification": "Git timestamps describe recorded chronology. The baseline scoring protocol was publicly merged in PR 56 before scoring."
+}

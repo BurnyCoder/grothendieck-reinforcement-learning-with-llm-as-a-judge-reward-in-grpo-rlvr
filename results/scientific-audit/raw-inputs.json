@@ -1,0 +1,106 @@
+{
+  "generations/exploratory-small-gpu-v2-ordinary/events.jsonl": {
+    "sha256": "c31c39470820dc0be63949e5e3dbca194d27d1573938b6b293290242c829ebdf",
+    "bytes": 18459997
+  },
+  "generations/exploratory-small-gpu-v2-ordinary/generation-config.json": {
+    "sha256": "d0fbc9c20793b72f9f1a1e6b6088d4b96e6167f4a2564a70f82c6b0d4399f1d1",
+    "bytes": 2743
+  },
+  "generations/exploratory-small-gpu-v2-ordinary/generations.jsonl": {
+    "sha256": "244c68099e63b89ae7c5cda79caaa8dbf4fb49ad103e0bce7babbb1e0ebf19b0",
+    "bytes": 1245873
+  },
+  "generations/exploratory-small-gpu-v2-prompted/events.jsonl": {
+    "sha256": "4300ad076d294b4b2f8384315f2e89daa69b2fbe53f6c2a8dd4713c0a930637a",
+    "bytes": 20775736
+  },
+  "generations/exploratory-small-gpu-v2-prompted/generation-config.json": {
+    "sha256": "f7a7ed273e0cd273b064ee762851033aa62beaac29a85c2122827203358418db",
+    "bytes": 2742
+  },
+  "generations/exploratory-small-gpu-v2-prompted/generations.jsonl": {
+    "sha256": "d3d0c805d1dabf261d5e937a2dbceba1b3a6fd1bee1222e5af6fde5861013b58",
+    "bytes": 1536196
+  },
+  "runs/exploratory-single-v1-pilot-theory-seed42/metrics.jsonl": {
+    "sha256": "a2079f351a46daa9f21997b3498d61f15a599cb2daaa46d548acf17336313ad1",
+    "bytes": 786
+  },
+  "runs/exploratory-single-v2-pilot-theory-seed42/checkpoint-1/adapter_model.safetensors": {
+    "sha256": "3019142d31657685cfd0d551e495df3fe26af4783e17a80cac6b535e63c30984",
+    "bytes": 43675104
+  },
+  "runs/exploratory-single-v2-pilot-theory-seed42/checkpoint-2/adapter_model.safetensors": {
+    "sha256": "8085268f92bdc83418b1e5ea4a76118687ab2bdfc60add629c07e4284906bd64",
+    "bytes": 43675104
+  },
+  "runs/exploratory-single-v2-pilot-theory-seed42/events.jsonl": {
+    "sha256": "fcc46d89a4920db97376d37f1594e208f3c3eda23c99d896ee78c22951e544ce",
+    "bytes": 1328325
+  },
+  "runs/exploratory-single-v2-pilot-theory-seed42/metrics.jsonl": {
+    "sha256": "a20cf2697a458ff81051c8c07315fcd9140c0ad13bef8a93c7badfd8073adde8",
+    "bytes": 5095
+  },
+  "runs/exploratory-small-gpu-v1-pilot-theory-seed42/metrics.jsonl": {
+    "sha256": "5e086ff3feb15962fa7939384220e66c0ee6353fc553236dbe9f5a7982e066a6",
+    "bytes": 1275
+  },
+  "runs/exploratory-small-gpu-v2-pilot-cache-release-v1-theory-seed42/events.jsonl": {
+    "sha256": "3898389bfb0193d5a4a5ae26d4cfb96971969c37a39df23a031e3967c4f66716",
+    "bytes": 1692679
+  },
+  "runs/exploratory-small-gpu-v2-pilot-cache-release-v1-theory-seed42/metrics.jsonl": {
+    "sha256": "85a30e6065b9a2930fdbe033e3766893cc4596693c2f7e19022216abbc0d19b0",
+    "bytes": 9356
+  },
+  "runs/exploratory-small-gpu-v2-pilot-cache-release-v1-theory-seed42/run.json": {
+    "sha256": "85ca42898e75478d106fb86e477d6911a69378d2dcf94895b4b031bb4ac62f5f",
+    "bytes": 4065
+  },
+  "runs/exploratory-small-gpu-v2-pilot-theory-seed42/checkpoint-1/adapter_model.safetensors": {
+    "sha256": "6721e685f1c0a6ce9190bc838d9155dac38e16c6a522c1f41208683a8495fd16",
+    "bytes": 25587104
+  },
+  "runs/exploratory-small-gpu-v2-pilot-theory-seed42/checkpoint-2/adapter_model.safetensors": {
+    "sha256": "1be10dfc17dfd0cd87b1312718d6468bfe923320a5b6294d0d5541aa259c9e81",
+    "bytes": 25587104
+  },
+  "runs/exploratory-small-gpu-v2-pilot-theory-seed42/events.jsonl": {
+    "sha256": "fd9a79135f2afbf8de3099f719c64da9d0bd653ddb6d3dece4b5123753130085",
+    "bytes": 633251
+  },
+  "runs/exploratory-small-gpu-v2-pilot-theory-seed42/metrics.jsonl": {
+    "sha256": "720d23cc6be7bc6a330cc9c0cec8e42c3d3034f4ae3a647bb6b8e5c7dcd16bb4",
+    "bytes": 4695
+  },
+  "runs/exploratory-small-gpu-v2-theory-seed42/events.jsonl": {
+    "sha256": "6e11138f1b60aa27329cf8b52c50aa9871097268ac04b3c20bf4382f8f7b18d1",
+    "bytes": 6265480
+  },
+  "runs/exploratory-small-gpu-v2-theory-seed42/metrics.jsonl": {
+    "sha256": "a626671fe6e52744484c37a4d66f321137cf6449f4b2dd64c969480f1c46b349",
+    "bytes": 17912
+  },
+  "runs/exploratory-small-gpu-v2-theory-seed42/run.json": {
+    "sha256": "0403d5d273e3329f69c17bc60ed3cab9cff070eb7d27d7e25b56d4570854654f",
+    "bytes": 3615
+  },
+  "runs/pilot-theory-seed42/checkpoint-1/adapter_model.safetensors": {
+    "sha256": "3019142d31657685cfd0d551e495df3fe26af4783e17a80cac6b535e63c30984",
+    "bytes": 43675104
+  },
+  "runs/pilot-theory-seed42/checkpoint-2/adapter_model.safetensors": {
+    "sha256": "c8006f007d2c0a1ce2fb521bb5e12d880903570b6f3a581336c2b262f3cb8858",
+    "bytes": 43675104
+  },
+  "runs/pilot-theory-seed42/events.jsonl": {
+    "sha256": "e7be8508ac1773cca60ce2e4c1ec8cfade5d0941a5d85bd696ae1c13f7f278cf",
+    "bytes": 703140
+  },
+  "runs/pilot-theory-seed42/metrics.jsonl": {
+    "sha256": "7a070aee0478a8a23c3194684f35afe8a91a70b4612415ddff83ce925fac1baa",
+    "bytes": 4458
+  }
+}
